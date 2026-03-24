@@ -1,0 +1,10 @@
+{
+  "query": "TITLE-ABS-KEY((\"weather forecast*\" OR \"weather prediction*\" OR \"meteorological forecast*\" OR \"temperature forecast*\" OR \"heat forecast*\" OR \"early warning system*\" OR \"heat warning*\" OR \"heat alert*\" OR \"climate forecast*\" OR \"seasonal forecast*\" OR \"extreme heat forecast*\") AND (\"cooling cent*\" OR \"cooling shelter*\" OR \"heat shelter*\" OR \"cooling station*\" OR \"air conditioning cent*\" OR \"public cooling\" OR \"community cooling\" OR \"emergency cooling\" OR \"refuge cent*\" OR \"climate shelter*\" OR \"respite cent*\") AND (\"temperature mortality\" OR \"temperature-mortality\" OR \"heat mortality\" OR \"heat-health\" OR \"temperature morbidity\" OR \"heat illness\" OR \"heat-related death*\" OR \"thermal stress\" OR \"heat stroke\" OR \"hyperthermia\" OR \"excess mortality\" OR \"heat wave mortality\") AND (\"randomized controlled trial*\" OR \"randomised controlled trial*\" OR \"RCT\" OR \"quasi-experimental\" OR \"natural experiment*\" OR \"regression discontinuity\" OR \"instrumental variable*\" OR \"difference-in-differences\" OR \"random* assignment\" OR \"random allocation\" OR \"causal inference\" OR \"causal identification\" OR \"intervention study\" OR \"policy evaluation\" OR \"program* evaluation\" OR \"exogenous variation\" OR \"plausibly exogenous\" OR \"treatment assignment\" OR \"control group\" OR \"impact evaluation\" OR \"treatment effect*\" OR \"counterfactual\"))",
+  "database": "scopus",
+  "status": "success",
+  "success": true,
+  "results_count": 1,
+  "meta_count": 0,
+  "calls": 1,
+  "error": ""
+}

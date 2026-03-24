@@ -1,0 +1,8 @@
+{
+  "query": "climate change health impacts",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 10,
+  "meta_count": 49569,
+  "calls": 1
+}

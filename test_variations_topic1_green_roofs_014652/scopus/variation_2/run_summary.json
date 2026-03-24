@@ -1,0 +1,10 @@
+{
+  "query": "TITLE-ABS-KEY((\"cool roof*\" OR \"green roof*\" OR \"living roof*\" OR \"reflective roof*\" OR \"white roof*\" OR \"vegetated roof*\" OR \"roof intervention*\" OR \"rooftop intervention*\" OR \"building retrofit*\" OR \"green infrastructure\" OR \"sustainable roof*\" OR \"eco-roof*\") AND (\"urban heat island*\" OR \"temperature reduction\" OR \"thermal comfort\" OR \"heat exposure\" OR \"ambient temperature\" OR microclimate* OR \"heat stress\" OR \"heat-related illness*\" OR \"cooling effect*\" OR \"surface temperature*\") AND ((\"health outcome*\" OR mortality OR morbidity OR \"cardiovascular disease*\" OR \"respiratory disease*\" OR \"heat-related mortality\" OR \"excess mortality\") AND (\"randomized controlled trial*\" OR \"quasi-experimental\" OR \"natural experiment*\" OR \"difference-in-differences\" OR \"instrumental variable*\" OR \"regression discontinuity\" OR \"propensity score*\" OR \"causal inference\" OR \"intervention study\" OR \"policy evaluation\" OR RCT OR trial* OR evaluat* OR \"before-after\" OR \"pre-post\" OR \"impact assessment\")))",
+  "database": "scopus",
+  "status": "success",
+  "success": true,
+  "results_count": 27,
+  "meta_count": 27,
+  "calls": 2,
+  "error": ""
+}

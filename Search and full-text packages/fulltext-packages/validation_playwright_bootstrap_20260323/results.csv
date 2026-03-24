@@ -1,0 +1,3 @@
+doi,title,journal,success,final_source,final_status,pdf_path,file_bytes,elsevier_status,wiley_status,openalex_status,playwright_status,note
+10.1038/s41591-023-02419-z,,,False,,all_methods_failed,,0,,,missing_openalex_api_key,"playwright_unavailable:BrowserType.launch: Executable doesn't exist at /Users/ziqianxia/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell
+╔══════════════════════",

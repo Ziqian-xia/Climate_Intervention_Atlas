@@ -1,0 +1,7 @@
+{
+  "query": "(\"cool roof\"[Title/Abstract] OR \"cool roofing\"[Title/Abstract] OR \"green roof\"[Title/Abstract] OR \"green roofing\"[Title/Abstract] OR \"living roof\"[Title/Abstract] OR \"vegetated roof\"[Title/Abstract] OR \"roof garden\"[Title/Abstract] OR \"reflective roof\"[Title/Abstract] OR \"white roof\"[Title/Abstract] OR \"high-albedo roof\"[Title/Abstract]) AND (temperature[Title/Abstract] OR \"ambient temperature\"[Title/Abstract] OR \"air temperature\"[Title/Abstract] OR \"surface temperature\"[Title/Abstract] OR \"urban heat island\"[Title/Abstract] OR UHI[Title/Abstract] OR \"heat exposure\"[Title/Abstract] OR \"thermal comfort\"[Title/Abstract]) AND (mortality[Title/Abstract] OR morbidity[Title/Abstract] OR \"heat-related illness\"[Title/Abstract] OR cardiovascular[Title/Abstract] OR respiratory[Title/Abstract] OR health[Title/Abstract]) AND (\"randomized controlled trial\"[Title/Abstract] OR RCT[Title/Abstract] OR \"quasi-experimental\"[Title/Abstract] OR \"natural experiment\"[Title/Abstract] OR \"difference-in-differences\"[Title/Abstract] OR \"causal inference\"[Title/Abstract] OR intervention[Title/Abstract] OR evaluation[Title/Abstract])",
+  "database": "pubmed",
+  "status": "success",
+  "results_count": 5,
+  "meta_count": 5
+}

@@ -1,0 +1,8 @@
+{
+  "query": "(\"weather forecast\" OR \"meteorological forecast\" OR \"heat forecast\" OR \"temperature forecast\" OR \"heat warning\" OR \"heat alert\" OR \"early warning system\" OR \"cooling center\" OR \"cooling shelter\" OR \"heat refuge\" OR \"cooling station\" OR \"air conditioning center\" OR \"climate shelter\" OR \"heat advisory\" OR \"heat watch\" OR \"extreme heat warning\" OR \"public health intervention\" OR \"adaptation strategy\" OR \"heat action plan\" OR \"emergency response\" OR \"public warning\" OR \"alert system\") AND (\"temperature-mortality\" OR \"temperature-morbidity\" OR \"heat-health\" OR \"thermal stress\" OR hyperthermia OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat-related illness\" OR \"heat-related death\" OR mortality OR morbidity OR hospitalization OR \"emergency department visit\" OR \"health outcome\" OR \"adverse health effect\" OR \"heat mortality\" OR \"excess mortality\" OR \"heat morbidity\") AND (\"randomized controlled trial\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"causal inference\" OR \"causal identification\" OR \"random assignment\" OR \"treatment assignment\" OR \"intervention study\" OR \"impact evaluation\" OR \"program evaluation\" OR \"policy evaluation\" OR \"exogenous variation\" OR \"plausibly random\" OR \"propensity score\" OR \"matched control\" OR \"interrupted time series\" OR \"before-after\" OR \"pre-post\" OR \"controlled before-after\" OR \"stepped wedge\" OR \"regression analysis\" OR \"panel data\" OR \"fixed effects\" OR \"time series analysis\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 39817,
+  "calls": 1
+}

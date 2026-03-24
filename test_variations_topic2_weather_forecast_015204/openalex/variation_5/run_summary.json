@@ -1,0 +1,8 @@
+{
+  "query": "(\"weather forecast\" OR \"meteorological forecast\" OR \"heat forecast\" OR \"temperature forecast\" OR \"early warning system\" OR \"heat warning\" OR \"weather alert\" OR \"climate information\" OR \"forecasting intervention\" OR \"predictive information\" OR \"weather communication\" OR \"heat advisory\" OR \"temperature alert\" OR \"cooling center\" OR \"cooling shelter\" OR \"heat shelter\" OR \"air conditioning center\" OR \"climate refuge\" OR \"cooling station\" OR \"community cooling\" OR \"public cooling\" OR \"emergency shelter\" OR \"heat relief center\") AND (\"temperature-mortality\" OR \"heat-mortality\" OR \"thermal stress\" OR \"heat-related death\" OR hyperthermia OR \"heat stroke\" OR \"heat illness\" OR \"extreme temperature\" OR \"ambient temperature\" OR \"temperature exposure\" OR \"heat exposure\" OR \"heat wave\" OR \"hot weather\" OR \"excess mortality\") AND (\"randomized controlled trial\" OR RCT OR \"quasi-experimental\" OR \"natural experiment\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"difference-in-difference\" OR \"causal inference\" OR \"causal identification\" OR \"policy evaluation\" OR \"intervention study\" OR \"program evaluation\" OR \"interrupted time series\" OR \"before-after\" OR \"propensity score\" OR \"matching study\" OR \"fixed effects\" OR \"event study\" OR \"synthetic control\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 2431,
+  "calls": 1
+}

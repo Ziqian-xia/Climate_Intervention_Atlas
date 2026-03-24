@@ -1,0 +1,932 @@
+2026-03-24 01:43:19 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+2026-03-24 01:43:19 | INFO     | Starting query generation for topic (Variation #1): 'I am interested in research papers on the impacts of cool and green roofs interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:43:19 | INFO     | ============================================================
+2026-03-24 01:43:19 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:43:19 | INFO     | ============================================================
+2026-03-24 01:43:19 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:43:19 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:43:23 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:43:23 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 32 carefully curated keywords!
+2026-03-24 01:43:23 | INFO     | ============================================================
+2026-03-24 01:43:23 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:43:23 | INFO     | ============================================================
+2026-03-24 01:43:23 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:43:23 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:43:32 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:43:32 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:43:32 | INFO     | ============================================================
+2026-03-24 01:43:32 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:43:32 | INFO     | ============================================================
+2026-03-24 01:43:32 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:43:32 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:43:42 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:43:42 | INFO     | Sentinel: ✅ All queries passed the rigorous quality inspection!
+2026-03-24 01:43:42 | INFO     | ============================================================
+2026-03-24 01:43:42 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:43:42 | INFO     | ============================================================
+2026-03-24 01:43:42 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:43:42 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:43:59 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:43:59 | INFO     | Refiner: ✅ Resolved 6 issues - queries are now perfect!
+2026-03-24 01:43:59 | INFO     | 🎊 Query generation completed in 39.31 seconds - Ready to unleash upon the databases!
+2026-03-24 01:43:59 | INFO     | ============================================================
+2026-03-24 01:43:59 | INFO     | Starting query generation for topic (Variation #2): 'I am interested in research papers on the impacts of cool and green roofs interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:43:59 | INFO     | ============================================================
+2026-03-24 01:43:59 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:43:59 | INFO     | ============================================================
+2026-03-24 01:43:59 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:43:59 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:44:02 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:44:02 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 31 carefully curated keywords!
+2026-03-24 01:44:02 | INFO     | ============================================================
+2026-03-24 01:44:02 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:44:02 | INFO     | ============================================================
+2026-03-24 01:44:02 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:44:02 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:44:11 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:44:11 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:44:11 | INFO     | ============================================================
+2026-03-24 01:44:11 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:44:11 | INFO     | ============================================================
+2026-03-24 01:44:11 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:44:11 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:44:19 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:44:19 | WARNING  | ⚠️ Sentinel spotted 3 potential issues to review
+2026-03-24 01:44:19 | INFO     | ============================================================
+2026-03-24 01:44:19 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:44:19 | INFO     | ============================================================
+2026-03-24 01:44:19 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:44:19 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:44:33 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:44:33 | INFO     | Refiner: ✅ Resolved 7 issues - queries are now perfect!
+2026-03-24 01:44:33 | INFO     | 🎊 Query generation completed in 34.66 seconds - Ready to unleash upon the databases!
+2026-03-24 01:44:33 | INFO     | ============================================================
+2026-03-24 01:44:33 | INFO     | Starting query generation for topic (Variation #3): 'I am interested in research papers on the impacts of cool and green roofs interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:44:33 | INFO     | ============================================================
+2026-03-24 01:44:33 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:44:33 | INFO     | ============================================================
+2026-03-24 01:44:33 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:44:33 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:44:41 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:44:41 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 45 carefully curated keywords!
+2026-03-24 01:44:41 | INFO     | ============================================================
+2026-03-24 01:44:41 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:44:41 | INFO     | ============================================================
+2026-03-24 01:44:41 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:44:41 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:44:55 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:44:55 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:44:55 | INFO     | ============================================================
+2026-03-24 01:44:55 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:44:55 | INFO     | ============================================================
+2026-03-24 01:44:55 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:44:55 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:45:06 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:45:06 | WARNING  | ⚠️ Sentinel spotted 1 potential issues to review
+2026-03-24 01:45:06 | INFO     | ============================================================
+2026-03-24 01:45:06 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:45:06 | INFO     | ============================================================
+2026-03-24 01:45:06 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:45:06 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:45:14 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:45:14 | INFO     | Refiner: ✅ Resolved 4 issues - queries are now perfect!
+2026-03-24 01:45:14 | INFO     | 🎊 Query generation completed in 40.96 seconds - Ready to unleash upon the databases!
+2026-03-24 01:45:14 | INFO     | ============================================================
+2026-03-24 01:45:14 | INFO     | Starting query generation for topic (Variation #4): 'I am interested in research papers on the impacts of cool and green roofs interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:45:14 | INFO     | ============================================================
+2026-03-24 01:45:14 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:45:14 | INFO     | ============================================================
+2026-03-24 01:45:14 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:45:14 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:45:22 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:45:22 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 59 carefully curated keywords!
+2026-03-24 01:45:22 | INFO     | ============================================================
+2026-03-24 01:45:22 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:45:22 | INFO     | ============================================================
+2026-03-24 01:45:22 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:45:22 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:45:32 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:45:32 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:45:32 | INFO     | ============================================================
+2026-03-24 01:45:32 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:45:32 | INFO     | ============================================================
+2026-03-24 01:45:32 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:45:32 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:45:44 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:45:44 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-24 01:45:44 | INFO     | ============================================================
+2026-03-24 01:45:44 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:45:44 | INFO     | ============================================================
+2026-03-24 01:45:44 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:45:44 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:46:02 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:46:02 | INFO     | Refiner: ✅ Resolved 6 issues - queries are now perfect!
+2026-03-24 01:46:02 | INFO     | 🎊 Query generation completed in 48.09 seconds - Ready to unleash upon the databases!
+2026-03-24 01:46:02 | INFO     | ============================================================
+2026-03-24 01:46:02 | INFO     | Starting query generation for topic (Variation #5): 'I am interested in research papers on the impacts of cool and green roofs interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:46:02 | INFO     | ============================================================
+2026-03-24 01:46:02 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:46:02 | INFO     | ============================================================
+2026-03-24 01:46:02 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:46:02 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:46:09 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:46:09 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 41 carefully curated keywords!
+2026-03-24 01:46:09 | INFO     | ============================================================
+2026-03-24 01:46:09 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:46:09 | INFO     | ============================================================
+2026-03-24 01:46:09 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:46:09 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:46:28 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:46:28 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:46:28 | INFO     | ============================================================
+2026-03-24 01:46:28 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:46:28 | INFO     | ============================================================
+2026-03-24 01:46:28 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:46:28 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:46:39 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:46:39 | WARNING  | ⚠️ Sentinel spotted 1 potential issues to review
+2026-03-24 01:46:39 | INFO     | ============================================================
+2026-03-24 01:46:39 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:46:39 | INFO     | ============================================================
+2026-03-24 01:46:39 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:46:39 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:46:52 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:46:52 | INFO     | Refiner: ✅ Resolved 6 issues - queries are now perfect!
+2026-03-24 01:46:52 | INFO     | 🎊 Query generation completed in 50.11 seconds - Ready to unleash upon the databases!
+2026-03-24 01:46:52 | INFO     | ============================================================
+2026-03-24 01:46:52 | INFO     | ============================================================
+2026-03-24 01:46:52 | INFO     | Starting OPENALEX search
+2026-03-24 01:46:52 | INFO     | Query: ("cool roof" OR "cool roofs" OR "cool roofing" OR "green roof" OR "green roofs" OR "green roofing" O...
+2026-03-24 01:46:52 | INFO     | Max results: 100
+2026-03-24 01:46:52 | INFO     | ============================================================
+2026-03-24 01:46:52 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:46:53 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:47:06 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:47:06 | INFO     | ============================================================
+2026-03-24 01:47:06 | INFO     | Starting OPENALEX search
+2026-03-24 01:47:06 | INFO     | Query: ("cool roof" OR "green roof" OR "living roof" OR "reflective roof" OR "white roof" OR "vegetated roo...
+2026-03-24 01:47:06 | INFO     | Max results: 100
+2026-03-24 01:47:06 | INFO     | ============================================================
+2026-03-24 01:47:06 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:47:06 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:47:13 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:47:13 | INFO     | ============================================================
+2026-03-24 01:47:13 | INFO     | Starting OPENALEX search
+2026-03-24 01:47:13 | INFO     | Query: ("cool roof" OR "green roof" OR "living roof" OR "vegetated roof" OR "reflective roof" OR "white roo...
+2026-03-24 01:47:13 | INFO     | Max results: 100
+2026-03-24 01:47:13 | INFO     | ============================================================
+2026-03-24 01:47:13 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:47:13 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:47:16 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:47:16 | INFO     | ============================================================
+2026-03-24 01:47:16 | INFO     | Starting OPENALEX search
+2026-03-24 01:47:16 | INFO     | Query: ("cool roof" OR "cool roofs" OR "green roof" OR "green roofs" OR "living roof" OR "living roofs" OR ...
+2026-03-24 01:47:16 | INFO     | Max results: 100
+2026-03-24 01:47:16 | INFO     | ============================================================
+2026-03-24 01:47:16 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:47:16 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:47:24 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:47:24 | INFO     | ============================================================
+2026-03-24 01:47:24 | INFO     | Starting OPENALEX search
+2026-03-24 01:47:24 | INFO     | Query: ("cool roof" OR "green roof" OR "living roof" OR "vegetated roof" OR "reflective roof" OR "white roo...
+2026-03-24 01:47:24 | INFO     | Max results: 100
+2026-03-24 01:47:24 | INFO     | ============================================================
+2026-03-24 01:47:24 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:47:24 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:47:30 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:47:30 | INFO     | ============================================================
+2026-03-24 01:47:30 | INFO     | Starting PUBMED search
+2026-03-24 01:47:30 | INFO     | Query: ("cool roof"[Title/Abstract] OR "cool roofing"[Title/Abstract] OR "cool roofs"[Title/Abstract] OR "g...
+2026-03-24 01:47:30 | INFO     | Max results: 100
+2026-03-24 01:47:30 | INFO     | ============================================================
+2026-03-24 01:47:30 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:47:30 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:47:30 | INFO     | PubMed: Found 27 total, fetching 27
+2026-03-24 01:47:30 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:47:30 | INFO     | Fetching records 1 to 27...
+2026-03-24 01:47:31 | INFO     | PUBMED search completed successfully
+2026-03-24 01:47:31 | INFO     | ============================================================
+2026-03-24 01:47:31 | INFO     | Starting PUBMED search
+2026-03-24 01:47:31 | INFO     | Query: ("cool roof*"[Title/Abstract] OR "green roof*"[Title/Abstract] OR "living roof*"[Title/Abstract] OR ...
+2026-03-24 01:47:31 | INFO     | Max results: 100
+2026-03-24 01:47:31 | INFO     | ============================================================
+2026-03-24 01:47:31 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:47:31 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:47:31 | INFO     | PubMed: Found 7 total, fetching 7
+2026-03-24 01:47:31 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:47:31 | INFO     | Fetching records 1 to 7...
+2026-03-24 01:47:32 | INFO     | PUBMED search completed successfully
+2026-03-24 01:47:32 | INFO     | ============================================================
+2026-03-24 01:47:32 | INFO     | Starting PUBMED search
+2026-03-24 01:47:32 | INFO     | Query: ("cool roof*"[Title/Abstract] OR "cool roofing"[Title/Abstract] OR "green roof*"[Title/Abstract] OR ...
+2026-03-24 01:47:32 | INFO     | Max results: 100
+2026-03-24 01:47:32 | INFO     | ============================================================
+2026-03-24 01:47:32 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:47:32 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:47:32 | INFO     | PubMed: Found 78 total, fetching 78
+2026-03-24 01:47:32 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:47:32 | INFO     | Fetching records 1 to 78...
+2026-03-24 01:47:34 | INFO     | PUBMED search completed successfully
+2026-03-24 01:47:34 | INFO     | ============================================================
+2026-03-24 01:47:34 | INFO     | Starting PUBMED search
+2026-03-24 01:47:34 | INFO     | Query: ("cool roof"[Title/Abstract] OR "cool roofs"[Title/Abstract] OR "green roof"[Title/Abstract] OR "gre...
+2026-03-24 01:47:34 | INFO     | Max results: 100
+2026-03-24 01:47:34 | INFO     | ============================================================
+2026-03-24 01:47:34 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:47:34 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:47:34 | INFO     | PubMed: Found 54 total, fetching 54
+2026-03-24 01:47:34 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:47:34 | INFO     | Fetching records 1 to 54...
+2026-03-24 01:47:35 | INFO     | PUBMED search completed successfully
+2026-03-24 01:47:35 | INFO     | ============================================================
+2026-03-24 01:47:35 | INFO     | Starting PUBMED search
+2026-03-24 01:47:35 | INFO     | Query: ("cool roof"[Title/Abstract] OR "green roof"[Title/Abstract] OR "living roof"[Title/Abstract] OR "ve...
+2026-03-24 01:47:35 | INFO     | Max results: 100
+2026-03-24 01:47:35 | INFO     | ============================================================
+2026-03-24 01:47:35 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:47:35 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:47:35 | INFO     | PubMed: Found 2 total, fetching 2
+2026-03-24 01:47:35 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:47:35 | INFO     | Fetching records 1 to 2...
+2026-03-24 01:47:36 | INFO     | PUBMED search completed successfully
+2026-03-24 01:47:36 | INFO     | ============================================================
+2026-03-24 01:47:36 | INFO     | Starting SCOPUS search
+2026-03-24 01:47:36 | INFO     | Query: TITLE-ABS-KEY(("cool roof*" OR "green roof*" OR "living roof*" OR "vegetated roof*" OR "rooftop gard...
+2026-03-24 01:47:36 | INFO     | Max results: 100
+2026-03-24 01:47:36 | INFO     | ============================================================
+2026-03-24 01:47:36 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:47:36 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:47:43 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:47:43 | INFO     | ============================================================
+2026-03-24 01:47:43 | INFO     | Starting SCOPUS search
+2026-03-24 01:47:43 | INFO     | Query: TITLE-ABS-KEY(("cool roof*" OR "green roof*" OR "living roof*" OR "reflective roof*" OR "white roof*...
+2026-03-24 01:47:43 | INFO     | Max results: 100
+2026-03-24 01:47:43 | INFO     | ============================================================
+2026-03-24 01:47:43 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:47:43 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:47:45 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:47:45 | INFO     | ============================================================
+2026-03-24 01:47:45 | INFO     | Starting SCOPUS search
+2026-03-24 01:47:45 | INFO     | Query: TITLE-ABS-KEY(("cool roof*" OR "cool roofing" OR "green roof*" OR "green roofing" OR "living roof*" ...
+2026-03-24 01:47:45 | INFO     | Max results: 100
+2026-03-24 01:47:45 | INFO     | ============================================================
+2026-03-24 01:47:45 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:47:45 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:47:52 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:47:52 | INFO     | ============================================================
+2026-03-24 01:47:52 | INFO     | Starting SCOPUS search
+2026-03-24 01:47:52 | INFO     | Query: TITLE-ABS-KEY(("cool roof*" OR "green roof*" OR "living roof*" OR "reflective roof*" OR "white roof*...
+2026-03-24 01:47:52 | INFO     | Max results: 100
+2026-03-24 01:47:52 | INFO     | ============================================================
+2026-03-24 01:47:52 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:47:52 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:47:58 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:47:58 | INFO     | ============================================================
+2026-03-24 01:47:58 | INFO     | Starting SCOPUS search
+2026-03-24 01:47:58 | INFO     | Query: TITLE-ABS-KEY(("cool roof*" OR "green roof*" OR "living roof*" OR "vegetated roof*" OR "reflective r...
+2026-03-24 01:47:58 | INFO     | Max results: 100
+2026-03-24 01:47:58 | INFO     | ============================================================
+2026-03-24 01:47:58 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:47:58 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:48:00 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:48:00 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+2026-03-24 01:48:00 | INFO     | Starting query generation for topic (Variation #1): 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:48:00 | INFO     | ============================================================
+2026-03-24 01:48:00 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:48:00 | INFO     | ============================================================
+2026-03-24 01:48:00 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:48:00 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:48:07 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:48:07 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 40 carefully curated keywords!
+2026-03-24 01:48:07 | INFO     | ============================================================
+2026-03-24 01:48:07 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:48:07 | INFO     | ============================================================
+2026-03-24 01:48:07 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:48:07 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:48:22 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:48:22 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:48:22 | INFO     | ============================================================
+2026-03-24 01:48:22 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:48:22 | INFO     | ============================================================
+2026-03-24 01:48:22 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:48:22 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:48:32 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:48:32 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-24 01:48:32 | INFO     | ============================================================
+2026-03-24 01:48:32 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:48:32 | INFO     | ============================================================
+2026-03-24 01:48:32 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:48:32 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:48:48 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:48:48 | INFO     | Refiner: ✅ Resolved 5 issues - queries are now perfect!
+2026-03-24 01:48:48 | INFO     | 🎊 Query generation completed in 47.87 seconds - Ready to unleash upon the databases!
+2026-03-24 01:48:48 | INFO     | ============================================================
+2026-03-24 01:48:48 | INFO     | Starting query generation for topic (Variation #2): 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:48:48 | INFO     | ============================================================
+2026-03-24 01:48:48 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:48:48 | INFO     | ============================================================
+2026-03-24 01:48:48 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:48:48 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:48:52 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:48:52 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 36 carefully curated keywords!
+2026-03-24 01:48:52 | INFO     | ============================================================
+2026-03-24 01:48:52 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:48:52 | INFO     | ============================================================
+2026-03-24 01:48:52 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:48:52 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:49:06 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:49:06 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:49:06 | INFO     | ============================================================
+2026-03-24 01:49:06 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:49:06 | INFO     | ============================================================
+2026-03-24 01:49:06 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:49:06 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:49:30 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:49:30 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-24 01:49:30 | INFO     | ============================================================
+2026-03-24 01:49:30 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:49:30 | INFO     | ============================================================
+2026-03-24 01:49:30 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:49:30 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:49:47 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:49:47 | INFO     | Refiner: ✅ Resolved 5 issues - queries are now perfect!
+2026-03-24 01:49:47 | INFO     | 🎊 Query generation completed in 59.36 seconds - Ready to unleash upon the databases!
+2026-03-24 01:49:47 | INFO     | ============================================================
+2026-03-24 01:49:47 | INFO     | Starting query generation for topic (Variation #3): 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:49:47 | INFO     | ============================================================
+2026-03-24 01:49:47 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:49:47 | INFO     | ============================================================
+2026-03-24 01:49:47 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:49:47 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:49:54 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:49:54 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 44 carefully curated keywords!
+2026-03-24 01:49:54 | INFO     | ============================================================
+2026-03-24 01:49:54 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:49:54 | INFO     | ============================================================
+2026-03-24 01:49:54 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:49:54 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:50:03 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:50:03 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:50:03 | INFO     | ============================================================
+2026-03-24 01:50:03 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:50:03 | INFO     | ============================================================
+2026-03-24 01:50:03 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:50:03 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:50:16 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:50:16 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-24 01:50:16 | INFO     | ============================================================
+2026-03-24 01:50:16 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:50:16 | INFO     | ============================================================
+2026-03-24 01:50:16 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:50:16 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:50:27 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:50:27 | INFO     | Refiner: ✅ Resolved 4 issues - queries are now perfect!
+2026-03-24 01:50:27 | INFO     | 🎊 Query generation completed in 39.80 seconds - Ready to unleash upon the databases!
+2026-03-24 01:50:27 | INFO     | ============================================================
+2026-03-24 01:50:27 | INFO     | Starting query generation for topic (Variation #4): 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:50:27 | INFO     | ============================================================
+2026-03-24 01:50:27 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:50:27 | INFO     | ============================================================
+2026-03-24 01:50:27 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:50:27 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:50:35 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:50:35 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 34 carefully curated keywords!
+2026-03-24 01:50:35 | INFO     | ============================================================
+2026-03-24 01:50:35 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:50:35 | INFO     | ============================================================
+2026-03-24 01:50:35 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:50:35 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:50:44 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:50:44 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:50:44 | INFO     | ============================================================
+2026-03-24 01:50:44 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:50:44 | INFO     | ============================================================
+2026-03-24 01:50:44 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:50:44 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:50:58 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:50:58 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-24 01:50:58 | INFO     | ============================================================
+2026-03-24 01:50:58 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:50:58 | INFO     | ============================================================
+2026-03-24 01:50:58 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:50:58 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:51:17 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:51:17 | INFO     | Refiner: ✅ Resolved 5 issues - queries are now perfect!
+2026-03-24 01:51:17 | INFO     | 🎊 Query generation completed in 50.11 seconds - Ready to unleash upon the databases!
+2026-03-24 01:51:17 | INFO     | ============================================================
+2026-03-24 01:51:17 | INFO     | Starting query generation for topic (Variation #5): 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-24 01:51:17 | INFO     | ============================================================
+2026-03-24 01:51:17 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 01:51:17 | INFO     | ============================================================
+2026-03-24 01:51:17 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 01:51:17 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:51:25 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 01:51:25 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 49 carefully curated keywords!
+2026-03-24 01:51:25 | INFO     | ============================================================
+2026-03-24 01:51:25 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 01:51:25 | INFO     | ============================================================
+2026-03-24 01:51:25 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 01:51:25 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:51:39 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 01:51:39 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 01:51:39 | INFO     | ============================================================
+2026-03-24 01:51:39 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 01:51:39 | INFO     | ============================================================
+2026-03-24 01:51:39 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 01:51:39 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:51:49 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 01:51:49 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-24 01:51:49 | INFO     | ============================================================
+2026-03-24 01:51:49 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 01:51:49 | INFO     | ============================================================
+2026-03-24 01:51:49 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 01:51:49 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 01:52:04 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 01:52:04 | INFO     | Refiner: ✅ Resolved 4 issues - queries are now perfect!
+2026-03-24 01:52:04 | INFO     | 🎊 Query generation completed in 46.70 seconds - Ready to unleash upon the databases!
+2026-03-24 01:52:04 | INFO     | ============================================================
+2026-03-24 01:52:04 | INFO     | ============================================================
+2026-03-24 01:52:04 | INFO     | Starting OPENALEX search
+2026-03-24 01:52:04 | INFO     | Query: ("weather forecast" OR "weather forecasts" OR "meteorological forecast" OR "meteorological forecasts...
+2026-03-24 01:52:04 | INFO     | Max results: 100
+2026-03-24 01:52:04 | INFO     | ============================================================
+2026-03-24 01:52:04 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:52:04 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:52:17 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:52:17 | INFO     | ============================================================
+2026-03-24 01:52:17 | INFO     | Starting OPENALEX search
+2026-03-24 01:52:17 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "heat forecast" OR "temperature forecast" OR "he...
+2026-03-24 01:52:17 | INFO     | Max results: 100
+2026-03-24 01:52:17 | INFO     | ============================================================
+2026-03-24 01:52:17 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:52:17 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:52:49 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:52:49 | INFO     | ============================================================
+2026-03-24 01:52:49 | INFO     | Starting OPENALEX search
+2026-03-24 01:52:49 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "ea...
+2026-03-24 01:52:49 | INFO     | Max results: 100
+2026-03-24 01:52:49 | INFO     | ============================================================
+2026-03-24 01:52:49 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:52:49 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:53:02 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:53:02 | INFO     | ============================================================
+2026-03-24 01:53:02 | INFO     | Starting OPENALEX search
+2026-03-24 01:53:02 | INFO     | Query: ("weather forecast" OR "weather forecasts" OR "meteorological forecast" OR "meteorological forecasts...
+2026-03-24 01:53:02 | INFO     | Max results: 100
+2026-03-24 01:53:02 | INFO     | ============================================================
+2026-03-24 01:53:02 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:53:02 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:53:15 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:53:15 | INFO     | ============================================================
+2026-03-24 01:53:15 | INFO     | Starting OPENALEX search
+2026-03-24 01:53:15 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "heat forecast" OR "temperature forecast" OR "ea...
+2026-03-24 01:53:15 | INFO     | Max results: 100
+2026-03-24 01:53:15 | INFO     | ============================================================
+2026-03-24 01:53:15 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 01:53:15 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 01:53:29 | INFO     | OPENALEX search completed successfully
+2026-03-24 01:53:29 | INFO     | ============================================================
+2026-03-24 01:53:29 | INFO     | Starting PUBMED search
+2026-03-24 01:53:29 | INFO     | Query: ("weather forecast*"[Title/Abstract] OR "meteorological forecast*"[Title/Abstract] OR "temperature f...
+2026-03-24 01:53:29 | INFO     | Max results: 100
+2026-03-24 01:53:29 | INFO     | ============================================================
+2026-03-24 01:53:29 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:53:29 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:53:29 | INFO     | PubMed: Found 0 total, fetching 0
+2026-03-24 01:53:29 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:53:29 | INFO     | PUBMED search completed successfully
+2026-03-24 01:53:29 | INFO     | ============================================================
+2026-03-24 01:53:29 | INFO     | Starting PUBMED search
+2026-03-24 01:53:29 | INFO     | Query: ("weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "heat forecast"[...
+2026-03-24 01:53:29 | INFO     | Max results: 100
+2026-03-24 01:53:29 | INFO     | ============================================================
+2026-03-24 01:53:29 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:53:29 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:53:29 | INFO     | PubMed: Found 35864 total, fetching 100
+2026-03-24 01:53:29 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:53:29 | INFO     | Fetching records 1 to 100...
+2026-03-24 01:53:30 | INFO     | PUBMED search completed successfully
+2026-03-24 01:53:30 | INFO     | ============================================================
+2026-03-24 01:53:30 | INFO     | Starting PUBMED search
+2026-03-24 01:53:30 | INFO     | Query: ("weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "temperature for...
+2026-03-24 01:53:30 | INFO     | Max results: 100
+2026-03-24 01:53:30 | INFO     | ============================================================
+2026-03-24 01:53:30 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:53:30 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:53:31 | INFO     | PubMed: Found 160 total, fetching 100
+2026-03-24 01:53:31 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:53:31 | INFO     | Fetching records 1 to 100...
+2026-03-24 01:53:32 | INFO     | PUBMED search completed successfully
+2026-03-24 01:53:32 | INFO     | ============================================================
+2026-03-24 01:53:32 | INFO     | Starting PUBMED search
+2026-03-24 01:53:32 | INFO     | Query: ("weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "meteorological foreca...
+2026-03-24 01:53:32 | INFO     | Max results: 100
+2026-03-24 01:53:32 | INFO     | ============================================================
+2026-03-24 01:53:32 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:53:32 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:53:32 | ERROR    | PUBMED search failed: ESearch failed: http_414
+Traceback (most recent call last):
+  File "/Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/modules/m2_search_exec.py", line 146, in execute_search
+    result = self._execute_pubmed(max_results, out_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/modules/m2_search_exec.py", line 221, in _execute_pubmed
+    raise RuntimeError(f"ESearch failed: {esearch_result.get('status')}")
+RuntimeError: ESearch failed: http_414
+2026-03-24 01:53:32 | INFO     | ============================================================
+2026-03-24 01:53:32 | INFO     | Starting PUBMED search
+2026-03-24 01:53:32 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "heat forecast"...
+2026-03-24 01:53:32 | INFO     | Max results: 100
+2026-03-24 01:53:32 | INFO     | ============================================================
+2026-03-24 01:53:32 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 01:53:32 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 01:53:33 | INFO     | PubMed: Found 35 total, fetching 35
+2026-03-24 01:53:33 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 01:53:33 | INFO     | Fetching records 1 to 35...
+2026-03-24 01:53:33 | INFO     | PUBMED search completed successfully
+2026-03-24 01:53:33 | INFO     | ============================================================
+2026-03-24 01:53:33 | INFO     | Starting SCOPUS search
+2026-03-24 01:53:33 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+2026-03-24 01:53:33 | INFO     | Max results: 100
+2026-03-24 01:53:33 | INFO     | ============================================================
+2026-03-24 01:53:33 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:53:33 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:53:35 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:53:35 | INFO     | ============================================================
+2026-03-24 01:53:35 | INFO     | Starting SCOPUS search
+2026-03-24 01:53:35 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "heat forecast*" OR "temperature...
+2026-03-24 01:53:35 | INFO     | Max results: 100
+2026-03-24 01:53:35 | INFO     | ============================================================
+2026-03-24 01:53:35 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:53:35 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:53:43 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:53:43 | INFO     | ============================================================
+2026-03-24 01:53:43 | INFO     | Starting SCOPUS search
+2026-03-24 01:53:43 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+2026-03-24 01:53:43 | INFO     | Max results: 100
+2026-03-24 01:53:43 | INFO     | ============================================================
+2026-03-24 01:53:43 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:53:43 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:53:50 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:53:50 | INFO     | ============================================================
+2026-03-24 01:53:50 | INFO     | Starting SCOPUS search
+2026-03-24 01:53:50 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "heat forecast*" OR "temperature...
+2026-03-24 01:53:50 | INFO     | Max results: 100
+2026-03-24 01:53:50 | INFO     | ============================================================
+2026-03-24 01:53:50 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:53:50 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:53:52 | INFO     | SCOPUS search completed successfully
+2026-03-24 01:53:52 | INFO     | ============================================================
+2026-03-24 01:53:52 | INFO     | Starting SCOPUS search
+2026-03-24 01:53:52 | INFO     | Query: TITLE-ABS-KEY((("weather forecast*" OR "meteorological forecast*" OR "heat forecast*" OR "temperatur...
+2026-03-24 01:53:52 | INFO     | Max results: 100
+2026-03-24 01:53:52 | INFO     | ============================================================
+2026-03-24 01:53:52 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 01:53:52 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 01:53:52 | INFO     | SCOPUS search completed successfully
+
+====================================================================================================
+  5-Variation Test for Two Research Topics
+====================================================================================================
+Time: 2026-03-24 01:43:19
+✅ Connected to AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+
+====================================================================================================
+  TESTING: TOPIC1_GREEN_ROOFS
+====================================================================================================
+
+====================================================================================================
+  TOPIC1_GREEN_ROOFS: Generating 5 Query Variations
+====================================================================================================
+
+================================================================================
+Generating Variation #1
+================================================================================
+✅ Variation #1 generated successfully
+   Keywords: 32
+   OpenAlex query length: 1244 chars
+
+================================================================================
+Generating Variation #2
+================================================================================
+✅ Variation #2 generated successfully
+   Keywords: 31
+   OpenAlex query length: 723 chars
+
+================================================================================
+Generating Variation #3
+================================================================================
+✅ Variation #3 generated successfully
+   Keywords: 45
+   OpenAlex query length: 572 chars
+
+================================================================================
+Generating Variation #4
+================================================================================
+✅ Variation #4 generated successfully
+   Keywords: 59
+   OpenAlex query length: 1511 chars
+
+================================================================================
+Generating Variation #5
+================================================================================
+✅ Variation #5 generated successfully
+   Keywords: 41
+   OpenAlex query length: 1148 chars
+
+✅ Generated 5 variations
+
+====================================================================================================
+  OPENALEX: Searching All Variations
+====================================================================================================
+
+  Searching Variation #1...
+  ✅ Variation #1: 16,401 total matches (retrieved 100)
+
+  Searching Variation #2...
+  ✅ Variation #2: 6,027 total matches (retrieved 100)
+
+  Searching Variation #3...
+  ✅ Variation #3: 24,423 total matches (retrieved 100)
+
+  Searching Variation #4...
+  ✅ Variation #4: 21,879 total matches (retrieved 100)
+
+  Searching Variation #5...
+  ✅ Variation #5: 7,548 total matches (retrieved 100)
+
+================================================================================
+Merging OPENALEX variations...
+================================================================================
+  Variation #1: 100 records (meta_count: 16,401)
+  Variation #2: 100 records (meta_count: 6,027)
+  Variation #3: 100 records (meta_count: 24,423)
+  Variation #4: 100 records (meta_count: 21,879)
+  Variation #5: 100 records (meta_count: 7,548)
+
+  📊 Merge Summary:
+     Total retrieved:         500
+     Duplicates removed:       93
+     Final unique:            407
+     Dedup rate:             18.6%
+
+====================================================================================================
+  PUBMED: Searching All Variations
+====================================================================================================
+
+  Searching Variation #1...
+  ✅ Variation #1: 27 total matches (retrieved 27)
+
+  Searching Variation #2...
+  ✅ Variation #2: 7 total matches (retrieved 7)
+
+  Searching Variation #3...
+  ✅ Variation #3: 78 total matches (retrieved 78)
+
+  Searching Variation #4...
+  ✅ Variation #4: 54 total matches (retrieved 54)
+
+  Searching Variation #5...
+  ✅ Variation #5: 2 total matches (retrieved 2)
+
+================================================================================
+Merging PUBMED variations...
+================================================================================
+  Variation #1: 27 records (meta_count: 27)
+  Variation #2: 7 records (meta_count: 7)
+  Variation #3: 78 records (meta_count: 78)
+  Variation #4: 54 records (meta_count: 54)
+  Variation #5: 2 records (meta_count: 2)
+
+  📊 Merge Summary:
+     Total retrieved:         168
+     Duplicates removed:       40
+     Final unique:            128
+     Dedup rate:             23.8%
+
+====================================================================================================
+  SCOPUS: Searching All Variations
+====================================================================================================
+
+  Searching Variation #1...
+  ✅ Variation #1: 1,309 total matches (retrieved 100)
+
+  Searching Variation #2...
+  ✅ Variation #2: 27 total matches (retrieved 27)
+
+  Searching Variation #3...
+  ✅ Variation #3: 797 total matches (retrieved 100)
+
+  Searching Variation #4...
+  ✅ Variation #4: 2,122 total matches (retrieved 100)
+
+  Searching Variation #5...
+  ✅ Variation #5: 18 total matches (retrieved 18)
+
+================================================================================
+Merging SCOPUS variations...
+================================================================================
+  Variation #1: 100 records (meta_count: 1,309)
+  Variation #2: 27 records (meta_count: 27)
+  Variation #3: 100 records (meta_count: 797)
+  Variation #4: 100 records (meta_count: 2,122)
+  Variation #5: 18 records (meta_count: 18)
+
+  📊 Merge Summary:
+     Total retrieved:         345
+     Duplicates removed:       99
+     Final unique:            246
+     Dedup rate:             28.7%
+
+====================================================================================================
+  TESTING: TOPIC2_WEATHER_FORECAST
+====================================================================================================
+
+====================================================================================================
+  TOPIC2_WEATHER_FORECAST: Generating 5 Query Variations
+====================================================================================================
+
+================================================================================
+Generating Variation #1
+================================================================================
+✅ Variation #1 generated successfully
+   Keywords: 40
+   OpenAlex query length: 1824 chars
+
+================================================================================
+Generating Variation #2
+================================================================================
+✅ Variation #2 generated successfully
+   Keywords: 36
+   OpenAlex query length: 1518 chars
+
+================================================================================
+Generating Variation #3
+================================================================================
+✅ Variation #3 generated successfully
+   Keywords: 44
+   OpenAlex query length: 971 chars
+
+================================================================================
+Generating Variation #4
+================================================================================
+✅ Variation #4 generated successfully
+   Keywords: 34
+   OpenAlex query length: 2163 chars
+
+================================================================================
+Generating Variation #5
+================================================================================
+✅ Variation #5 generated successfully
+   Keywords: 49
+   OpenAlex query length: 1268 chars
+
+✅ Generated 5 variations
+
+====================================================================================================
+  OPENALEX: Searching All Variations
+====================================================================================================
+
+  Searching Variation #1...
+  ✅ Variation #1: 882 total matches (retrieved 100)
+
+  Searching Variation #2...
+  ✅ Variation #2: 39,817 total matches (retrieved 100)
+
+  Searching Variation #3...
+  ✅ Variation #3: 28,511 total matches (retrieved 100)
+
+  Searching Variation #4...
+  ✅ Variation #4: 2,987 total matches (retrieved 100)
+
+  Searching Variation #5...
+  ✅ Variation #5: 2,431 total matches (retrieved 100)
+
+================================================================================
+Merging OPENALEX variations...
+================================================================================
+  Variation #1: 100 records (meta_count: 882)
+  Variation #2: 100 records (meta_count: 39,817)
+  Variation #3: 100 records (meta_count: 28,511)
+  Variation #4: 100 records (meta_count: 2,987)
+  Variation #5: 100 records (meta_count: 2,431)
+
+  📊 Merge Summary:
+     Total retrieved:         500
+     Duplicates removed:      118
+     Final unique:            382
+     Dedup rate:             23.6%
+
+====================================================================================================
+  PUBMED: Searching All Variations
+====================================================================================================
+
+  Searching Variation #1...
+  ✅ Variation #1: 0 total matches (retrieved 0)
+
+  Searching Variation #2...
+  ✅ Variation #2: 35,864 total matches (retrieved 100)
+
+  Searching Variation #3...
+  ✅ Variation #3: 160 total matches (retrieved 100)
+
+  Searching Variation #4...
+  ❌ Variation #4: Failed
+
+  Searching Variation #5...
+  ✅ Variation #5: 35 total matches (retrieved 35)
+
+================================================================================
+Merging PUBMED variations...
+================================================================================
+  Variation #2: 100 records (meta_count: 35,864)
+  Variation #3: 100 records (meta_count: 160)
+  Variation #5: 35 records (meta_count: 35)
+
+  📊 Merge Summary:
+     Total retrieved:         235
+     Duplicates removed:        4
+     Final unique:            231
+     Dedup rate:              1.7%
+
+====================================================================================================
+  SCOPUS: Searching All Variations
+====================================================================================================
+
+  Searching Variation #1...
+  ✅ Variation #1: 2 total matches (retrieved 2)
+
+  Searching Variation #2...
+  ✅ Variation #2: 1,269 total matches (retrieved 100)
+
+  Searching Variation #3...
+  ✅ Variation #3: 1,304 total matches (retrieved 100)
+
+  Searching Variation #4...
+  ✅ Variation #4: 25 total matches (retrieved 25)
+
+  Searching Variation #5...
+  ❌ Variation #5: Failed
+
+================================================================================
+Merging SCOPUS variations...
+================================================================================
+  Variation #1: 2 records (meta_count: 2)
+  Variation #2: 100 records (meta_count: 1,269)
+  Variation #3: 100 records (meta_count: 1,304)
+  Variation #4: 25 records (meta_count: 25)
+
+  📊 Merge Summary:
+     Total retrieved:         227
+     Duplicates removed:        5
+     Final unique:            222
+     Dedup rate:              2.2%
+
+====================================================================================================
+  FINAL SUMMARY
+====================================================================================================
+
+TOPIC1_GREEN_ROOFS:
+
+  OPENALEX:
+    Total retrieved (5 vars):    500
+    Duplicates removed:           93
+    Final unique count:          407
+    Max meta_count:           24,423
+
+  PUBMED:
+    Total retrieved (5 vars):    168
+    Duplicates removed:           40
+    Final unique count:          128
+    Max meta_count:               78
+
+  SCOPUS:
+    Total retrieved (5 vars):    345
+    Duplicates removed:           99
+    Final unique count:          246
+    Max meta_count:            2,122
+
+TOPIC2_WEATHER_FORECAST:
+
+  OPENALEX:
+    Total retrieved (5 vars):    500
+    Duplicates removed:          118
+    Final unique count:          382
+    Max meta_count:           39,817
+
+  PUBMED:
+    Total retrieved (5 vars):    235
+    Duplicates removed:            4
+    Final unique count:          231
+    Max meta_count:           35,864
+
+  SCOPUS:
+    Total retrieved (5 vars):    227
+    Duplicates removed:            5
+    Final unique count:          222
+    Max meta_count:            1,304
+
+
+====================================================================================================
+Summary saved to: variation_test_summary_20260324_015352.json
+====================================================================================================
+

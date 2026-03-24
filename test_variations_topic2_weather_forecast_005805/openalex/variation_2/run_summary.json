@@ -1,0 +1,8 @@
+{
+  "query": "(\"weather forecast\" OR \"meteorological forecast\" OR \"heat forecast\" OR \"temperature forecast\" OR \"early warning system\" OR \"heat warning\" OR \"heat alert\" OR \"cooling center\" OR \"cooling centre\" OR \"cooling shelter\" OR \"heat shelter\" OR \"climate shelter\" OR \"cooling station\" OR \"air conditioning center\" OR \"community cooling\" OR \"public cooling\" OR \"cooling program\" OR \"heat action plan\" OR \"heat response plan\" OR \"thermal refuge\") AND (\"temperature mortality\" OR \"temperature health\" OR \"heat health\" OR \"thermal stress\" OR \"heat related illness\" OR \"heat related death\" OR hyperthermia OR \"heat vulnerability\" OR \"extreme heat\" OR heatwave OR \"heat wave\" OR \"thermal exposure\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat morbidity\") AND (\"randomized controlled trial\" OR \"randomised controlled trial\" OR \"quasi experimental\" OR \"natural experiment\" OR \"regression discontinuity\" OR \"difference in differences\" OR \"instrumental variable\" OR \"random assignment\" OR \"causal inference\" OR \"intervention study\" OR \"policy evaluation\" OR \"program evaluation\" OR \"effectiveness study\" OR \"impact assessment\" OR \"clinical trial\" OR \"field experiment\" OR \"before after study\" OR \"controlled study\")",
+  "database": "openalex",
+  "status": "merged_title_abstract",
+  "results_count": 0,
+  "meta_count": 0,
+  "calls": 2
+}

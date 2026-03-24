@@ -1,0 +1,46 @@
+{
+  "topic1_green_roofs": {
+    "success": true,
+    "topic_key": "topic1_green_roofs",
+    "num_variations": 5,
+    "results": {
+      "openalex": {
+        "success": false,
+        "error": "No data to merge",
+        "final_count": 0,
+        "duplicates_removed": 0
+      },
+      "pubmed": {
+        "success": true,
+        "final_count": 75,
+        "total_before_dedup": 96,
+        "duplicates_removed": 21,
+        "dedup_rate": 21.875,
+        "meta_count": 43,
+        "merged_csv": "test_variations_topic1_green_roofs_005411/pubmed/works_summary_merged.csv"
+      }
+    }
+  },
+  "topic2_weather_forecast": {
+    "success": true,
+    "topic_key": "topic2_weather_forecast",
+    "num_variations": 5,
+    "results": {
+      "openalex": {
+        "success": false,
+        "error": "No data to merge",
+        "final_count": 0,
+        "duplicates_removed": 0
+      },
+      "pubmed": {
+        "success": true,
+        "final_count": 164,
+        "total_before_dedup": 175,
+        "duplicates_removed": 11,
+        "dedup_rate": 6.2857142857142865,
+        "meta_count": 334,
+        "merged_csv": "test_variations_topic2_weather_forecast_005805/pubmed/works_summary_merged.csv"
+      }
+    }
+  }
+}

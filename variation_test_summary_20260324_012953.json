@@ -1,0 +1,52 @@
+{
+  "topic1_green_roofs": {
+    "success": true,
+    "topic_key": "topic1_green_roofs",
+    "num_variations": 5,
+    "results": {
+      "openalex": {
+        "success": true,
+        "final_count": 290,
+        "total_before_dedup": 400,
+        "duplicates_removed": 110,
+        "dedup_rate": 27.500000000000004,
+        "meta_count": 12740,
+        "merged_csv": "test_variations_topic1_green_roofs_011624/openalex/works_summary_merged.csv"
+      },
+      "pubmed": {
+        "success": true,
+        "final_count": 37,
+        "total_before_dedup": 49,
+        "duplicates_removed": 12,
+        "dedup_rate": 24.489795918367346,
+        "meta_count": 17,
+        "merged_csv": "test_variations_topic1_green_roofs_011624/pubmed/works_summary_merged.csv"
+      }
+    }
+  },
+  "topic2_weather_forecast": {
+    "success": true,
+    "topic_key": "topic2_weather_forecast",
+    "num_variations": 5,
+    "results": {
+      "openalex": {
+        "success": true,
+        "final_count": 380,
+        "total_before_dedup": 500,
+        "duplicates_removed": 120,
+        "dedup_rate": 24.0,
+        "meta_count": 57913,
+        "merged_csv": "test_variations_topic2_weather_forecast_012601/openalex/works_summary_merged.csv"
+      },
+      "pubmed": {
+        "success": true,
+        "final_count": 105,
+        "total_before_dedup": 110,
+        "duplicates_removed": 5,
+        "dedup_rate": 4.545454545454546,
+        "meta_count": 279,
+        "merged_csv": "test_variations_topic2_weather_forecast_012601/pubmed/works_summary_merged.csv"
+      }
+    }
+  }
+}

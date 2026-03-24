@@ -1,0 +1,459 @@
+
+====================================================================================================
+  Query Stability Test - Multiple Runs with Same Topic
+====================================================================================================
+Time: 2026-03-23 23:28:35
+
+Topic:
+I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.
+
+Using LLM provider: bedrock
+✅ Connected to AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+
+How many test runs? (recommended: 3-5): 2026-03-23 23:28:35 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+2026-03-23 23:28:35 | INFO     | Starting query generation for topic: 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-23 23:28:35 | INFO     | ============================================================
+2026-03-23 23:28:35 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-23 23:28:35 | INFO     | ============================================================
+2026-03-23 23:28:35 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-23 23:28:35 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:28:39 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-23 23:28:39 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 36 carefully curated keywords!
+2026-03-23 23:28:39 | INFO     | ============================================================
+2026-03-23 23:28:39 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-23 23:28:39 | INFO     | ============================================================
+2026-03-23 23:28:39 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-23 23:28:39 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:28:52 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-23 23:28:52 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-23 23:28:52 | INFO     | ============================================================
+2026-03-23 23:28:52 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-23 23:28:52 | INFO     | ============================================================
+2026-03-23 23:28:52 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-23 23:28:52 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:29:03 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-23 23:29:03 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-23 23:29:03 | INFO     | ============================================================
+2026-03-23 23:29:03 | INFO     | REFINER AGENT - Final Polish
+2026-03-23 23:29:03 | INFO     | ============================================================
+2026-03-23 23:29:03 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-23 23:29:03 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:29:16 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-23 23:29:16 | INFO     | Refiner: ✅ Resolved 5 issues - queries are now perfect!
+2026-03-23 23:29:16 | INFO     | 🎊 Query generation completed in 40.91 seconds - Ready to unleash upon the databases!
+2026-03-23 23:29:16 | INFO     | ============================================================
+2026-03-23 23:29:16 | INFO     | ============================================================
+2026-03-23 23:29:16 | INFO     | Starting OPENALEX search
+2026-03-23 23:29:16 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "fo...
+2026-03-23 23:29:16 | INFO     | Max results: 20
+2026-03-23 23:29:16 | INFO     | ============================================================
+2026-03-23 23:29:16 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-23 23:29:17 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-23 23:29:20 | INFO     | OPENALEX search completed successfully
+2026-03-23 23:29:20 | INFO     | ============================================================
+2026-03-23 23:29:20 | INFO     | Starting PUBMED search
+2026-03-23 23:29:20 | INFO     | Query: ("weather forecast"[Title/Abstract] OR "weather forecasting"[Title/Abstract] OR "meteorological fore...
+2026-03-23 23:29:20 | INFO     | Max results: 20
+2026-03-23 23:29:20 | INFO     | ============================================================
+2026-03-23 23:29:20 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-23 23:29:20 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-23 23:29:21 | INFO     | PubMed: Found 0 total, fetching 0
+2026-03-23 23:29:21 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-23 23:29:21 | INFO     | PUBMED search completed successfully
+2026-03-23 23:29:21 | INFO     | ============================================================
+2026-03-23 23:29:21 | INFO     | Starting SCOPUS search
+2026-03-23 23:29:21 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+2026-03-23 23:29:21 | INFO     | Max results: 20
+2026-03-23 23:29:21 | INFO     | ============================================================
+2026-03-23 23:29:21 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-23 23:29:21 | INFO     | 🤖 Scopus: Executing search...
+2026-03-23 23:29:21 | INFO     | SCOPUS search completed successfully
+2026-03-23 23:29:21 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+2026-03-23 23:29:21 | INFO     | Starting query generation for topic: 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-23 23:29:21 | INFO     | ============================================================
+2026-03-23 23:29:21 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-23 23:29:21 | INFO     | ============================================================
+2026-03-23 23:29:21 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-23 23:29:21 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:29:25 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-23 23:29:25 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 25 carefully curated keywords!
+2026-03-23 23:29:25 | INFO     | ============================================================
+2026-03-23 23:29:25 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-23 23:29:25 | INFO     | ============================================================
+2026-03-23 23:29:25 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-23 23:29:25 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:29:36 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-23 23:29:36 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-23 23:29:36 | INFO     | ============================================================
+2026-03-23 23:29:36 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-23 23:29:36 | INFO     | ============================================================
+2026-03-23 23:29:36 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-23 23:29:36 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:29:46 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-23 23:29:46 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-23 23:29:46 | INFO     | ============================================================
+2026-03-23 23:29:46 | INFO     | REFINER AGENT - Final Polish
+2026-03-23 23:29:46 | INFO     | ============================================================
+2026-03-23 23:29:46 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-23 23:29:46 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:30:00 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-23 23:30:00 | INFO     | Refiner: ✅ Resolved 5 issues - queries are now perfect!
+2026-03-23 23:30:00 | INFO     | 🎊 Query generation completed in 38.30 seconds - Ready to unleash upon the databases!
+2026-03-23 23:30:00 | INFO     | ============================================================
+2026-03-23 23:30:00 | INFO     | ============================================================
+2026-03-23 23:30:00 | INFO     | Starting OPENALEX search
+2026-03-23 23:30:00 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "ea...
+2026-03-23 23:30:00 | INFO     | Max results: 20
+2026-03-23 23:30:00 | INFO     | ============================================================
+2026-03-23 23:30:00 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-23 23:30:00 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-23 23:30:04 | INFO     | OPENALEX search completed successfully
+2026-03-23 23:30:04 | INFO     | ============================================================
+2026-03-23 23:30:04 | INFO     | Starting PUBMED search
+2026-03-23 23:30:04 | INFO     | Query: ("weather forecast*"[Title/Abstract] OR "meteorological forecast*"[Title/Abstract] OR "temperature f...
+2026-03-23 23:30:04 | INFO     | Max results: 20
+2026-03-23 23:30:04 | INFO     | ============================================================
+2026-03-23 23:30:04 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-23 23:30:04 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-23 23:30:05 | INFO     | PubMed: Found 9 total, fetching 9
+2026-03-23 23:30:05 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-23 23:30:05 | INFO     | Fetching records 1 to 9...
+2026-03-23 23:30:05 | INFO     | PUBMED search completed successfully
+2026-03-23 23:30:05 | INFO     | ============================================================
+2026-03-23 23:30:05 | INFO     | Starting SCOPUS search
+2026-03-23 23:30:05 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+2026-03-23 23:30:05 | INFO     | Max results: 20
+2026-03-23 23:30:05 | INFO     | ============================================================
+2026-03-23 23:30:05 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-23 23:30:05 | INFO     | 🤖 Scopus: Executing search...
+2026-03-23 23:30:07 | INFO     | SCOPUS search completed successfully
+2026-03-23 23:30:07 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-20250514-v1:0)
+2026-03-23 23:30:07 | INFO     | Starting query generation for topic: 'I am interested in research papers on the impacts of weather forecasts interventions on the temperature–health relationship. I am specifically interested in papers with causal research designs—i.e., papers that can isolate the impact of plausibly random assignment (experimental or quasi-experimental) of cooling centers to a population of interest. Papers from anywhere in the world on any population would be of interest.'
+2026-03-23 23:30:07 | INFO     | ============================================================
+2026-03-23 23:30:07 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-23 23:30:07 | INFO     | ============================================================
+2026-03-23 23:30:07 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-23 23:30:07 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:30:12 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-23 23:30:12 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 40 carefully curated keywords!
+2026-03-23 23:30:12 | INFO     | ============================================================
+2026-03-23 23:30:12 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-23 23:30:12 | INFO     | ============================================================
+2026-03-23 23:30:12 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-23 23:30:12 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:30:25 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-23 23:30:25 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-23 23:30:25 | INFO     | ============================================================
+2026-03-23 23:30:25 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-23 23:30:25 | INFO     | ============================================================
+2026-03-23 23:30:25 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-23 23:30:25 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:30:35 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-23 23:30:35 | WARNING  | ⚠️ Sentinel spotted 2 potential issues to review
+2026-03-23 23:30:35 | INFO     | ============================================================
+2026-03-23 23:30:35 | INFO     | REFINER AGENT - Final Polish
+2026-03-23 23:30:35 | INFO     | ============================================================
+2026-03-23 23:30:35 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-23 23:30:35 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-23 23:30:50 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-23 23:30:50 | INFO     | Refiner: ✅ Resolved 6 issues - queries are now perfect!
+2026-03-23 23:30:50 | INFO     | 🎊 Query generation completed in 42.21 seconds - Ready to unleash upon the databases!
+2026-03-23 23:30:50 | INFO     | ============================================================
+2026-03-23 23:30:50 | INFO     | ============================================================
+2026-03-23 23:30:50 | INFO     | Starting OPENALEX search
+2026-03-23 23:30:50 | INFO     | Query: ("weather forecast" OR "weather prediction" OR "meteorological forecast" OR "temperature forecast" O...
+2026-03-23 23:30:50 | INFO     | Max results: 20
+2026-03-23 23:30:50 | INFO     | ============================================================
+2026-03-23 23:30:50 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-23 23:30:50 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-23 23:30:54 | INFO     | OPENALEX search completed successfully
+2026-03-23 23:30:54 | INFO     | ============================================================
+2026-03-23 23:30:54 | INFO     | Starting PUBMED search
+2026-03-23 23:30:54 | INFO     | Query: ("weather forecast"[Title/Abstract] OR "weather prediction"[Title/Abstract] OR "meteorological forec...
+2026-03-23 23:30:54 | INFO     | Max results: 20
+2026-03-23 23:30:54 | INFO     | ============================================================
+2026-03-23 23:30:54 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-23 23:30:54 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-23 23:30:55 | INFO     | PubMed: Found 0 total, fetching 0
+2026-03-23 23:30:55 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-23 23:30:55 | INFO     | PUBMED search completed successfully
+2026-03-23 23:30:55 | INFO     | ============================================================
+2026-03-23 23:30:55 | INFO     | Starting SCOPUS search
+2026-03-23 23:30:55 | INFO     | Query: TITLE-ABS-KEY(("weather forecast*" OR "weather prediction*" OR "meteorological forecast*" OR "temper...
+2026-03-23 23:30:55 | INFO     | Max results: 20
+2026-03-23 23:30:55 | INFO     | ============================================================
+2026-03-23 23:30:55 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-23 23:30:55 | INFO     | 🤖 Scopus: Executing search...
+2026-03-23 23:30:56 | INFO     | SCOPUS search completed successfully
+
+
+####################################################################################################
+# RUN 1 of 3
+####################################################################################################
+
+====================================================================================================
+  Run #1: Phase 1 - Query Generation
+====================================================================================================
+✅ Query generation successful
+
+Elsevier Query Length: 1282 chars
+PubMed Query Length: 2213 chars
+OpenAlex Query Length: 1190 chars
+
+OpenAlex Query Preview:
+  ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "forecast-based" OR "early warning" OR "heat warning"...
+
+====================================================================================================
+  Run #1: Phase 2 - Search Execution
+====================================================================================================
+
+================================================================================
+Testing OPENALEX
+================================================================================
+Query length: 1190 chars
+Query preview: ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "fo...
+✅ OPENALEX: 381 total matches (retrieved 20)
+
+================================================================================
+Testing PUBMED
+================================================================================
+Query length: 2213 chars
+Query preview: ("weather forecast"[Title/Abstract] OR "weather forecasting"[Title/Abstract] OR "meteorological fore...
+✅ PUBMED: 0 total matches (retrieved 0)
+
+================================================================================
+Testing SCOPUS
+================================================================================
+Query length: 1282 chars
+Query preview: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+✅ SCOPUS: 0 total matches (retrieved 1)
+
+================================================================================
+Run 1 Summary:
+================================================================================
+  OPENALEX  :      381 matches
+  PUBMED    :        0 matches
+  SCOPUS    :        0 matches
+
+
+####################################################################################################
+# RUN 2 of 3
+####################################################################################################
+
+====================================================================================================
+  Run #2: Phase 1 - Query Generation
+====================================================================================================
+✅ Query generation successful
+
+Elsevier Query Length: 1205 chars
+PubMed Query Length: 2158 chars
+OpenAlex Query Length: 1167 chars
+
+OpenAlex Query Preview:
+  ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "early warning system" OR "heat warning" OR "cooling ...
+
+====================================================================================================
+  Run #2: Phase 2 - Search Execution
+====================================================================================================
+
+================================================================================
+Testing OPENALEX
+================================================================================
+Query length: 1167 chars
+Query preview: ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "ea...
+✅ OPENALEX: 1,313 total matches (retrieved 20)
+
+================================================================================
+Testing PUBMED
+================================================================================
+Query length: 2158 chars
+Query preview: ("weather forecast*"[Title/Abstract] OR "meteorological forecast*"[Title/Abstract] OR "temperature f...
+✅ PUBMED: 9 total matches (retrieved 9)
+
+================================================================================
+Testing SCOPUS
+================================================================================
+Query length: 1205 chars
+Query preview: TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+✅ SCOPUS: 16 total matches (retrieved 16)
+
+================================================================================
+Run 2 Summary:
+================================================================================
+  OPENALEX  :    1,313 matches
+  PUBMED    :        9 matches
+  SCOPUS    :       16 matches
+
+
+####################################################################################################
+# RUN 3 of 3
+####################################################################################################
+
+====================================================================================================
+  Run #3: Phase 1 - Query Generation
+====================================================================================================
+✅ Query generation successful
+
+Elsevier Query Length: 1327 chars
+PubMed Query Length: 2627 chars
+OpenAlex Query Length: 1146 chars
+
+OpenAlex Query Preview:
+  ("weather forecast" OR "weather prediction" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "early warning system" OR "he...
+
+====================================================================================================
+  Run #3: Phase 2 - Search Execution
+====================================================================================================
+
+================================================================================
+Testing OPENALEX
+================================================================================
+Query length: 1146 chars
+Query preview: ("weather forecast" OR "weather prediction" OR "meteorological forecast" OR "temperature forecast" O...
+✅ OPENALEX: 97 total matches (retrieved 20)
+
+================================================================================
+Testing PUBMED
+================================================================================
+Query length: 2627 chars
+Query preview: ("weather forecast"[Title/Abstract] OR "weather prediction"[Title/Abstract] OR "meteorological forec...
+✅ PUBMED: 0 total matches (retrieved 0)
+
+================================================================================
+Testing SCOPUS
+================================================================================
+Query length: 1327 chars
+Query preview: TITLE-ABS-KEY(("weather forecast*" OR "weather prediction*" OR "meteorological forecast*" OR "temper...
+✅ SCOPUS: 0 total matches (retrieved 1)
+
+================================================================================
+Run 3 Summary:
+================================================================================
+  OPENALEX  :       97 matches
+  PUBMED    :        0 matches
+  SCOPUS    :        0 matches
+
+====================================================================================================
+  Cross-Run Analysis
+====================================================================================================
+
+📊 Query Consistency Analysis
+----------------------------------------------------------------------------------------------------
+
+OPENALEX Queries:
+  ⚠️  3 DIFFERENT queries across 3 runs
+  Query lengths: [1167, 1190, 1146]
+
+  Variant 1 (length 1167):
+    ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "early warning system" OR "heat warning" OR "cooling ...
+
+  Variant 2 (length 1190):
+    ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "forecast-based" OR "early warning" OR "heat warning"...
+
+  Variant 3 (length 1146):
+    ("weather forecast" OR "weather prediction" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "early warning system" OR "he...
+
+PUBMED Queries:
+  ⚠️  3 DIFFERENT queries across 3 runs
+  Query lengths: [2213, 2627, 2158]
+
+  Variant 1 (length 2213):
+    ("weather forecast"[Title/Abstract] OR "weather forecasting"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "temperature forecast"[Ti...
+
+  Variant 2 (length 2627):
+    ("weather forecast"[Title/Abstract] OR "weather prediction"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "temperature forecast"[Tit...
+
+  Variant 3 (length 2158):
+    ("weather forecast*"[Title/Abstract] OR "meteorological forecast*"[Title/Abstract] OR "temperature forecast*"[Title/Abstract] OR "heat forecast*"[Titl...
+
+SCOPUS Queries:
+  ⚠️  3 DIFFERENT queries across 3 runs
+  Query lengths: [1205, 1327, 1282]
+
+  Variant 1 (length 1205):
+    TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat forecast*" OR "early warning system*" OR "heat wa...
+
+  Variant 2 (length 1327):
+    TITLE-ABS-KEY(("weather forecast*" OR "weather prediction*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat forecast*" OR "early war...
+
+  Variant 3 (length 1282):
+    TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat forecast*" OR "forecast-based" OR "early warning"...
+
+
+📊 Search Results Count Analysis
+----------------------------------------------------------------------------------------------------
+
+OPENALEX Results:
+  Run 1:      381 matches
+  Run 2:    1,313 matches
+  Run 3:       97 matches
+
+  Statistics:
+    Min:           97
+    Max:        1,313
+    Average:      597
+    Variance:  1253.6%
+    ❌ HIGH variance (>20%)
+
+PUBMED Results:
+  Run 1:        0 matches
+  Run 2:        9 matches
+  Run 3:        0 matches
+
+  Statistics:
+    Min:            0
+    Max:            9
+    Average:        3
+
+SCOPUS Results:
+  Run 1:        0 matches
+  Run 2:       16 matches
+  Run 3:        0 matches
+
+  Statistics:
+    Min:            0
+    Max:           16
+    Average:        5
+
+
+📊 Query-Result Correlation
+----------------------------------------------------------------------------------------------------
+
+OPENALEX:
+  3 unique queries generated 3 results
+
+  Different queries → different results:
+    Query variant 1: avg 381 results (n=1 runs)
+      ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "fo...
+    Query variant 2: avg 1,313 results (n=1 runs)
+      ("weather forecast" OR "meteorological forecast" OR "temperature forecast" OR "heat forecast" OR "ea...
+    Query variant 3: avg 97 results (n=1 runs)
+      ("weather forecast" OR "weather prediction" OR "meteorological forecast" OR "temperature forecast" O...
+
+PUBMED:
+  3 unique queries generated 3 results
+
+  Different queries → different results:
+    Query variant 1: avg 0 results (n=1 runs)
+      ("weather forecast"[Title/Abstract] OR "weather forecasting"[Title/Abstract] OR "meteorological fore...
+    Query variant 2: avg 9 results (n=1 runs)
+      ("weather forecast*"[Title/Abstract] OR "meteorological forecast*"[Title/Abstract] OR "temperature f...
+    Query variant 3: avg 0 results (n=1 runs)
+      ("weather forecast"[Title/Abstract] OR "weather prediction"[Title/Abstract] OR "meteorological forec...
+
+SCOPUS:
+  3 unique queries generated 3 results
+
+  Different queries → different results:
+    Query variant 1: avg 0 results (n=1 runs)
+      TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+    Query variant 2: avg 16 results (n=1 runs)
+      TITLE-ABS-KEY(("weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "heat...
+    Query variant 3: avg 0 results (n=1 runs)
+      TITLE-ABS-KEY(("weather forecast*" OR "weather prediction*" OR "meteorological forecast*" OR "temper...
+
+
+====================================================================================================
+Full report saved to: stability_test_report_20260323_233056.json
+====================================================================================================
+

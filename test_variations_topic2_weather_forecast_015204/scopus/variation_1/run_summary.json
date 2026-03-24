@@ -1,0 +1,10 @@
+{
+  "query": "TITLE-ABS-KEY((\"weather forecast*\" OR \"meteorological forecast*\" OR \"temperature forecast*\" OR \"heat forecast*\" OR \"early warning system*\" OR \"heat warning*\" OR \"temperature alert*\" OR \"heat advisory\" OR \"extreme heat warning*\") AND (\"cooling center*\" OR \"cooling centre*\" OR \"heat shelter*\" OR \"cooling shelter*\" OR \"climate refuge*\" OR \"heat refuge*\" OR \"emergency shelter*\" OR \"public cooling\" OR \"air conditioning\" OR \"cooling intervention*\" OR \"heat relief\" OR \"cooling program*\" OR \"misting station*\") AND (\"temperature-mortality\" OR \"temperature-health\" OR \"heat-health\" OR \"thermal stress\" OR \"heat-related mortality\" OR \"heat-related morbidity\" OR \"extreme temperature*\" OR heatwave* OR \"heat wave*\" OR \"heat exposure\" OR \"heat illness\" OR \"hyperthermia\" OR \"heat stroke\") AND (\"randomized controlled trial*\" OR \"quasi-experimental\" OR \"natural experiment*\" OR \"difference-in-differences\" OR \"instrumental variable*\" OR \"regression discontinuity\" OR \"causal inference\" OR \"causal identification\" OR \"treatment effect*\" OR \"intervention study\" OR \"policy evaluation\" OR \"random assignment\" OR \"exogenous variation\" OR \"plausibly exogenous\" OR \"mortality displacement\" OR \"health intervention*\" OR \"before-after\" OR \"pre-post\" OR \"interrupted time series\" OR \"propensity score\" OR \"matching\" OR \"evaluation study\"))",
+  "database": "scopus",
+  "status": "success",
+  "success": true,
+  "results_count": 2,
+  "meta_count": 2,
+  "calls": 1,
+  "error": ""
+}

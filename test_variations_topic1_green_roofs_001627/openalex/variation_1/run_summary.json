@@ -1,0 +1,8 @@
+{
+  "query": "(\"cool roof\" OR \"green roof\" OR \"white roof\" OR \"reflective roof\" OR \"living roof\" OR \"vegetated roof\" OR \"cool roofing\" OR \"green roofing\" OR \"albedo roof\") AND (temperature OR \"ambient temperature\" OR \"air temperature\" OR \"urban heat\" OR \"heat island\" OR \"thermal comfort\" OR \"heat stress\" OR mortality OR morbidity OR cardiovascular OR respiratory OR \"emergency department\" OR \"extreme heat\") AND (randomized OR \"quasi-experimental\" OR \"natural experiment\" OR evaluation OR impact OR causal OR \"controlled trial\" OR \"instrumental variable\" OR \"difference-in-difference\" OR \"propensity score\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 21590,
+  "calls": 1
+}

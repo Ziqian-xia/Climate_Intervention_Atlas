@@ -1,0 +1,8 @@
+{
+  "query": "((\"cool roof\" OR \"cool roofs\" OR \"green roof\" OR \"green roofs\" OR \"living roof\" OR \"living roofs\" OR \"vegetated roof\" OR \"vegetated roofs\" OR \"reflective roof\" OR \"reflective roofs\" OR \"white roof\" OR \"white roofs\" OR \"albedo roof\" OR \"high albedo roof\" OR \"rooftop garden\" OR \"rooftop gardens\" OR \"cool pavement\" OR \"cool pavements\" OR \"reflective pavement\") AND (\"urban heat island\" OR \"urban heat islands\" OR \"UHI mitigation\" OR \"ambient temperature\" OR \"surface temperature\" OR \"air temperature\" OR \"thermal comfort\" OR \"heat exposure\" OR \"heat stress\" OR \"cooling effect\" OR \"cooling effects\") AND (health OR mortality OR morbidity OR \"heat-related illness\" OR \"heat-related illnesses\" OR \"heat-related death\" OR \"heat-related deaths\" OR cardiovascular OR respiratory OR \"emergency department\" OR hospitalization OR hospitalizations OR \"public health\" OR wellbeing OR \"heat vulnerability\") AND (\"randomized controlled trial\" OR \"randomized controlled trials\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"natural experiments\" OR \"difference-in-differences\" OR \"instrumental variables\" OR \"regression discontinuity\" OR \"matched control\" OR \"matched controls\" OR \"before-after\" OR \"pre-post\" OR \"intervention study\" OR \"causal inference\" OR evaluation OR evaluations OR impact OR impacts OR \"treatment effect\" OR \"treatment effects\" OR counterfactual))",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 10202,
+  "calls": 1
+}

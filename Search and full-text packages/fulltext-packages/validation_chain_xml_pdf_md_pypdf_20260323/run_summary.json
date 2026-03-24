@@ -1,0 +1,18 @@
+{
+  "total": 3,
+  "success": 3,
+  "failed": 0,
+  "by_source": {
+    "elsevier": 1,
+    "wiley": 1,
+    "openalex": 1,
+    "playwright": 0
+  },
+  "by_download_type": {
+    "xml": 1,
+    "pdf": 2
+  },
+  "md_converted": 1,
+  "playwright_enabled": false,
+  "convert_to_md": true
+}

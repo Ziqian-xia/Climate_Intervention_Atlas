@@ -1,0 +1,10 @@
+{
+  "query": "TITLE-ABS-KEY((\"weather forecast*\" OR \"meteorological forecast*\" OR \"heat forecast*\" OR \"temperature forecast*\" OR \"early warning system*\" OR \"heat warning*\" OR \"heat alert*\" OR \"weather advisor*\" OR \"climate information\" OR \"forecast-based intervention*\" OR \"weather-health intervention*\" OR \"heat wave warning*\" OR \"temperature alert*\" OR \"heathealth warning*\" OR \"thermal warning*\" OR \"hot weather warning*\") AND (\"temperature-mortality\" OR \"temperature-morbidity\" OR \"heat-health\" OR \"thermal stress\" OR hyperthermia OR \"heat-related illness\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat-related death*\" OR \"excess mortality\" OR \"heat-attributable death*\" OR \"temperature-related mortality\" OR \"thermal mortality\" OR \"hot weather mortality\" OR \"heat burden\" OR \"heat impact*\") AND ((\"randomized controlled trial*\" OR \"quasi-experimental\" OR \"natural experiment*\" OR \"regression discontinuity\" OR \"difference-in-difference*\" OR \"instrumental variable*\" OR \"propensity score\" OR matching OR \"causal inference\" OR \"impact evaluation\" OR \"program* evaluation\" OR \"intervention stud*\" OR \"treatment effect*\" OR \"exogenous variation\" OR \"policy experiment*\" OR \"field experiment*\" OR \"controlled before-after\" OR \"interrupted time series\") OR (\"before and after\" OR \"pre-post\" OR \"policy evaluation\" OR \"effectiveness stud*\" OR \"outcome evaluation\" OR \"comparative stud*\" OR \"cohort stud*\" OR \"longitudinal stud*\")))",
+  "database": "scopus",
+  "status": "success",
+  "success": true,
+  "results_count": 25,
+  "meta_count": 25,
+  "calls": 1,
+  "error": ""
+}

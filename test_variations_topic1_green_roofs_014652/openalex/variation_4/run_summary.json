@@ -1,0 +1,8 @@
+{
+  "query": "(\"cool roof\" OR \"cool roofs\" OR \"green roof\" OR \"green roofs\" OR \"living roof\" OR \"living roofs\" OR \"reflective roof\" OR \"reflective roofs\" OR \"white roof\" OR \"white roofs\" OR \"vegetated roof\" OR \"vegetated roofs\" OR \"extensive green roof\" OR \"intensive green roof\" OR \"rooftop garden\" OR \"rooftop gardens\" OR \"cool roofing\" OR \"green roofing\") AND (\"urban heat island\" OR \"urban heat islands\" OR UHI OR \"heat exposure\" OR \"thermal exposure\" OR \"temperature exposure\" OR \"ambient temperature\" OR \"heat stress\" OR \"heat-related illness\" OR \"heat-related mortality\" OR \"heat-related morbidity\" OR \"thermal comfort\" OR \"building performance\" OR \"energy efficiency\" OR microclimate OR microclimates OR \"surface temperature\" OR \"air temperature\" OR \"cooling effect\" OR \"cooling effects\" OR \"temperature reduction\" OR \"thermal mitigation\" OR \"climate adaptation\" OR \"heat mitigation\" OR \"population health\" OR \"environmental health\" OR \"occupational health\") AND (\"randomized controlled trial\" OR \"randomized controlled trials\" OR RCT OR \"quasi-experimental\" OR \"natural experiment\" OR \"natural experiments\" OR \"difference-in-differences\" OR \"instrumental variable\" OR \"regression discontinuity\" OR \"propensity score\" OR matching OR \"causal inference\" OR \"impact evaluation\" OR \"intervention study\" OR \"intervention studies\" OR \"experimental design\" OR counterfactual OR \"treatment effect\" OR \"treatment effects\" OR randomized OR trial OR trials OR evaluation OR experimental OR impact OR causal OR effect OR effects)",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 21879,
+  "calls": 1
+}

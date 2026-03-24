@@ -1,0 +1,8 @@
+{
+  "query": "(\"cool roof\" OR \"green roof\" OR \"living roof\" OR \"vegetated roof\" OR \"reflective roof\" OR \"white roof\" OR \"albedo roof\" OR \"roof intervention\" OR rooftop OR \"building envelope\") AND (\"urban heat island\" OR microclimate OR \"ambient temperature\" OR \"surface temperature\" OR \"thermal comfort\" OR \"heat exposure\" OR \"temperature mortality\" OR \"temperature morbidity\" OR \"heat stress\" OR \"heat illness\") AND (cardiovascular OR respiratory OR mortality OR hospitalization OR \"emergency department\" OR \"health outcomes\" OR \"climate adaptation\" OR \"urban planning\" OR \"building policy\" OR \"sustainability intervention\" OR \"environmental health\" OR \"ecological design\" OR \"nature-based solution\" OR \"climate resilience\") AND (\"randomized controlled trial\" OR \"quasi-experiment\" OR \"natural experiment\" OR \"difference-in-difference\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"propensity score\" OR \"causal inference\" OR \"impact evaluation\" OR \"intervention study\" OR \"before-after study\" OR \"controlled study\")",
+  "database": "openalex",
+  "status": "http_500",
+  "results_count": 0,
+  "meta_count": 0,
+  "calls": 1
+}

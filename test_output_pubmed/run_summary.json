@@ -1,0 +1,7 @@
+{
+  "query": "(\"climate change\"[Title/Abstract] AND \"health\"[Title/Abstract])",
+  "database": "pubmed",
+  "status": "success",
+  "results_count": 10,
+  "meta_count": 17820
+}

@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-03-23T23:15:59.569517",
+  "queries": {
+    "openalex": "(\"weather forecast\" OR \"heat forecast\" OR \"heat warning\" OR \"heat alert\" OR \"early warning\") AND (\"cooling center\" OR \"cooling shelter\" OR \"heat relief center\") AND (\"temperature\" OR \"heat\") AND \"health\" AND (\"intervention\" OR \"causal\" OR \"quasi-experimental\" OR \"evaluation\")",
+    "pubmed": "((\"weather forecast\"[Title/Abstract] OR \"heat forecast\"[Title/Abstract] OR \"heat warning\"[Title/Abstract] OR \"heat alert\"[Title/Abstract] OR \"early warning system\"[Title/Abstract]) AND (\"cooling center\"[Title/Abstract] OR \"cooling shelter\"[Title/Abstract] OR \"heat relief center\"[Title/Abstract]) AND (\"temperature\"[Title/Abstract] OR \"extreme heat\"[Title/Abstract]) AND \"health\"[Title/Abstract] AND (\"intervention\"[Title/Abstract] OR \"causal\"[Title/Abstract] OR \"quasi-experimental\"[Title/Abstract] OR \"evaluation\"[Title/Abstract]))",
+    "scopus": "TITLE-ABS-KEY((\"weather forecast*\" OR \"heat forecast*\" OR \"heat warning*\" OR \"heat alert*\" OR \"early warning system*\") AND (\"cooling center*\" OR \"cooling shelter*\" OR \"heat relief center*\") AND (\"temperature\" OR \"extreme heat\") AND \"health\" AND (\"intervention*\" OR \"causal\" OR \"quasi-experimental\" OR \"evaluation\"))"
+  },
+  "results": {
+    "openalex": {
+      "success": true,
+      "status": "success",
+      "results_count": 20,
+      "meta_count": 418,
+      "error": "",
+      "output_dir": "test_full_openalex_20260323_231555",
+      "output_files": {
+        "summary_json": "test_full_openalex_20260323_231555/run_summary.json",
+        "summary_csv": "test_full_openalex_20260323_231555/works_summary.csv",
+        "full_jsonl": "test_full_openalex_20260323_231555/works_full.jsonl"
+      }
+    },
+    "pubmed": {
+      "success": true,
+      "status": "success",
+      "results_count": 1,
+      "meta_count": 1,
+      "error": "",
+      "output_dir": "test_full_pubmed_20260323_231557",
+      "output_files": {
+        "summary_json": "test_full_pubmed_20260323_231557/run_summary.json",
+        "summary_csv": "test_full_pubmed_20260323_231557/works_summary.csv",
+        "full_jsonl": "test_full_pubmed_20260323_231557/works_full.jsonl"
+      }
+    },
+    "scopus": {
+      "success": true,
+      "status": "success",
+      "results_count": 2,
+      "meta_count": 2,
+      "error": "",
+      "output_dir": "test_full_scopus_20260323_231558",
+      "output_files": {
+        "summary_json": "test_full_scopus_20260323_231558/run_summary.json",
+        "summary_csv": "test_full_scopus_20260323_231558/works_summary.csv",
+        "full_jsonl": "test_full_scopus_20260323_231558/works_full.jsonl"
+      }
+    }
+  },
+  "checks": {
+    "consistency": false,
+    "boolean_handling": true
+  }
+}

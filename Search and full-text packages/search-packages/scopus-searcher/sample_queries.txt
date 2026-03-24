@@ -1,0 +1,4 @@
+# One Scopus query per line
+TITLE-ABS-KEY(heat AND mortality)
+TITLE-ABS-KEY("climate change" AND heatwave AND mortality)
+TITLE-ABS-KEY("tropical cyclone" AND "mental health")

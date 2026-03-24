@@ -1,0 +1,47 @@
+[
+  {
+    "doi": "10.1016/j.oneear.2026.101624",
+    "title": "Elsevier sample",
+    "journal": "One Earth",
+    "success": true,
+    "final_source": "elsevier",
+    "final_status": "success_limited",
+    "pdf_path": "/Users/ziqianxia/Documents/GitHub/climate_evidence/literature-review/fulltext-packages/validation_chain_20260323/pdfs/elsevier/Elsevier_sample_j.oneear.2026.101624.pdf",
+    "file_bytes": 1035453,
+    "elsevier_status": "success_limited",
+    "wiley_status": "",
+    "openalex_status": "no_pdf_content_flag",
+    "playwright_status": "",
+    "note": "fallback_kept_limited_pdf"
+  },
+  {
+    "doi": "10.1111/jofi.70001",
+    "title": "Wiley sample",
+    "journal": "The Journal of Finance",
+    "success": true,
+    "final_source": "wiley",
+    "final_status": "success",
+    "pdf_path": "/Users/ziqianxia/Documents/GitHub/climate_evidence/literature-review/fulltext-packages/validation_chain_20260323/pdfs/wiley/Wiley_sample_jofi.70001.pdf",
+    "file_bytes": 1075367,
+    "elsevier_status": "",
+    "wiley_status": "success",
+    "openalex_status": "",
+    "playwright_status": "",
+    "note": ""
+  },
+  {
+    "doi": "10.1038/s41591-023-02419-z",
+    "title": "OpenAlex OA sample",
+    "journal": "Nature Medicine",
+    "success": true,
+    "final_source": "openalex",
+    "final_status": "success",
+    "pdf_path": "/Users/ziqianxia/Documents/GitHub/climate_evidence/literature-review/fulltext-packages/validation_chain_20260323/pdfs/openalex/OpenAlex_OA_sample_s41591-023-02419-z.pdf",
+    "file_bytes": 10477568,
+    "elsevier_status": "",
+    "wiley_status": "",
+    "openalex_status": "success",
+    "playwright_status": "",
+    "note": "W4383823379"
+  }
+]

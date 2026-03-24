@@ -1,0 +1,8 @@
+{
+  "query": "(\"weather forecast\" OR \"meteorological forecast\" OR \"heat forecast\" OR \"temperature forecast\" OR \"early warning system\" OR \"heat warning\" OR \"weather alert\" OR \"climate forecast\" OR \"seasonal forecast\" OR \"probabilistic forecast\" OR \"forecast accuracy\" OR \"forecast skill\" OR \"forecast communication\" OR \"weather prediction\" OR \"climate prediction\") AND (\"temperature mortality\" OR \"temperature morbidity\" OR \"heat health\" OR \"thermal stress\" OR hyperthermia OR \"heat stroke\" OR \"heat related illness\" OR \"heat related death\" OR cardiovascular OR respiratory OR \"excess mortality\" OR \"health impact\" OR \"mortality risk\") AND (\"difference in differences\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"natural experiment\" OR \"policy evaluation\" OR \"forecast based intervention\" OR \"anticipatory action\" OR \"forecast driven response\" OR evaluation OR impact OR causal OR \"quasi experimental\" OR \"randomized controlled trial\" OR \"intervention study\" OR \"before after\" OR \"pre post\")",
+  "database": "openalex",
+  "status": "merged_title_abstract",
+  "results_count": 0,
+  "meta_count": 0,
+  "calls": 2
+}

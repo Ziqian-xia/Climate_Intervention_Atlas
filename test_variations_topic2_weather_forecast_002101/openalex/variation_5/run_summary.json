@@ -1,0 +1,8 @@
+{
+  "query": "(\"weather forecast\" OR \"meteorological forecast\" OR \"heat forecast\" OR \"temperature forecast\" OR \"early warning system\" OR \"heat alert\" OR \"weather advisory\" OR \"forecast intervention\" OR \"predictive intervention\" OR \"forecast-based intervention\" OR \"weather information\" OR \"climate alert\" OR \"heat warning\") AND (\"temperature-health\" OR \"heat-health\" OR \"thermal stress\" OR \"heat-related illness\" OR \"heat-related mortality\" OR \"heat-related morbidity\" OR hyperthermia OR \"heat stroke\" OR \"heat exhaustion\" OR \"extreme temperature\" OR \"ambient temperature\" OR \"excess mortality\" OR \"heat wave\" OR \"temperature exposure\" OR mortality OR morbidity OR hospitalization OR \"emergency department\" OR \"health outcomes\" OR \"public health\") AND ((\"randomized controlled trial\" OR \"randomised controlled trial\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"causal inference\" OR \"causal identification\" OR \"causal effect\" OR \"treatment effect\" OR \"plausibly exogenous\" OR \"exogenous variation\" OR \"random assignment\" OR \"treatment assignment\") OR (\"intervention evaluation\" AND (randomized OR controlled OR treatment OR experimental)) OR (\"impact evaluation\" AND (causal OR randomized OR controlled)) OR (\"program evaluation\" AND (effect OR impact OR causal)) OR (\"policy evaluation\" AND (causal OR impact OR effect)))",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 8389,
+  "calls": 1
+}

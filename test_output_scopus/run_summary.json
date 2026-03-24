@@ -1,0 +1,10 @@
+{
+  "query": "TITLE-ABS-KEY(\"climate change\" AND \"health\")",
+  "database": "scopus",
+  "status": "success",
+  "success": true,
+  "results_count": 10,
+  "meta_count": 62641,
+  "calls": 1,
+  "error": ""
+}

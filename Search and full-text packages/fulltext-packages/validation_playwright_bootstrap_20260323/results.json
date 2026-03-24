@@ -1,0 +1,17 @@
+[
+  {
+    "doi": "10.1038/s41591-023-02419-z",
+    "title": "",
+    "journal": "",
+    "success": false,
+    "final_source": "",
+    "final_status": "all_methods_failed",
+    "pdf_path": "",
+    "file_bytes": 0,
+    "elsevier_status": "",
+    "wiley_status": "",
+    "openalex_status": "missing_openalex_api_key",
+    "playwright_status": "playwright_unavailable:BrowserType.launch: Executable doesn't exist at /Users/ziqianxia/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell\n╔══════════════════════",
+    "note": ""
+  }
+]

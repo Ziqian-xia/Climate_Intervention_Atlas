@@ -1,0 +1,3 @@
+# One PubMed query per line (Entrez syntax)
+("heat"[Title/Abstract] AND mortality[Title/Abstract]) AND ("climate change"[Title/Abstract])
+("heatwave"[Title/Abstract] OR "extreme heat"[Title/Abstract]) AND mortality[Title/Abstract]

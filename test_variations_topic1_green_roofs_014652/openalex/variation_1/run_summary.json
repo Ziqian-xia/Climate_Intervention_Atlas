@@ -1,0 +1,8 @@
+{
+  "query": "(\"cool roof\" OR \"cool roofs\" OR \"cool roofing\" OR \"green roof\" OR \"green roofs\" OR \"green roofing\" OR \"living roof\" OR \"living roofs\" OR \"vegetated roof\" OR \"vegetated roofs\" OR \"rooftop garden\" OR \"rooftop gardens\" OR \"reflective roof\" OR \"reflective roofs\" OR \"albedo roof\" OR \"white roof\" OR \"white roofs\" OR \"high-albedo roof\") AND (temperature OR temperatures OR \"ambient temperature\" OR \"surface temperature\" OR \"air temperature\" OR \"heat island\" OR \"heat islands\" OR \"urban heat island\" OR \"urban heat\" OR \"thermal comfort\" OR \"heat stress\" OR mortality OR morbidity OR \"health outcomes\" OR \"health outcome\" OR \"heat-related illness\" OR \"heat-related mortality\" OR cardiovascular OR respiratory) AND (\"randomized controlled trial\" OR \"randomized controlled trials\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"natural experiments\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"causal inference\" OR \"intervention study\" OR \"intervention studies\" OR \"plausibly exogenous\" OR \"random assignment\" OR \"treatment effect\" OR \"treatment effects\" OR \"impact evaluation\" OR \"controlled trial\" OR \"field experiment\" OR \"policy evaluation\" OR randomized OR experimental OR causal OR intervention)",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 16401,
+  "calls": 1
+}

@@ -1,0 +1,8 @@
+{
+  "query": "((\"weather forecast*\" OR \"meteorological forecast*\" OR \"heat forecast*\" OR \"temperature forecast*\" OR \"early warning system*\" OR \"heat warning*\" OR \"thermal forecast*\" OR \"weather prediction*\" OR \"climatological forecast*\" OR \"heat alert*\" OR \"heat advisory\" OR \"extreme heat warning*\" OR \"temperature alert*\") AND (\"cooling center*\" OR \"cooling centre*\" OR \"heat shelter*\" OR \"cooling shelter*\" OR \"air conditioning center*\" OR \"climate refuge*\" OR \"thermal refuge*\" OR \"cool space*\" OR \"emergency cooling\" OR \"public cooling facilit*\" OR \"relief center*\" OR \"community cooling\" OR \"public air conditioning\") AND (\"temperature mortality\" OR \"heat mortality\" OR \"thermal stress\" OR \"heat-related death*\" OR \"temperature morbidity\" OR \"heat illness*\" OR hyperthermia OR \"heat stroke\" OR \"excess mortality\" OR \"temperature-related\" OR \"heat exposure\" OR \"thermal injury\")) AND (\"randomized controlled trial*\" OR \"quasi-experimental\" OR \"natural experiment*\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"instrumental variable*\" OR \"causal inference\" OR \"impact evaluation\" OR \"treatment effect*\" OR \"intervention stud*\" OR \"policy evaluation\" OR \"exogenous variation\" OR \"random assignment\" OR \"experimental design\" OR counterfactual OR \"program evaluation\" OR \"propensity score\" OR \"matching\" OR \"interrupted time series\" OR \"before-after\" OR \"controlled study\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 100,
+  "meta_count": 161,
+  "calls": 1
+}

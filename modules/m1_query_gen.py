@@ -1,0 +1,588 @@
+"""
+Phase 1: Multi-Agent Query Generation Team
+Four sequential agents: Pulse → Formulator → Sentinel → Refiner
+"""
+
+import json
+import os
+import re
+import time
+from typing import Dict, List, Optional
+
+from utils.logger import get_logger
+from utils.llm_providers import LLMProvider
+
+
+class QueryGenerationTeam:
+    """
+    Multi-agent team for generating database-specific Boolean search queries.
+
+    Agents:
+    1. Pulse: Keyword expansion and synonym generation
+    2. Formulator: Database-specific Boolean query construction
+    3. Sentinel: Quality control and validation
+    4. Refiner: Final polish and issue resolution
+    """
+
+    def __init__(self, llm_provider: Optional[LLMProvider] = None):
+        """
+        Initialize query generation team.
+
+        Args:
+            llm_provider: Optional LLM provider instance. If None, uses dummy mode.
+        """
+        self.logger = get_logger()
+        self.provider = llm_provider
+
+        if self.provider is None:
+            self.logger.warning("No LLM provider specified. Using dummy mode.")
+        elif not self.provider.is_available():
+            self.logger.warning(f"LLM provider not available: {self.provider.get_model_name()}. Using dummy mode.")
+        else:
+            self.logger.info(f"LLM provider initialized: {self.provider.get_model_name()}")
+
+    def _call_agent(
+        self,
+        agent_name: str,
+        system_prompt: str,
+        user_message: str,
+        max_tokens: int = 2000,
+        max_retries: int = 3
+    ) -> str:
+        """
+        Call an agent with retry logic.
+
+        Returns:
+            Agent response text or fallback dummy data
+        """
+        if not self.provider or not self.provider.is_available():
+            self.logger.warning(f"{agent_name}: Using dummy response (provider not available)")
+            return self._get_dummy_response(agent_name, user_message)
+
+        for attempt in range(max_retries):
+            try:
+                humorous_messages = [
+                    "🤔 Pondering the mysteries of the universe (and your query)...",
+                    "⚡ Channeling the power of Claude through the cloud...",
+                    "🎯 Aiming for research query perfection...",
+                    "🧠 Engaging neural networks (the artificial kind)...",
+                    "📚 Consulting the ancient texts of systematic review methodology..."
+                ]
+                self.logger.agent_thinking(
+                    agent_name,
+                    humorous_messages[attempt % len(humorous_messages)]
+                )
+
+                response_text = self.provider.call_model(
+                    system_prompt=system_prompt,
+                    user_message=user_message,
+                    max_tokens=max_tokens
+                )
+
+                success_messages = [
+                    "✨ Eureka! Response received!",
+                    "🎉 Mission accomplished!",
+                    "💡 Brilliant insights acquired!",
+                    "🏆 Query crafting success!",
+                    "🚀 Knowledge transmitted successfully!"
+                ]
+                self.logger.info(f"{agent_name}: {success_messages[attempt % len(success_messages)]}")
+                return response_text
+
+            except Exception as e:
+                self.logger.error(f"{agent_name}: LLM error on attempt {attempt + 1}: {e}")
+                if attempt < max_retries - 1:
+                    wait_time = 2 ** attempt  # Exponential backoff
+                    self.logger.info(f"Retrying in {wait_time} seconds...")
+                    time.sleep(wait_time)
+                else:
+                    self.logger.error(f"{agent_name}: All retries exhausted, using dummy response")
+                    return self._get_dummy_response(agent_name, user_message)
+
+        return self._get_dummy_response(agent_name, user_message)
+
+    def _extract_json(self, text: str) -> str:
+        """
+        Extract JSON from text that may be wrapped in markdown code blocks.
+
+        Args:
+            text: Raw text that may contain JSON
+
+        Returns:
+            Extracted JSON string
+        """
+        # Try direct parsing first
+        text = text.strip()
+        if text.startswith('{') or text.startswith('['):
+            return text
+
+        # Try to extract from markdown code blocks
+        # Pattern: ```json ... ``` or ``` ... ```
+        json_block_pattern = r'```(?:json)?\s*\n?(.*?)\n?```'
+        matches = re.findall(json_block_pattern, text, re.DOTALL)
+        if matches:
+            return matches[0].strip()
+
+        # Try to find JSON object in text (between first { and last })
+        json_pattern = r'\{.*\}'
+        matches = re.findall(json_pattern, text, re.DOTALL)
+        if matches:
+            # Return the longest match (most likely the complete JSON)
+            return max(matches, key=len)
+
+        # Return original if no patterns match
+        return text
+
+    def _get_dummy_response(self, agent_name: str, user_message: str) -> str:
+        """Generate high-quality dummy responses for testing without API."""
+        if agent_name == "Pulse":
+            return json.dumps({
+                "expanded_keywords": [
+                    "climate change", "global warming", "climate crisis",
+                    "extreme weather", "heat waves", "temperature extremes",
+                    "mental health", "psychological distress", "anxiety",
+                    "depression", "PTSD", "trauma", "well-being",
+                    "adaptation", "resilience", "coping mechanisms"
+                ],
+                "reasoning": "Expanded the research topic to include synonyms, related terms, and domain-specific vocabulary commonly used in climate-health literature."
+            }, indent=2)
+
+        elif agent_name == "Formulator":
+            return json.dumps({
+                "elsevier_query": 'TITLE-ABS-KEY("climate change" OR "global warming" OR "extreme weather") AND TITLE-ABS-KEY("mental health" OR "psychological distress" OR "anxiety" OR "depression") AND TITLE-ABS-KEY(adapt* OR resilien* OR coping)',
+                "pubmed_query": '("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract])',
+                "openalex_query": '"climate change" mental health adaptation resilience',
+                "reasoning": "Created database-specific queries with appropriate syntax, field restrictions, and Boolean operators to balance precision and recall."
+            }, indent=2)
+
+        elif agent_name == "Sentinel":
+            return json.dumps({
+                "elsevier_query": 'TITLE-ABS-KEY(("climate change" OR "global warming" OR "extreme weather") AND ("mental health" OR "psychological distress" OR "anxiety" OR "depression") AND (adapt* OR resilien* OR coping))',
+                "pubmed_query": '(("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract]) AND (adapt*[Title/Abstract] OR resilien*[Title/Abstract]))',
+                "openalex_query": '"climate change" mental health adaptation resilience',
+                "validation_notes": "✅ Syntax validated. ✅ Parentheses balanced. ✅ Field restrictions applied. ✅ Wildcard operators properly used. Queries are ready for execution.",
+                "warnings": []
+            }, indent=2)
+
+        return json.dumps({"error": "Unknown agent"})
+
+    def _agent_pulse(self, topic: str, variation_seed: Optional[int] = None) -> Dict:
+        """
+        Agent 1: Pulse - Keyword Expansion
+        Expands research topic with synonyms, related terms, and domain vocabulary.
+        """
+        self.logger.info("=" * 60)
+        self.logger.info("PULSE AGENT - Keyword Expansion")
+        self.logger.info("=" * 60)
+        self.logger.agent_thinking("Pulse", "🔍 Diving into the depths of academic jargon to find the perfect synonyms...")
+
+        system_prompt = """You are Pulse, an expert research librarian specializing in systematic literature reviews for academic research.
+
+Your role is to expand research topics into comprehensive keyword sets suitable for rigorous systematic reviews.
+
+FOCUS AREAS:
+1. **Synonyms & Variants**: Alternative phrasings, British vs. American spellings
+2. **Domain-Specific Terms**: Technical vocabulary, medical terms, MeSH terms
+3. **Related Concepts**: Adjacent research areas, methodological terms
+4. **Truncation Opportunities**: Identify stem words for wildcards (e.g., "interven*" captures intervention, intervene, interventions)
+5. **Research Design Terms**: If the topic relates to impact/causality, consider: randomized, quasi-experimental, controlled, trial, evaluation, causal
+
+SYSTEMATIC REVIEW QUALITY:
+- Balance between sensitivity (finding all relevant studies) and precision (avoiding irrelevant results)
+- Include methodological terms if causal inference is implied by the topic
+- Consider multiple disciplinary perspectives (e.g., public health, epidemiology, climate science)
+
+EXAMPLE:
+Topic: "cooling centers and heat-related mortality"
+Keywords should include: cooling center, cooling shelter, heat refuge, extreme heat, heatwave, heat wave, mortality, death, intervention, randomized, quasi-experimental, temperature-mortality, etc.
+
+CRITICAL: Return ONLY valid JSON, no markdown formatting, no code blocks, no explanations outside the JSON.
+
+Return JSON:
+{
+    "expanded_keywords": ["keyword1", "keyword2", ...],
+    "reasoning": "Brief explanation of expansion strategy and key additions"
+}
+
+Aim for 15-25 high-quality keywords including methodological terms."""
+
+        variation_instruction = ""
+        if variation_seed:
+            variation_instruction = f"""
+
+VARIATION REQUEST (Seed #{variation_seed}):
+Create an ALTERNATIVE keyword expansion that explores different angles or emphasizes different aspects of the topic.
+- Variation 1: Emphasize primary intervention/exposure terms and direct outcomes
+- Variation 2: Focus on methodological terms and study design vocabulary
+- Variation 3: Expand with broader synonyms and related concepts
+- Variation 4+: Mix approaches and explore different disciplinary perspectives
+
+Be creative and comprehensive, but maintain systematic review rigor."""
+
+        user_message = f"""Research topic: {topic}{variation_instruction}
+
+Please expand this topic into a comprehensive keyword list for systematic literature review searching."""
+
+        response_text = self._call_agent("Pulse", system_prompt, user_message)
+
+        try:
+            json_text = self._extract_json(response_text)
+            result = json.loads(json_text)
+            keyword_count = len(result.get('expanded_keywords', []))
+            self.logger.agent_thinking("Pulse", f"🎨 Successfully expanded to {keyword_count} carefully curated keywords!")
+            return result
+        except (json.JSONDecodeError, ValueError) as e:
+            self.logger.error(f"Pulse: Failed to parse JSON response: {e}")
+            self.logger.error(f"Raw response: {response_text[:500]}...")
+            return {
+                "expanded_keywords": [topic],
+                "reasoning": "Fallback: using original topic"
+            }
+
+    def _agent_formulator(self, keywords: List[str]) -> Dict:
+        """
+        Agent 2: Formulator - Boolean Query Construction
+        Creates database-specific Boolean search strings.
+        """
+        self.logger.info("=" * 60)
+        self.logger.info("FORMULATOR AGENT - Query Construction")
+        self.logger.info("=" * 60)
+        self.logger.agent_thinking("Formulator", "🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...")
+
+        system_prompt = """You are Formulator, an expert in database search syntax for systematic literature reviews.
+
+Your role is to create rigorous Boolean search strings optimized for systematic reviews and evidence synthesis.
+
+DATABASE-SPECIFIC SYNTAX:
+
+1. **Elsevier/Scopus**:
+   - Use TITLE-ABS-KEY() wrapper
+   - Example: TITLE-ABS-KEY(("climate change" OR "global warming") AND (mortality OR death*) AND (causal OR "quasi-experimental" OR RCT))
+   - Wildcards: * for truncation
+
+2. **PubMed**:
+   - Use [Title/Abstract] or [MeSH Terms] field tags
+   - Example: ("heat wave"[Title/Abstract] OR "extreme heat"[Title/Abstract]) AND (mortality[Title/Abstract] OR death*[Title/Abstract])
+   - Consider MeSH for biomedical concepts
+
+3. **OpenAlex**:
+   - Simpler syntax, quoted phrases and keywords
+   - Example: "climate change" mortality intervention evaluation
+   - OpenAlex handles field searching internally
+
+SYSTEMATIC REVIEW BEST PRACTICES:
+- **Concept Grouping**: Use (concept1 OR synonym1 OR synonym2) AND (concept2 OR synonym2) structure
+- **Wildcards**: Use * for word variations (adapt* → adaptation, adaptive, adapting)
+- **Phrase Searching**: Use quotes for exact phrases ("cooling center", "heat-related mortality")
+- **Boolean Hierarchy**: Parentheses for proper OR/AND precedence
+- **Methodological Filters**: If research design matters, include terms like: random*, trial*, "quasi-experimental", evaluation, causal, impact*
+
+BALANCE:
+- Sensitivity (recall): Don't miss relevant studies → include synonyms
+- Specificity (precision): Avoid noise → use focused combinations
+- Typically aim for moderate sensitivity with post-hoc screening
+
+CRITICAL: Return ONLY valid JSON, no markdown formatting, no code blocks, no explanations outside the JSON.
+
+Return JSON:
+{
+    "elsevier_query": "...",
+    "pubmed_query": "...",
+    "openalex_query": "...",
+    "reasoning": "Explain your query structure and key strategic choices"
+}"""
+
+        keywords_str = ", ".join(keywords)
+        user_message = f"""Keywords to use: {keywords_str}
+
+Please create three optimized Boolean search strings for Elsevier/Scopus, PubMed, and OpenAlex."""
+
+        response_text = self._call_agent("Formulator", system_prompt, user_message, max_tokens=3000)
+
+        try:
+            json_text = self._extract_json(response_text)
+            result = json.loads(json_text)
+            self.logger.agent_thinking("Formulator", "🎯 Crafted 3 database-optimized Boolean masterpieces!")
+            return result
+        except (json.JSONDecodeError, ValueError) as e:
+            self.logger.error(f"Formulator: Failed to parse JSON response: {e}")
+            self.logger.error(f"Raw response: {response_text[:500]}...")
+            return {
+                "elsevier_query": " OR ".join([f'"{kw}"' for kw in keywords[:5]]),
+                "pubmed_query": " OR ".join([f'"{kw}"[Title/Abstract]' for kw in keywords[:5]]),
+                "openalex_query": " ".join(keywords[:5]),
+                "reasoning": "Fallback: simple OR queries"
+            }
+
+    def _agent_sentinel(self, queries: Dict) -> Dict:
+        """
+        Agent 3: Sentinel - Query Validation
+        Reviews and validates Boolean queries for syntax and quality.
+        """
+        self.logger.info("=" * 60)
+        self.logger.info("SENTINEL AGENT - Quality Control")
+        self.logger.info("=" * 60)
+        self.logger.agent_thinking("Sentinel", "🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...")
+
+        system_prompt = """You are Sentinel, a quality control expert for systematic literature review search strategies.
+
+Your role is to validate and refine Boolean queries according to systematic review best practices (PRISMA, Cochrane standards).
+
+VALIDATION CHECKLIST:
+
+1. **Syntax Correctness**:
+   - Parentheses balanced and properly nested
+   - Field tags correctly formatted ([Title/Abstract], TITLE-ABS-KEY())
+   - Wildcards (*) used appropriately (not at beginning of words)
+   - Boolean operators (AND, OR) properly capitalized
+
+2. **Concept Structure**:
+   - Related synonyms grouped with OR
+   - Different concepts connected with AND
+   - Proper nesting: (synonym1 OR synonym2) AND (concept2)
+
+3. **Search Strategy Quality**:
+   - Not overly broad (e.g., single common words without context)
+   - Not overly narrow (missing important synonyms)
+   - Includes methodological terms if study design matters
+   - Field restrictions applied (Title/Abstract focus)
+
+4. **Database-Specific Optimization**:
+   - Scopus: Proper TITLE-ABS-KEY() wrapper
+   - PubMed: Consider MeSH terms for biomedical concepts
+   - OpenAlex: Simplified but still precise
+
+5. **Systematic Review Rigor**:
+   - Captures both intervention/exposure AND outcome
+   - Includes study design terms if causal inference is the goal
+   - Balances sensitivity (finding all relevant studies) vs. precision
+
+EXAMPLE SYSTEMATIC REVIEW QUERY STRUCTURE:
+"I am interested in research on [INTERVENTION/EXPOSURE] impacts on [OUTCOME]. I specifically want studies with [STUDY DESIGN CRITERIA, e.g., causal research designs, experimental or quasi-experimental studies, randomized controlled trials]."
+
+YOUR TASK:
+- FIX any syntax errors you find
+- IMPROVE query structure if needed
+- ENSURE all three queries are valid and executable
+- If queries are already good, return them as-is
+
+CRITICAL: Return ONLY valid JSON, no markdown formatting, no explanations outside the JSON.
+
+Return JSON:
+{
+    "elsevier_query": "VALIDATED_AND_REFINED_QUERY",
+    "pubmed_query": "VALIDATED_AND_REFINED_QUERY",
+    "openalex_query": "VALIDATED_AND_REFINED_QUERY",
+    "validation_notes": "Summary of validation checks and refinements made",
+    "warnings": ["list of any remaining concerns"] or []
+}"""
+
+        queries_str = json.dumps(queries, indent=2)
+        user_message = f"""Please validate and improve these Boolean queries:
+
+{queries_str}
+
+Return the final validated versions."""
+
+        response_text = self._call_agent("Sentinel", system_prompt, user_message, max_tokens=3000)
+
+        try:
+            json_text = self._extract_json(response_text)
+            result = json.loads(json_text)
+            warnings = result.get('warnings', [])
+            if warnings:
+                self.logger.warning(f"⚠️ Sentinel spotted {len(warnings)} potential issues to review")
+            else:
+                self.logger.info("Sentinel: ✅ All queries passed the rigorous quality inspection!")
+            return result
+        except (json.JSONDecodeError, ValueError) as e:
+            self.logger.error(f"Sentinel: Failed to parse JSON response: {e}")
+            self.logger.error(f"Raw response: {response_text[:500]}...")
+            return {
+                **queries,
+                "validation_notes": "Fallback: using Formulator queries without validation",
+                "warnings": ["Could not validate queries due to parsing error"]
+            }
+
+    def _agent_refiner(self, sentinel_result: Dict) -> Dict:
+        """
+        Agent 4: Refiner - Final Polish
+        Takes Sentinel's validation report and produces final, issue-free queries.
+        """
+        self.logger.info("=" * 60)
+        self.logger.info("REFINER AGENT - Final Polish")
+        self.logger.info("=" * 60)
+        self.logger.agent_thinking("Refiner", "💎 Polishing queries to perfection and resolving all issues...")
+
+        system_prompt = """You are Refiner, the final quality assurance expert for systematic literature review search strategies.
+
+Your role is to take validated queries and their validation reports, then produce the FINAL, PERFECT, ISSUE-FREE versions.
+
+YOUR MISSION:
+1. **Address ALL Warnings**: If the validation report contains any warnings, FIX them completely
+2. **Optimize Structure**: Ensure optimal Boolean operator hierarchy and parentheses nesting
+3. **Enhance Precision**: Remove any remaining ambiguities or potential syntax errors
+4. **Final Verification**: Confirm all three queries are ready for immediate execution
+
+SPECIFIC FIXES TO MAKE:
+- If parentheses are unbalanced → Balance them
+- If field tags are missing → Add them (TITLE-ABS-KEY(), [Title/Abstract])
+- If synonyms are poorly grouped → Regroup with proper OR logic
+- If query is too broad → Add more specific combinations
+- If query is too narrow → Add important missing synonyms
+- If methodological terms are missing → Add them (for causal studies)
+- If wildcards are misplaced → Fix placement (should be at end: adapt*, not *adapt)
+
+QUALITY CHECKLIST:
+✅ Syntax: Perfect, no errors
+✅ Structure: Logical grouping with proper nesting
+✅ Coverage: Comprehensive synonyms and methodological terms
+✅ Precision: Focused on relevant studies
+✅ Executability: Ready to run immediately in each database
+
+CRITICAL: Return ONLY valid JSON, no markdown formatting, no code blocks, no explanations outside the JSON.
+
+Return JSON:
+{
+    "elsevier_query": "FINAL_PERFECT_QUERY",
+    "pubmed_query": "FINAL_PERFECT_QUERY",
+    "openalex_query": "FINAL_PERFECT_QUERY",
+    "refinement_notes": "Summary of improvements made and confirmation that all issues are resolved",
+    "issues_resolved": ["list of specific issues fixed"] or []
+}"""
+
+        queries_str = json.dumps({
+            "elsevier_query": sentinel_result.get('elsevier_query', ''),
+            "pubmed_query": sentinel_result.get('pubmed_query', ''),
+            "openalex_query": sentinel_result.get('openalex_query', ''),
+            "validation_notes": sentinel_result.get('validation_notes', ''),
+            "warnings": sentinel_result.get('warnings', [])
+        }, indent=2)
+
+        user_message = f"""Please refine these validated queries into their FINAL, PERFECT versions:
+
+{queries_str}
+
+Address any warnings and produce issue-free, execution-ready queries."""
+
+        response_text = self._call_agent("Refiner", system_prompt, user_message, max_tokens=3000)
+
+        try:
+            json_text = self._extract_json(response_text)
+            result = json.loads(json_text)
+            issues_resolved = result.get('issues_resolved', [])
+            if issues_resolved:
+                self.logger.info(f"Refiner: ✅ Resolved {len(issues_resolved)} issues - queries are now perfect!")
+            else:
+                self.logger.info("Refiner: ✅ Queries were already excellent - final polish applied!")
+            return result
+        except (json.JSONDecodeError, ValueError) as e:
+            self.logger.error(f"Refiner: Failed to parse JSON response: {e}")
+            self.logger.error(f"Raw response: {response_text[:500]}...")
+            return {
+                "elsevier_query": sentinel_result.get('elsevier_query', ''),
+                "pubmed_query": sentinel_result.get('pubmed_query', ''),
+                "openalex_query": sentinel_result.get('openalex_query', ''),
+                "refinement_notes": "Fallback: using Sentinel queries without refinement",
+                "issues_resolved": []
+            }
+
+    def generate_queries(self, topic: str, variation_seed: Optional[int] = None) -> Dict:
+        """
+        Main workflow: Run all four agents in sequence.
+
+        Args:
+            topic: Research topic string
+            variation_seed: Optional seed for generating query variations (1, 2, 3, etc.)
+
+        Returns:
+            Dict containing:
+                - pulse_keywords: Expanded keyword list
+                - pulse_reasoning: Pulse's reasoning
+                - formulator_queries: Initial queries from Formulator
+                - formulator_reasoning: Formulator's reasoning
+                - sentinel_queries: Validated queries from Sentinel
+                - sentinel_validation: Sentinel's validation notes
+                - sentinel_warnings: Any warnings
+                - refiner_queries: Final polished queries
+                - refiner_notes: Refiner's refinement notes
+                - issues_resolved: List of issues fixed
+                - variation_seed: The variation seed used (if any)
+                - logs: Detailed process logs
+        """
+        variation_note = f" (Variation #{variation_seed})" if variation_seed else ""
+        self.logger.info(f"Starting query generation for topic{variation_note}: '{topic}'")
+        start_time = time.time()
+
+        # Agent 1: Pulse
+        pulse_result = self._agent_pulse(topic, variation_seed=variation_seed)
+
+        # Agent 2: Formulator
+        formulator_result = self._agent_formulator(pulse_result.get('expanded_keywords', [topic]))
+
+        # Agent 3: Sentinel
+        sentinel_result = self._agent_sentinel({
+            "elsevier_query": formulator_result.get('elsevier_query', ''),
+            "pubmed_query": formulator_result.get('pubmed_query', ''),
+            "openalex_query": formulator_result.get('openalex_query', '')
+        })
+
+        # Agent 4: Refiner
+        refiner_result = self._agent_refiner(sentinel_result)
+
+        elapsed = time.time() - start_time
+        self.logger.info(f"🎊 Query generation completed in {elapsed:.2f} seconds - Ready to unleash upon the databases!")
+        self.logger.info("=" * 60)
+
+        return {
+            "pulse_keywords": pulse_result.get('expanded_keywords', []),
+            "pulse_reasoning": pulse_result.get('reasoning', ''),
+            "formulator_queries": {
+                "elsevier_query": formulator_result.get('elsevier_query', ''),
+                "pubmed_query": formulator_result.get('pubmed_query', ''),
+                "openalex_query": formulator_result.get('openalex_query', '')
+            },
+            "formulator_reasoning": formulator_result.get('reasoning', ''),
+            "sentinel_queries": {
+                "elsevier_query": sentinel_result.get('elsevier_query', ''),
+                "pubmed_query": sentinel_result.get('pubmed_query', ''),
+                "openalex_query": sentinel_result.get('openalex_query', '')
+            },
+            "sentinel_validation": sentinel_result.get('validation_notes', ''),
+            "sentinel_warnings": sentinel_result.get('warnings', []),
+            "refiner_queries": {
+                "elsevier_query": refiner_result.get('elsevier_query', ''),
+                "pubmed_query": refiner_result.get('pubmed_query', ''),
+                "openalex_query": refiner_result.get('openalex_query', '')
+            },
+            "refiner_notes": refiner_result.get('refinement_notes', ''),
+            "issues_resolved": refiner_result.get('issues_resolved', []),
+            "variation_seed": variation_seed,
+            "logs": self.logger.get_ui_logs()
+        }
+
+
+# Test the module
+if __name__ == "__main__":
+    team = QueryGenerationTeam()
+    result = team.generate_queries("climate change and mental health impacts")
+
+    print("\n" + "=" * 60)
+    print("PULSE KEYWORDS:")
+    print("=" * 60)
+    for kw in result['pulse_keywords']:
+        print(f"  - {kw}")
+
+    print("\n" + "=" * 60)
+    print("FINAL QUERIES:")
+    print("=" * 60)
+    print(f"\nElsevier/Scopus:\n{result['sentinel_queries']['elsevier_query']}")
+    print(f"\nPubMed:\n{result['sentinel_queries']['pubmed_query']}")
+    print(f"\nOpenAlex:\n{result['sentinel_queries']['openalex_query']}")
+
+    if result['sentinel_warnings']:
+        print("\n" + "=" * 60)
+        print("WARNINGS:")
+        print("=" * 60)
+        for warning in result['sentinel_warnings']:
+            print(f"  ⚠️  {warning}")

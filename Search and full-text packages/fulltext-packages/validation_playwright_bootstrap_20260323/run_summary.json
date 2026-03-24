@@ -1,0 +1,12 @@
+{
+  "total": 1,
+  "success": 0,
+  "failed": 1,
+  "by_source": {
+    "elsevier": 0,
+    "wiley": 0,
+    "openalex": 0,
+    "playwright": 0
+  },
+  "playwright_enabled": true
+}
