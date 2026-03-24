@@ -17,6 +17,12 @@ from modules.m3_screening import ScreeningOrchestrator
 from modules.m4_fulltext import FullTextRetriever
 from utils.logger import get_logger
 from utils.llm_providers import create_llm_provider, AnthropicProvider, BedrockProvider, DummyProvider
+from utils.prompt_inspector import (
+    get_phase1_agent_prompts,
+    get_phase3_screening_prompts,
+    get_model_information,
+    format_prompt_display
+)
 
 # Page config
 st.set_page_config(
@@ -262,6 +268,8 @@ def _merge_database_variations(db_name: str, variations: list, base_out_dir: str
         "duplicates_removed": duplicates_removed,
         "total_before_dedup": before_dedup,
         "num_variations": len(variations),
+        "error": "",  # Empty on success
+        "variations_summary": merged_summary["variations_summary"],  # Include per-variation details
         "output_files": {
             "summary_json": str(merged_summary_path),
             "summary_csv": str(merged_csv_path),
@@ -408,6 +416,171 @@ with st.sidebar:
         st.info("Queries Generated")
     else:
         st.warning("Awaiting Input")
+
+    # File Import Portal
+    st.markdown("---")
+    with st.expander("📥 Import Data (Skip Phases)", expanded=False):
+        st.markdown("**Already have data? Import and jump to any phase!**")
+
+        uploaded_file = st.file_uploader(
+            "Upload CSV file:",
+            type=["csv"],
+            help="Upload a CSV file with your papers",
+            key="import_csv_uploader"
+        )
+
+        if uploaded_file:
+            try:
+                import_df = pd.read_csv(uploaded_file)
+                st.success(f"✅ Loaded {len(import_df)} rows, {len(import_df.columns)} columns")
+
+                # Show preview
+                st.markdown("**Preview:**")
+                st.dataframe(import_df.head(3), use_container_width=True)
+
+                # Column mapping interface
+                st.markdown("---")
+                st.markdown("**🔗 Map Your Columns:**")
+
+                col_map1, col_map2 = st.columns(2)
+
+                with col_map1:
+                    title_col = st.selectbox(
+                        "Title Column:",
+                        options=[""] + list(import_df.columns),
+                        key="import_title_col"
+                    )
+                    abstract_col = st.selectbox(
+                        "Abstract Column:",
+                        options=[""] + list(import_df.columns),
+                        key="import_abstract_col"
+                    )
+
+                with col_map2:
+                    doi_col = st.selectbox(
+                        "DOI Column (optional):",
+                        options=[""] + list(import_df.columns),
+                        key="import_doi_col"
+                    )
+                    authors_col = st.selectbox(
+                        "Authors Column (optional):",
+                        options=[""] + list(import_df.columns),
+                        key="import_authors_col"
+                    )
+
+                # Jump to phase buttons
+                if title_col and abstract_col:
+                    st.markdown("---")
+                    st.markdown("**🚀 Jump to Phase:**")
+
+                    col_p3, col_p4 = st.columns(2)
+
+                    with col_p3:
+                        if st.button("→ Phase 3 (Screening)", type="primary", key="jump_to_phase3"):
+                            # Map columns
+                            mapped_df = pd.DataFrame()
+                            mapped_df['title'] = import_df[title_col]
+                            mapped_df['abstract'] = import_df[abstract_col]
+                            if doi_col:
+                                mapped_df['doi'] = import_df[doi_col]
+                            if authors_col:
+                                mapped_df['authors'] = import_df[authors_col]
+
+                            # Add record IDs
+                            mapped_df['record_id'] = range(1, len(mapped_df) + 1)
+
+                            # Save to temp location
+                            import tempfile
+                            temp_dir = tempfile.mkdtemp(prefix="imported_data_")
+                            mapped_df.to_csv(f"{temp_dir}/imported_papers.csv", index=False)
+
+                            # Set session state
+                            st.session_state.phase = 3
+                            st.session_state.search_results_dir = temp_dir
+                            st.session_state.imported_data = mapped_df
+                            st.session_state.data_imported = True
+
+                            logger.info(f"Imported {len(mapped_df)} papers, jumping to Phase 3")
+                            st.success(f"✅ Imported {len(mapped_df)} papers! Jumping to Phase 3...")
+                            st.rerun()
+
+                    with col_p4:
+                        if st.button("→ Phase 4 (Download)", key="jump_to_phase4"):
+                            # Require DOI for Phase 4
+                            if not doi_col:
+                                st.error("❌ DOI column required for Phase 4")
+                            else:
+                                # Map columns
+                                mapped_df = pd.DataFrame()
+                                mapped_df['title'] = import_df[title_col]
+                                mapped_df['abstract'] = import_df[abstract_col]
+                                mapped_df['doi'] = import_df[doi_col]
+                                mapped_df['judgement'] = True  # All papers marked for download
+                                if authors_col:
+                                    mapped_df['authors'] = import_df[authors_col]
+
+                                # Set session state
+                                st.session_state.phase = 4
+                                st.session_state.screening_results = mapped_df
+                                st.session_state.screening_approved = True
+                                st.session_state.data_imported = True
+
+                                logger.info(f"Imported {len(mapped_df)} papers, jumping to Phase 4")
+                                st.success(f"✅ Imported {len(mapped_df)} papers! Jumping to Phase 4...")
+                                st.rerun()
+
+                else:
+                    st.warning("⚠️ Please map at least Title and Abstract columns")
+
+            except Exception as e:
+                st.error(f"❌ Error loading file: {str(e)}")
+                logger.error(f"Import error: {e}", exc_info=True)
+
+    # Model & Prompt Information Section
+    st.markdown("---")
+    with st.expander("🔍 Model & Prompt Information", expanded=False):
+        st.markdown("### Active Model Configuration")
+
+        # Show current provider info
+        if 'llm_provider' in st.session_state and st.session_state.get('llm_provider'):
+            provider = st.session_state.llm_provider
+            model_info = get_model_information(provider)
+
+            col_m1, col_m2 = st.columns(2)
+            with col_m1:
+                st.metric("Provider", model_info["provider_name"])
+            with col_m2:
+                st.metric("Status", "✅ Available" if model_info["is_available"] else "❌ Unavailable")
+
+            st.markdown(f"**Model**: `{model_info['model_name']}`")
+            if "region" in model_info:
+                st.markdown(f"**Region**: `{model_info['region']}`")
+            if "model_id" in model_info:
+                st.markdown(f"**Model ID**: `{model_info['model_id']}`")
+        else:
+            st.info("No provider configured yet. Configure above and test connection.")
+
+        st.markdown("---")
+        st.markdown("### Phase 1: Query Generation Prompts")
+
+        phase1_prompts = get_phase1_agent_prompts()
+        for agent_name, prompt_text in phase1_prompts.items():
+            with st.expander(f"🤖 {agent_name}", expanded=False):
+                st.code(prompt_text, language="text")
+
+        st.markdown("---")
+        st.markdown("### Phase 3: Abstract Screening Prompts")
+
+        phase3_prompts = get_phase3_screening_prompts()
+        for mode_name, prompt_text in phase3_prompts.items():
+            with st.expander(f"✅ {mode_name}", expanded=False):
+                # Show with parameter placeholders
+                display_text = prompt_text.replace("{k_strictness}", "[k_strictness]").replace("{criteria}", "[inclusion/exclusion criteria]")
+                st.code(display_text, language="text")
+
+        st.markdown("---")
+        st.caption("ℹ️ All prompts shown are the actual system-level prompts used by the agents. User messages (research topic, queries, etc.) are added dynamically during execution.")
+
 
 # ==============================================================================
 # LANDING PAGE (before workflow starts)
@@ -660,6 +833,12 @@ if generate_button:
 
             # Create progress display with status widget
             with st.status(f"🔮 Initiating the Four-Agent Query Generation Ritual{variation_label}...", expanded=True) as status:
+                # Show model information
+                model_name = provider.get_model_name() if hasattr(provider, 'get_model_name') else "Unknown"
+                st.write(f"🤖 **Active Model**: {model_name}")
+                st.write(f"💡 _View system prompts: Sidebar → 'Model & Prompt Information'_")
+                st.write("")
+
                 # Agent 1: Pulse
                 st.write("🔍 **Agent 1: Pulse** - Diving into academic jargon soup...")
                 st.write("_Extracting synonyms, related terms, and methodological keywords from the research cosmos..._")
@@ -869,6 +1048,7 @@ if st.session_state.queries_generated:
     st.markdown("---")
 
     st.subheader("🔬 Agent Outputs")
+    st.info("💡 **View System Prompts**: Expand '🔍 Model & Prompt Information' in the sidebar to see the complete system-level prompts used by each agent.")
 
     col_a, col_b = st.columns(2)
 
@@ -1178,6 +1358,14 @@ if st.session_state.phase >= 2:
                         executor = SearchExecutor(db, query, config)
                         var_out_dir = f"{out_dir}/{db}/variation_{var_idx + 1}" if num_variations > 1 else f"{out_dir}/{db}"
                         result = executor.execute_search(max_results=max_results, out_dir=var_out_dir)
+
+                        # Debug logging for Scopus
+                        if db == "scopus":
+                            logger.info(f"Scopus result dict: {result}")
+                            logger.info(f"Scopus success: {result.get('success')}")
+                            logger.info(f"Scopus status: {result.get('status')}")
+                            logger.info(f"Scopus error: {result.get('error', 'No error key')}")
+
                         result['variation_idx'] = var_idx + 1
                         merged_results[db]["variations"].append(result)
                         if result.get("success"):
@@ -1237,6 +1425,10 @@ if st.session_state.phase >= 2:
         st.subheader("📊 Search Results")
 
         for db, result in st.session_state.search_results.items():
+            # Debug logging for Scopus
+            if db == "scopus":
+                logger.info(f"Displaying Scopus results: {result}")
+
             with st.expander(f"📁 {db.upper()} Results", expanded=True):
                 if result["success"]:
                     st.success(f"✅ Status: {result['status']}")
@@ -1248,6 +1440,22 @@ if st.session_state.phase >= 2:
                         col_m2.metric("Total Retrieved", result["total_before_dedup"])
                         col_m3.metric("Duplicates Removed", result["duplicates_removed"])
                         st.info(f"**Final Unique Results:** {result['results_count']} papers after deduplication")
+
+                        # Show detailed per-variation statistics
+                        with st.expander("📊 Detailed Per-Variation Statistics"):
+                            var_summary = result.get("variations_summary", [])
+                            if var_summary:
+                                var_df = pd.DataFrame(var_summary)
+                                var_df.columns = ["Variation #", "Success", "Results Retrieved"]
+                                var_df["Success"] = var_df["Success"].map({True: "✅", False: "❌"})
+                                st.dataframe(var_df, use_container_width=True, hide_index=True)
+
+                                # Show statistics
+                                successful = sum(1 for v in var_summary if v.get("success"))
+                                failed = len(var_summary) - successful
+                                col_s1, col_s2 = st.columns(2)
+                                col_s1.metric("Successful Variations", f"{successful}/{len(var_summary)}")
+                                col_s2.metric("Failed Variations", failed)
                     else:
                         st.metric("Results Found", result["results_count"])
 
@@ -1291,7 +1499,11 @@ if st.session_state.phase >= 2:
                         else:
                             st.warning(f"Output file not found: {csv_path}")
                 else:
-                    st.error(f"❌ Error: {result.get('error', 'Unknown error')}")
+                    error_msg = result.get('error', '')
+                    if error_msg:
+                        st.error(f"❌ Error: {error_msg}")
+                    else:
+                        st.error(f"❌ Search failed with status: {result.get('status', 'unknown')}")
 
         # Approve Phase 2 button
         if st.button("🟢 Approve & Proceed to Phase 3", type="primary", key="approve_phase2_button"):
@@ -1320,7 +1532,13 @@ if st.session_state.phase >= 3:
     # Configuration Section
     st.subheader("⚙️ Screening Configuration")
 
-    st.info("📌 Using the same Claude model configured in Phase 1 for screening")
+    # Display model information
+    if 'llm_provider' in st.session_state and st.session_state.get('llm_provider'):
+        provider = st.session_state.llm_provider
+        model_name = provider.get_model_name() if hasattr(provider, 'get_model_name') else "Unknown"
+        st.info(f"🤖 **Active Model**: {model_name} | 💡 View system prompts in sidebar: '🔍 Model & Prompt Information'")
+    else:
+        st.warning("⚠️ No LLM provider configured. Please configure in Phase 1 first.")
 
     col_mode, col_threads = st.columns(2)
     with col_mode:
@@ -1456,8 +1674,35 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
     # Execute Screening Button
     if not st.session_state.screening_approved:
         if st.button("🚀 Run Screening", type="primary", disabled=not criteria_text, key="run_screening_button"):
+            # Funny screening messages that change with progress
+            funny_messages = [
+                "🔍 Reading abstracts like a caffeinated grad student...",
+                "🤔 Judging papers harder than peer reviewers...",
+                "📚 Channeling inner systematic review guru...",
+                "🧐 Separating wheat from chaff (academically speaking)...",
+                "🎯 Applying inclusion criteria with surgical precision...",
+                "📊 Computing relevance scores faster than you can say 'meta-analysis'...",
+                "🤓 Being more picky than journal editors...",
+                "🔬 Scrutinizing methods sections with microscopic detail...",
+                "📖 Speed-reading like it's a competitive sport...",
+                "🎓 Channeling years of systematic review training...",
+                "🧠 Neural networks doing the heavy intellectual lifting...",
+                "📝 Writing rejection letters (politely) in my head...",
+                "✨ Sprinkling AI magic on your literature search...",
+                "🚀 Launching papers into 'included' or 'excluded' orbits...",
+                "🎪 Performing the great abstract screening circus act...",
+                "🏆 Competing for the gold medal in paper judgment...",
+                "🔮 Predicting which papers will make the cut...",
+                "🎨 Painting your systematic review masterpiece...",
+                "🌟 Finding needles in the academic haystack...",
+                "🎯 Hitting the inclusion criteria bullseye..."
+            ]
+
             with st.status("📋 Screening Abstracts...", expanded=True) as status:
-                st.write("📁 Consolidating Phase 2 results...")
+                # Placeholders for dynamic updates
+                progress_bar = st.progress(0)
+                message_placeholder = st.empty()
+                stats_placeholder = st.empty()
 
                 try:
                     # Create LLM provider instance
@@ -1483,24 +1728,58 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
                         'thread_count': thread_count
                     })
 
-                    # Get Phase 2 output directory from session state
-                    phase2_dir = st.session_state.search_results_dir
-                    if not phase2_dir:
-                        st.error("❌ Phase 2 output directory not found. Please complete Phase 2 first.")
+                    # Get Phase 2 output directory or imported data
+                    if st.session_state.get('data_imported') and 'imported_data' in st.session_state:
+                        st.write("📁 Using imported data...")
+                        df_consolidated = st.session_state.imported_data
                     else:
+                        phase2_dir = st.session_state.search_results_dir
+                        if not phase2_dir:
+                            st.error("❌ Phase 2 output directory not found. Please complete Phase 2 first.")
+                            raise RuntimeError("No Phase 2 data")
+                        st.write("📁 Consolidating Phase 2 results...")
                         df_consolidated = orchestrator.consolidate_phase2_results(phase2_dir)
-                        st.write(f"✅ Loaded {len(df_consolidated)} unique records")
-                        st.write(f"🤖 Screening with {screening_mode} mode...")
 
-                        df_screened = orchestrator.run_screening(df_consolidated, criteria_text)
+                    st.write(f"✅ Loaded {len(df_consolidated)} unique records")
+                    st.write(f"🤖 Screening with {screening_mode} mode...")
 
-                        status.update(label="✅ Screening Complete!", state="complete", expanded=False)
+                    # Progress callback for funny messages
+                    progress_state = {'last_message_idx': -1}
 
-                        # Save to session state
-                        st.session_state.screening_results = df_screened
-                        st.session_state.screening_complete = True
-                        st.success(f"🎉 Screened {len(df_screened)} papers!")
-                        st.rerun()
+                    def update_progress(completed, total, included, excluded):
+                        # Update progress bar
+                        progress = completed / total
+                        progress_bar.progress(progress)
+
+                        # Change funny message every ~10% progress
+                        message_idx = int(progress * len(funny_messages))
+                        if message_idx != progress_state['last_message_idx'] and message_idx < len(funny_messages):
+                            message_placeholder.markdown(f"**{funny_messages[message_idx]}**")
+                            progress_state['last_message_idx'] = message_idx
+
+                        # Update stats
+                        stats_placeholder.markdown(
+                            f"**Progress:** {completed}/{total} papers | "
+                            f"✅ Included: {included} | "
+                            f"❌ Excluded: {excluded}"
+                        )
+
+                    # Run screening with progress callback
+                    df_screened = orchestrator.run_screening(
+                        df_consolidated,
+                        criteria_text,
+                        progress_callback=update_progress
+                    )
+
+                    # Final message
+                    message_placeholder.markdown("**🎉 All done! Your papers have been judged!**")
+                    status.update(label="✅ Screening Complete!", state="complete", expanded=False)
+
+                    # Save to session state
+                    st.session_state.screening_results = df_screened
+                    st.session_state.screening_complete = True
+                    st.success(f"🎉 Screened {len(df_screened)} papers!")
+                    st.rerun()
 
                 except Exception as e:
                     st.error(f"❌ Screening failed: {str(e)}")
@@ -1519,6 +1798,12 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
         col_inc.metric("Included", len(df[df['judgement'] == True]))
         col_exc.metric("Excluded", len(df[df['judgement'] == False]))
         col_err.metric("Errors", len(df[df['error'] != ""]) if 'error' in df.columns else 0)
+
+        # Model information (if available in results)
+        if 'model' in df.columns and not df['model'].isna().all():
+            model_used = df['model'].iloc[0]
+            mode_used = df['mode'].iloc[0] if 'mode' in df.columns else st.session_state.screening_mode
+            st.caption(f"🤖 **Model**: {model_used} | **Mode**: {mode_used} | 💡 View prompts: Sidebar → 'Model & Prompt Information'")
 
         # Filter controls
         filter_option = st.radio(

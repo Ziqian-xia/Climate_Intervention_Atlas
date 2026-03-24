@@ -1,8 +1,0 @@
-{
-  "query": "(\"cool roof*\" OR \"cooling roof*\" OR \"green roof*\" OR \"living roof*\" OR \"vegetated roof*\" OR \"roof garden*\" OR \"extensive green roof*\" OR \"intensive green roof*\" OR \"reflective roof*\" OR \"white roof*\" OR \"high-albedo roof*\" OR \"high albedo roof*\") AND (temperature* OR \"ambient temperature\" OR \"urban heat island*\" OR microclimate* OR \"heat exposure\" OR \"thermal comfort\" OR health OR mortality OR morbidity OR \"heat-related illness*\" OR \"heat related illness*\" OR cardiovascular OR respiratory OR \"heat stress\") AND (intervention* OR \"natural experiment*\" OR \"quasi-experimental\" OR \"quasi experimental\" OR randomized OR randomised OR \"controlled trial*\" OR \"causal inference\" OR \"difference-in-difference*\" OR \"difference in difference*\" OR \"instrumental variable*\" OR \"regression discontinuity\" OR \"propensity score\" OR matching OR \"before-after\" OR \"before after\" OR \"interrupted time series\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 100,
-  "meta_count": 13511,
-  "calls": 1
-}

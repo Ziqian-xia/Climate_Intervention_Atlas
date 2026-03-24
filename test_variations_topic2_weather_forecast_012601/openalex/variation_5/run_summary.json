@@ -1,8 +1,0 @@
-{
-  "query": "(\"weather forecast\" OR \"meteorological forecast\" OR \"heat forecast\" OR \"temperature forecast\" OR \"early warning system\" OR \"heat alert\" OR \"extreme heat warning\" OR \"weather advisory\" OR \"heat advisory\" OR \"heat wave warning\" OR \"cooling center\" OR \"cooling shelter\" OR \"cooling station\" OR \"heat refuge\" OR \"air conditioning center\" OR \"community cooling\" OR \"emergency shelter\" OR \"public cooling facility\") AND ((\"temperature-mortality\" OR \"temperature-morbidity\" OR \"heat-health\" OR \"thermal stress\" OR hyperthermia OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat-related illness\" OR \"heat-related death\" OR \"excess mortality\" OR \"heat mortality\") AND (mortality OR morbidity OR hospitalization OR \"emergency department\" OR \"hospital admission\" OR \"health outcome\")) AND (\"randomized controlled trial\" OR RCT OR \"quasi-experimental\" OR \"natural experiment\" OR \"difference-in-difference\" OR \"instrumental variable\" OR \"regression discontinuity\" OR randomization OR \"causal inference\" OR \"treatment effect\" OR \"intervention study\" OR \"policy evaluation\" OR \"program evaluation\" OR \"exogenous variation\" OR \"plausibly random\" OR \"identification strategy\" OR \"causal impact\" OR \"treatment assignment\" OR \"experimental design\" OR counterfactual OR \"impact evaluation\" OR \"effectiveness study\" OR \"intervention effect\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 100,
-  "meta_count": 1982,
-  "calls": 1
-}

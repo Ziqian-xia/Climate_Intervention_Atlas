@@ -1,7 +1,0 @@
-{
-  "query": "(\"cool roof*\"[Title/Abstract] OR \"cool roofing\"[Title/Abstract] OR \"green roof*\"[Title/Abstract] OR \"green roofing\"[Title/Abstract] OR \"living roof*\"[Title/Abstract] OR \"vegetated roof*\"[Title/Abstract] OR \"reflective roof*\"[Title/Abstract] OR \"white roof*\"[Title/Abstract] OR albedo[Title/Abstract] OR \"roof intervention*\"[Title/Abstract] OR rooftop*[Title/Abstract]) AND (\"urban heat island*\"[Title/Abstract] OR UHI[Title/Abstract] OR microclimate*[Title/Abstract] OR \"ambient temperature*\"[Title/Abstract] OR \"surface temperature*\"[Title/Abstract] OR \"heat exposure\"[Title/Abstract] OR \"thermal comfort\"[Title/Abstract] OR \"building envelope\"[Title/Abstract] OR \"passive cooling\"[Title/Abstract]) AND (\"temperature-health\"[Title/Abstract] OR \"heat-health\"[Title/Abstract] OR mortality[Title/Abstract] OR morbidity[Title/Abstract] OR \"heat stress\"[Title/Abstract] OR \"heat strain\"[Title/Abstract] OR cardiovascular[Title/Abstract] OR respiratory[Title/Abstract] OR hospitalization*[Title/Abstract] OR emergency[Title/Abstract] OR \"environmental health\"[Title/Abstract] OR \"public health\"[Title/Abstract] OR \"climate adaptation\"[Title/Abstract] OR \"heat mitigation\"[Title/Abstract] OR \"cooling strategy\"[Title/Abstract] OR \"climate resilience\"[Title/Abstract] OR \"built environment\"[Title/Abstract] OR \"environmental intervention\"[Title/Abstract])",
-  "database": "pubmed",
-  "status": "success",
-  "results_count": 78,
-  "meta_count": 78
-}

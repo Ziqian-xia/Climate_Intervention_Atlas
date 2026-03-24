@@ -1,8 +1,0 @@
-{
-  "query": "(\"weather forecast\" OR \"heat forecast\" OR \"heat warning\" OR \"heat alert\" OR \"early warning\") AND (\"cooling center\" OR \"cooling shelter\" OR \"heat relief center\") AND (\"temperature\" OR \"heat\") AND \"health\" AND (\"intervention\" OR \"causal\" OR \"quasi-experimental\" OR \"evaluation\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 20,
-  "meta_count": 418,
-  "calls": 1
-}

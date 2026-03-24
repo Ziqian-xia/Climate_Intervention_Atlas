@@ -3752,3 +3752,927 @@ RuntimeError: ESearch failed: http_414
 2026-03-24 01:53:52 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
 2026-03-24 01:53:52 | INFO     | 🤖 Scopus: Executing search...
 2026-03-24 01:53:52 | INFO     | SCOPUS search completed successfully
+2026-03-24 10:36:59 | INFO     | Starting Claude screening: 10 records, mode=simple
+2026-03-24 10:37:16 | INFO     | Screening complete: 1 included, 9 excluded, 0 errors
+2026-03-24 10:37:16 | INFO     | Starting screening with simple mode...
+2026-03-24 10:37:16 | INFO     |   Records to screen: 10
+2026-03-24 10:37:16 | INFO     |   Threads: 4
+2026-03-24 10:37:16 | INFO     | Starting Claude screening: 10 records, mode=simple
+2026-03-24 10:37:33 | INFO     | Screening complete: 1 included, 9 excluded, 0 errors
+2026-03-24 10:37:33 | INFO     | ✅ Screening complete
+2026-03-24 10:37:33 | INFO     | Saved screening results: claude_screening_test_20260324_103733/screening_results.csv
+2026-03-24 10:37:33 | INFO     | Saved summary: claude_screening_test_20260324_103733/screening_summary.json
+2026-03-24 10:37:33 | INFO     | Saved 1 included papers: claude_screening_test_20260324_103733/included_papers.csv
+2026-03-24 10:37:33 | INFO     | ✅ All screening results saved successfully
+2026-03-24 11:13:54 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-6)
+2026-03-24 11:13:54 | INFO     | ============================================================
+2026-03-24 11:13:54 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:13:54 | INFO     | ============================================================
+2026-03-24 11:13:54 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:13:54 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:14:01 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:14:01 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 31 carefully curated keywords!
+2026-03-24 11:14:01 | INFO     | ============================================================
+2026-03-24 11:14:01 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:14:01 | INFO     | ============================================================
+2026-03-24 11:14:01 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:14:01 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:14:23 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:14:23 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:14:23 | INFO     | ============================================================
+2026-03-24 11:14:23 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:14:23 | INFO     | ============================================================
+2026-03-24 11:14:23 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:14:23 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:14:48 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:14:48 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-24 11:14:48 | INFO     | ============================================================
+2026-03-24 11:14:48 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:14:48 | INFO     | ============================================================
+2026-03-24 11:14:48 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:14:48 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:15:18 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:15:18 | INFO     | Refiner: ✅ Resolved 11 issues - queries are now perfect!
+2026-03-24 11:15:18 | INFO     | ============================================================
+2026-03-24 11:15:18 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:15:18 | INFO     | ============================================================
+2026-03-24 11:15:18 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:15:18 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:15:28 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:15:28 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 38 carefully curated keywords!
+2026-03-24 11:15:28 | INFO     | ============================================================
+2026-03-24 11:15:28 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:15:28 | INFO     | ============================================================
+2026-03-24 11:15:28 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:15:28 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:15:49 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:15:49 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:15:49 | INFO     | ============================================================
+2026-03-24 11:15:49 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:15:49 | INFO     | ============================================================
+2026-03-24 11:15:49 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:15:49 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:16:15 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:16:15 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-24 11:16:15 | INFO     | ============================================================
+2026-03-24 11:16:15 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:16:15 | INFO     | ============================================================
+2026-03-24 11:16:15 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:16:15 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:16:42 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:16:42 | INFO     | Refiner: ✅ Resolved 8 issues - queries are now perfect!
+2026-03-24 11:16:42 | INFO     | ============================================================
+2026-03-24 11:16:42 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:16:42 | INFO     | ============================================================
+2026-03-24 11:16:42 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:16:42 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:16:55 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:16:55 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 25 carefully curated keywords!
+2026-03-24 11:16:55 | INFO     | ============================================================
+2026-03-24 11:16:55 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:16:55 | INFO     | ============================================================
+2026-03-24 11:16:55 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:16:55 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:17:16 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:17:16 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:17:16 | INFO     | ============================================================
+2026-03-24 11:17:16 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:17:16 | INFO     | ============================================================
+2026-03-24 11:17:16 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:17:16 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:17:42 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:17:42 | WARNING  | ⚠️ Sentinel spotted 4 potential issues to review
+2026-03-24 11:17:42 | INFO     | ============================================================
+2026-03-24 11:17:42 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:17:42 | INFO     | ============================================================
+2026-03-24 11:17:42 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:17:42 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:18:07 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:18:07 | INFO     | Refiner: ✅ Resolved 7 issues - queries are now perfect!
+2026-03-24 11:18:54 | INFO     | Phase 1 approved and locked by user
+2026-03-24 11:18:54 | INFO     | Elsevier Query: TITLE-ABS-KEY( ( "weather forecast*" OR "weather warning*" OR "heat alert*" OR "cold alert*" OR "extreme temperature warning*" OR "early warning system*" OR "meteorological forecast*" OR "climate advisor*" OR "heat health action plan*" OR "heat wave warning*" OR "heatwave warning*" OR "cold wave warning*" OR "temperature forecast*" OR "forecast dissemination" OR "warning issuance" ) AND ( "heat-related illness*" OR "cold-related illness*" OR "temperature-mortality" OR "temperature-morbidity" OR "heat mortality" OR "cold mortality" OR "heat stress" OR "cold stress" OR "protective behavior*" OR "behavioural response*" OR "behavioral response*" OR "heat-related death*" OR "cold-related death*" OR "excess death*" OR hospitalization* OR "emergency department" OR morbidity OR mortality ) AND ( "randomized controlled trial*" OR "randomised controlled trial*" OR "quasi-experimental" OR "natural experiment*" OR "difference-in-differences" OR "difference in differences" OR "regression discontinuity" OR "instrumental variable*" OR "causal inference" OR "treatment effect*" OR counterfactual* OR "impact evaluation*" OR "program evaluation*" OR "policy evaluation*" ) )
+2026-03-24 11:18:54 | INFO     | PubMed Query: ( forecast*[Title/Abstract] OR "weather warning"[Title/Abstract] OR "heat alert"[Title/Abstract] OR "cold alert"[Title/Abstract] OR "extreme temperature warning"[Title/Abstract] OR "early warning system"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "climate advisor"[Title/Abstract] OR "heat health action plan"[Title/Abstract] OR "heatwave warning"[Title/Abstract] OR "heat wave warning"[Title/Abstract] OR "cold wave warning"[Title/Abstract] OR "temperature forecast"[Title/Abstract] OR "forecast dissemination"[Title/Abstract] OR "warning issuance"[Title/Abstract] OR "Weather Forecasting"[MeSH] OR "Disaster Warning"[MeSH] ) AND ( "heat-related illness"[Title/Abstract] OR "cold-related illness"[Title/Abstract] OR "temperature-mortality"[Title/Abstract] OR "temperature-morbidity"[Title/Abstract] OR "heat mortality"[Title/Abstract] OR "cold mortality"[Title/Abstract] OR "heat stress"[Title/Abstract] OR "cold stress"[Title/Abstract] OR "protective behavior"[Title/Abstract] OR "protective behaviour"[Title/Abstract] OR "behavioral response"[Title/Abstract] OR "behavioural response"[Title/Abstract] OR "heat-related death"[Title/Abstract] OR "cold-related death"[Title/Abstract] OR "excess death"[Title/Abstract] OR hospitalization[Title/Abstract] OR hospitalisation[Title/Abstract] OR "emergency department"[Title/Abstract] OR morbidity[Title/Abstract] OR mortality[Title/Abstract] OR "Heat Stress Disorders"[MeSH] OR "Cold Temperature"[MeSH] ) AND ( "randomized controlled trial"[Title/Abstract] OR "randomised controlled trial"[Title/Abstract] OR "quasi-experimental"[Title/Abstract] OR "natural experiment"[Title/Abstract] OR "difference-in-differences"[Title/Abstract] OR "difference in differences"[Title/Abstract] OR "regression discontinuity"[Title/Abstract] OR "instrumental variable"[Title/Abstract] OR "causal inference"[Title/Abstract] OR "treatment effect"[Title/Abstract] OR counterfactual[Title/Abstract] OR "impact evaluation"[Title/Abstract] OR "program evaluation"[Title/Abstract] OR "policy evaluation"[Title/Abstract] OR "Randomized Controlled Trial"[Publication Type] OR "Controlled Before-After Studies"[MeSH] )
+2026-03-24 11:18:54 | INFO     | OpenAlex Query: ( "weather forecast" OR "weather warning" OR "heat alert" OR "cold alert" OR "extreme temperature warning" OR "early warning system" OR "meteorological forecast" OR "climate advisory" OR "climate advisories" OR "heat health action plan" OR "heatwave warning" OR "heat wave warning" OR "cold wave warning" OR "temperature forecast" OR "forecast dissemination" OR "warning issuance" ) AND ( "heat-related illness" OR "cold-related illness" OR "temperature-mortality" OR "temperature-morbidity" OR "heat mortality" OR "cold mortality" OR "heat stress" OR "cold stress" OR "protective behavior" OR "protective behaviour" OR "behavioral response" OR "behavioural response" OR "heat-related death" OR "cold-related death" OR "excess deaths" OR "excess death" OR hospitalization OR hospitalisation OR "emergency department" OR morbidity OR mortality ) AND ( "randomized controlled trial" OR "randomised controlled trial" OR "quasi-experimental" OR "natural experiment" OR "difference-in-differences" OR "difference in differences" OR "regression discontinuity" OR "instrumental variable" OR "causal inference" OR "treatment effect" OR counterfactual OR "impact evaluation" OR "program evaluation" OR "policy evaluation" )
+2026-03-24 11:19:16 | INFO     | ============================================================
+2026-03-24 11:19:16 | INFO     | Starting OPENALEX search
+2026-03-24 11:19:16 | INFO     | Query: ( "weather forecast" OR "weather warning" OR "heat alert" OR "cold alert" OR "extreme temperature wa...
+2026-03-24 11:19:16 | INFO     | Max results: 2000
+2026-03-24 11:19:16 | INFO     | ============================================================
+2026-03-24 11:19:16 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:19:16 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:19:16 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:20:14 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:20:14 | INFO     | ============================================================
+2026-03-24 11:20:14 | INFO     | Starting PUBMED search
+2026-03-24 11:20:14 | INFO     | Query: ( forecast*[Title/Abstract] OR "weather warning"[Title/Abstract] OR "heat alert"[Title/Abstract] OR ...
+2026-03-24 11:20:14 | INFO     | Max results: 2000
+2026-03-24 11:20:14 | INFO     | ============================================================
+2026-03-24 11:20:14 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:20:14 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:20:14 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:20:15 | INFO     | PubMed: Found 91 total, fetching 91
+2026-03-24 11:20:15 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:20:15 | INFO     | Fetching records 1 to 91...
+2026-03-24 11:20:16 | INFO     | PUBMED search completed successfully
+2026-03-24 11:20:16 | INFO     | ============================================================
+2026-03-24 11:20:16 | INFO     | Starting SCOPUS search
+2026-03-24 11:20:16 | INFO     | Query: TITLE-ABS-KEY( ( "weather forecast*" OR "weather warning*" OR "heat alert*" OR "cold alert*" OR "ext...
+2026-03-24 11:20:16 | INFO     | Max results: 2000
+2026-03-24 11:20:16 | INFO     | ============================================================
+2026-03-24 11:20:16 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:20:16 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:20:16 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:20:16 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:20:16 | INFO     | ============================================================
+2026-03-24 11:20:16 | INFO     | Starting OPENALEX search
+2026-03-24 11:20:16 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "heat warning" OR "cold warning" OR "extreme tem...
+2026-03-24 11:20:16 | INFO     | Max results: 2000
+2026-03-24 11:20:16 | INFO     | ============================================================
+2026-03-24 11:20:16 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:20:16 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:20:16 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:21:01 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:21:01 | INFO     | ============================================================
+2026-03-24 11:21:01 | INFO     | Starting PUBMED search
+2026-03-24 11:21:01 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "heat warning"[...
+2026-03-24 11:21:01 | INFO     | Max results: 2000
+2026-03-24 11:21:01 | INFO     | ============================================================
+2026-03-24 11:21:01 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:21:01 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:21:01 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:21:02 | INFO     | PubMed: Found 19 total, fetching 19
+2026-03-24 11:21:02 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:21:02 | INFO     | Fetching records 1 to 19...
+2026-03-24 11:21:02 | INFO     | PUBMED search completed successfully
+2026-03-24 11:21:02 | INFO     | ============================================================
+2026-03-24 11:21:02 | INFO     | Starting SCOPUS search
+2026-03-24 11:21:02 | INFO     | Query: TITLE-ABS-KEY( ("weather forecast*" OR "meteorological forecast*" OR "heat warning*" OR "cold warnin...
+2026-03-24 11:21:02 | INFO     | Max results: 2000
+2026-03-24 11:21:02 | INFO     | ============================================================
+2026-03-24 11:21:02 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:21:02 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:21:02 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:21:03 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:21:03 | INFO     | ============================================================
+2026-03-24 11:21:03 | INFO     | Starting OPENALEX search
+2026-03-24 11:21:03 | INFO     | Query: ( "meteorological forecast" OR "weather forecast" OR "weather prediction" OR "climate forecast" OR "...
+2026-03-24 11:21:03 | INFO     | Max results: 2000
+2026-03-24 11:21:03 | INFO     | ============================================================
+2026-03-24 11:21:03 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:21:03 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:21:03 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:22:10 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:22:10 | INFO     | ============================================================
+2026-03-24 11:22:10 | INFO     | Starting PUBMED search
+2026-03-24 11:22:10 | INFO     | Query: ( ( "meteorological forecast"[Title/Abstract] OR "weather forecast"[Title/Abstract] OR "weather pred...
+2026-03-24 11:22:10 | INFO     | Max results: 2000
+2026-03-24 11:22:10 | INFO     | ============================================================
+2026-03-24 11:22:10 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:22:10 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:22:10 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:22:11 | INFO     | PubMed: Found 152 total, fetching 152
+2026-03-24 11:22:11 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:22:11 | INFO     | Fetching records 1 to 152...
+2026-03-24 11:22:12 | INFO     | PUBMED search completed successfully
+2026-03-24 11:22:12 | INFO     | ============================================================
+2026-03-24 11:22:12 | INFO     | Starting SCOPUS search
+2026-03-24 11:22:12 | INFO     | Query: TITLE-ABS-KEY( ( "meteorological forecast*" OR "weather forecast*" OR "weather predict*" OR "climate...
+2026-03-24 11:22:12 | INFO     | Max results: 2000
+2026-03-24 11:22:12 | INFO     | ============================================================
+2026-03-24 11:22:12 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:22:12 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:22:12 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:22:12 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:22:14 | INFO     | openalex: Merged 5054 records, removed 739 duplicates, final: 4315
+2026-03-24 11:22:14 | INFO     | pubmed: Merged 262 records, removed 6 duplicates, final: 256
+2026-03-24 11:23:33 | INFO     | Phase 2 approved and locked by user
+2026-03-24 11:24:20 | INFO     | Loading Phase 2 results from: search_results_20260324_111854
+2026-03-24 11:24:20 | INFO     |   Loaded 4315 records from openalex/works_summary.csv
+2026-03-24 11:24:20 | INFO     |   Loaded 256 records from pubmed/works_summary.csv
+2026-03-24 11:24:20 | INFO     | Combined 4571 total records
+2026-03-24 11:24:20 | INFO     | Deduplicated by DOI: 4571 → 4291 records (removed 280 duplicates)
+2026-03-24 11:24:20 | INFO     | ✅ Consolidated 4291 unique records ready for screening
+2026-03-24 11:24:20 | INFO     | Starting screening with simple mode...
+2026-03-24 11:24:20 | INFO     |   Records to screen: 4291
+2026-03-24 11:24:20 | INFO     |   Threads: 4
+2026-03-24 11:24:20 | INFO     | Starting Claude screening: 4291 records, mode=simple
+2026-03-24 11:33:33 | INFO     | ============================================================
+2026-03-24 11:33:33 | INFO     | Starting SCOPUS search
+2026-03-24 11:33:33 | INFO     | Query: TITLE-ABS-KEY("green roof" AND temperature)...
+2026-03-24 11:33:33 | INFO     | Max results: 10
+2026-03-24 11:33:33 | INFO     | ============================================================
+2026-03-24 11:33:33 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:33:33 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:33:33 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:33:34 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:36:37 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-6)
+2026-03-24 11:36:37 | INFO     | ============================================================
+2026-03-24 11:36:37 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:36:37 | INFO     | ============================================================
+2026-03-24 11:36:37 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:36:37 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:36:46 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:36:46 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 28 carefully curated keywords!
+2026-03-24 11:36:46 | INFO     | ============================================================
+2026-03-24 11:36:46 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:36:46 | INFO     | ============================================================
+2026-03-24 11:36:46 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:36:46 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:37:03 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:37:03 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:37:03 | INFO     | ============================================================
+2026-03-24 11:37:03 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:37:03 | INFO     | ============================================================
+2026-03-24 11:37:03 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:37:03 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:37:24 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:37:24 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-24 11:37:24 | INFO     | ============================================================
+2026-03-24 11:37:24 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:37:24 | INFO     | ============================================================
+2026-03-24 11:37:24 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:37:24 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:37:51 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:37:51 | INFO     | Refiner: ✅ Resolved 8 issues - queries are now perfect!
+2026-03-24 11:37:51 | INFO     | ============================================================
+2026-03-24 11:37:51 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:37:51 | INFO     | ============================================================
+2026-03-24 11:37:51 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:37:51 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:38:00 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:38:00 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 27 carefully curated keywords!
+2026-03-24 11:38:00 | INFO     | ============================================================
+2026-03-24 11:38:00 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:38:00 | INFO     | ============================================================
+2026-03-24 11:38:00 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:38:00 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:38:21 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:38:21 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:38:21 | INFO     | ============================================================
+2026-03-24 11:38:21 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:38:21 | INFO     | ============================================================
+2026-03-24 11:38:21 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:38:21 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:38:47 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:38:47 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-24 11:38:47 | INFO     | ============================================================
+2026-03-24 11:38:47 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:38:47 | INFO     | ============================================================
+2026-03-24 11:38:47 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:38:47 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:39:14 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:39:14 | INFO     | Refiner: ✅ Resolved 10 issues - queries are now perfect!
+2026-03-24 11:39:14 | INFO     | ============================================================
+2026-03-24 11:39:14 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:39:14 | INFO     | ============================================================
+2026-03-24 11:39:14 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:39:14 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:39:24 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:39:24 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 50 carefully curated keywords!
+2026-03-24 11:39:24 | INFO     | ============================================================
+2026-03-24 11:39:24 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:39:24 | INFO     | ============================================================
+2026-03-24 11:39:24 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:39:24 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:39:46 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:39:46 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:39:46 | INFO     | ============================================================
+2026-03-24 11:39:46 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:39:46 | INFO     | ============================================================
+2026-03-24 11:39:46 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:39:46 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:40:16 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:40:16 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-24 11:40:16 | INFO     | ============================================================
+2026-03-24 11:40:16 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:40:16 | INFO     | ============================================================
+2026-03-24 11:40:16 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:40:16 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:40:40 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:40:40 | INFO     | Refiner: ✅ Resolved 7 issues - queries are now perfect!
+2026-03-24 11:40:40 | INFO     | ============================================================
+2026-03-24 11:40:40 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:40:40 | INFO     | ============================================================
+2026-03-24 11:40:40 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:40:40 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:40:52 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:40:52 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 35 carefully curated keywords!
+2026-03-24 11:40:52 | INFO     | ============================================================
+2026-03-24 11:40:52 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:40:52 | INFO     | ============================================================
+2026-03-24 11:40:52 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:40:52 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:41:14 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:41:14 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:41:14 | INFO     | ============================================================
+2026-03-24 11:41:14 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:41:14 | INFO     | ============================================================
+2026-03-24 11:41:14 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:41:14 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:41:37 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:41:37 | WARNING  | ⚠️ Sentinel spotted 6 potential issues to review
+2026-03-24 11:41:37 | INFO     | ============================================================
+2026-03-24 11:41:37 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:41:37 | INFO     | ============================================================
+2026-03-24 11:41:37 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:41:37 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:41:55 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:41:55 | INFO     | Refiner: ✅ Resolved 6 issues - queries are now perfect!
+2026-03-24 11:41:55 | INFO     | ============================================================
+2026-03-24 11:41:55 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 11:41:55 | INFO     | ============================================================
+2026-03-24 11:41:55 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 11:41:55 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:42:05 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 11:42:05 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 25 carefully curated keywords!
+2026-03-24 11:42:05 | INFO     | ============================================================
+2026-03-24 11:42:05 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 11:42:05 | INFO     | ============================================================
+2026-03-24 11:42:05 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 11:42:05 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:42:22 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 11:42:22 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 11:42:22 | INFO     | ============================================================
+2026-03-24 11:42:22 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 11:42:22 | INFO     | ============================================================
+2026-03-24 11:42:22 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 11:42:22 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:42:41 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 11:42:41 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-24 11:42:41 | INFO     | ============================================================
+2026-03-24 11:42:41 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 11:42:41 | INFO     | ============================================================
+2026-03-24 11:42:41 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 11:42:41 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 11:42:58 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 11:42:58 | INFO     | Refiner: ✅ Resolved 5 issues - queries are now perfect!
+2026-03-24 11:46:39 | ERROR    | Screening failed for record 1266: Bedrock API call failed: list index out of range
+2026-03-24 11:51:47 | ERROR    | Screening failed for record 1570: Bedrock API call failed: list index out of range
+2026-03-24 11:52:15 | INFO     | Phase 1 approved and locked by user
+2026-03-24 11:52:15 | INFO     | Elsevier Query: TITLE-ABS-KEY( ( "weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "weather advisory" OR "public weather service" OR "heat warning*" OR "cold warning*" OR "extreme heat alert*" OR "extreme cold alert*" OR "heat health warning system" OR "heat action plan" OR "weather-based health alert*" ) AND ( "health outcome*" OR "heat-related illness" OR "cold-related illness" OR "excess mortality" OR morbidity OR "temperature-health" OR "heat-related mortality" OR "cold-related mortality" OR "heat-related morbidity" OR "cold-related morbidity" ) AND ( "randomized controlled trial" OR "quasi-experimental" OR "natural experiment" OR "difference-in-differences" OR "regression discontinuity" OR "instrumental variable" OR "causal inference" OR "treatment effect" OR "behavioral response" OR "protective behavior" OR random* OR evaluat* ) )
+2026-03-24 11:52:15 | INFO     | PubMed Query: ( "weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "meteorological forecasts"[Title/Abstract] OR "temperature forecast"[Title/Abstract] OR "temperature forecasts"[Title/Abstract] OR "weather advisory"[Title/Abstract] OR "public weather service"[Title/Abstract] OR "heat warning"[Title/Abstract] OR "heat warnings"[Title/Abstract] OR "cold warning"[Title/Abstract] OR "cold warnings"[Title/Abstract] OR "extreme heat alert"[Title/Abstract] OR "extreme heat alerts"[Title/Abstract] OR "extreme cold alert"[Title/Abstract] OR "extreme cold alerts"[Title/Abstract] OR "heat health warning system"[Title/Abstract] OR "heat health warning systems"[Title/Abstract] OR "heat action plan"[Title/Abstract] OR "heat action plans"[Title/Abstract] OR "weather-based health alert"[Title/Abstract] OR "weather-based health alerts"[Title/Abstract] OR "Meteorological Concepts"[MeSH Terms] OR "Climate"[MeSH Terms] ) AND ( "health outcome"[Title/Abstract] OR "health outcomes"[Title/Abstract] OR "heat-related illness"[Title/Abstract] OR "heat-related illnesses"[Title/Abstract] OR "cold-related illness"[Title/Abstract] OR "cold-related illnesses"[Title/Abstract] OR "excess mortality"[Title/Abstract] OR morbidity[Title/Abstract] OR "temperature-health"[Title/Abstract] OR "heat-related mortality"[Title/Abstract] OR "cold-related mortality"[Title/Abstract] OR "heat-related morbidity"[Title/Abstract] OR "cold-related morbidity"[Title/Abstract] OR "Heat Stress Disorders"[MeSH Terms] OR "Cold Temperature"[MeSH Terms] ) AND ( "randomized controlled trial"[Title/Abstract] OR "quasi-experimental"[Title/Abstract] OR "quasi-experiment"[Title/Abstract] OR "natural experiment"[Title/Abstract] OR "natural experiments"[Title/Abstract] OR "difference-in-differences"[Title/Abstract] OR "differences-in-differences"[Title/Abstract] OR "regression discontinuity"[Title/Abstract] OR "instrumental variable"[Title/Abstract] OR "instrumental variables"[Title/Abstract] OR "causal inference"[Title/Abstract] OR "treatment effect"[Title/Abstract] OR "treatment effects"[Title/Abstract] OR "behavioral response"[Title/Abstract] OR "behavioural response"[Title/Abstract] OR "protective behavior"[Title/Abstract] OR "protective behaviour"[Title/Abstract] OR "program evaluation"[Title/Abstract] OR "programme evaluation"[Title/Abstract] OR "impact evaluation"[Title/Abstract] OR "intervention study"[Title/Abstract] OR "Randomized Controlled Trial"[Publication Type] OR random*[Title/Abstract] )
+2026-03-24 11:52:15 | INFO     | OpenAlex Query: ( "weather forecast" OR "weather forecasts" OR "meteorological forecast" OR "meteorological forecasts" OR "temperature forecast" OR "temperature forecasts" OR "weather advisory" OR "public weather service" OR "heat warning" OR "heat warnings" OR "cold warning" OR "cold warnings" OR "extreme heat alert" OR "extreme heat alerts" OR "extreme cold alert" OR "extreme cold alerts" OR "heat health warning system" OR "heat health warning systems" OR "heat action plan" OR "heat action plans" OR "weather-based health alert" OR "weather-based health alerts" ) AND ( "health outcome" OR "health outcomes" OR "heat-related illness" OR "heat-related illnesses" OR "cold-related illness" OR "cold-related illnesses" OR "excess mortality" OR "excess deaths" OR morbidity OR "temperature-health" OR "heat-related mortality" OR "cold-related mortality" OR "heat-related morbidity" OR "cold-related morbidity" ) AND ( "randomized controlled trial" OR "randomised controlled trial" OR "quasi-experimental" OR "quasi-experiment" OR "natural experiment" OR "natural experiments" OR "difference-in-differences" OR "differences-in-differences" OR "regression discontinuity" OR "instrumental variable" OR "instrumental variables" OR "causal inference" OR "treatment effect" OR "treatment effects" OR "behavioral response" OR "behavioural response" OR "protective behavior" OR "protective behaviour" OR "program evaluation" OR "programme evaluation" OR "impact evaluation" OR "intervention study" )
+2026-03-24 11:52:31 | INFO     | ============================================================
+2026-03-24 11:52:31 | INFO     | Starting OPENALEX search
+2026-03-24 11:52:31 | INFO     | Query: ( "weather forecast" OR "weather forecasts" OR "meteorological forecast" OR "meteorological forecast...
+2026-03-24 11:52:31 | INFO     | Max results: 3000
+2026-03-24 11:52:31 | INFO     | ============================================================
+2026-03-24 11:52:31 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:52:31 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:52:31 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:52:58 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:52:58 | INFO     | ============================================================
+2026-03-24 11:52:58 | INFO     | Starting PUBMED search
+2026-03-24 11:52:58 | INFO     | Query: ( "weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "meteorological forec...
+2026-03-24 11:52:58 | INFO     | Max results: 3000
+2026-03-24 11:52:58 | INFO     | ============================================================
+2026-03-24 11:52:58 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:52:58 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:52:58 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:52:59 | INFO     | PubMed: Found 3366 total, fetching 3000
+2026-03-24 11:52:59 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:52:59 | INFO     | Fetching records 1 to 200...
+2026-03-24 11:53:01 | INFO     | Fetching records 201 to 400...
+2026-03-24 11:53:02 | INFO     | Fetching records 401 to 600...
+2026-03-24 11:53:04 | INFO     | Fetching records 601 to 800...
+2026-03-24 11:53:06 | INFO     | Fetching records 801 to 1000...
+2026-03-24 11:53:07 | INFO     | Fetching records 1001 to 1200...
+2026-03-24 11:53:08 | INFO     | Fetching records 1201 to 1400...
+2026-03-24 11:53:10 | INFO     | Fetching records 1401 to 1600...
+2026-03-24 11:53:12 | INFO     | Fetching records 1601 to 1800...
+2026-03-24 11:53:14 | INFO     | Fetching records 1801 to 2000...
+2026-03-24 11:53:15 | INFO     | Fetching records 2001 to 2200...
+2026-03-24 11:53:17 | INFO     | Fetching records 2201 to 2400...
+2026-03-24 11:53:18 | INFO     | Fetching records 2401 to 2600...
+2026-03-24 11:53:19 | INFO     | Fetching records 2601 to 2800...
+2026-03-24 11:53:20 | INFO     | Fetching records 2801 to 3000...
+2026-03-24 11:53:21 | INFO     | PUBMED search completed successfully
+2026-03-24 11:53:21 | INFO     | ============================================================
+2026-03-24 11:53:21 | INFO     | Starting SCOPUS search
+2026-03-24 11:53:21 | INFO     | Query: TITLE-ABS-KEY( ( "weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "we...
+2026-03-24 11:53:21 | INFO     | Max results: 3000
+2026-03-24 11:53:21 | INFO     | ============================================================
+2026-03-24 11:53:21 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:53:21 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:53:21 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:53:22 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:53:22 | INFO     | Scopus result dict: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}}
+2026-03-24 11:53:22 | INFO     | Scopus success: False
+2026-03-24 11:53:22 | INFO     | Scopus status: http_401
+2026-03-24 11:53:22 | INFO     | Scopus error: {"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}
+2026-03-24 11:53:22 | INFO     | ============================================================
+2026-03-24 11:53:22 | INFO     | Starting OPENALEX search
+2026-03-24 11:53:22 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "heat warning" OR "cold warning" OR "extreme wea...
+2026-03-24 11:53:22 | INFO     | Max results: 3000
+2026-03-24 11:53:22 | INFO     | ============================================================
+2026-03-24 11:53:22 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:53:22 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:53:22 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:55:02 | ERROR    | Screening failed for record 1757: Bedrock API call failed: list index out of range
+2026-03-24 11:55:10 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:55:10 | INFO     | ============================================================
+2026-03-24 11:55:10 | INFO     | Starting PUBMED search
+2026-03-24 11:55:10 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "heat warning"[...
+2026-03-24 11:55:10 | INFO     | Max results: 3000
+2026-03-24 11:55:10 | INFO     | ============================================================
+2026-03-24 11:55:10 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:55:10 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:55:10 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:55:11 | INFO     | PubMed: Found 831 total, fetching 831
+2026-03-24 11:55:11 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:55:11 | INFO     | Fetching records 1 to 200...
+2026-03-24 11:55:13 | INFO     | Fetching records 201 to 400...
+2026-03-24 11:55:14 | INFO     | Fetching records 401 to 600...
+2026-03-24 11:55:15 | INFO     | Fetching records 601 to 800...
+2026-03-24 11:55:16 | INFO     | Fetching records 801 to 831...
+2026-03-24 11:55:17 | INFO     | PUBMED search completed successfully
+2026-03-24 11:55:17 | INFO     | ============================================================
+2026-03-24 11:55:17 | INFO     | Starting SCOPUS search
+2026-03-24 11:55:17 | INFO     | Query: TITLE-ABS-KEY( ("weather forecast*" OR "meteorological forecast*" OR "heat warning*" OR "cold warnin...
+2026-03-24 11:55:17 | INFO     | Max results: 3000
+2026-03-24 11:55:17 | INFO     | ============================================================
+2026-03-24 11:55:17 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:55:17 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:55:17 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:55:17 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:55:17 | INFO     | Scopus result dict: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_2/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_2/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_2/works_full.jsonl'}}
+2026-03-24 11:55:17 | INFO     | Scopus success: False
+2026-03-24 11:55:17 | INFO     | Scopus status: http_401
+2026-03-24 11:55:17 | INFO     | Scopus error: {"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}
+2026-03-24 11:55:17 | INFO     | ============================================================
+2026-03-24 11:55:17 | INFO     | Starting OPENALEX search
+2026-03-24 11:55:17 | INFO     | Query: ("weather forecast" OR "weather forecasting" OR "meteorological forecast" OR "heat forecast" OR "col...
+2026-03-24 11:55:17 | INFO     | Max results: 3000
+2026-03-24 11:55:17 | INFO     | ============================================================
+2026-03-24 11:55:17 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:55:17 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:55:17 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:56:24 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:56:24 | INFO     | ============================================================
+2026-03-24 11:56:24 | INFO     | Starting PUBMED search
+2026-03-24 11:56:24 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "weather forecasting"[Title/Abstract] OR "meteorological for...
+2026-03-24 11:56:24 | INFO     | Max results: 3000
+2026-03-24 11:56:24 | INFO     | ============================================================
+2026-03-24 11:56:24 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:56:24 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:56:24 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:56:24 | INFO     | PubMed: Found 6 total, fetching 6
+2026-03-24 11:56:24 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:56:24 | INFO     | Fetching records 1 to 6...
+2026-03-24 11:56:25 | INFO     | PUBMED search completed successfully
+2026-03-24 11:56:25 | INFO     | ============================================================
+2026-03-24 11:56:25 | INFO     | Starting SCOPUS search
+2026-03-24 11:56:25 | INFO     | Query: TITLE-ABS-KEY((("weather forecast*" OR "meteorological forecast*" OR "climate forecast*" OR "heat fo...
+2026-03-24 11:56:25 | INFO     | Max results: 3000
+2026-03-24 11:56:25 | INFO     | ============================================================
+2026-03-24 11:56:25 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:56:25 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:56:25 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:56:25 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:56:25 | INFO     | Scopus result dict: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_3/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_3/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_3/works_full.jsonl'}}
+2026-03-24 11:56:25 | INFO     | Scopus success: False
+2026-03-24 11:56:25 | INFO     | Scopus status: http_401
+2026-03-24 11:56:25 | INFO     | Scopus error: {"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}
+2026-03-24 11:56:25 | INFO     | ============================================================
+2026-03-24 11:56:25 | INFO     | Starting OPENALEX search
+2026-03-24 11:56:25 | INFO     | Query: ( "weather forecast" OR "meteorological forecast" OR "climate forecast" OR "heat alert" OR "cold ale...
+2026-03-24 11:56:25 | INFO     | Max results: 3000
+2026-03-24 11:56:25 | INFO     | ============================================================
+2026-03-24 11:56:25 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:56:25 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:56:25 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:57:45 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:57:45 | INFO     | ============================================================
+2026-03-24 11:57:45 | INFO     | Starting PUBMED search
+2026-03-24 11:57:45 | INFO     | Query: ( "weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "climate foreca...
+2026-03-24 11:57:45 | INFO     | Max results: 3000
+2026-03-24 11:57:45 | INFO     | ============================================================
+2026-03-24 11:57:45 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:57:45 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:57:45 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:57:45 | INFO     | PubMed: Found 2087 total, fetching 2087
+2026-03-24 11:57:45 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:57:45 | INFO     | Fetching records 1 to 200...
+2026-03-24 11:57:47 | INFO     | Fetching records 201 to 400...
+2026-03-24 11:57:50 | INFO     | Fetching records 401 to 600...
+2026-03-24 11:57:51 | INFO     | Fetching records 601 to 800...
+2026-03-24 11:57:53 | INFO     | Fetching records 801 to 1000...
+2026-03-24 11:57:54 | INFO     | Fetching records 1001 to 1200...
+2026-03-24 11:57:55 | INFO     | Fetching records 1201 to 1400...
+2026-03-24 11:57:57 | INFO     | Fetching records 1401 to 1600...
+2026-03-24 11:57:58 | INFO     | Fetching records 1601 to 1800...
+2026-03-24 11:57:59 | INFO     | Fetching records 1801 to 2000...
+2026-03-24 11:58:01 | INFO     | Fetching records 2001 to 2087...
+2026-03-24 11:58:02 | INFO     | PUBMED search completed successfully
+2026-03-24 11:58:02 | INFO     | ============================================================
+2026-03-24 11:58:02 | INFO     | Starting SCOPUS search
+2026-03-24 11:58:02 | INFO     | Query: TITLE-ABS-KEY( ( "weather forecast*" OR "meteorological forecast*" OR "climate forecast*" OR "heat a...
+2026-03-24 11:58:02 | INFO     | Max results: 3000
+2026-03-24 11:58:02 | INFO     | ============================================================
+2026-03-24 11:58:02 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:58:02 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:58:02 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:58:02 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:58:02 | INFO     | Scopus result dict: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_4/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_4/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_4/works_full.jsonl'}}
+2026-03-24 11:58:02 | INFO     | Scopus success: False
+2026-03-24 11:58:02 | INFO     | Scopus status: http_401
+2026-03-24 11:58:02 | INFO     | Scopus error: {"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}
+2026-03-24 11:58:02 | INFO     | ============================================================
+2026-03-24 11:58:02 | INFO     | Starting OPENALEX search
+2026-03-24 11:58:02 | INFO     | Query: ("heat-related illness" OR "heat-related mortality" OR "cold-related mortality" OR "temperature-mort...
+2026-03-24 11:58:02 | INFO     | Max results: 3000
+2026-03-24 11:58:02 | INFO     | ============================================================
+2026-03-24 11:58:02 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 11:58:02 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 11:58:02 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 11:59:37 | INFO     | OPENALEX search completed successfully
+2026-03-24 11:59:37 | INFO     | ============================================================
+2026-03-24 11:59:37 | INFO     | Starting PUBMED search
+2026-03-24 11:59:37 | INFO     | Query: ("heat-related illness"[Title/Abstract] OR "heat-related mortality"[Title/Abstract] OR "cold-related...
+2026-03-24 11:59:37 | INFO     | Max results: 3000
+2026-03-24 11:59:37 | INFO     | ============================================================
+2026-03-24 11:59:37 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 11:59:37 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 11:59:37 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 11:59:38 | INFO     | PubMed: Found 198 total, fetching 198
+2026-03-24 11:59:38 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 11:59:38 | INFO     | Fetching records 1 to 198...
+2026-03-24 11:59:40 | INFO     | PUBMED search completed successfully
+2026-03-24 11:59:40 | INFO     | ============================================================
+2026-03-24 11:59:40 | INFO     | Starting SCOPUS search
+2026-03-24 11:59:40 | INFO     | Query: TITLE-ABS-KEY( ("heat-related illness" OR "heat-related mortality" OR "cold-related mortality" OR "t...
+2026-03-24 11:59:40 | INFO     | Max results: 3000
+2026-03-24 11:59:40 | INFO     | ============================================================
+2026-03-24 11:59:40 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 11:59:40 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 11:59:40 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 11:59:40 | INFO     | SCOPUS search completed successfully
+2026-03-24 11:59:40 | INFO     | Scopus result dict: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_5/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_5/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_5/works_full.jsonl'}}
+2026-03-24 11:59:40 | INFO     | Scopus success: False
+2026-03-24 11:59:40 | INFO     | Scopus status: http_401
+2026-03-24 11:59:40 | INFO     | Scopus error: {"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}
+2026-03-24 11:59:43 | INFO     | openalex: Merged 13011 records, removed 3290 duplicates, final: 9721
+2026-03-24 11:59:44 | INFO     | pubmed: Merged 6122 records, removed 823 duplicates, final: 5299
+2026-03-24 11:59:45 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:06:19 | ERROR    | Screening failed for record 2405: Bedrock API call failed: list index out of range
+2026-03-24 12:26:39 | ERROR    | Screening failed for record 3567: Bedrock API call failed: list index out of range
+2026-03-24 12:26:55 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:26:56 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:27:00 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:27:02 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:27:10 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:27:19 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:27:25 | INFO     | ============================================================
+2026-03-24 12:27:25 | INFO     | Starting OPENALEX search
+2026-03-24 12:27:25 | INFO     | Query: ( "weather forecast" OR "weather forecasts" OR "meteorological forecast" OR "meteorological forecast...
+2026-03-24 12:27:25 | INFO     | Max results: 100
+2026-03-24 12:27:25 | INFO     | ============================================================
+2026-03-24 12:27:25 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:27:25 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:27:25 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:27:31 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:27:31 | INFO     | ============================================================
+2026-03-24 12:27:31 | INFO     | Starting PUBMED search
+2026-03-24 12:27:31 | INFO     | Query: ( "weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "meteorological forec...
+2026-03-24 12:27:31 | INFO     | Max results: 100
+2026-03-24 12:27:31 | INFO     | ============================================================
+2026-03-24 12:27:31 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:27:31 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:27:31 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:27:32 | INFO     | PubMed: Found 3366 total, fetching 100
+2026-03-24 12:27:32 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:27:32 | INFO     | Fetching records 1 to 100...
+2026-03-24 12:27:34 | INFO     | PUBMED search completed successfully
+2026-03-24 12:27:34 | INFO     | ============================================================
+2026-03-24 12:27:34 | INFO     | Starting SCOPUS search
+2026-03-24 12:27:34 | INFO     | Query: TITLE-ABS-KEY( ( "weather forecast*" OR "meteorological forecast*" OR "temperature forecast*" OR "we...
+2026-03-24 12:27:34 | INFO     | Max results: 100
+2026-03-24 12:27:34 | INFO     | ============================================================
+2026-03-24 12:27:34 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:27:34 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:27:34 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:27:40 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:27:40 | INFO     | Scopus result dict: {'success': True, 'status': 'success', 'results_count': 86, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_1/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_1/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_1/works_full.jsonl'}}
+2026-03-24 12:27:40 | INFO     | Scopus success: True
+2026-03-24 12:27:40 | INFO     | Scopus status: success
+2026-03-24 12:27:40 | INFO     | Scopus error: 
+2026-03-24 12:27:40 | INFO     | ============================================================
+2026-03-24 12:27:40 | INFO     | Starting OPENALEX search
+2026-03-24 12:27:40 | INFO     | Query: ("weather forecast" OR "meteorological forecast" OR "heat warning" OR "cold warning" OR "extreme wea...
+2026-03-24 12:27:40 | INFO     | Max results: 100
+2026-03-24 12:27:40 | INFO     | ============================================================
+2026-03-24 12:27:40 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:27:40 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:27:40 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:27:48 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:27:48 | INFO     | ============================================================
+2026-03-24 12:27:48 | INFO     | Starting PUBMED search
+2026-03-24 12:27:48 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "heat warning"[...
+2026-03-24 12:27:48 | INFO     | Max results: 100
+2026-03-24 12:27:48 | INFO     | ============================================================
+2026-03-24 12:27:48 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:27:48 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:27:48 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:27:48 | INFO     | PubMed: Found 831 total, fetching 100
+2026-03-24 12:27:48 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:27:48 | INFO     | Fetching records 1 to 100...
+2026-03-24 12:27:49 | INFO     | PUBMED search completed successfully
+2026-03-24 12:27:49 | INFO     | ============================================================
+2026-03-24 12:27:49 | INFO     | Starting SCOPUS search
+2026-03-24 12:27:49 | INFO     | Query: TITLE-ABS-KEY( ("weather forecast*" OR "meteorological forecast*" OR "heat warning*" OR "cold warnin...
+2026-03-24 12:27:49 | INFO     | Max results: 100
+2026-03-24 12:27:49 | INFO     | ============================================================
+2026-03-24 12:27:49 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:27:49 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:27:49 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:27:51 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:27:51 | INFO     | Scopus result dict: {'success': True, 'status': 'success', 'results_count': 20, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_2/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_2/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_2/works_full.jsonl'}}
+2026-03-24 12:27:51 | INFO     | Scopus success: True
+2026-03-24 12:27:51 | INFO     | Scopus status: success
+2026-03-24 12:27:51 | INFO     | Scopus error: 
+2026-03-24 12:27:51 | INFO     | ============================================================
+2026-03-24 12:27:51 | INFO     | Starting OPENALEX search
+2026-03-24 12:27:51 | INFO     | Query: ("weather forecast" OR "weather forecasting" OR "meteorological forecast" OR "heat forecast" OR "col...
+2026-03-24 12:27:51 | INFO     | Max results: 100
+2026-03-24 12:27:51 | INFO     | ============================================================
+2026-03-24 12:27:51 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:27:51 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:27:51 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:28:03 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:28:03 | INFO     | ============================================================
+2026-03-24 12:28:03 | INFO     | Starting PUBMED search
+2026-03-24 12:28:03 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "weather forecasting"[Title/Abstract] OR "meteorological for...
+2026-03-24 12:28:03 | INFO     | Max results: 100
+2026-03-24 12:28:03 | INFO     | ============================================================
+2026-03-24 12:28:03 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:28:03 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:28:03 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:28:03 | INFO     | PubMed: Found 6 total, fetching 6
+2026-03-24 12:28:03 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:28:03 | INFO     | Fetching records 1 to 6...
+2026-03-24 12:28:04 | INFO     | PUBMED search completed successfully
+2026-03-24 12:28:04 | INFO     | ============================================================
+2026-03-24 12:28:04 | INFO     | Starting SCOPUS search
+2026-03-24 12:28:04 | INFO     | Query: TITLE-ABS-KEY((("weather forecast*" OR "meteorological forecast*" OR "climate forecast*" OR "heat fo...
+2026-03-24 12:28:04 | INFO     | Max results: 100
+2026-03-24 12:28:04 | INFO     | ============================================================
+2026-03-24 12:28:04 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:28:04 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:28:04 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:28:09 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:28:09 | INFO     | Scopus result dict: {'success': True, 'status': 'success', 'results_count': 64, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_3/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_3/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_3/works_full.jsonl'}}
+2026-03-24 12:28:09 | INFO     | Scopus success: True
+2026-03-24 12:28:09 | INFO     | Scopus status: success
+2026-03-24 12:28:09 | INFO     | Scopus error: 
+2026-03-24 12:28:09 | INFO     | ============================================================
+2026-03-24 12:28:09 | INFO     | Starting OPENALEX search
+2026-03-24 12:28:09 | INFO     | Query: ( "weather forecast" OR "meteorological forecast" OR "climate forecast" OR "heat alert" OR "cold ale...
+2026-03-24 12:28:09 | INFO     | Max results: 100
+2026-03-24 12:28:09 | INFO     | ============================================================
+2026-03-24 12:28:09 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:28:09 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:28:09 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:28:15 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:28:15 | INFO     | ============================================================
+2026-03-24 12:28:15 | INFO     | Starting PUBMED search
+2026-03-24 12:28:15 | INFO     | Query: ( "weather forecast"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "climate foreca...
+2026-03-24 12:28:15 | INFO     | Max results: 100
+2026-03-24 12:28:15 | INFO     | ============================================================
+2026-03-24 12:28:15 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:28:15 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:28:15 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:28:16 | INFO     | PubMed: Found 2087 total, fetching 100
+2026-03-24 12:28:16 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:28:16 | INFO     | Fetching records 1 to 100...
+2026-03-24 12:28:17 | INFO     | PUBMED search completed successfully
+2026-03-24 12:28:17 | INFO     | ============================================================
+2026-03-24 12:28:17 | INFO     | Starting SCOPUS search
+2026-03-24 12:28:17 | INFO     | Query: TITLE-ABS-KEY( ( "weather forecast*" OR "meteorological forecast*" OR "climate forecast*" OR "heat a...
+2026-03-24 12:28:17 | INFO     | Max results: 100
+2026-03-24 12:28:17 | INFO     | ============================================================
+2026-03-24 12:28:17 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:28:17 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:28:17 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:28:23 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:28:23 | INFO     | Scopus result dict: {'success': True, 'status': 'success', 'results_count': 100, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_4/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_4/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_4/works_full.jsonl'}}
+2026-03-24 12:28:23 | INFO     | Scopus success: True
+2026-03-24 12:28:23 | INFO     | Scopus status: success
+2026-03-24 12:28:23 | INFO     | Scopus error: 
+2026-03-24 12:28:23 | INFO     | ============================================================
+2026-03-24 12:28:23 | INFO     | Starting OPENALEX search
+2026-03-24 12:28:23 | INFO     | Query: ("heat-related illness" OR "heat-related mortality" OR "cold-related mortality" OR "temperature-mort...
+2026-03-24 12:28:23 | INFO     | Max results: 100
+2026-03-24 12:28:23 | INFO     | ============================================================
+2026-03-24 12:28:23 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:28:23 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:28:23 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:28:29 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:28:29 | INFO     | ============================================================
+2026-03-24 12:28:29 | INFO     | Starting PUBMED search
+2026-03-24 12:28:29 | INFO     | Query: ("heat-related illness"[Title/Abstract] OR "heat-related mortality"[Title/Abstract] OR "cold-related...
+2026-03-24 12:28:29 | INFO     | Max results: 100
+2026-03-24 12:28:29 | INFO     | ============================================================
+2026-03-24 12:28:29 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:28:29 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:28:29 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:28:29 | INFO     | PubMed: Found 198 total, fetching 100
+2026-03-24 12:28:29 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:28:29 | INFO     | Fetching records 1 to 100...
+2026-03-24 12:28:31 | INFO     | PUBMED search completed successfully
+2026-03-24 12:28:31 | INFO     | ============================================================
+2026-03-24 12:28:31 | INFO     | Starting SCOPUS search
+2026-03-24 12:28:31 | INFO     | Query: TITLE-ABS-KEY( ("heat-related illness" OR "heat-related mortality" OR "cold-related mortality" OR "t...
+2026-03-24 12:28:31 | INFO     | Max results: 100
+2026-03-24 12:28:31 | INFO     | ============================================================
+2026-03-24 12:28:31 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:28:31 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:28:31 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:28:35 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:28:35 | INFO     | Scopus result dict: {'success': True, 'status': 'success', 'results_count': 78, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/variation_5/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/variation_5/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/variation_5/works_full.jsonl'}}
+2026-03-24 12:28:35 | INFO     | Scopus success: True
+2026-03-24 12:28:35 | INFO     | Scopus status: success
+2026-03-24 12:28:35 | INFO     | Scopus error: 
+2026-03-24 12:28:35 | INFO     | openalex: Merged 500 records, removed 149 duplicates, final: 351
+2026-03-24 12:28:35 | INFO     | pubmed: Merged 406 records, removed 43 duplicates, final: 363
+2026-03-24 12:28:35 | INFO     | scopus: Merged 348 records, removed 35 duplicates, final: 313
+2026-03-24 12:28:35 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:29:59 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:29:59 | INFO     | Phase 2 approved and locked by user
+2026-03-24 12:29:59 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:30:09 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:30:09 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:30:18 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:30:32 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:30:39 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:31:48 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:31:48 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:31:50 | INFO     | Displaying Scopus results: {'success': True, 'status': 'merged_success', 'results_count': 313, 'meta_count': 225, 'duplicates_removed': 35, 'total_before_dedup': 348, 'num_variations': 5, 'error': '', 'variations_summary': [{'variation_idx': 1, 'success': True, 'results_count': 86}, {'variation_idx': 2, 'success': True, 'results_count': 20}, {'variation_idx': 3, 'success': True, 'results_count': 64}, {'variation_idx': 4, 'success': True, 'results_count': 100}, {'variation_idx': 5, 'success': True, 'results_count': 78}], 'output_files': {'summary_json': 'search_results_20260324_115215/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_115215/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_115215/scopus/works_full.jsonl'}}
+2026-03-24 12:31:50 | INFO     | Loading Phase 2 results from: search_results_20260324_115215
+2026-03-24 12:31:50 | INFO     |   Loaded 351 records from openalex/works_summary.csv
+2026-03-24 12:31:50 | INFO     |   Loaded 363 records from pubmed/works_summary.csv
+2026-03-24 12:31:50 | INFO     |   Loaded 313 records from scopus/works_summary.csv
+2026-03-24 12:31:50 | INFO     | Combined 1027 total records
+2026-03-24 12:31:50 | INFO     | Deduplicated by DOI: 1027 → 976 records (removed 51 duplicates)
+2026-03-24 12:31:50 | INFO     | ✅ Consolidated 976 unique records ready for screening
+2026-03-24 12:31:50 | INFO     | Starting screening with simple mode...
+2026-03-24 12:31:50 | INFO     |   Records to screen: 976
+2026-03-24 12:31:50 | INFO     |   Threads: 4
+2026-03-24 12:31:50 | INFO     | Starting Claude screening: 976 records, mode=simple
+2026-03-24 12:34:16 | ERROR    | Screening failed for record 3990: Bedrock API call failed: list index out of range
+2026-03-24 12:39:14 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-6)
+2026-03-24 12:39:14 | INFO     | ============================================================
+2026-03-24 12:39:14 | INFO     | PULSE AGENT - Keyword Expansion
+2026-03-24 12:39:14 | INFO     | ============================================================
+2026-03-24 12:39:14 | INFO     | 🤖 Pulse: 🔍 Diving into the depths of academic jargon to find the perfect synonyms...
+2026-03-24 12:39:14 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 12:39:24 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-24 12:39:24 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 35 carefully curated keywords!
+2026-03-24 12:39:24 | INFO     | ============================================================
+2026-03-24 12:39:24 | INFO     | FORMULATOR AGENT - Query Construction
+2026-03-24 12:39:24 | INFO     | ============================================================
+2026-03-24 12:39:24 | INFO     | 🤖 Formulator: 🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...
+2026-03-24 12:39:24 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 12:39:42 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-24 12:39:42 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-24 12:39:42 | INFO     | ============================================================
+2026-03-24 12:39:42 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-24 12:39:42 | INFO     | ============================================================
+2026-03-24 12:39:42 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-24 12:39:42 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 12:39:43 | INFO     | Screening complete: 1945 included, 2346 excluded, 6 errors
+2026-03-24 12:39:43 | INFO     | ✅ Screening complete
+2026-03-24 12:40:04 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-24 12:40:04 | WARNING  | ⚠️ Sentinel spotted 4 potential issues to review
+2026-03-24 12:40:04 | INFO     | ============================================================
+2026-03-24 12:40:04 | INFO     | REFINER AGENT - Final Polish
+2026-03-24 12:40:04 | INFO     | ============================================================
+2026-03-24 12:40:04 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-24 12:40:04 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-24 12:40:32 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-24 12:40:32 | INFO     | Refiner: ✅ Resolved 10 issues - queries are now perfect!
+2026-03-24 12:41:04 | INFO     | Phase 1 approved and locked by user
+2026-03-24 12:41:04 | INFO     | Elsevier Query: TITLE-ABS-KEY( ("weather forecast*" OR "weather warning*" OR "heat warning*" OR "cold warning*" OR "extreme heat alert*" OR "heat health alert*" OR "heat action plan*" OR "early warning system*" OR "meteorological forecast*" OR "climate advisory" OR "temperature forecast*" OR "heatwave forecast*" OR "heat wave forecast*" OR "cold wave forecast*") AND ("health outcome*" OR mortality OR morbidity OR "heat-related illness*" OR "cold-related illness*" OR "temperature-mortality" OR "excess death*" OR "hospital admission*" OR "emergency department visit*" OR cardiovascular OR respiratory OR "heat stroke*" OR "heat exhaustion" OR "hypothermia" OR "cold-related mortality") AND ("randomized controlled trial*" OR "quasi-experimental" OR "natural experiment*" OR "difference-in-differences" OR "diff-in-diff*" OR "regression discontinuity" OR "instrumental variable*" OR "causal inference" OR "treatment effect*" OR "plausibly exogenous" OR "alert system* evaluat*" OR "public health intervention*" OR "behavioral response*" OR "protective behavior*" OR "avoidance behavior*" OR "warning compliance" OR "forecast utilization") )
+2026-03-24 12:41:04 | INFO     | PubMed Query: (("weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "weather warning"[Title/Abstract] OR "weather warnings"[Title/Abstract] OR "heat warning"[Title/Abstract] OR "heat warnings"[Title/Abstract] OR "cold warning"[Title/Abstract] OR "cold warnings"[Title/Abstract] OR "extreme heat alert"[Title/Abstract] OR "heat health alert"[Title/Abstract] OR "heat action plan"[Title/Abstract] OR "early warning system"[Title/Abstract] OR "early warning systems"[Title/Abstract] OR "meteorological forecast"[Title/Abstract] OR "meteorological forecasts"[Title/Abstract] OR "climate advisory"[Title/Abstract] OR "temperature forecast"[Title/Abstract] OR "temperature forecasts"[Title/Abstract] OR "heatwave forecast"[Title/Abstract] OR "heatwave forecasts"[Title/Abstract] OR "heat wave forecast"[Title/Abstract] OR "heat wave forecasts"[Title/Abstract] OR "cold wave forecast"[Title/Abstract] OR "cold wave forecasts"[Title/Abstract]) AND ("health outcome"[Title/Abstract] OR "health outcomes"[Title/Abstract] OR "mortality"[Title/Abstract] OR "morbidity"[Title/Abstract] OR "heat-related illness"[Title/Abstract] OR "heat-related illnesses"[Title/Abstract] OR "cold-related illness"[Title/Abstract] OR "cold-related illnesses"[Title/Abstract] OR "temperature-mortality"[Title/Abstract] OR "excess death"[Title/Abstract] OR "excess deaths"[Title/Abstract] OR "excess mortality"[Title/Abstract] OR "hospital admission"[Title/Abstract] OR "hospital admissions"[Title/Abstract] OR "emergency department visit"[Title/Abstract] OR "emergency department visits"[Title/Abstract] OR "cardiovascular"[Title/Abstract] OR "respiratory"[Title/Abstract] OR "heat stroke"[Title/Abstract] OR "heat exhaustion"[Title/Abstract] OR "hypothermia"[Title/Abstract] OR "cold-related mortality"[Title/Abstract]) AND ("randomized controlled trial"[Title/Abstract] OR "quasi-experimental"[Title/Abstract] OR "natural experiment"[Title/Abstract] OR "natural experiments"[Title/Abstract] OR "difference-in-differences"[Title/Abstract] OR "diff-in-diff"[Title/Abstract] OR "regression discontinuity"[Title/Abstract] OR "instrumental variable"[Title/Abstract] OR "instrumental variables"[Title/Abstract] OR "causal inference"[Title/Abstract] OR "treatment effect"[Title/Abstract] OR "treatment effects"[Title/Abstract] OR "plausibly exogenous"[Title/Abstract] OR "alert system evaluation"[Title/Abstract] OR "public health intervention"[Title/Abstract] OR "public health interventions"[Title/Abstract] OR "behavioral response"[Title/Abstract] OR "behavioral responses"[Title/Abstract] OR "protective behavior"[Title/Abstract] OR "protective behaviors"[Title/Abstract] OR "avoidance behavior"[Title/Abstract] OR "avoidance behaviors"[Title/Abstract] OR "warning compliance"[Title/Abstract] OR "forecast utilization"[Title/Abstract]) AND ("Mortality"[MeSH] OR "Weather"[MeSH] OR "Heat Stress Disorders"[MeSH] OR "Hypothermia"[MeSH] OR "Early Warning Score"[MeSH] OR "Public Health"[MeSH] OR "Cardiovascular Diseases"[MeSH] OR "Respiratory Tract Diseases"[MeSH]))
+2026-03-24 12:41:04 | INFO     | OpenAlex Query: ("weather forecast" OR "weather warning" OR "heat warning" OR "cold warning" OR "extreme heat alert" OR "heat health alert" OR "heat action plan" OR "early warning system" OR "meteorological forecast" OR "climate advisory" OR "temperature forecast" OR "heatwave forecast" OR "heat wave forecast" OR "cold wave forecast") AND ("health outcome" OR mortality OR morbidity OR "heat-related illness" OR "cold-related illness" OR "temperature-mortality" OR "excess death" OR "excess mortality" OR "hospital admission" OR "emergency department visit" OR cardiovascular OR respiratory OR "heat stroke" OR "heat exhaustion" OR hypothermia OR "cold-related mortality") AND ("randomized controlled trial" OR "quasi-experimental" OR "natural experiment" OR "difference-in-differences" OR "diff-in-diff" OR "regression discontinuity" OR "instrumental variable" OR "causal inference" OR "treatment effect" OR "plausibly exogenous" OR "public health intervention" OR "behavioral response" OR "protective behavior" OR "avoidance behavior" OR "warning compliance" OR "forecast utilization")
+2026-03-24 12:41:17 | INFO     | ============================================================
+2026-03-24 12:41:17 | INFO     | Starting OPENALEX search
+2026-03-24 12:41:17 | INFO     | Query: ("weather forecast" OR "weather warning" OR "heat warning" OR "cold warning" OR "extreme heat alert"...
+2026-03-24 12:41:17 | INFO     | Max results: 100
+2026-03-24 12:41:17 | INFO     | ============================================================
+2026-03-24 12:41:17 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:41:17 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:41:17 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:41:28 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:41:28 | INFO     | ============================================================
+2026-03-24 12:41:28 | INFO     | Starting PUBMED search
+2026-03-24 12:41:28 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "weather warning"[Tit...
+2026-03-24 12:41:28 | INFO     | Max results: 100
+2026-03-24 12:41:28 | INFO     | ============================================================
+2026-03-24 12:41:28 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:41:28 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:41:28 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:41:28 | INFO     | PubMed: Found 26 total, fetching 26
+2026-03-24 12:41:28 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:41:28 | INFO     | Fetching records 1 to 26...
+2026-03-24 12:41:29 | INFO     | PUBMED search completed successfully
+2026-03-24 12:41:29 | INFO     | ============================================================
+2026-03-24 12:41:29 | INFO     | Starting SCOPUS search
+2026-03-24 12:41:29 | INFO     | Query: TITLE-ABS-KEY( ("weather forecast*" OR "weather warning*" OR "heat warning*" OR "cold warning*" OR "...
+2026-03-24 12:41:29 | INFO     | Max results: 100
+2026-03-24 12:41:29 | INFO     | ============================================================
+2026-03-24 12:41:29 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:41:29 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:41:29 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:41:29 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:41:29 | INFO     | Scopus result dict: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}}
+2026-03-24 12:41:29 | INFO     | Scopus success: False
+2026-03-24 12:41:29 | INFO     | Scopus status: http_401
+2026-03-24 12:41:29 | INFO     | Scopus error: {"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}
+2026-03-24 12:41:29 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:42:45 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:42:52 | INFO     | Displaying Scopus results: {'success': False, 'status': 'http_401', 'results_count': 0, 'error': '{"service-error":{"status":{"statusCode":"AUTHENTICATION_ERROR","statusText":"Invalid API Key"}}}', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:42:53 | INFO     | ============================================================
+2026-03-24 12:42:53 | INFO     | Starting OPENALEX search
+2026-03-24 12:42:53 | INFO     | Query: ("weather forecast" OR "weather warning" OR "heat warning" OR "cold warning" OR "extreme heat alert"...
+2026-03-24 12:42:53 | INFO     | Max results: 100
+2026-03-24 12:42:53 | INFO     | ============================================================
+2026-03-24 12:42:53 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-24 12:42:53 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-24 12:42:53 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-24 12:43:00 | INFO     | OPENALEX search completed successfully
+2026-03-24 12:43:00 | INFO     | ============================================================
+2026-03-24 12:43:00 | INFO     | Starting PUBMED search
+2026-03-24 12:43:00 | INFO     | Query: (("weather forecast"[Title/Abstract] OR "weather forecasts"[Title/Abstract] OR "weather warning"[Tit...
+2026-03-24 12:43:00 | INFO     | Max results: 100
+2026-03-24 12:43:00 | INFO     | ============================================================
+2026-03-24 12:43:00 | INFO     | 🤖 PUBMED: Initializing wrapper...
+2026-03-24 12:43:00 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/pubmed-searcher
+2026-03-24 12:43:00 | INFO     | 🤖 PubMed: Step 1: ESearch (finding PMIDs)...
+2026-03-24 12:43:00 | INFO     | PubMed: Found 26 total, fetching 26
+2026-03-24 12:43:00 | INFO     | 🤖 PubMed: Step 2: EFetch (retrieving records)...
+2026-03-24 12:43:00 | INFO     | Fetching records 1 to 26...
+2026-03-24 12:43:01 | INFO     | PUBMED search completed successfully
+2026-03-24 12:43:01 | INFO     | ============================================================
+2026-03-24 12:43:01 | INFO     | Starting SCOPUS search
+2026-03-24 12:43:01 | INFO     | Query: TITLE-ABS-KEY( ("weather forecast*" OR "weather warning*" OR "heat warning*" OR "cold warning*" OR "...
+2026-03-24 12:43:01 | INFO     | Max results: 100
+2026-03-24 12:43:01 | INFO     | ============================================================
+2026-03-24 12:43:01 | INFO     | 🤖 SCOPUS: Initializing wrapper...
+2026-03-24 12:43:01 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/scopus-searcher
+2026-03-24 12:43:01 | INFO     | 🤖 Scopus: Executing search...
+2026-03-24 12:43:09 | INFO     | SCOPUS search completed successfully
+2026-03-24 12:43:09 | INFO     | Scopus result dict: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}}
+2026-03-24 12:43:09 | INFO     | Scopus success: True
+2026-03-24 12:43:09 | INFO     | Scopus status: success
+2026-03-24 12:43:09 | INFO     | Scopus error: 
+2026-03-24 12:43:09 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:43:18 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:43:18 | INFO     | Phase 2 approved and locked by user
+2026-03-24 12:43:18 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:43:31 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:43:32 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:43:39 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:44:08 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:44:08 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:44:10 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:44:10 | INFO     | Loading Phase 2 results from: search_results_20260324_124104
+2026-03-24 12:44:10 | INFO     |   Loaded 100 records from openalex/works_summary.csv
+2026-03-24 12:44:10 | INFO     |   Loaded 26 records from pubmed/works_summary.csv
+2026-03-24 12:44:10 | INFO     |   Loaded 98 records from scopus/works_summary.csv
+2026-03-24 12:44:10 | INFO     | Combined 224 total records
+2026-03-24 12:44:10 | INFO     | Deduplicated by DOI: 224 → 193 records (removed 31 duplicates)
+2026-03-24 12:44:10 | INFO     | ✅ Consolidated 193 unique records ready for screening
+2026-03-24 12:44:10 | INFO     | Starting screening with simple mode...
+2026-03-24 12:44:10 | INFO     |   Records to screen: 193
+2026-03-24 12:44:10 | INFO     |   Threads: 4
+2026-03-24 12:44:10 | INFO     | Starting Claude screening: 193 records, mode=simple
+2026-03-24 12:47:09 | INFO     | Screening complete: 108 included, 85 excluded, 0 errors
+2026-03-24 12:47:09 | INFO     | ✅ Screening complete
+2026-03-24 12:47:09 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:47:54 | INFO     | Screening complete: 446 included, 530 excluded, 0 errors
+2026-03-24 12:47:54 | INFO     | ✅ Screening complete
+2026-03-24 12:48:16 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:48:16 | INFO     | Saved screening results: screening_results_20260324_124816/screening_results.csv
+2026-03-24 12:48:16 | INFO     | Saved summary: screening_results_20260324_124816/screening_summary.json
+2026-03-24 12:48:16 | INFO     | Saved 108 included papers: screening_results_20260324_124816/included_papers.csv
+2026-03-24 12:48:16 | INFO     | ✅ All screening results saved successfully
+2026-03-24 12:48:16 | INFO     | Phase 3 approved and locked by user
+2026-03-24 12:48:16 | INFO     | Displaying Scopus results: {'success': True, 'status': 'success', 'results_count': 98, 'error': '', 'output_files': {'summary_json': 'search_results_20260324_124104/scopus/run_summary.json', 'summary_csv': 'search_results_20260324_124104/scopus/works_summary.csv', 'full_jsonl': 'search_results_20260324_124104/scopus/works_full.jsonl'}, 'variation_idx': 1}
+2026-03-24 12:58:49 | INFO     | Starting screening with simple mode...
+2026-03-24 12:58:49 | INFO     |   Records to screen: 10
+2026-03-24 12:58:49 | INFO     |   Threads: 4
+2026-03-24 12:58:49 | INFO     | Starting Claude screening: 10 records, mode=simple
+2026-03-24 12:58:59 | INFO     | Screening complete: 10 included, 0 excluded, 0 errors
+2026-03-24 12:58:59 | INFO     | ✅ Screening complete
+2026-03-24 13:04:06 | INFO     | Starting screening with simple mode...
+2026-03-24 13:04:06 | INFO     |   Records to screen: 10
+2026-03-24 13:04:06 | INFO     |   Threads: 4
+2026-03-24 13:04:06 | INFO     | Starting Claude screening: 10 records, mode=simple
+2026-03-24 13:04:19 | INFO     | Screening complete: 10 included, 0 excluded, 0 errors
+2026-03-24 13:04:19 | INFO     | ✅ Screening complete
+2026-03-24 13:07:27 | INFO     | Starting screening with simple mode...
+2026-03-24 13:07:27 | INFO     |   Records to screen: 10
+2026-03-24 13:07:27 | INFO     |   Threads: 4
+2026-03-24 13:07:27 | INFO     | Starting Claude screening: 10 records, mode=simple
+2026-03-24 13:07:43 | INFO     | Screening complete: 9 included, 1 excluded, 0 errors
+2026-03-24 13:07:43 | INFO     | ✅ Screening complete

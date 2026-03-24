@@ -1,15 +1,360 @@
 """
-Phase 3: Abstract Screening Module
-Uses Claude for AI-assisted abstract screening with HITL review.
+Phase 3: Abstract Screening Module (Claude-based)
+
+Replaces OpenAI-based LLMscreen with Claude API for abstract screening.
+Maintains compatible interface for integration with Streamlit app.
 """
 
 import json
 import pandas as pd
 from pathlib import Path
-from typing import Optional
+from typing import Dict, List, Optional
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime
+
 from tqdm import tqdm
+from utils.llm_providers import LLMProvider
 from utils.logger import get_logger
+
+
+class ClaudeScreener:
+    """Abstract screening using Claude API (replaces OpenAI LLMscreen)."""
+
+    # Stable output columns (matching LLMscreen contract)
+    OUTPUT_COLUMNS = [
+        "record_id",
+        "mode",
+        "judgement",
+        "reason",
+        "title",
+        "abstract",
+        "raw_response",
+        "reasoning",
+        "model",
+        "error"
+    ]
+
+    def __init__(self, llm_provider: LLMProvider, config: Optional[Dict] = None):
+        """
+        Initialize Claude-based screener.
+
+        Args:
+            llm_provider: LLM provider instance (Bedrock/Anthropic)
+            config: Optional config dict with:
+                - mode: "simple" or "zeroshot" (default: "simple")
+                - k_strictness: float in [0,1] for simple mode (default: 0.5)
+                - thread_count: number of workers (default: 8)
+                - max_tokens: max response tokens (default: 1000)
+        """
+        self.provider = llm_provider
+        self.logger = get_logger()
+
+        # Set defaults
+        self.config = config or {}
+        self.mode = self.config.get("mode", "simple")
+        self.k_strictness = self.config.get("k_strictness", 0.5)
+        self.thread_count = self.config.get("thread_count", 8)
+        self.max_tokens = self.config.get("max_tokens", 1000)
+
+    def _build_simple_prompt(self, title: str, abstract: str, criteria: str) -> tuple:
+        """Build simple mode prompt (single-pass JSON decision)."""
+        system_prompt = f"""You are an academic reviewer for systematic reviews.
+Screen studies based on title and abstract.
+
+Current inclusion strictness: k={self.k_strictness:.1f}
+(k is in [0,1], where 0 = least strict, 1 = most strict)
+
+Filter criteria:
+{criteria}
+
+Output a JSON object with:
+- "judgement": boolean (true to include, false to exclude)
+- "reason": brief explanation in English (max 150 words)
+
+Output only valid JSON, no other text."""
+
+        user_message = f"""Title: {title}
+
+Abstract: {abstract}
+
+Decision:"""
+
+        return system_prompt, user_message
+
+    def _build_zeroshot_reasoning_prompt(self, title: str, abstract: str, criteria: str) -> tuple:
+        """Build zeroshot reasoning prompt (step 1: analysis)."""
+        system_prompt = """You are an academic assistant evaluating studies for systematic reviews.
+Write analysis in English only."""
+
+        user_message = f"""Title: {title}
+
+Abstract: {abstract}
+
+Filter criteria:
+{criteria}
+
+Think in three steps:
+1. Reasons to INCLUDE this study
+2. Reasons to EXCLUDE this study
+3. Final balanced conclusion
+
+Provide detailed analysis (200-300 words):"""
+
+        return system_prompt, user_message
+
+    def _build_zeroshot_decision_prompt(self, title: str, abstract: str, criteria: str, reasoning: str) -> tuple:
+        """Build zeroshot decision prompt (step 2: final judgement)."""
+        system_prompt = f"""You are an academic reviewer for systematic reviews.
+Screen studies based on title and abstract.
+
+Filter criteria:
+{criteria}
+
+Based on the analysis provided, make a final decision.
+Output a JSON object with:
+- "judgement": boolean (true to include, false to exclude)
+- "reason": brief summary of decision rationale (max 100 words)
+
+Output only valid JSON, no other text."""
+
+        user_message = f"""Title: {title}
+
+Abstract: {abstract}
+
+Previous analysis:
+{reasoning}
+
+Final decision:"""
+
+        return system_prompt, user_message
+
+    def _parse_json_response(self, response: str) -> Dict:
+        """Parse JSON response, handling common edge cases."""
+        # Try direct parse
+        try:
+            return json.loads(response)
+        except json.JSONDecodeError:
+            pass
+
+        # Try extracting JSON from markdown code blocks
+        if "```json" in response:
+            start = response.find("```json") + 7
+            end = response.find("```", start)
+            try:
+                return json.loads(response[start:end].strip())
+            except json.JSONDecodeError:
+                pass
+        elif "```" in response:
+            start = response.find("```") + 3
+            end = response.find("```", start)
+            try:
+                return json.loads(response[start:end].strip())
+            except json.JSONDecodeError:
+                pass
+
+        # Try finding JSON object in response
+        start = response.find("{")
+        end = response.rfind("}") + 1
+        if start >= 0 and end > start:
+            try:
+                return json.loads(response[start:end])
+            except json.JSONDecodeError:
+                pass
+
+        # Fallback: return error
+        return {
+            "judgement": False,
+            "reason": "Failed to parse response",
+            "error": f"Invalid JSON: {response[:200]}"
+        }
+
+    def _screen_single_simple(self, record: Dict, criteria: str) -> Dict:
+        """Screen single record in simple mode."""
+        record_id = record.get("record_id", "unknown")
+        title = record.get("title", "")
+        abstract = record.get("abstract", "")
+
+        result = {
+            "record_id": record_id,
+            "mode": "simple",
+            "title": title,
+            "abstract": abstract,
+            "raw_response": "",
+            "reasoning": "",
+            "model": self.provider.get_model_name(),
+            "error": ""
+        }
+
+        try:
+            # Build prompt
+            system_prompt, user_message = self._build_simple_prompt(title, abstract, criteria)
+
+            # Call LLM
+            response = self.provider.call_model(
+                system_prompt=system_prompt,
+                user_message=user_message,
+                max_tokens=self.max_tokens
+            )
+
+            result["raw_response"] = response
+
+            # Parse response
+            parsed = self._parse_json_response(response)
+            result["judgement"] = bool(parsed.get("judgement", False))
+            result["reason"] = str(parsed.get("reason", ""))
+
+            if "error" in parsed:
+                result["error"] = parsed["error"]
+
+        except Exception as e:
+            self.logger.error(f"Screening failed for record {record_id}: {e}")
+            result["judgement"] = False
+            result["reason"] = ""
+            result["error"] = str(e)
+
+        return result
+
+    def _screen_single_zeroshot(self, record: Dict, criteria: str) -> Dict:
+        """Screen single record in zeroshot mode (two-step)."""
+        record_id = record.get("record_id", "unknown")
+        title = record.get("title", "")
+        abstract = record.get("abstract", "")
+
+        result = {
+            "record_id": record_id,
+            "mode": "zeroshot",
+            "title": title,
+            "abstract": abstract,
+            "raw_response": "",
+            "reasoning": "",
+            "model": self.provider.get_model_name(),
+            "error": ""
+        }
+
+        try:
+            # Step 1: Generate reasoning
+            system_prompt_1, user_message_1 = self._build_zeroshot_reasoning_prompt(
+                title, abstract, criteria
+            )
+
+            reasoning = self.provider.call_model(
+                system_prompt=system_prompt_1,
+                user_message=user_message_1,
+                max_tokens=self.max_tokens
+            )
+
+            result["reasoning"] = reasoning
+
+            # Step 2: Make decision based on reasoning
+            system_prompt_2, user_message_2 = self._build_zeroshot_decision_prompt(
+                title, abstract, criteria, reasoning
+            )
+
+            response = self.provider.call_model(
+                system_prompt=system_prompt_2,
+                user_message=user_message_2,
+                max_tokens=500
+            )
+
+            result["raw_response"] = response
+
+            # Parse response
+            parsed = self._parse_json_response(response)
+            result["judgement"] = bool(parsed.get("judgement", False))
+            result["reason"] = str(parsed.get("reason", ""))
+
+            if "error" in parsed:
+                result["error"] = parsed["error"]
+
+        except Exception as e:
+            self.logger.error(f"Screening failed for record {record_id}: {e}")
+            result["judgement"] = False
+            result["reason"] = ""
+            result["error"] = str(e)
+
+        return result
+
+    def screen_records(self, records: List[Dict], criteria: str, progress_callback=None) -> pd.DataFrame:
+        """
+        Screen multiple records with threading.
+
+        Args:
+            records: List of dicts with 'title' and 'abstract' keys
+            criteria: Inclusion/exclusion criteria
+            progress_callback: Optional function(completed, total, included, excluded) for progress updates
+
+        Returns:
+            DataFrame with screening results
+        """
+        self.logger.info(f"Starting Claude screening: {len(records)} records, mode={self.mode}")
+
+        results = []
+        included_count = 0
+        excluded_count = 0
+        screen_func = self._screen_single_zeroshot if self.mode == "zeroshot" else self._screen_single_simple
+
+        with ThreadPoolExecutor(max_workers=self.thread_count) as executor:
+            # Submit all tasks
+            future_to_record = {
+                executor.submit(screen_func, record, criteria): record
+                for record in records
+            }
+
+            # Collect results with progress bar
+            completed = 0
+            for future in tqdm(
+                as_completed(future_to_record),
+                total=len(records),
+                desc="Screening"
+            ):
+                try:
+                    result = future.result()
+                    results.append(result)
+
+                    # Track statistics
+                    if result.get("judgement"):
+                        included_count += 1
+                    else:
+                        excluded_count += 1
+
+                except Exception as e:
+                    record = future_to_record[future]
+                    self.logger.error(f"Task failed for record {record.get('record_id')}: {e}")
+                    results.append({
+                        "record_id": record.get("record_id", "unknown"),
+                        "mode": self.mode,
+                        "judgement": False,
+                        "reason": "",
+                        "title": record.get("title", ""),
+                        "abstract": record.get("abstract", ""),
+                        "raw_response": "",
+                        "reasoning": "",
+                        "model": self.provider.get_model_name(),
+                        "error": str(e)
+                    })
+                    excluded_count += 1
+
+                # Progress callback
+                completed += 1
+                if progress_callback:
+                    progress_callback(completed, len(records), included_count, excluded_count)
+
+        # Convert to DataFrame
+        df = pd.DataFrame(results)
+
+        # Ensure column order
+        for col in self.OUTPUT_COLUMNS:
+            if col not in df.columns:
+                df[col] = ""
+
+        # Log summary
+        included = df["judgement"].sum()
+        excluded = len(df) - included
+        errors = (df["error"] != "").sum()
+
+        self.logger.info(f"Screening complete: {included} included, {excluded} excluded, {errors} errors")
+
+        return df[self.OUTPUT_COLUMNS]
 
 
 class ScreeningOrchestrator:
@@ -26,9 +371,10 @@ class ScreeningOrchestrator:
 
         Args:
             config: Dictionary with keys:
-                - mode: "simple" or "detailed"
+                - mode: "simple" or "zeroshot" (default: "simple")
+                - k_strictness: float in [0,1] (default: 0.5)
                 - llm_provider: LLM provider instance (BedrockProvider, AnthropicProvider, or DummyProvider)
-                - thread_count: int (default 4)
+                - thread_count: int (default: 8)
         """
         self.config = config
         self.logger = get_logger()
@@ -36,6 +382,9 @@ class ScreeningOrchestrator:
 
         if not self.llm_provider:
             raise ValueError("llm_provider is required in config")
+
+        # Initialize Claude screener
+        self.screener = ClaudeScreener(self.llm_provider, config)
 
     def consolidate_phase2_results(self, search_results_dir: str) -> pd.DataFrame:
         """
@@ -69,6 +418,14 @@ class ScreeningOrchestrator:
                     df = pd.read_csv(csv_path)
                     dfs.append(df)
                     self.logger.info(f"  Loaded {len(df)} records from {db}_results.csv")
+
+        # Fallback: check for imported_papers.csv (from file import portal)
+        if not dfs:
+            imported_csv = results_path / "imported_papers.csv"
+            if imported_csv.exists():
+                df = pd.read_csv(imported_csv)
+                dfs.append(df)
+                self.logger.info(f"  Loaded {len(df)} records from imported_papers.csv (imported data)")
 
         if not dfs:
             raise ValueError(f"No Phase 2 results found in {search_results_dir}. Expected 'works_summary.csv' in subdirectories or '<db>_results.csv' files.")
@@ -104,179 +461,59 @@ class ScreeningOrchestrator:
         self.logger.info(f"✅ Consolidated {len(combined)} unique records ready for screening")
         return combined
 
-    def _screen_single_paper(self, row: dict, criteria: str, mode: str) -> dict:
+    def run_screening(self, df: pd.DataFrame, criteria: str, progress_callback=None) -> pd.DataFrame:
         """
-        Screen a single paper using Claude.
+        Run Claude-based screening on consolidated abstracts using ClaudeScreener.
 
         Args:
-            row: Dictionary with 'title' and 'abstract' keys
-            criteria: Inclusion/exclusion criteria
-            mode: "simple" or "detailed"
-
-        Returns:
-            Dictionary with screening results
-        """
-        title = row.get('title', '')
-        abstract = row.get('abstract', '')
-
-        # Skip if both title and abstract are empty
-        if not title.strip() and not abstract.strip():
-            return {
-                **row,
-                'judgement': False,
-                'reason': 'No title or abstract available',
-                'confidence': 0,
-                'error': ''
-            }
-
-        # Build prompt based on mode
-        if mode == "simple":
-            system_prompt = """You are an expert systematic review screener. Evaluate whether research papers should be included based on the given criteria.
-
-Respond with a JSON object containing:
-- "include": boolean (true/false)
-- "reason": string (brief 1-2 sentence justification)
-- "confidence": number (0-100, your confidence in this decision)
-
-Be strict and precise. Only include papers that clearly meet ALL inclusion criteria."""
-
-            user_message = f"""**Screening Criteria:**
-{criteria}
-
-**Paper to Evaluate:**
-Title: {title}
-
-Abstract: {abstract}
-
-Should this paper be INCLUDED in the systematic review? Respond with JSON only."""
-
-        else:  # detailed mode
-            system_prompt = """You are an expert systematic review screener. Evaluate research papers through careful reasoning.
-
-First, analyze the paper against each criterion. Then make a final decision.
-
-Respond with a JSON object containing:
-- "reasoning": string (step-by-step analysis of how the paper matches/fails each criterion)
-- "include": boolean (true/false)
-- "reason": string (concise summary of decision)
-- "confidence": number (0-100, your confidence in this decision)
-
-Be thorough in your reasoning but concise in your final summary."""
-
-            user_message = f"""**Screening Criteria:**
-{criteria}
-
-**Paper to Evaluate:**
-Title: {title}
-
-Abstract: {abstract}
-
-Analyze this paper carefully and decide if it should be INCLUDED. Respond with JSON only."""
-
-        try:
-            # Call Claude
-            response = self.llm_provider.call_model(
-                system_prompt=system_prompt,
-                user_message=user_message,
-                max_tokens=1000,
-                temperature=0.0  # Deterministic for consistency
-            )
-
-            # Parse JSON response
-            # Extract JSON from response (handle markdown code blocks)
-            response_text = response.strip()
-            if response_text.startswith('```'):
-                # Remove markdown code block markers
-                lines = response_text.split('\n')
-                response_text = '\n'.join(lines[1:-1]) if len(lines) > 2 else response_text
-                response_text = response_text.replace('```json', '').replace('```', '').strip()
-
-            result = json.loads(response_text)
-
-            return {
-                **row,
-                'judgement': result.get('include', False),
-                'reason': result.get('reason', ''),
-                'confidence': result.get('confidence', 0),
-                'reasoning': result.get('reasoning', '') if mode == 'detailed' else '',
-                'error': ''
-            }
-
-        except json.JSONDecodeError as e:
-            self.logger.warning(f"Failed to parse JSON for paper: {title[:50]}... Error: {e}")
-            return {
-                **row,
-                'judgement': False,
-                'reason': f'JSON parsing error: {str(e)}',
-                'confidence': 0,
-                'error': f'JSON parse error: {str(e)}'
-            }
-        except Exception as e:
-            self.logger.error(f"Error screening paper: {title[:50]}... Error: {e}")
-            return {
-                **row,
-                'judgement': False,
-                'reason': f'Screening error: {str(e)}',
-                'confidence': 0,
-                'error': str(e)
-            }
-
-    def run_screening(self, df: pd.DataFrame, criteria: str) -> pd.DataFrame:
-        """
-        Run Claude-based screening on consolidated abstracts.
-
-        Args:
-            df: DataFrame with 'title' and 'abstract' columns
+            df: DataFrame with 'title' and 'abstract' columns (plus metadata)
             criteria: Inclusion/exclusion criteria text
+            progress_callback: Optional function(completed, total, included, excluded) for progress updates
 
         Returns:
-            DataFrame with screening results (judgement, reason, confidence, error)
+            DataFrame with screening results (judgement, reason, error, plus metadata)
         """
-        mode = self.config.get('mode', 'simple')
-        thread_count = self.config.get('thread_count', 4)
-
-        self.logger.info(f"Starting Claude screening with {mode} mode...")
+        self.logger.info(f"Starting screening with {self.screener.mode} mode...")
         self.logger.info(f"  Records to screen: {len(df)}")
-        self.logger.info(f"  Threads: {thread_count}")
+        self.logger.info(f"  Threads: {self.screener.thread_count}")
 
-        # Convert dataframe rows to list of dicts
-        papers = df.to_dict('records')
-        results = []
+        # Add record IDs
+        df['record_id'] = range(1, len(df) + 1)
 
-        # Process papers in parallel with progress bar
-        with ThreadPoolExecutor(max_workers=thread_count) as executor:
-            futures = {
-                executor.submit(self._screen_single_paper, paper, criteria, mode): paper
-                for paper in papers
-            }
+        # Convert to records for screening
+        records = df.to_dict('records')
 
-            with tqdm(total=len(papers), desc="Screening papers") as pbar:
-                for future in as_completed(futures):
-                    result = future.result()
-                    results.append(result)
-                    pbar.update(1)
+        # Run screening via ClaudeScreener
+        results_df = self.screener.screen_records(records, criteria, progress_callback=progress_callback)
 
-        # Convert results to DataFrame
-        result_df = pd.DataFrame(results)
+        # Merge back with original metadata (preserving all original columns)
+        # Get metadata columns (exclude the ones that screening returns)
+        metadata_cols = [col for col in df.columns
+                        if col not in self.screener.OUTPUT_COLUMNS]
 
-        # Count results
-        included = len(result_df[result_df['judgement'] == True])
-        excluded = len(result_df[result_df['judgement'] == False])
-        errors = len(result_df[result_df['error'] != ""])
+        if metadata_cols:
+            metadata_df = df[['record_id'] + metadata_cols]
+            results_df = results_df.merge(metadata_df, on='record_id', how='left')
 
-        self.logger.info(f"✅ Screening complete!")
-        self.logger.info(f"  Included: {included}")
-        self.logger.info(f"  Excluded: {excluded}")
-        self.logger.info(f"  Errors: {errors}")
+        self.logger.info("✅ Screening complete")
 
-        return result_df
+        return results_df
+
+    def _legacy_screen_single_paper(self, row: dict, criteria: str, mode: str) -> dict:
+        """
+        DEPRECATED: Legacy screening method (kept for compatibility).
+        Use ClaudeScreener instead.
+        """
+        # This method is no longer used but kept for reference
+        raise NotImplementedError("Use ClaudeScreener.screen_records() instead")
+
 
     def save_results(self, df: pd.DataFrame, output_dir: str):
         """
         Save screening results and summary statistics.
 
         Args:
-            df: Screening results DataFrame
+            df: Screening results DataFrame (from ClaudeScreener)
             output_dir: Output directory path
         """
         out_path = Path(output_dir)
@@ -293,9 +530,10 @@ Analyze this paper carefully and decide if it should be INCLUDED. Respond with J
             'included': int(df['judgement'].sum()),
             'excluded': int((~df['judgement']).sum()),
             'errors': int((df['error'] != "").sum()),
-            'avg_confidence': float(df['confidence'].mean()) if 'confidence' in df.columns else 0,
-            'low_confidence_count': int((df['confidence'] < 70).sum()) if 'confidence' in df.columns else 0,
-            'mode': self.config.get('mode', 'simple')
+            'mode': self.screener.mode,
+            'model': self.screener.provider.get_model_name(),
+            'k_strictness': self.screener.k_strictness,
+            'timestamp': datetime.now().isoformat()
         }
 
         # Save summary

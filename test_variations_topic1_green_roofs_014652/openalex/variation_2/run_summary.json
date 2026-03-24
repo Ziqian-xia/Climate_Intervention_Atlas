@@ -1,8 +1,0 @@
-{
-  "query": "(\"cool roof\" OR \"green roof\" OR \"living roof\" OR \"reflective roof\" OR \"white roof\" OR \"vegetated roof\" OR \"roof intervention\" OR \"building retrofit\" OR \"green infrastructure\" OR \"sustainable roof\" OR \"eco-roof\") AND (\"urban heat island\" OR \"temperature reduction\" OR \"thermal comfort\" OR \"heat exposure\" OR \"ambient temperature\" OR microclimate OR \"heat stress\" OR \"cooling effect\" OR \"surface temperature\") AND ((\"health outcome\" OR mortality OR morbidity OR \"cardiovascular disease\" OR \"respiratory disease\" OR \"heat-related mortality\") AND (\"randomized controlled trial\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"causal inference\" OR evaluation OR trial OR \"before-after\" OR \"pre-post\" OR \"impact assessment\"))",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 100,
-  "meta_count": 6027,
-  "calls": 1
-}

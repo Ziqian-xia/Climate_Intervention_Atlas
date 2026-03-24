@@ -1,8 +1,0 @@
-{
-  "query": "(\"weather forecast\" OR \"weather prediction\" OR \"meteorological forecast\" OR \"temperature forecast\" OR \"heat forecast\" OR \"early warning system\" OR \"heat warning\" OR \"heat alert\" OR \"climate forecast\" OR \"seasonal forecast\" OR \"extreme heat forecast\") AND (\"cooling center\" OR \"cooling centre\" OR \"cooling shelter\" OR \"heat shelter\" OR \"cooling station\" OR \"air conditioning center\" OR \"public cooling\" OR \"community cooling\" OR \"emergency cooling\" OR \"refuge center\" OR \"climate shelter\" OR \"respite center\") AND (\"temperature mortality\" OR \"heat mortality\" OR \"heat-health\" OR \"temperature morbidity\" OR \"heat illness\" OR \"heat-related death\" OR \"thermal stress\" OR \"heat stroke\" OR \"hyperthermia\" OR \"excess mortality\" OR \"heat wave mortality\") AND (\"randomized controlled trial\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"difference-in-differences\" OR \"causal inference\" OR \"intervention study\" OR \"policy evaluation\" OR \"program evaluation\" OR \"exogenous variation\" OR \"treatment assignment\" OR \"control group\" OR \"impact evaluation\" OR \"treatment effect\" OR \"counterfactual\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 20,
-  "meta_count": 97,
-  "calls": 1
-}

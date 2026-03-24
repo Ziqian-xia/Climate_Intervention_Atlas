@@ -1,8 +1,0 @@
-{
-  "query": "((\"cool roof\" OR \"green roof\" OR \"living roof\" OR \"reflective roof\" OR \"white roof\" OR \"high-albedo roof\" OR \"rooftop garden\" OR \"cool roofing\" OR \"green roofing\") AND (temperature OR thermal OR heat OR cooling OR \"urban heat island\" OR UHI OR microclimate) AND (health OR mortality OR morbidity OR \"heat-related illness\" OR cardiovascular OR respiratory) AND (experimental OR \"quasi-experimental\" OR randomized OR controlled OR trial OR intervention OR causal OR evaluation))",
-  "database": "openalex",
-  "status": "merged_title_abstract",
-  "results_count": 0,
-  "meta_count": 0,
-  "calls": 2
-}

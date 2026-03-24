@@ -1,8 +1,0 @@
-{
-  "query": "((\"weather forecast\" OR \"meteorological forecast\" OR \"temperature forecast\" OR \"heat forecast\" OR \"early warning system\" OR \"heat alert\" OR \"weather information\" OR \"forecast intervention\" OR \"forecast dissemination\" OR \"cooling center\" OR \"cooling centre\" OR \"heat shelter\" OR \"cooling shelter\" OR \"air conditioning center\" OR \"public cooling facility\") AND (\"temperature-mortality\" OR \"temperature-health\" OR \"heat-health\" OR \"thermal stress\" OR \"heat exposure\" OR \"ambient temperature\" OR \"heat-related mortality\" OR \"heat-related morbidity\" OR \"excess mortality\" OR \"premature death\" OR mortality OR morbidity OR death OR \"cardiovascular health\" OR \"respiratory health\" OR \"heat illness\") AND (experimental OR \"quasi-experimental\" OR randomized OR \"natural experiment\" OR \"difference-in-differences\" OR \"instrumental variable\" OR \"regression discontinuity\" OR \"causal inference\" OR \"impact evaluation\" OR assignment OR allocation OR \"plausibly exogenous\" OR trial OR intervention OR evaluation))",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 100,
-  "meta_count": 57913,
-  "calls": 1
-}

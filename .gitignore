@@ -1,1 +1,391 @@
-.env.test
+# ============================================================================
+# Climate Intervention Atlas - Git Ignore
+# ============================================================================
+
+# =============================================================================
+# CRITICAL: API Keys & Credentials (NEVER COMMIT THESE!)
+# =============================================================================
+.env
+.env.*
+!.env.example
+api.txt
+**/api.txt
+credentials.json
+*.key
+*.pem
+*.p12
+.cdsapirc
+
+# AWS Credentials
+.aws/
+aws-credentials.json
+credentials/
+
+# API Keys (any pattern)
+*_api_key.txt
+*apikey*
+*api-key*
+*credentials*
+!*credentials.example*
+
+# =============================================================================
+# Python
+# =============================================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# =============================================================================
+# IDE / Editors
+# =============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# =============================================================================
+# Operating System
+# =============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =============================================================================
+# Project Specific - Data & Outputs
+# =============================================================================
+# Search Results (can be large and contain user data)
+search_results_*/
+**/search_results_*/
+openalex_search_outputs/
+pubmed_search_outputs/
+scopus_search_outputs/
+
+# Screening Results (may contain sensitive data)
+screening_results_*/
+**/screening_results_*/
+claude_screening_*/
+
+# Full-Text Downloads (copyrighted content)
+fulltext_*/
+downloads/
+**/downloads/
+md/
+**/md/
+
+# Test Outputs
+test_output*/
+test_*/
+*_test_*/
+test_*.csv
+test_*.json
+test_*.log
+
+# Temporary Data
+tmp/
+temp/
+*.tmp
+*.temp
+
+# User Uploaded Data
+uploaded_data/
+imported_data/
+
+# =============================================================================
+# Logs & Debug Files
+# =============================================================================
+*.log
+*.log.*
+logs/
+**/logs/
+*.out
+debug.log
+error.log
+access.log
+output.log
+stability_*.log
+two_topics_*.log
+
+# =============================================================================
+# Test & Development Files
+# =============================================================================
+# Test scripts (keep template, ignore outputs)
+run_*_test.py
+!run_two_topics_test.sh
+test_*.py
+*_test.py
+comprehensive_test.py
+quick_test.py
+
+# Test data outputs
+test_data/**/output*/
+test_data/**/*.log
+
+# Jupyter notebooks (if used for testing)
+*.ipynb
+!tutorial.ipynb
+!example.ipynb
+
+# =============================================================================
+# Package Specific
+# =============================================================================
+# Streamlit
+.streamlit/secrets.toml
+
+# LLMscreen
+LLMscreen_output/
+llmscreen_*/
+
+# MinerU (PDF conversion)
+.mineru/
+
+# Playwright (browser automation)
+.playwright/
+
+# =============================================================================
+# Documentation (keep templates, ignore generated)
+# =============================================================================
+# Keep markdown docs but ignore large test reports
+*REPORT*.md
+!FINAL_TEST_REPORT.md
+variation_test_summary_*.json
+test_report_*.json
+
+# =============================================================================
+# Data Files (Large or Sensitive)
+# =============================================================================
+# Large CSV files (keep samples, ignore big exports)
+*.csv
+!sample_*.csv
+!*example*.csv
+!test_data/*.csv
+
+# Large JSON files
+works_full.jsonl
+*_full.jsonl
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Compressed archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# PDF files (copyrighted)
+*.pdf
+!docs/**/*.pdf
+
+# =============================================================================
+# Backup Files
+# =============================================================================
+*.bak
+*.backup
+*.old
+*.orig
+*~
+*.save
+
+# =============================================================================
+# CI/CD (if used)
+# =============================================================================
+.github/workflows/secrets.yml
+
+# =============================================================================
+# Custom Exclusions
+# =============================================================================
+# Add your custom exclusions below:
+
+# Local configuration overrides
+config.local.json
+settings.local.json
+
+# Personal notes
+NOTES.md
+TODO_PERSONAL.md
+
+# Experimental scripts
+experimental/
+sandbox/
+scratch/

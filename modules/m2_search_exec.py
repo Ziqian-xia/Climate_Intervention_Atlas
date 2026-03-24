@@ -200,6 +200,7 @@ class SearchExecutor:
             "success": result.get("success", False),
             "status": result.get("status", "unknown"),
             "results_count": len(result.get("results", [])),
+            "error": result.get("error", ""),  # Include error field for UI display
             "output_files": {
                 "summary_json": str(out_path / "run_summary.json"),
                 "summary_csv": str(out_path / "works_summary.csv"),
@@ -255,6 +256,7 @@ class SearchExecutor:
             "success": True,
             "status": "success",
             "results_count": len(all_records),
+            "error": "",  # Include error field for UI display (empty on success)
             "output_files": {
                 "summary_json": str(out_path / "run_summary.json"),
                 "summary_csv": str(out_path / "works_summary.csv"),
@@ -280,6 +282,7 @@ class SearchExecutor:
             "success": result.get("success", False),
             "status": result.get("status", "unknown"),
             "results_count": len(result.get("results", [])),
+            "error": result.get("error", ""),  # Include error field for UI display
             "output_files": {
                 "summary_json": str(out_path / "run_summary.json"),
                 "summary_csv": str(out_path / "works_summary.csv"),

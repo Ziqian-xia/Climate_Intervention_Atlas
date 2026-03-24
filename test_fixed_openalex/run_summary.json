@@ -1,8 +1,0 @@
-{
-  "query": "(\"weather forecast\" OR \"heat forecast\" OR \"heat warning\") AND (\"heat-related illness\" OR \"heat-related mortality\") AND (\"causal inference\" OR \"quasi-experimental\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 10,
-  "meta_count": 75,
-  "calls": 1
-}

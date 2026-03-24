@@ -1,7 +1,0 @@
-{
-  "query": "((\"weather forecast\"[Title/Abstract] OR \"heat forecast\"[Title/Abstract] OR \"heat warning\"[Title/Abstract]) AND (\"heat-related illness\"[Title/Abstract] OR \"heat-related mortality\"[Title/Abstract]) AND (\"causal inference\"[Title/Abstract] OR \"quasi-experimental\"[Title/Abstract]))",
-  "database": "pubmed",
-  "status": "success",
-  "results_count": 0,
-  "meta_count": 0
-}

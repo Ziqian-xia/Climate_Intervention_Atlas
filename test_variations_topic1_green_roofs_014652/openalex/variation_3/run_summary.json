@@ -1,8 +1,0 @@
-{
-  "query": "(\"cool roof\" OR \"green roof\" OR \"living roof\" OR \"vegetated roof\" OR \"reflective roof\" OR \"white roof\" OR albedo OR \"roof intervention\" OR rooftop) AND (\"urban heat island\" OR UHI OR microclimate OR \"ambient temperature\" OR \"surface temperature\" OR \"heat exposure\" OR \"thermal comfort\" OR \"passive cooling\") AND (mortality OR morbidity OR \"heat stress\" OR cardiovascular OR respiratory OR hospitalization OR \"environmental health\" OR \"public health\" OR \"climate adaptation\" OR \"heat mitigation\" OR \"cooling strategy\" OR \"built environment\" OR \"environmental intervention\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 100,
-  "meta_count": 24423,
-  "calls": 1
-}
