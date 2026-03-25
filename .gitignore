@@ -389,3 +389,13 @@ TODO_PERSONAL.md
 experimental/
 sandbox/
 scratch/
+
+# Test files and outputs
+test_playwright_*
+diagnose_playwright.py
+playwright_diagnosis/
+playwright_real_test/
+manual_variation_analysis_*/
+*_test_result/
+run_fulltext*.sh
+sample_dois*.csv

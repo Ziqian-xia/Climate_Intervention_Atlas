@@ -156,6 +156,40 @@ PUBMED_EMAIL=your_email@domain.com
    ELSEVIER_INST_TOKEN=your_inst_token_here
    ```
 
+#### Wiley TDM (For Full-Text Retrieval)
+
+**Required for downloading Wiley PDFs (10.1002/*, 10.1111/*)**
+
+1. **Check Institutional Access**:
+   - Contact your institutional library
+   - Ask about Wiley TDM (Text and Data Mining) access
+   - Confirm they can provide a TDM client token
+
+2. **Get TDM Client Token**:
+   - Library will provide a UUID token (e.g., `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
+   - Token is tied to your institution's subscription
+   - Typically valid for 1 year, renewable
+
+3. **Add to `.env`**:
+   ```bash
+   WILEY_TDM_CLIENT_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+   ```
+
+4. **Test Access**:
+   ```bash
+   source .venv/bin/activate
+   python3 test_wiley_fulltext.py
+   ```
+
+**Resources**:
+- Wiley TDM Info: https://onlinelibrary.wiley.com/library-info/resources/text-and-datamining
+- Contact: Your institutional library's electronic resources team
+
+**Success Indicators**:
+- ✅ Downloads full-text PDFs (no page limits)
+- ✅ Works for subscribed journals only
+- ✅ ~90-95% success rate for Wiley papers
+
 ---
 
 ## 🧪 Testing Your Configuration

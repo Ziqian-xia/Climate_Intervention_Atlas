@@ -1,0 +1,30 @@
+# Auto-SLR Multi-Agent Pipeline - Streamlit Cloud Dependencies
+# ============================================================================
+
+# Core Streamlit
+streamlit>=1.31.0
+
+# LLM Providers (Phase 1: Query Generation)
+anthropic>=0.18.0
+boto3>=1.26.0
+
+# Data Processing
+pandas>=2.0.0
+python-dotenv>=1.0.0
+
+# Search and Retrieval (Phase 2 & 4)
+requests>=2.31.0
+tqdm>=4.66.0
+
+# Optional but Recommended
+colorlog>=6.8.0
+
+# Phase 3: LLMscreen Dependencies (OpenAI)
+openai>=1.0.0
+
+# Optional: Playwright (Uncomment if using browser automation fallback)
+# playwright>=1.43.0
+
+# Optional: PDF Processing (Uncomment if enabling PDF to Markdown conversion)
+# PyPDF2>=3.0.0
+# pymupdf>=1.23.0
