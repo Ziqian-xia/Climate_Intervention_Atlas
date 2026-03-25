@@ -26,8 +26,8 @@ from utils.prompt_inspector import (
 
 # Page config
 st.set_page_config(
-    page_title="Auto-SLR Pipeline",
-    page_icon="📊",
+    page_title="AutoSR - Automated Systematic Review",
+    page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -58,12 +58,12 @@ def init_session_state():
         'approved': False,
         'agent_logs': [],
         'query_variations': [],  # Store multiple query variations
-        'enable_variations': True,  # Enable by default for 5 variations
+        'enable_variations': False,  # Disable by default (Advanced feature)
         'num_variations': 5,  # Default to 5 variations
-        'auto_search_variations': True,  # Auto-search all variations by default
+        'auto_search_variations': False,  # Disable by default (Advanced feature)
 
         # API Settings (Phase 1 LLM Provider)
-        'provider_type': 'bedrock',
+        'provider_type': 'anthropic',
         'anthropic_api_key': '',
         'aws_region': 'us-east-1',
         'aws_model_id': 'us.anthropic.claude-sonnet-4-6',
@@ -282,9 +282,11 @@ def _merge_database_variations(db_name: str, variations: list, base_out_dir: str
 with st.sidebar:
     st.title("⚙️ API Settings")
 
+    st.info("💡 **Required**: Anthropic (or Bedrock) for Phase 1\n\n**Optional**: OpenAlex, PubMed, Scopus for Phase 2")
+
     # LLM Provider Selection (for Phase 1)
     st.session_state.provider_type = st.radio(
-        "LLM Provider:",
+        "LLM Provider (Phase 1):",
         options=["anthropic", "bedrock", "dummy"],
         index=["anthropic", "bedrock", "dummy"].index(st.session_state.provider_type),
         help="Select API provider for query generation"
@@ -389,7 +391,8 @@ with st.sidebar:
     st.markdown("---")
 
     # Phase Tracker
-    st.title("📊 Auto-SLR Pipeline")
+    st.title("📚 AutoSR")
+    st.caption("Automated Systematic Review · by Ziqian Xia")
     st.markdown("---")
 
     phases = [
@@ -591,11 +594,15 @@ if not st.session_state.workflow_started:
     # Hero Section
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
-        "<h1 style='text-align: center;'>📚 Automated Systematic Literature Review</h1>",
+        "<h1 style='text-align: center;'>📚 AutoSR</h1>",
         unsafe_allow_html=True
     )
     st.markdown(
-        "<p style='text-align: center; font-size: 1.2em; color: #666;'>End-to-end pipeline powered by Claude AI</p>",
+        "<p style='text-align: center; font-size: 1.2em; color: #666;'>Automated Systematic Review · Powered by Claude AI</p>",
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        "<p style='text-align: center; font-size: 0.95em; color: #999;'>by Ziqian Xia</p>",
         unsafe_allow_html=True
     )
     st.markdown("<br>", unsafe_allow_html=True)
@@ -660,7 +667,86 @@ if not st.session_state.workflow_started:
         st.markdown("#### ✅ Human-in-the-Loop")
         st.write("Review and validate at every phase")
 
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # Quick Start Guide
+    st.markdown("### 🚀 How to Use AutoSR")
+
+    with st.expander("📖 Quick Start Guide (Click to expand)", expanded=False):
+        st.markdown("""
+        **Step-by-Step Workflow:**
+
+        **1️⃣ Phase 1: Generate Search Queries**
+        - Enter your research topic in natural language
+        - AI agents will create optimized Boolean queries for different databases
+        - Review and edit queries as needed
+        - Approve to proceed
+
+        **2️⃣ Phase 2: Execute Literature Search**
+        - Select databases (OpenAlex, PubMed, Scopus)
+        - Set maximum results per database
+        - Execute search across all selected databases
+        - Download results as CSV/JSON
+
+        **3️⃣ Phase 3: Screen Abstracts**
+        - Define your inclusion/exclusion criteria
+        - AI screens all abstracts automatically
+        - Review results in paginated table
+        - Edit decisions manually if needed
+        - Approve final selection
+
+        **4️⃣ Phase 4: Retrieve Full-Text (Optional)**
+        - Automatically download PDFs/XMLs
+        - Convert to Markdown for analysis
+        - Multiple fallback sources (OpenAlex → Publishers → Browser)
+
+        **5️⃣ Phase 5: Analyze (Coming Soon)**
+        - Data extraction and synthesis
+        - Evidence tables generation
+
+        💡 **Tip**: The workflow is sequential - each phase must be approved before proceeding to the next.
+        You can always go back to edit earlier phases.
+        """)
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # API Keys Setup Guide
+    st.markdown("### 🔑 Before You Start: Prepare Your API Keys")
+
+    with st.expander("📋 Required API Keys (Click to expand)", expanded=False):
+        st.markdown("""
+        **Essential for Core Functions:**
+
+        1. **🤖 Phase 1 - Query Generation (Required)**
+           - **Anthropic API Key** (Recommended)
+             - Get it: [console.anthropic.com](https://console.anthropic.com/)
+             - Cost: ~$0.10-0.50 per query generation
+           - *OR* **AWS Bedrock** (Alternative)
+             - Requires AWS account with Bedrock access
+
+        2. **🔍 Phase 2 - Literature Search (At least one required)**
+           - **OpenAlex Email** (Recommended - FREE)
+             - Just provide any valid email address
+             - No registration needed
+           - **PubMed API Key** (Optional)
+             - Get it: [NCBI Account](https://www.ncbi.nlm.nih.gov/account/)
+           - **Scopus API Key** (Optional, requires institution)
+             - Get it: [Elsevier Developer Portal](https://dev.elsevier.com/)
+
+        3. **✅ Phase 3 - Abstract Screening (Required)**
+           - **OpenAI API Key**
+             - Get it: [platform.openai.com](https://platform.openai.com/)
+             - Cost: ~$2-5 per 100 abstracts screened
+
+        **Optional for Phase 4 - Full-Text Retrieval:**
+        - **Wiley TDM Token**: For Wiley journal PDFs
+        - **Elsevier API Key**: For Elsevier/ScienceDirect PDFs
+
+        💡 **Tip**: You can enter these API keys in the sidebar (left) once you start the workflow.
+        Each phase will remind you which keys are needed.
+        """)
+
+    st.markdown("---")
 
     # CTA Buttons
     col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1])
