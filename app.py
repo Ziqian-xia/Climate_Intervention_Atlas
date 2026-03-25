@@ -282,7 +282,7 @@ def _merge_database_variations(db_name: str, variations: list, base_out_dir: str
 with st.sidebar:
     st.title("⚙️ API Settings")
 
-    st.info("💡 **Required**: Anthropic (or Bedrock) for Phase 1\n\n**Optional**: OpenAlex, PubMed, Scopus for Phase 2")
+    st.info("💡 **Required**: Anthropic (or Bedrock) for Phase 1 & 3\n\n**Optional**: OpenAlex, PubMed, Scopus for Phase 2")
 
     # LLM Provider Selection (for Phase 1)
     st.session_state.provider_type = st.radio(
@@ -717,33 +717,38 @@ if not st.session_state.workflow_started:
         st.markdown("""
         **Essential for Core Functions:**
 
-        1. **🤖 Phase 1 - Query Generation (Required)**
+        1. **🤖 Phase 1 & 3 - Query Generation & Screening (Required)**
            - **Anthropic API Key** (Recommended)
-             - Get it: [console.anthropic.com](https://console.anthropic.com/)
-             - Cost: ~$0.10-0.50 per query generation
+             - 🔗 Sign up: [console.anthropic.com](https://console.anthropic.com/)
+             - 💰 Cost: ~$0.10-0.50 per query + ~$2-5 per 100 abstracts
+             - ✅ Same key used for both Phase 1 and Phase 3
            - *OR* **AWS Bedrock** (Alternative)
-             - Requires AWS account with Bedrock access
+             - 🔗 Setup: [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock/)
+             - Requires AWS account with Bedrock model access
 
         2. **🔍 Phase 2 - Literature Search (At least one required)**
-           - **OpenAlex Email** (Recommended - FREE)
-             - Just provide any valid email address
-             - No registration needed
-           - **PubMed API Key** (Optional)
-             - Get it: [NCBI Account](https://www.ncbi.nlm.nih.gov/account/)
-           - **Scopus API Key** (Optional, requires institution)
-             - Get it: [Elsevier Developer Portal](https://dev.elsevier.com/)
-
-        3. **✅ Phase 3 - Abstract Screening (Required)**
-           - **OpenAI API Key**
-             - Get it: [platform.openai.com](https://platform.openai.com/)
-             - Cost: ~$2-5 per 100 abstracts screened
+           - **OpenAlex** (Recommended - FREE)
+             - 🔗 API Key (optional): [openalex.org](https://openalex.org/)
+             - 📧 Email: Just provide any valid email (required for polite pool)
+             - ✅ No registration needed for email-only usage
+           - **PubMed** (Optional)
+             - 🔗 Get API Key: [ncbi.nlm.nih.gov/account](https://www.ncbi.nlm.nih.gov/account/)
+             - 💰 FREE
+           - **Scopus** (Optional, requires institution)
+             - 🔗 Developer Portal: [dev.elsevier.com](https://dev.elsevier.com/)
+             - 🏛️ Requires institutional access
 
         **Optional for Phase 4 - Full-Text Retrieval:**
-        - **Wiley TDM Token**: For Wiley journal PDFs
-        - **Elsevier API Key**: For Elsevier/ScienceDirect PDFs
+        - **Wiley TDM Token**
+          - 🔗 Apply: [onlinelibrary.wiley.com/library-info/resources/text-and-datamining](https://onlinelibrary.wiley.com/library-info/resources/text-and-datamining)
+          - 📄 For Wiley journal PDFs
+        - **Elsevier API Key**
+          - 🔗 Same as Scopus: [dev.elsevier.com](https://dev.elsevier.com/)
+          - 📄 For ScienceDirect PDFs
 
-        💡 **Tip**: You can enter these API keys in the sidebar (left) once you start the workflow.
-        Each phase will remind you which keys are needed.
+        💡 **Tip**: Enter these API keys in the sidebar (left) once you start.
+
+        ⚡ **Quick Start**: Only need Anthropic + OpenAlex email to begin!
         """)
 
     st.markdown("---")
