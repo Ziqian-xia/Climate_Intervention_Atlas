@@ -103,6 +103,7 @@ def init_session_state():
         'fulltext_complete': False,
         'fulltext_approved': False,
         'fulltext_out_dir': '',
+        'wiley_tdm_token': '',  # Wiley TDM API token
 
         # Workflow control
         'workflow_started': False
@@ -294,7 +295,7 @@ with st.sidebar:
         st.session_state.anthropic_api_key = st.text_input(
             "Anthropic API Key:",
             type="password",
-            value=st.session_state.anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY", ""),
+            value=st.session_state.anthropic_api_key or "",
             help="Get key at console.anthropic.com"
         )
 
@@ -1250,12 +1251,12 @@ if st.session_state.phase >= 2:
         openalex_key = st.text_input(
             "API Key (optional):",
             type="password",
-            value=st.session_state.openalex_api_key or os.environ.get("OPENALEX_API_KEY", ""),
+            value=st.session_state.openalex_api_key or "",
             key="openalex_api_key_input"
         )
         openalex_mailto = st.text_input(
             "Email (optional):",
-            value=st.session_state.openalex_mailto or os.environ.get("OPENALEX_MAILTO", ""),
+            value=st.session_state.openalex_mailto or "",
             key="openalex_mailto_input"
         )
 
@@ -1263,12 +1264,12 @@ if st.session_state.phase >= 2:
         pubmed_key = st.text_input(
             "API Key (optional):",
             type="password",
-            value=st.session_state.pubmed_api_key or os.environ.get("PUBMED_API_KEY", ""),
+            value=st.session_state.pubmed_api_key or "",
             key="pubmed_api_key_input"
         )
         pubmed_email = st.text_input(
             "Email (optional):",
-            value=st.session_state.pubmed_email or os.environ.get("PUBMED_EMAIL", ""),
+            value=st.session_state.pubmed_email or "",
             key="pubmed_email_input"
         )
 
@@ -1276,13 +1277,13 @@ if st.session_state.phase >= 2:
         scopus_key = st.text_input(
             "API Key (required):",
             type="password",
-            value=st.session_state.scopus_api_key or os.environ.get("ELSEVIER_API_KEY", ""),
+            value=st.session_state.scopus_api_key or "",
             key="scopus_api_key_input"
         )
         scopus_insttoken = st.text_input(
             "Inst Token (optional):",
             type="password",
-            value=st.session_state.scopus_insttoken or os.environ.get("ELSEVIER_INST_TOKEN", ""),
+            value=st.session_state.scopus_insttoken or "",
             key="scopus_insttoken_input"
         )
 
@@ -1946,9 +1947,55 @@ if st.session_state.phase >= 4:
     )
     st.session_state.fulltext_timeout = timeout
 
-    # API credentials info
-    with st.expander("🔑 API Credentials"):
-        st.info("Credentials loaded from environment variables. Ensure these are set: OPENALEX_API_KEY, ELSEVIER_API_KEY, WILEY_TDM_CLIENT_TOKEN")
+    # API credentials section
+    with st.expander("🔑 Full-Text API Credentials"):
+        st.markdown("**OpenAlex** (Free, Open Access)")
+        col_oa1, col_oa2 = st.columns(2)
+        with col_oa1:
+            fulltext_openalex_key = st.text_input(
+                "API Key (optional):",
+                type="password",
+                value=st.session_state.openalex_api_key or "",
+                key="fulltext_openalex_key",
+                help="Uses Phase 2 credentials if already entered"
+            )
+        with col_oa2:
+            fulltext_openalex_mailto = st.text_input(
+                "Email (optional):",
+                value=st.session_state.openalex_mailto or "",
+                key="fulltext_openalex_mailto",
+                help="Uses Phase 2 credentials if already entered"
+            )
+
+        st.markdown("**Elsevier** (Institutional Access)")
+        col_els1, col_els2 = st.columns(2)
+        with col_els1:
+            fulltext_elsevier_key = st.text_input(
+                "API Key:",
+                type="password",
+                value=st.session_state.scopus_api_key or "",
+                key="fulltext_elsevier_key",
+                help="Uses Scopus API key from Phase 2 if already entered"
+            )
+        with col_els2:
+            fulltext_elsevier_token = st.text_input(
+                "Inst Token (optional):",
+                type="password",
+                value=st.session_state.scopus_insttoken or "",
+                key="fulltext_elsevier_token",
+                help="Institutional token for entitled access"
+            )
+
+        st.markdown("**Wiley TDM** (Text and Data Mining)")
+        fulltext_wiley_token = st.text_input(
+            "TDM Client Token:",
+            type="password",
+            value=st.session_state.wiley_tdm_token or "",
+            key="fulltext_wiley_token",
+            help="Get token at onlinelibrary.wiley.com/library-info/resources/text-and-datamining"
+        )
+
+        st.session_state.wiley_tdm_token = fulltext_wiley_token
 
     # DOI Preview & Execute Button
     if st.session_state.screening_results is not None:
@@ -1965,13 +2012,22 @@ if st.session_state.phase >= 4:
                 st.write("📋 Preparing DOI list...")
 
                 try:
-                    retriever = FullTextRetriever(config={
-                        'out_dir': f"fulltext_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-                        'convert_to_md': True,  # Always convert per user decision
-                        'use_playwright': use_playwright,
-                        'max_retries': max_retries,
-                        'timeout': timeout
-                    })
+                    retriever = FullTextRetriever(
+                        config={
+                            'out_dir': f"fulltext_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+                            'convert_to_md': True,  # Always convert per user decision
+                            'use_playwright': use_playwright,
+                            'max_retries': max_retries,
+                            'timeout': timeout
+                        },
+                        api_credentials={
+                            'openalex_api_key': fulltext_openalex_key,
+                            'openalex_mailto': fulltext_openalex_mailto,
+                            'elsevier_api_key': fulltext_elsevier_key,
+                            'elsevier_inst_token': fulltext_elsevier_token,
+                            'wiley_tdm_token': fulltext_wiley_token
+                        }
+                    )
 
                     doi_list = retriever.prepare_doi_list(df_screening)
                     st.write(f"✅ Prepared {len(doi_list)} DOIs")

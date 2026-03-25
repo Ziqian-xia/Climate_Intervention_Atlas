@@ -22,7 +22,7 @@ class FullTextRetriever:
     3. Parse and return results
     """
 
-    def __init__(self, config: dict):
+    def __init__(self, config: dict, api_credentials: Optional[dict] = None):
         """
         Initialize full-text retriever.
 
@@ -33,23 +33,29 @@ class FullTextRetriever:
                 - use_playwright: bool (enable browser fallback)
                 - max_retries: int (retry count for failed downloads)
                 - timeout: int (timeout in seconds)
+            api_credentials: Optional dictionary with API keys:
+                - openalex_api_key: str
+                - openalex_mailto: str
+                - elsevier_api_key: str
+                - elsevier_inst_token: str
+                - wiley_tdm_token: str
         """
         self.config = config
+        self.api_credentials = api_credentials or {}
         self.logger = get_logger()
-        self._validate_env()
+        self._validate_credentials()
 
-    def _validate_env(self):
-        """Validate environment variables for API access."""
-        recommended_vars = {
-            'OPENALEX_API_KEY': 'OpenAlex content API',
-            'OPENALEX_MAILTO': 'OpenAlex polite pool',
-            'ELSEVIER_API_KEY': 'Elsevier full-text',
-            'WILEY_TDM_CLIENT_TOKEN': 'Wiley TDM service'
+    def _validate_credentials(self):
+        """Validate API credentials."""
+        recommended_creds = {
+            'openalex_mailto': 'OpenAlex polite pool (recommended)',
+            'elsevier_api_key': 'Elsevier full-text',
+            'wiley_tdm_token': 'Wiley TDM service'
         }
 
-        for var, purpose in recommended_vars.items():
-            if not os.environ.get(var):
-                self.logger.warning(f"{var} not set - {purpose} may be unavailable")
+        for cred, purpose in recommended_creds.items():
+            if not self.api_credentials.get(cred):
+                self.logger.warning(f"{cred} not provided - {purpose} may be unavailable")
 
     def prepare_doi_list(self, screening_df: pd.DataFrame) -> List[str]:
         """
@@ -130,12 +136,26 @@ class FullTextRetriever:
 
         self.logger.info(f"  Running command: {' '.join(cmd)}")
 
+        # Prepare environment with API credentials
+        env = os.environ.copy()
+        if self.api_credentials.get('openalex_api_key'):
+            env['OPENALEX_API_KEY'] = self.api_credentials['openalex_api_key']
+        if self.api_credentials.get('openalex_mailto'):
+            env['OPENALEX_MAILTO'] = self.api_credentials['openalex_mailto']
+        if self.api_credentials.get('elsevier_api_key'):
+            env['ELSEVIER_API_KEY'] = self.api_credentials['elsevier_api_key']
+        if self.api_credentials.get('elsevier_inst_token'):
+            env['ELSEVIER_INST_TOKEN'] = self.api_credentials['elsevier_inst_token']
+        if self.api_credentials.get('wiley_tdm_token'):
+            env['WILEY_TDM_CLIENT_TOKEN'] = self.api_credentials['wiley_tdm_token']
+
         try:
-            # Run subprocess
+            # Run subprocess with API credentials in environment
             result = subprocess.run(
                 cmd,
                 capture_output=True,
                 text=True,
+                env=env,
                 timeout=self.config['timeout'] * len(doi_list)  # Scale timeout by number of DOIs
             )
 

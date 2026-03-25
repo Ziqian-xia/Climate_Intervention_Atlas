@@ -58,9 +58,9 @@ class AnthropicProvider(LLMProvider):
         Initialize Anthropic provider.
 
         Args:
-            api_key: Anthropic API key (if None, loads from ANTHROPIC_API_KEY env var)
+            api_key: Anthropic API key (required)
         """
-        self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+        self.api_key = api_key
         self.client = None
         self.model = "claude-3-5-sonnet-20241022"
 
