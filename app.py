@@ -949,7 +949,7 @@ if generate_button:
                 st.write("_Crafting database-specific queries with AND, OR, and wildcards of power..._")
                 start_time = time.time()
 
-                formulator_result = team._agent_formulator(pulse_result.get('expanded_keywords', [st.session_state.topic]))
+                formulator_result = team._agent_formulator(pulse_result)
                 formulator_time = time.time() - start_time
 
                 st.write(f"✅ **Formulator Complete!** Created 3 database queries in {formulator_time:.1f}s")
