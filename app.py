@@ -1945,24 +1945,70 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
         end_idx = min(start_idx + items_per_page, len(df_display))
         df_page = df_display.iloc[start_idx:end_idx]
 
+        # Download buttons (before table for easy access)
+        st.markdown("**📥 Export Results:**")
+        dl_col1, dl_col2 = st.columns(2)
+
+        with dl_col1:
+            df_included = df[df['judgement'] == True].copy()
+            csv_included = df_included.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label=f"📥 Included Papers ({len(df_included)})",
+                data=csv_included,
+                file_name=f"screening_included_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                mime="text/csv",
+                key="download_included_csv"
+            )
+
+        with dl_col2:
+            csv_all = df.to_csv(index=False).encode('utf-8')
+            st.download_button(
+                label=f"📥 All Results ({len(df)})",
+                data=csv_all,
+                file_name=f"screening_all_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv",
+                mime="text/csv",
+                key="download_all_csv"
+            )
+
+        st.markdown("---")
+
         # Editable dataframe
         st.markdown(f"**Review and Edit Decisions (showing {start_idx + 1}-{end_idx} of {len(df_display)}):**")
 
-        # Select columns to display
-        display_cols = ['title', 'abstract', 'judgement', 'reason', 'confidence'] if 'confidence' in df_page.columns else ['title', 'abstract', 'judgement', 'reason']
-        display_cols = [col for col in display_cols if col in df_page.columns]
+        # Build display columns: screening fields + available metadata
+        core_cols = ['judgement', 'title', 'reason']
+        metadata_cols = ['doi', 'journal_title', 'authors', 'author', 'publication_year',
+                         'publication_date', 'source', 'cited_by_count']
+        optional_cols = ['abstract', 'confidence']
+        display_cols = (
+            core_cols
+            + [c for c in metadata_cols if c in df_page.columns]
+            + [c for c in optional_cols if c in df_page.columns]
+        )
+
+        col_config = {
+            "judgement": st.column_config.CheckboxColumn("Include?", help="Toggle to override Claude decision"),
+            "title": st.column_config.TextColumn("Title", width="large"),
+            "reason": st.column_config.TextColumn("Reason", width="medium"),
+            "doi": st.column_config.TextColumn("DOI", width="medium"),
+            "journal_title": st.column_config.TextColumn("Journal", width="medium"),
+            "authors": st.column_config.TextColumn("Authors", width="medium"),
+            "author": st.column_config.TextColumn("Authors", width="medium"),
+            "publication_year": st.column_config.NumberColumn("Year", format="%d"),
+            "publication_date": st.column_config.TextColumn("Date"),
+            "source": st.column_config.TextColumn("Source", width="small"),
+            "abstract": st.column_config.TextColumn("Abstract", width="large"),
+            "confidence": st.column_config.NumberColumn("Confidence %", format="%.0f"),
+            "cited_by_count": st.column_config.NumberColumn("Citations", format="%d"),
+        }
+
+        disabled_cols = [c for c in display_cols if c != 'judgement']
 
         edited_df = st.data_editor(
             df_page[display_cols],
             use_container_width=True,
-            column_config={
-                "title": st.column_config.TextColumn("Title", width="large"),
-                "abstract": st.column_config.TextColumn("Abstract", width="large"),
-                "judgement": st.column_config.CheckboxColumn("Include?", help="Toggle to override Claude decision"),
-                "reason": st.column_config.TextColumn("Reason"),
-                "confidence": st.column_config.NumberColumn("Confidence %", format="%.0f") if 'confidence' in display_cols else None
-            },
-            disabled=["abstract", "reason"] + (["confidence"] if 'confidence' in display_cols else []),
+            column_config=col_config,
+            disabled=disabled_cols,
             hide_index=True,
             key="screening_data_editor"
         )
