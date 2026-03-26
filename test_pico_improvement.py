@@ -108,14 +108,13 @@ def run_pico_test(num_variations=5):
         var_dir.mkdir(exist_ok=True)
 
         executor = SearchExecutor(
-            query_string=query,
             database='openalex',
-            max_results=100,
-            out_dir=str(var_dir)
+            query=query,
+            config={}
         )
 
         try:
-            executor.execute_search()
+            executor.execute_search(max_results=100, out_dir=str(var_dir))
 
             # Read result count
             summary_file = var_dir / 'openalex' / 'run_summary.json'
