@@ -1,0 +1,8 @@
+{
+  "query": "(biometeorology OR \"environmental epidemiology\" OR \"climate-health\" OR \"thermal stress\" OR \"synoptic climatology\" OR \"biometeorological\" OR weather OR \"climate change\" OR temperature) AND (\"apparent temperature\" OR \"heat index\" OR \"wet bulb temperature\" OR \"physiological equivalent temperature\" OR \"universal thermal climate index\" OR UTCI OR \"heat threshold\" OR \"temperature threshold\" OR \"thermal comfort\") AND (acclimatization OR \"urban heat vulnerability\" OR \"adaptive capacity\" OR \"population resilience\" OR thermoregulation OR \"heat stroke\" OR \"heat exhaustion\" OR dehydration OR \"renal failure\" OR \"acute kidney injury\") AND (\"excess mortality\" OR \"premature death\" OR \"avoidable hospitalization\" OR cardiopulmonary OR \"emergency medical services\" OR ambulance OR \"syndromic surveillance\" OR \"attributable fraction\" OR \"dose-response\" OR morbidity OR mortality) AND (\"distributed lag nonlinear model\" OR DLNM OR \"distributed lag\" OR \"time series\" OR \"mortality displacement\" OR \"harvesting effect\" OR \"spatial heterogeneity\" OR \"counterfactual analysis\" OR \"health impact assessment\") AND (\"heat alert\" OR \"heat warning\" OR \"heat emergency\" OR \"heat action plan\" OR \"heat health warning\" OR \"National Weather Service\" OR \"meteorological service\" OR \"risk communication\" OR \"forecast skill\" OR \"interagency coordination\" OR \"municipal health\" OR \"behavioral response\" OR \"warning system\" OR \"alert system\" OR \"public compliance\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 1021,
+  "meta_count": 1021,
+  "calls": 12
+}

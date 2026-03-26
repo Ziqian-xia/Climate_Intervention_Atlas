@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-03-25T19:30:00.142189",
+  "data": [
+    {
+      "variation_num": 1,
+      "database": "pubmed",
+      "query": "( ( \"heat warning system\"[Title/Abstract] OR \"heat alert system\"[Title/Abstract] OR \"heat health action plan\"[Title/Abstract] OR \"heat emergency response\"[Title/Abstract] OR \"extreme heat intervention\"[Title/Abstract] OR \"weather forecast intervention\"[Title/Abstract] OR \"temperature forecast advisory\"[Title/Abstract] OR \"cooling center\"[Title/Abstract] OR \"cooling shelter\"[Title/Abstract] OR \"heat refuge\"[Title/Abstract] OR \"heat wave warning\"[Title/Abstract] OR \"heatwave alert\"[Title/Abstract] OR \"heat early warning\"[Title/Abstract] OR \"heat action plan\"[Title/Abstract] OR \"Heat Stress Disorders/prevention and control\"[MeSH] OR \"Disaster Planning\"[MeSH] ) AND ( \"heat-related mortality\"[Title/Abstract] OR \"heat-related death\"[Title/Abstract] OR \"temperature-mortality relationship\"[Title/Abstract] OR \"heat morbidity\"[Title/Abstract] OR \"heat hospitalization\"[Title/Abstract] OR \"emergency department visit\"[Title/Abstract] OR \"cardiovascular mortality\"[Title/Abstract] OR \"respiratory mortality\"[Title/Abstract] OR \"excess mortality\"[Title/Abstract] OR \"heat wave\"[Title/Abstract] OR \"heatwave\"[Title/Abstract] OR \"extreme temperature\"[Title/Abstract] OR \"heat stroke\"[Title/Abstract] OR \"heat exhaustion\"[Title/Abstract] OR \"heat-related illness\"[Title/Abstract] OR \"Hot Temperature\"[MeSH] OR \"Mortality\"[MeSH] OR \"Heat Stroke\"[MeSH] ) AND ( \"causal inference\"[Title/Abstract] OR \"quasi-experimental\"[Title/Abstract] OR \"difference-in-differences\"[Title/Abstract] OR \"regression discontinuity\"[Title/Abstract] OR \"interrupted time series\"[Title/Abstract] OR \"natural experiment\"[Title/Abstract] OR \"instrumental variable\"[Title/Abstract] OR \"randomized controlled trial\"[Title/Abstract] OR randomized[Title/Abstract] OR randomised[Title/Abstract] OR \"counterfactual\"[Title/Abstract] OR \"propensity score\"[Title/Abstract] OR \"synthetic control\"[Title/Abstract] OR \"program evaluation\"[Title/Abstract] OR \"impact evaluation\"[Title/Abstract] OR \"Randomized Controlled Trial\"[Publication Type] OR \"Interrupted Time Series Analysis\"[MeSH] ) )",
+      "success": true,
+      "status": "success",
+      "results_count": 50,
+      "meta_count": 0,
+      "error": ""
+    },
+    {
+      "variation_num": 1,
+      "database": "openalex",
+      "query": "(\"heat warning system\" OR \"heat alert system\" OR \"heat health action plan\" OR \"heat emergency response\" OR \"extreme heat intervention\" OR \"weather forecast intervention\" OR \"temperature forecast advisory\" OR \"cooling center\" OR \"cooling shelter\" OR \"heat refuge\" OR \"heat wave warning\" OR \"heatwave alert\" OR \"heat early warning\" OR \"heat action plan\") AND (\"heat-related mortality\" OR \"heat-related death\" OR \"temperature-mortality\" OR \"heat morbidity\" OR \"heat hospitalization\" OR \"emergency department\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"excess mortality\" OR \"heat wave\" OR \"heatwave\" OR \"extreme temperature\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat-related illness\") AND (\"causal inference\" OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"natural experiment\" OR \"instrumental variable\" OR \"randomized controlled trial\" OR \"randomised controlled trial\" OR \"program evaluation\" OR \"impact evaluation\" OR \"counterfactual\" OR \"propensity score\" OR \"synthetic control\")",
+      "success": true,
+      "status": "success",
+      "results_count": 50,
+      "meta_count": 0,
+      "error": ""
+    },
+    {
+      "variation_num": 2,
+      "database": "pubmed",
+      "query": "( \"heat warning\"[Title/Abstract] OR \"heat alert\"[Title/Abstract] OR \"heat alert system\"[Title/Abstract] OR \"heat-health action plan\"[Title/Abstract] OR \"weather forecast intervention\"[Title/Abstract] OR \"heat watch\"[Title/Abstract] OR \"heat advisory\"[Title/Abstract] OR \"extreme heat warning\"[Title/Abstract] OR \"heat emergency\"[Title/Abstract] OR \"heat wave warning\"[Title/Abstract] ) AND ( \"temperature-mortality\"[Title/Abstract] OR \"heat-related mortality\"[Title/Abstract] OR \"heat-related death\"[Title/Abstract] OR \"heat-related deaths\"[Title/Abstract] OR \"excess mortality\"[Title/Abstract] OR \"excess deaths\"[Title/Abstract] OR \"heat-related illness\"[Title/Abstract] OR \"heat morbidity\"[Title/Abstract] OR \"hyperthermia\"[Title/Abstract] OR \"thermal stress\"[Title/Abstract] OR \"heat-related hospitalization\"[Title/Abstract] OR \"heat-related hospitalisation\"[Title/Abstract] OR \"Heat Stress Disorders\"[MeSH Terms] OR \"Cause of Death\"[MeSH Terms] ) AND ( \"quasi-experimental\"[Title/Abstract] OR \"difference-in-differences\"[Title/Abstract] OR \"difference in differences\"[Title/Abstract] OR \"regression discontinuity\"[Title/Abstract] OR \"interrupted time series\"[Title/Abstract] OR \"controlled interrupted time series\"[Title/Abstract] OR \"natural experiment\"[Title/Abstract] OR \"instrumental variable\"[Title/Abstract] OR \"propensity score\"[Title/Abstract] OR \"matching estimator\"[Title/Abstract] OR \"synthetic control\"[Title/Abstract] OR \"event study design\"[Title/Abstract] OR \"stepped wedge\"[Title/Abstract] OR \"before-after study\"[Title/Abstract] OR \"causal inference\"[Title/Abstract] OR \"counterfactual\"[Title/Abstract] OR \"exogenous variation\"[Title/Abstract] OR \"identification strategy\"[Title/Abstract] OR \"randomized controlled trial\"[Title/Abstract] OR \"randomised controlled trial\"[Title/Abstract] OR \"Randomized Controlled Trial\"[Publication Type] )",
+      "success": true,
+      "status": "success",
+      "results_count": 8,
+      "meta_count": 0,
+      "error": ""
+    },
+    {
+      "variation_num": 2,
+      "database": "openalex",
+      "query": "( \"heat warning\" OR \"heat alert\" OR \"heat alert system\" OR \"heat-health action plan\" OR \"weather forecast intervention\" OR \"heat advisory\" OR \"extreme heat warning\" OR \"heat watch\" OR \"heat emergency\" OR \"heat wave warning\" ) AND ( \"temperature-mortality\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"heat-related deaths\" OR \"excess mortality\" OR \"excess deaths\" OR \"heat-related illness\" OR \"thermal stress\" OR \"hyperthermia\" OR \"heat morbidity\" OR \"heat-related hospitalization\" OR \"heat-related hospitalisation\" ) AND ( \"quasi-experimental\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"natural experiment\" OR \"instrumental variable\" OR \"causal inference\" OR \"counterfactual\" OR \"exogenous variation\" OR \"propensity score\" OR \"synthetic control\" OR \"event study design\" OR \"stepped wedge\" OR \"identification strategy\" OR \"randomized controlled trial\" OR \"randomised controlled trial\" )",
+      "success": true,
+      "status": "success",
+      "results_count": 50,
+      "meta_count": 0,
+      "error": ""
+    },
+    {
+      "variation_num": 3,
+      "database": "pubmed",
+      "query": "( \"heat health warning system\"[Title/Abstract] OR \"heat alert\"[Title/Abstract] OR \"heat health action plan\"[Title/Abstract] OR \"biometeorological forecast\"[Title/Abstract] OR \"weather-based health alert\"[Title/Abstract] OR \"heat health protection\"[Title/Abstract] OR \"forecast-triggered\"[Title/Abstract] OR \"threshold-based activation\"[Title/Abstract] OR \"temperature threshold\"[Title/Abstract] OR \"alert level\"[Title/Abstract] OR \"heat wave warning\"[Title/Abstract] OR \"extreme heat alert\"[Title/Abstract] OR \"Hot Temperature\"[MeSH Terms] ) AND ( \"excess mortality\"[Title/Abstract] OR \"excess deaths\"[Title/Abstract] OR \"attributable mortality\"[Title/Abstract] OR \"attributable fraction\"[Title/Abstract] OR \"heat-attributable\"[Title/Abstract] OR \"cardiorespiratory\"[Title/Abstract] OR \"hospital admission\"[Title/Abstract] OR \"emergency department\"[Title/Abstract] OR \"ambulance call\"[Title/Abstract] OR \"syndromic surveillance\"[Title/Abstract] OR \"Mortality\"[MeSH Terms] OR \"Hospitalization\"[MeSH Terms] ) AND ( \"causal inference\"[Title/Abstract] OR \"policy evaluation\"[Title/Abstract] OR \"treatment effect\"[Title/Abstract] OR \"synthetic control\"[Title/Abstract] OR \"event study\"[Title/Abstract] OR \"quasi-experimental\"[Title/Abstract] OR \"difference in differences\"[Title/Abstract] OR \"interrupted time series\"[Title/Abstract] OR \"counterfactual\"[Title/Abstract] OR \"climate adaptation effectiveness\"[Title/Abstract] OR \"regression discontinuity\"[Title/Abstract] ) AND ( \"urban heat\"[Title/Abstract] OR \"heat vulnerability\"[Title/Abstract] OR \"environmental health governance\"[Title/Abstract] OR \"climate-health\"[Title/Abstract] OR \"public health intervention\"[Title/Abstract] OR \"Climate Change\"[MeSH Terms] OR \"Environmental Health\"[MeSH Terms] OR \"Hot Temperature\"[MeSH Terms] )",
+      "success": true,
+      "status": "success",
+      "results_count": 21,
+      "meta_count": 0,
+      "error": ""
+    },
+    {
+      "variation_num": 3,
+      "database": "openalex",
+      "query": "( \"heat alert\" OR \"heat health warning\" OR \"heat health action plan\" OR \"biometeorological forecast\" OR \"weather-based health alert\" OR \"forecast-triggered response\" OR \"threshold-based activation\" OR \"heat wave warning\" OR \"extreme heat alert\" OR \"heat health protection\" OR \"temperature threshold\" ) AND ( \"excess mortality\" OR \"excess deaths\" OR \"attributable mortality\" OR \"attributable mortality fraction\" OR \"heat-attributable morbidity\" OR \"cardiorespiratory admission\" OR \"ambulance call\" OR \"syndromic surveillance\" OR \"hospital admission\" OR \"emergency department\" ) AND ( \"causal inference\" OR \"policy evaluation\" OR \"synthetic control\" OR \"event study\" OR \"counterfactual\" OR \"treatment effect\" OR \"quasi-experimental\" OR \"difference in differences\" OR \"interrupted time series\" OR \"regression discontinuity\" ) AND ( \"urban heat\" OR \"heat vulnerability\" OR \"climate adaptation\" OR \"public health intervention\" OR \"environmental health\" OR \"climate-health\" )",
+      "success": true,
+      "status": "success",
+      "results_count": 50,
+      "meta_count": 0,
+      "error": ""
+    }
+  ],
+  "completed": 6
+}

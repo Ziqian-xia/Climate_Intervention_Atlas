@@ -1,0 +1,8 @@
+{
+  "query": "(\"heat warning system\" OR \"heat health action plan\" OR \"heat-health action plan\" OR \"extreme heat advisory\" OR \"heat action plan\" OR \"heat alert\" OR \"heat wave alert\" OR \"heatwave alert\" OR \"heat emergency response\" OR \"heat early warning\" OR \"weather forecast intervention\" OR \"temperature forecast\" OR \"thermal warning\" OR \"public health alert\") AND (\"cooling center\" OR \"cooling centre\" OR \"heat adaptation\" OR \"urban heat\" OR \"vulnerable population\" OR \"extreme heat\" OR \"high temperature\" OR \"heat exposure\" OR \"ambient temperature\" OR \"heatwave\" OR \"heat wave\") AND (\"excess mortality\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"emergency department\" OR \"hospitalization\" OR \"heat stroke\" OR \"heatstroke\" OR \"morbidity\" OR \"mortality\" OR \"premature death\" OR \"cause of death\") AND (\"difference-in-differences\" OR \"difference in differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"instrumental variable\" OR \"causal inference\" OR \"policy evaluation\" OR \"impact evaluation\" OR \"program evaluation\" OR \"counterfactual\" OR \"synthetic control\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 312,
+  "meta_count": 312,
+  "calls": 5
+}

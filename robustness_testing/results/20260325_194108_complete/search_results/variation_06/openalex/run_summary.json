@@ -1,0 +1,8 @@
+{
+  "query": "( \"heat alert\" OR \"heat advisory\" OR \"extreme heat warning\" OR \"heat warning system\" OR \"heat early warning\" OR \"weather-based public health response\" ) AND ( \"heat action plan\" OR \"cooling center\" OR \"cooling intervention\" OR \"heat resilience\" OR \"urban heat governance\" OR \"climate-health policy\" OR \"public health preparedness\" ) AND ( \"excess mortality\" OR \"heat-related mortality\" OR \"mortality attribution\" OR \"premature death\" OR \"deaths averted\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" ) AND ( \"population vulnerability\" OR \"vulnerable population\" OR \"heat vulnerability\" OR \"high-risk population\" OR \"socioeconomic vulnerability\" )",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 189,
+  "meta_count": 189,
+  "calls": 3
+}

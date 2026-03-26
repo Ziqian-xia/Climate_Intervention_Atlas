@@ -1,0 +1,8 @@
+{
+  "query": "( \"heat warning\" OR \"heat alert\" OR \"extreme heat\" OR \"heatwave\" OR \"heat wave\" OR \"thermal stress\" OR \"heat stress\" OR \"urban heat island\" OR \"high temperature\" ) AND ( \"syndromic surveillance\" OR \"excess mortality\" OR \"premature death\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat-related illness\" OR \"heat-related death\" OR \"cardiovascular hospitalization\" OR \"respiratory emergency\" OR \"public health surveillance\" OR \"hospital admission\" OR \"emergency department visit\" ) AND ( \"population vulnerability\" OR \"vulnerable population\" OR \"adaptive capacity\" OR \"climate adaptation\" OR \"dose-response\" OR \"attribution analysis\" OR \"intervention effectiveness\" OR \"multi-city study\" OR \"heat action plan\" OR \"socioeconomic determinant\" ) AND ( \"causal pathway\" OR \"effect modification\" OR \"counterfactual\" OR \"propensity score\" OR \"observational study\" OR \"epidemiological study\" OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"natural experiment\" )",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 3267,
+  "meta_count": 3267,
+  "calls": 34
+}

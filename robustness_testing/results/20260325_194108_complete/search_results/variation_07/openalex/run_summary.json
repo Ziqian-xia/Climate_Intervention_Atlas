@@ -1,0 +1,8 @@
+{
+  "query": "(\"heat action plan\" OR \"heat health action plan\" OR \"heat early warning\" OR \"forecast-triggered intervention\" OR \"weather-based public health\" OR \"heat alert system\" OR \"heatwave warning\") AND (\"excess mortality\" OR \"attributable fraction\" OR \"attributable mortality\" OR \"preventable death\" OR \"counterfactual\" OR \"temperature-mortality\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"mortality displacement\" OR \"premature death\") AND (\"heatwave\" OR \"heat wave\" OR \"extreme heat\" OR \"thermophysiological\" OR \"urban heat\" OR \"biometeorology\" OR \"heat stress\") AND (\"policy evaluation\" OR \"climate adaptation\" OR \"vulnerability mapping\" OR \"community resilience\" OR \"social determinants\" OR \"public health preparedness\" OR \"heat governance\" OR \"acclimatization\" OR \"adaptive capacity\") AND (\"cardiovascular disease\" OR \"cardiovascular mortality\" OR \"respiratory disease\" OR \"respiratory mortality\" OR \"emergency department\" OR \"syndromic surveillance\" OR \"dose-response\" OR \"threshold temperature\" OR \"heat stroke\" OR \"hyperthermia\") AND (\"quasi-experimental\" OR \"interrupted time series\" OR \"difference-in-differences\" OR \"before-after\" OR \"natural experiment\" OR \"impact evaluation\" OR \"counterfactual analysis\" OR \"regression discontinuity\" OR \"synthetic control\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 59,
+  "meta_count": 59,
+  "calls": 2
+}

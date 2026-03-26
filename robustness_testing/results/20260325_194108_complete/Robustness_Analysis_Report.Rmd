@@ -1,0 +1,781 @@
+---
+title: "Query Generation Robustness Analysis Report"
+subtitle: "Systematic Evaluation of LLM-Based Query Variation Stability"
+author: "Auto-SLR Research Team"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+    theme: cosmo
+    highlight: tango
+    code_folding: hide
+    number_sections: true
+    fig_width: 12
+    fig_height: 7
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = 'center',
+  dpi = 300
+)
+
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+library(jsonlite)
+library(gridExtra)
+library(scales)
+
+# Set theme
+theme_set(theme_minimal() + theme(
+  plot.title = element_text(size = 14, face = "bold", hjust = 0.5),
+  plot.subtitle = element_text(size = 11, hjust = 0.5),
+  axis.title = element_text(size = 11, face = "bold"),
+  legend.position = "right"
+))
+```
+
+# Executive Summary {.unnumbered}
+
+This report presents the findings from a comprehensive robustness test of our LLM-based query generation system. We generated 20 query variations from a single research question to evaluate the stability and sensitivity of the 4-agent pipeline (Pulse → Formulator → Sentinel → Refiner).
+
+## Key Findings {.unnumbered}
+
+::: {.alert .alert-danger}
+**Critical Issue: High Instability Detected**
+
+- **Coefficient of Variation: 378.6%** (Extremely high)
+- **Result Range: 9 to 87,884 papers** (9,765:1 ratio)
+- **One defective query** (Variation 2) retrieved 85% of all results due to missing domain constraints
+:::
+
+::: {.alert .alert-success}
+**Recommended Action**
+
+Use **Variation 1** (219 papers) as the primary query for Phase 2 metadata search execution. This variation demonstrates balanced coverage of all three mandatory concepts: interventions, health outcomes, and study designs.
+:::
+
+---
+
+# Research Question
+
+The following research prompt was used to generate all 20 query variations:
+
+::: {.card .border-primary .mb-3}
+<div class="card-header bg-primary text-white">
+**Improved Research Prompt**
+</div>
+<div class="card-body">
+
+I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+**INTERVENTION SCOPE:**
+
+- Heat warning systems
+- Heat-health action plans
+- Cooling center programs triggered by heat forecasts
+- Public health advisories based on weather predictions
+- Other interventions activated by temperature forecasts
+
+**STUDY DESIGN REQUIREMENTS:**
+
+I specifically want studies with rigorous causal research designs that can isolate the impact of these interventions, including:
+
+- Randomized controlled trials (RCTs)
+- Quasi-experimental designs (difference-in-differences, regression discontinuity, interrupted time series)
+- Natural experiments
+- Instrumental variable approaches
+
+**OUTCOMES OF INTEREST:**
+
+- Temperature-related mortality
+- Heat-related morbidity (hospitalizations, emergency department visits)
+- Cardiovascular and respiratory health impacts during heat events
+
+**SCOPE:**
+
+- Papers from any country or population
+- Any time period
+- Both observational causal designs and experimental studies
+
+</div>
+:::
+
+---
+
+# Test Configuration
+
+```{r load-data}
+# Load search results data
+results_list <- list()
+search_results_dir <- "search_results"
+
+for (var_dir in list.dirs(search_results_dir, recursive = FALSE)) {
+  var_num <- as.integer(sub(".*variation_(\\d+)", "\\1", basename(var_dir)))
+  summary_file <- file.path(var_dir, "openalex", "run_summary.json")
+
+  if (file.exists(summary_file)) {
+    data <- fromJSON(summary_file)
+    results_list[[length(results_list) + 1]] <- data.frame(
+      variation = var_num,
+      papers = data$meta_count,
+      results_count = data$results_count,
+      status = data$status
+    )
+  }
+}
+
+results_df <- bind_rows(results_list) %>% arrange(variation)
+
+# Calculate statistics
+stats <- results_df %>%
+  summarise(
+    n = n(),
+    min = min(papers),
+    max = max(papers),
+    mean = mean(papers),
+    median = median(papers),
+    sd = sd(papers),
+    cv = (sd / mean) * 100,
+    range = max - min,
+    ratio = max / min
+  )
+```
+
+## Methodology
+
+- **Number of Variations**: 20
+- **Database**: OpenAlex only (for efficiency and comprehensive coverage)
+- **Query Generation**: AWS Bedrock (Claude Sonnet 4.6)
+- **Max Results**: Unlimited (downloaded all matching papers per variation)
+- **Metadata Saved**: DOI + OpenAlex ID only (minimal footprint)
+- **Execution Time**: ~50 minutes total
+
+## Pipeline Architecture
+
+```
+Research Question → Pulse Agent (Keywords) → Formulator Agent (Boolean Queries)
+                   ↓
+    Refiner Agent (Final Polish) ← Sentinel Agent (Quality Check)
+                   ↓
+    OpenAlex Search → Sensitivity Analysis
+```
+
+Each variation uses a different `variation_seed` parameter to introduce controlled randomness in keyword selection and query structure.
+
+---
+
+# Results Overview
+
+## Statistical Summary
+
+```{r stats-table}
+stats_table <- data.frame(
+  Metric = c("Coefficient of Variation", "Minimum Results", "Maximum Results",
+             "Mean", "Median", "Standard Deviation", "Range", "Ratio (Max/Min)"),
+  Value = c(
+    paste0(round(stats$cv, 1), "%"),
+    paste0(stats$min, " papers (Variation 8)"),
+    paste0(format(stats$max, big.mark = ","), " papers (Variation 2)"),
+    paste0(format(round(stats$mean), big.mark = ","), " papers"),
+    paste0(format(stats$median, big.mark = ","), " papers"),
+    paste0(format(round(stats$sd), big.mark = ","), " papers"),
+    paste0(format(stats$range, big.mark = ","), " papers"),
+    paste0(format(round(stats$ratio), big.mark = ","), ":1")
+  )
+)
+
+kable(stats_table, col.names = c("Metric", "Value"),
+      caption = "Statistical Summary of Query Robustness Test") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  row_spec(1, bold = TRUE, background = "#FFC7CE")  # Highlight CV
+```
+
+## Result Distribution {.tabset}
+
+### Linear Scale
+
+```{r fig1-distribution, fig.width=14, fig.height=7}
+results_df <- results_df %>%
+  mutate(
+    category = case_when(
+      papers < 100 ~ "Too Narrow (<100)",
+      papers <= 1500 ~ "Good (100-1,500)",
+      papers <= 5000 ~ "Acceptable (1,500-5,000)",
+      TRUE ~ "Too Broad (>5,000)"
+    ),
+    category = factor(category, levels = c("Too Narrow (<100)", "Good (100-1,500)",
+                                            "Acceptable (1,500-5,000)", "Too Broad (>5,000)")),
+    recommended = ifelse(variation == 1, "Variation 1 (Recommended)", "Other")
+  )
+
+color_map <- c(
+  "Too Narrow (<100)" = "#e74c3c",
+  "Good (100-1,500)" = "#27ae60",
+  "Acceptable (1,500-5,000)" = "#f39c12",
+  "Too Broad (>5,000)" = "#c0392b"
+)
+
+ggplot(results_df, aes(x = factor(variation), y = papers, fill = category)) +
+  geom_bar(stat = "identity", color = "black", size = 1) +
+  geom_bar(data = filter(results_df, variation == 1),
+           aes(x = factor(variation), y = papers),
+           stat = "identity", fill = "#27ae60", color = "#2980b9", size = 2) +
+  geom_text(aes(label = format(papers, big.mark = ",")),
+            vjust = -0.5, size = 3, fontface = "bold") +
+  scale_fill_manual(values = color_map, name = "Quality Category") +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.1))) +
+  labs(
+    title = "Query Robustness Test: Result Distribution Across 20 Variations",
+    x = "Variation Number",
+    y = "Number of Papers Retrieved"
+  ) +
+  theme(axis.text.x = element_text(angle = 0))
+```
+
+### Log Scale
+
+```{r fig2-distribution-log, fig.width=14, fig.height=7}
+ggplot(results_df, aes(x = factor(variation), y = papers, fill = category)) +
+  geom_bar(stat = "identity", color = "black", size = 1) +
+  geom_bar(data = filter(results_df, variation == 1),
+           aes(x = factor(variation), y = papers),
+           stat = "identity", fill = "#27ae60", color = "#2980b9", size = 2) +
+  scale_fill_manual(values = color_map, name = "Quality Category") +
+  scale_y_log10(labels = comma, breaks = c(10, 100, 1000, 10000, 100000)) +
+  annotate("segment", x = 2, xend = 2, y = 87884, yend = 70000,
+           arrow = arrow(length = unit(0.3, "cm")), color = "red", size = 1) +
+  annotate("label", x = 5, y = 50000,
+           label = "Var 2: 87,884 papers\n(DEFECT: Missing health terms)",
+           fill = "yellow", color = "red", fontface = "bold", size = 3.5) +
+  annotate("segment", x = 1, xend = 1, y = 219, yend = 150,
+           arrow = arrow(length = unit(0.3, "cm")), color = "#2980b9", size = 1) +
+  annotate("label", x = 4, y = 150,
+           label = "Var 1: 219 papers\n(RECOMMENDED)",
+           fill = "lightblue", color = "#2980b9", fontface = "bold", size = 3.5) +
+  labs(
+    title = "Query Robustness Test: Result Distribution (Log Scale)",
+    x = "Variation Number",
+    y = "Number of Papers (Log Scale)"
+  ) +
+  theme(axis.text.x = element_text(angle = 0))
+```
+
+### Distribution Details
+
+```{r distribution-table}
+results_summary <- results_df %>%
+  arrange(papers) %>%
+  mutate(
+    Status = case_when(
+      papers < 100 ~ "❌ TOO NARROW",
+      papers <= 1500 ~ "✅ EXCELLENT/GOOD",
+      papers <= 5000 ~ "⚠️ ACCEPTABLE",
+      TRUE ~ "❌ TOO BROAD"
+    )
+  ) %>%
+  select(Variation = variation, Papers = papers, Status)
+
+kable(results_summary, format.args = list(big.mark = ","),
+      caption = "Result Distribution by Variation (Sorted by Paper Count)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  row_spec(which(results_summary$Variation == 1), bold = TRUE, background = "#d4edda") %>%
+  row_spec(which(results_summary$Variation == 2), bold = TRUE, background = "#f8d7da")
+```
+
+---
+
+# Statistical Analysis {.tabset}
+
+## Multi-Panel Summary
+
+```{r fig3-stats, fig.width=14, fig.height=10}
+# Prepare plots
+p1 <- ggplot(results_df, aes(x = "", y = papers)) +
+  geom_boxplot(fill = "lightblue", alpha = 0.7) +
+  stat_summary(fun = mean, geom = "point", shape = 23, size = 3, fill = "red") +
+  scale_y_continuous(labels = comma) +
+  labs(title = "A. Box Plot (Showing Outliers)",
+       x = "", y = "Number of Papers") +
+  annotate("text", x = 1.3, y = stats$max * 0.7,
+           label = sprintf("Min: %s\nQ1: %s\nMedian: %s\nQ3: %s\nMax: %s",
+                          format(stats$min, big.mark = ","),
+                          format(round(quantile(results_df$papers, 0.25)), big.mark = ","),
+                          format(stats$median, big.mark = ","),
+                          format(round(quantile(results_df$papers, 0.75)), big.mark = ","),
+                          format(stats$max, big.mark = ",")),
+           hjust = 0, size = 3)
+
+p2 <- ggplot(results_df, aes(x = papers)) +
+  geom_histogram(bins = 15, fill = "steelblue", color = "black", alpha = 0.7) +
+  geom_vline(xintercept = stats$mean, color = "red", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = stats$median, color = "green", linetype = "dashed", size = 1) +
+  scale_x_continuous(labels = comma) +
+  labs(title = "B. Distribution Histogram",
+       x = "Number of Papers", y = "Frequency") +
+  annotate("text", x = stats$mean, y = Inf,
+           label = paste("Mean:", format(round(stats$mean), big.mark = ",")),
+           vjust = 2, color = "red", fontface = "bold", size = 3) +
+  annotate("text", x = stats$median, y = Inf,
+           label = paste("Median:", format(stats$median, big.mark = ",")),
+           vjust = 4, color = "green", fontface = "bold", size = 3)
+
+p3 <- results_df %>%
+  count(category) %>%
+  ggplot(aes(x = "", y = n, fill = category)) +
+  geom_bar(stat = "identity", width = 1, color = "black") +
+  coord_polar("y") +
+  scale_fill_manual(values = color_map) +
+  geom_text(aes(label = paste0(n, "\n(", round(n/20*100), "%)")),
+            position = position_stack(vjust = 0.5), fontface = "bold") +
+  labs(title = "D. Quality Distribution", fill = "Category") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+# Combine plots
+grid.arrange(p1, p2, p3, ncol = 2,
+             top = "Statistical Summary: Multiple Perspectives")
+```
+
+## Detailed Statistics
+
+```{r detailed-stats-table}
+detailed_stats <- data.frame(
+  Metric = c("Number of Variations", "Minimum", "Maximum", "Mean", "Median",
+             "Standard Deviation", "Coefficient of Variation", "Range", "Ratio (Max/Min)",
+             "Q1 (25th percentile)", "Q3 (75th percentile)", "IQR"),
+  Value = c(
+    "20",
+    paste0(stats$min, " papers"),
+    paste0(format(stats$max, big.mark = ","), " papers"),
+    paste0(format(round(stats$mean), big.mark = ","), " papers"),
+    paste0(format(stats$median, big.mark = ","), " papers"),
+    paste0(format(round(stats$sd), big.mark = ","), " papers"),
+    paste0(round(stats$cv, 1), "%"),
+    paste0(format(stats$range, big.mark = ","), " papers"),
+    paste0(format(round(stats$ratio), big.mark = ","), ":1"),
+    paste0(format(round(quantile(results_df$papers, 0.25)), big.mark = ","), " papers"),
+    paste0(format(round(quantile(results_df$papers, 0.75)), big.mark = ","), " papers"),
+    paste0(format(round(IQR(results_df$papers)), big.mark = ","), " papers")
+  )
+)
+
+kable(detailed_stats, col.names = c("Metric", "Value"),
+      caption = "Comprehensive Statistical Summary") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+  row_spec(7, bold = TRUE, background = "#FFC7CE")  # Highlight CV
+```
+
+---
+
+# Critical Issue Analysis
+
+## Variation 2 Defect: The 87,884 Paper Problem
+
+### Problem Description
+
+Variation 2 retrieved **87,884 papers** (85% of all retrieved papers, 97.5% above the mean), creating a massive outlier that skews all statistics.
+
+### Comparison: Variation 1 vs Variation 2
+
+```{r fig5-comparison, fig.width=12, fig.height=6}
+comparison_df <- results_df %>%
+  filter(variation %in% c(1, 2)) %>%
+  mutate(
+    label = case_when(
+      variation == 1 ~ "Variation 1\n(RECOMMENDED)",
+      variation == 2 ~ "Variation 2\n(DEFECTIVE)"
+    ),
+    color = ifelse(variation == 1, "#27ae60", "#c0392b")
+  )
+
+ggplot(comparison_df, aes(x = label, y = papers, fill = color)) +
+  geom_bar(stat = "identity", color = "black", size = 1.5, width = 0.6) +
+  geom_text(aes(label = format(papers, big.mark = ",")),
+            vjust = -0.5, size = 6, fontface = "bold") +
+  scale_fill_identity() +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.1))) +
+  annotate("segment", x = 1, xend = 1, y = 219, yend = 15000,
+           arrow = arrow(length = unit(0.4, "cm")), color = "green", size = 1.2) +
+  annotate("label", x = 0.7, y = 20000,
+           label = "Balanced query:\n✓ Interventions\n✓ Outcomes\n✓ Methods",
+           fill = "lightgreen", color = "darkgreen", fontface = "bold", size = 4) +
+  annotate("segment", x = 2, xend = 2, y = 87884, yend = 60000,
+           arrow = arrow(length = unit(0.4, "cm")), color = "red", size = 1.2) +
+  annotate("label", x = 1.7, y = 55000,
+           label = "Missing constraints:\n✗ No interventions\n✗ No outcomes\n✓ Only methods",
+           fill = "#ffcccc", color = "red", fontface = "bold", size = 4) +
+  labs(
+    title = "Critical Comparison: Variation 1 vs Variation 2",
+    subtitle = sprintf("401× Difference (%.1f%% vs %.1f%% of total)",
+                       219/sum(results_df$papers)*100,
+                       87884/sum(results_df$papers)*100),
+    x = NULL,
+    y = "Number of Papers Retrieved"
+  ) +
+  theme(legend.position = "none")
+```
+
+### Root Cause
+
+::: {.alert .alert-warning}
+**Missing Domain Constraints**
+
+The query for Variation 2 **completely lacks health intervention terms**:
+
+**What it includes:**
+- ✅ Methodology terms: "causal inference", "quasi-experimental", "natural experiment"
+- ✅ Statistical methods: "difference-in-differences", "regression discontinuity"
+- ✅ Evaluation terms: "policy evaluation", "program evaluation"
+
+**What it's missing:**
+- ❌ Heat warning system
+- ❌ Heat mortality
+- ❌ Cooling center
+- ❌ Temperature-health
+- ❌ Heat-related morbidity
+- ❌ ANY health/climate intervention terms
+
+**Consequence:** Retrieved **all causal inference papers** across all disciplines (economics, education, environmental science, etc.) instead of just heat-health interventions.
+:::
+
+---
+
+# Sensitivity Analysis
+
+```{r load-impact-data}
+impact_df <- read.csv("analysis/openalex/impact_rankings.csv")
+
+top_expanding <- impact_df %>%
+  filter(impact_type == "EXPANDS") %>%
+  arrange(desc(delta)) %>%
+  head(10)
+
+top_restricting <- impact_df %>%
+  filter(impact_type == "RESTRICTS") %>%
+  arrange(delta) %>%
+  head(10)
+```
+
+## Term Impact Rankings {.tabset}
+
+### Expanding Terms
+
+```{r fig4-expanding, fig.width=14, fig.height=7}
+top_expanding %>%
+  mutate(term = reorder(term, delta)) %>%
+  ggplot(aes(x = term, y = delta)) +
+  geom_bar(stat = "identity", fill = "#e74c3c", color = "black", size = 1) +
+  geom_text(aes(label = sprintf("+%s\n(+%.0f%%)",
+                                format(delta, big.mark = ","),
+                                percent_change)),
+            hjust = -0.1, size = 3, fontface = "bold") +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +
+  coord_flip() +
+  labs(
+    title = "Top 10 EXPANDING Terms",
+    subtitle = "Dramatically Increase Results (Should Be Used WITH Domain Constraints)",
+    x = NULL,
+    y = "Increase in Papers"
+  )
+```
+
+### Restricting Terms
+
+```{r fig4-restricting, fig.width=14, fig.height=7}
+top_restricting %>%
+  mutate(term = reorder(term, abs(delta))) %>%
+  ggplot(aes(x = term, y = abs(delta))) +
+  geom_bar(stat = "identity", fill = "#27ae60", color = "black", size = 1) +
+  geom_text(aes(label = sprintf("%s\n(%.1f%%)",
+                                format(delta, big.mark = ","),
+                                percent_change)),
+            hjust = -0.1, size = 3, fontface = "bold") +
+  scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.15))) +
+  coord_flip() +
+  labs(
+    title = "Top 10 RESTRICTING Terms",
+    subtitle = "Effectively Narrow Results to Target Domain",
+    x = NULL,
+    y = "Decrease in Papers"
+  )
+```
+
+### Impact Summary
+
+```{r impact-tables}
+# Expanding terms table
+kable(top_expanding %>% select(Term = term, Impact = delta, `% Change` = percent_change),
+      format.args = list(big.mark = ","),
+      caption = "Top 10 Terms That EXPAND Results") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+  row_spec(0, background = "#e74c3c", color = "white", bold = TRUE)
+
+# Restricting terms table
+kable(top_restricting %>% select(Term = term, Impact = delta, `% Change` = percent_change),
+      format.args = list(big.mark = ","),
+      caption = "Top 10 Terms That RESTRICT Results") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+  row_spec(0, background = "#27ae60", color = "white", bold = TRUE)
+```
+
+---
+
+# Root Cause Analysis
+
+## Why Did This Happen?
+
+### 1. LLM Keyword Expansion Instability
+
+The **Pulse Agent** (keyword expansion) demonstrates high variability:
+
+- ✅ **Strengths**: Generates diverse synonyms
+- ❌ **Weakness**: Sometimes focuses on one concept while neglecting others
+- ❌ **Critical Flaw**: No enforcement for balanced coverage
+
+### 2. Sentinel Agent Quality Control Gap
+
+The **Sentinel Agent** failed to detect missing concepts:
+
+- ✅ **What it checks**: Boolean syntax, database formatting
+- ❌ **What it missed**: Conceptual completeness
+- ❌ **Gap**: No validation of mandatory concept coverage
+
+### 3. Refiner Agent Correction Failure
+
+The **Refiner Agent** did not add missing terms:
+
+- ✅ **What it does**: Resolve flagged syntax issues
+- ❌ **What it should have done**: Independent concept audit
+- ❌ **Limitation**: Only fixes explicitly flagged issues
+
+---
+
+# Recommendations
+
+## Immediate Actions (This Week)
+
+::: {.alert .alert-success}
+### 1. Use Variation 1 for Phase 2 Execution
+
+**Query to use:** Variation 1
+**Expected recall:** ~219 papers from OpenAlex
+**Rationale:** Balanced coverage, reasonable result count
+
+**Next step:** Extract OpenAlex query from `queries/variation_01_queries.json` → Phase 2 (metadata search) → Phase 3 (full-text retrieval) → Phase 4 (Claude screening)
+:::
+
+### 2. Alternative: Ensemble Strategy
+
+Combine multiple high-quality variations:
+
+- **Variations:** 1, 4, 6, 9, 16, 18, 20
+- **Expected unique papers:** ~1,200-1,500 (after deduplication)
+- **Method:** Union all DOIs, deduplicate
+
+## Medium-term Improvements (1-2 Weeks)
+
+### 3. Restructure the Research Prompt
+
+Add **MANDATORY CONCEPTS** section:
+
+```
+MANDATORY CONCEPTS (ALL must be included in EVERY query):
+
+1. INTERVENTION TERMS (minimum 3 required):
+   - Heat warning systems, heat-health action plans, cooling centers, etc.
+
+2. OUTCOME TERMS (minimum 3 required):
+   - Temperature-related mortality, heat-related morbidity, etc.
+
+3. STUDY DESIGN TERMS (minimum 2 required):
+   - RCT, quasi-experimental, natural experiments, etc.
+```
+
+### 4. Enhance Sentinel Agent Validation
+
+Implement concept coverage audit that flags missing concept groups as CRITICAL ERROR.
+
+### 5. Re-run Test with Improved Prompt
+
+**Goal:** Reduce CV from 378.6% to **< 50%**
+
+## Long-term Strategy (1+ Month)
+
+### 6. Hybrid Approach
+
+- **Step 1:** Define minimum required term set (5-7 core terms per concept)
+- **Step 2:** Pulse expands with synonyms
+- **Step 3:** Sentinel verifies core terms 100% present
+- **Step 4:** Refiner optimizes while preserving core terms
+
+---
+
+# Conclusions
+
+## Summary of Findings
+
+1. **High Instability Confirmed**: CV = 378.6% - system not production-ready
+2. **Root Cause Identified**: Unstable keyword expansion + missing quality controls
+3. **One Critical Defect**: Variation 2 demonstrates catastrophic failure mode
+4. **Term Sensitivity Quantified**: Generic terms expand, specific terms restrict
+5. **Solution Exists**: Mandatory concept constraints + enhanced validation
+
+## Implications
+
+### Short-term Path Forward
+
+- **DO use:** Variation 1 (219 papers)
+- **DO NOT use:** Variation 2 (87,884 papers)
+- **Confidence:** Variation 1 is well-constructed and representative
+
+### Medium-term System Improvement
+
+- **Priority:** Implement mandatory concept coverage
+- **Timeline:** 1-2 weeks for prompt + Sentinel enhancement
+- **Validation:** Re-run test, target CV < 50%
+
+---
+
+# Appendices
+
+## Appendix A: Variation 1 Query (Recommended)
+
+```{r variation-1-query}
+var1_file <- "queries/variation_01_queries.json"
+if (file.exists(var1_file)) {
+  var1 <- fromJSON(var1_file)
+  cat("### OpenAlex Query:\n\n")
+  cat("```\n")
+  cat(var1$refiner_queries$openalex_query)
+  cat("\n```\n\n")
+
+  cat("### Concept Coverage:\n\n")
+  cat(sprintf("- ✅ **Interventions**: %d terms\n",
+              length(grep("heat|cooling|warning|action", unlist(strsplit(var1$pulse_keywords, " "))))))
+  cat(sprintf("- ✅ **Outcomes**: %d terms\n",
+              length(grep("mortality|morbidity|hospital|death|cardiovascular", unlist(strsplit(var1$pulse_keywords, " "))))))
+  cat(sprintf("- ✅ **Methods**: %d terms\n",
+              length(grep("quasi|experimental|causal|RCT|difference", unlist(strsplit(var1$pulse_keywords, " "))))))
+}
+```
+
+## Appendix B: All 20 Variations Summary
+
+```{r all-variations-table}
+# Create summary table
+variation_summary <- results_df %>%
+  select(Variation = variation, `Paper Count` = papers, Category = category) %>%
+  mutate(
+    Assessment = case_when(
+      `Paper Count` < 100 ~ "Too Narrow",
+      `Paper Count` <= 1500 ~ "Excellent/Good",
+      `Paper Count` <= 5000 ~ "Acceptable",
+      TRUE ~ "Too Broad/Defective"
+    )
+  )
+
+kable(variation_summary, format.args = list(big.mark = ","),
+      caption = "Summary of All 20 Query Variations") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  row_spec(which(variation_summary$Variation == 1),
+           bold = TRUE, background = "#d4edda") %>%
+  row_spec(which(variation_summary$Variation == 2),
+           bold = TRUE, background = "#f8d7da")
+```
+
+## Appendix C: Technical Details
+
+**Test Environment:**
+
+- Platform: macOS (Darwin 25.3.0)
+- Python: 3.11+ with virtual environment
+- LLM Provider: AWS Bedrock (us-east-1)
+- Model: Claude Sonnet 4.6
+- Database: OpenAlex (API v1)
+
+**Data Files:**
+
+All raw data available in:
+```
+robustness_testing/results/20260325_194108_complete/
+├── queries/                  # 20 query JSON files
+├── search_results/           # 20 search result directories
+└── analysis/openalex/        # Sensitivity analysis outputs
+```
+
+**Reproducibility:**
+
+```bash
+cd robustness_testing
+python test_robustness_20runs.py \
+  --num-variations 20 \
+  --databases openalex \
+  --llm-provider bedrock \
+  --max-results 999999
+```
+
+---
+
+::: {.alert .alert-info}
+**Report Generated:** `r Sys.Date()`
+**Test ID:** 20260325_194108_complete
+**Total Variations:** 20
+**Database:** OpenAlex
+**Analysis Tool:** R + ggplot2 + knitr
+:::
+
+<style>
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+.alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeaa7;
+}
+.alert-info {
+  color: #004085;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+.card {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+}
+.card-header {
+  padding: .75rem 1.25rem;
+  margin-bottom: 0;
+  background-color: rgba(0,0,0,.03);
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-body {
+  padding: 1.25rem;
+}
+</style>

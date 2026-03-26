@@ -1,0 +1,8 @@
+{
+  "query": "(\"heat early warning system\" OR \"heat warning system\" OR \"heat action plan\" OR \"heat advisory\" OR \"heat alert system\" OR \"extreme heat alert\" OR \"heat health warning\" OR \"heat health warning system\" OR \"meteorological forecast intervention\" OR \"forecast-activated cooling\" OR \"climate-informed health policy\") AND (\"excess mortality\" OR \"heat-attributable death\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"cardiovascular morbidity\" OR \"respiratory hospitalization\" OR \"emergency department visits\" OR \"all-cause mortality\" OR \"premature mortality\" OR \"hospital admissions\" OR \"heat-related illness\") AND (\"heatwave\" OR \"heat wave\" OR \"extreme heat\" OR \"temperature threshold\" OR \"urban heat island\" OR \"heat event\" OR \"high temperature\") AND (\"policy evaluation\" OR \"natural experiment\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"regression discontinuity\" OR \"causal inference\" OR \"quasi-experimental\" OR \"instrumental variable\" OR \"impact evaluation\" OR \"program evaluation\" OR \"intervention effectiveness\" OR \"syndromic surveillance\" OR \"multi-city\")",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 385,
+  "meta_count": 385,
+  "calls": 5
+}

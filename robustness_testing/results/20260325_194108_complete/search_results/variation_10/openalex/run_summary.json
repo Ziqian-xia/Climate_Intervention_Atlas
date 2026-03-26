@@ -1,0 +1,8 @@
+{
+  "query": "( \"forecast-based intervention\" OR \"weather-triggered action\" OR \"anticipatory action\" OR \"early warning response\" OR \"heat early warning\" OR \"meteorological alert\" OR \"probabilistic forecast\" OR \"threshold-based intervention\" OR \"pre-emptive public health\" OR \"climate-informed health policy\" OR \"heat action plan\" OR \"heat health warning\" OR \"extreme heat alert\" OR \"heat warning system\" OR \"heat wave alert\" OR \"temperature warning\" OR \"weather warning\" ) AND ( \"temperature-mortality\" OR \"heat vulnerability\" OR \"population heat adaptation\" OR \"thermal exposure\" OR \"ambient temperature\" OR \"heat-related mortality\" OR \"excess mortality\" OR \"cardiovascular\" OR \"respiratory\" OR \"emergency department\" OR \"hospital admission\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat illness\" OR \"morbidity\" ) AND ( \"causal identification\" OR \"counterfactual\" OR \"treatment effect\" OR \"policy evaluation\" OR \"quasi-experimental\" OR \"stepped-wedge\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"impact evaluation\" OR \"regression discontinuity\" OR \"natural experiment\" OR \"instrumental variable\" OR \"propensity score\" OR \"synthetic control\" OR \"randomized\" )",
+  "database": "openalex",
+  "status": "success",
+  "results_count": 2475,
+  "meta_count": 2475,
+  "calls": 26
+}
