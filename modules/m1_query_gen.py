@@ -172,11 +172,21 @@ class QueryGenerationTeam:
 
         elif agent_name == "Sentinel":
             return json.dumps({
-                "elsevier_query": 'TITLE-ABS-KEY(("climate change" OR "global warming" OR "extreme weather") AND ("mental health" OR "psychological distress" OR "anxiety" OR "depression") AND (adapt* OR resilien* OR coping))',
-                "pubmed_query": '(("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract]) AND (adapt*[Title/Abstract] OR resilien*[Title/Abstract]))',
-                "openalex_query": '"climate change" mental health adaptation resilience',
-                "validation_notes": "✅ Syntax validated. ✅ Parentheses balanced. ✅ Field restrictions applied. ✅ Wildcard operators properly used. Queries are ready for execution.",
+                "elsevier_query": 'TITLE-ABS-KEY((("general population" OR "vulnerable groups" OR "urban residents") AND ("climate change" OR "global warming" OR "extreme weather" OR "heat wave*") AND ("mental health" OR "psychological distress" OR "anxiety" OR "depression" OR "PTSD") AND (adapt* OR resilien* OR intervention)))',
+                "pubmed_query": '((("general population"[Title/Abstract] OR "vulnerable groups"[Title/Abstract] OR "urban residents"[Title/Abstract]) AND ("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract] OR "heat wave"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract] OR "depression"[Title/Abstract]) AND (adapt*[Title/Abstract] OR resilien*[Title/Abstract])))',
+                "openalex_query": '"general population" OR "vulnerable groups" AND "climate change" OR "extreme weather" AND "mental health" OR "psychological distress" AND adaptation OR resilience',
+                "validation_notes": "✅ PICO structure validated: (P) AND (I) AND (O). ✅ Syntax validated. ✅ Parentheses balanced. ✅ Field restrictions applied. ✅ Wildcard operators properly used. Queries are ready for execution.",
                 "warnings": []
+            }, indent=2)
+
+        elif agent_name == "Refiner":
+            # Refiner returns same queries as Sentinel with refinement notes
+            return json.dumps({
+                "elsevier_query": 'TITLE-ABS-KEY((("general population" OR "vulnerable groups" OR "urban residents") AND ("climate change" OR "global warming" OR "extreme weather" OR "heat wave*") AND ("mental health" OR "psychological distress" OR "anxiety" OR "depression" OR "PTSD") AND (adapt* OR resilien* OR intervention)))',
+                "pubmed_query": '((("general population"[Title/Abstract] OR "vulnerable groups"[Title/Abstract] OR "urban residents"[Title/Abstract]) AND ("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract] OR "heat wave"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract] OR "depression"[Title/Abstract]) AND (adapt*[Title/Abstract] OR resilien*[Title/Abstract])))',
+                "openalex_query": '"general population" OR "vulnerable groups" AND "climate change" OR "extreme weather" AND "mental health" OR "psychological distress" AND adaptation OR resilience',
+                "refinement_notes": "✅ Final polish applied. PICO structure maintained with optimal Boolean logic. All queries validated and ready for execution.",
+                "issues_resolved": []
             }, indent=2)
 
         return json.dumps({"error": "Unknown agent"})
