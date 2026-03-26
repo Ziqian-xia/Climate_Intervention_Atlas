@@ -1,0 +1,227 @@
+{
+  "total_variations": 25,
+  "baseline_count": 20,
+  "pico_count": 5,
+  "results_sorted_by_count": [
+    {
+      "variation": 8,
+      "type": "Baseline (No PICO)",
+      "papers": 9,
+      "query": "( \"heat-health early warning\" OR \"heat health early warning\" OR \"cold spell advisory\" OR \"biometeorological advisory\" OR \"forecast-based action\" OR \"anticipatory action\" OR \"weather-triggered public health\" OR \"weather alert\" OR \"meteorological alert\" ) AND ( \"temperature threshold\" OR \"apparent temperature\" OR \"humidex\" OR \"bioclimatic index\" OR \"heat index\" OR \"synoptic forecast\" OR \"UTCI\" OR \"Universal Thermal Climate Index\" ) AND ( \"excess mortality\" OR \"heat-related mortality\" OR \"cold-related mortality\" OR \"cardiorespiratory\" OR \"harvesting effect\" OR \"mortality displacement\" OR \"population attributable fraction\" ) AND ( \"causal inference\" OR \"causal effect\" OR \"causal model\" OR \"counterfactual\" OR \"regression discontinuity\" OR \"synthetic control\" OR \"quasi-experimental\" OR \"instrumental variable\" OR \"two-stage least squares\" OR \"natural experiment\" OR \"treatment effect\" OR \"difference-in-differences\" OR \"administrative threshold\" OR \"policy discontinuity\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 7,
+      "type": "Baseline (No PICO)",
+      "papers": 59,
+      "query": "(\"heat action plan\" OR \"heat health action plan\" OR \"heat early warning\" OR \"forecast-triggered intervention\" OR \"weather-based public health\" OR \"heat alert system\" OR \"heatwave warning\") AND (\"excess mortality\" OR \"attributable fraction\" OR \"attributable mortality\" OR \"preventable death\" OR \"counterfactual\" OR \"temperature-mortality\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"mortality displacement\" OR \"premature death\") AND (\"heatwave\" OR \"heat wave\" OR \"extreme heat\" OR \"thermophysiological\" OR \"urban heat\" OR \"biometeorology\" OR \"heat stress\") AND (\"policy evaluation\" OR \"climate adaptation\" OR \"vulnerability mapping\" OR \"community resilience\" OR \"social determinants\" OR \"public health preparedness\" OR \"heat governance\" OR \"acclimatization\" OR \"adaptive capacity\") AND (\"cardiovascular disease\" OR \"cardiovascular mortality\" OR \"respiratory disease\" OR \"respiratory mortality\" OR \"emergency department\" OR \"syndromic surveillance\" OR \"dose-response\" OR \"threshold temperature\" OR \"heat stroke\" OR \"hyperthermia\") AND (\"quasi-experimental\" OR \"interrupted time series\" OR \"difference-in-differences\" OR \"before-after\" OR \"natural experiment\" OR \"impact evaluation\" OR \"counterfactual analysis\" OR \"regression discontinuity\" OR \"synthetic control\")",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 20,
+      "type": "Baseline (No PICO)",
+      "papers": 145,
+      "query": "(\"heat warning system\" OR \"extreme heat alert\" OR \"heat health action plan\" OR \"heat action plan\" OR \"heat wave warning\" OR \"heatwave warning\" OR \"heat alert system\" OR \"heat advisory\" OR \"heat emergency response\" OR \"public health heat advisory\" OR \"weather forecast intervention\" OR \"temperature forecast advisory\") AND (\"cooling center\" OR \"cooling centre\" OR \"heat refuge\" OR \"heat wave preparedness\" OR \"heatwave preparedness\" OR \"heat mitigation\" OR \"heat stress prevention\" OR \"heat protection\" OR \"hot weather\") AND (\"heat-related mortality\" OR \"heat-related death\" OR \"temperature-mortality\" OR \"cardiovascular mortality\" OR \"respiratory morbidity\" OR \"emergency department visit\" OR \"heat hospitalization\" OR \"excess mortality\" OR \"heat-related illness\" OR \"heat stroke\" OR \"heat illness\") AND (\"regression discontinuity\" OR \"interrupted time series\" OR \"difference-in-differences\" OR \"difference in differences\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"instrumental variable\" OR \"causal inference\" OR \"policy effectiveness\" OR \"program evaluation\" OR \"impact evaluation\" OR \"counterfactual\" OR \"synthetic control\" OR \"propensity score\")",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 6,
+      "type": "Baseline (No PICO)",
+      "papers": 189,
+      "query": "( \"heat alert\" OR \"heat advisory\" OR \"extreme heat warning\" OR \"heat warning system\" OR \"heat early warning\" OR \"weather-based public health response\" ) AND ( \"heat action plan\" OR \"cooling center\" OR \"cooling intervention\" OR \"heat resilience\" OR \"urban heat governance\" OR \"climate-health policy\" OR \"public health preparedness\" ) AND ( \"excess mortality\" OR \"heat-related mortality\" OR \"mortality attribution\" OR \"premature death\" OR \"deaths averted\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" ) AND ( \"population vulnerability\" OR \"vulnerable population\" OR \"heat vulnerability\" OR \"high-risk population\" OR \"socioeconomic vulnerability\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 9,
+      "type": "Baseline (No PICO)",
+      "papers": 218,
+      "query": "( \"heat action plan\" OR \"heat health early warning\" OR \"heat early warning system\" OR \"weather-based health alert\" OR \"hot weather advisory\" OR \"biometeorological forecast\" OR \"meteorological early warning\" OR \"forecast-triggered intervention\" OR \"extreme heat response\" OR \"temperature forecast\" OR \"thermal stress prevention\" ) AND ( \"temperature-mortality\" OR \"heat-attributable death\" OR \"heat-attributable deaths\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"heat-related deaths\" OR \"cardiovascular heat stress\" OR \"respiratory morbidity\" OR \"hospitalisation\" OR \"hospitalization\" OR \"emergency department\" OR \"excess mortality\" OR \"heat stress\" ) AND ( \"causal identification\" OR \"policy discontinuity\" OR \"threshold-based\" OR \"dose-response\" OR \"natural experiment\" OR \"administrative boundary\" OR \"before-after\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"quasi-experimental\" OR \"intervention effect\" OR \"population-level intervention\" OR \"impact evaluation\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 1,
+      "type": "Baseline (No PICO)",
+      "papers": 219,
+      "query": "(\"heat warning system\" OR \"heat action plan\" OR \"heat-health action plan\" OR \"extreme heat alert\" OR \"heat emergency response\" OR \"heat advisory\" OR \"cooling center\" OR \"cooling centre\" OR \"heat wave early warning\" OR \"heatwave early warning\" OR \"weather-based intervention\" OR \"forecast-triggered intervention\") AND (\"heat-related mortality\" OR \"excess mortality\" OR \"temperature-mortality\" OR \"heat hospitalization\" OR \"cardiovascular mortality\" OR \"heat vulnerability\" OR \"heat-related morbidity\" OR \"heat-related death\" OR \"respiratory mortality\") AND (\"quasi-experimental\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"regression discontinuity\" OR \"natural experiment\" OR \"causal inference\" OR \"intervention effectiveness\" OR \"randomized controlled trial\" OR \"controlled before-after\" OR \"instrumental variable\")",
+      "keywords_count": 32,
+      "has_pico": false
+    },
+    {
+      "variation": 16,
+      "type": "Baseline (No PICO)",
+      "papers": 280,
+      "query": "( \"heat warning system\" OR \"heat alert system\" OR \"extreme heat alert\" OR \"heat health action plan\" OR \"heat emergency response\" OR \"weather forecast intervention\" OR \"forecast-based financing\" OR \"anticipatory action\" OR \"heat early warning\" OR \"early warning system\" ) AND ( \"cooling center\" OR \"cooling centre\" OR \"heat refuge\" OR \"heat action plan\" OR \"extreme heat\" OR \"heat wave\" OR \"heatwave\" OR \"hot weather\" ) AND ( \"heat-related mortality\" OR \"heat-related morbidity\" OR \"temperature mortality\" OR \"cardiovascular hospitalization\" OR \"emergency department visits\" OR \"excess mortality\" OR \"heat-related illness\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat stress disorder\" ) AND ( \"causal inference\" OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"natural experiment\" OR \"instrumental variable\" OR \"heat wave epidemiology\" OR \"counterfactual\" OR \"propensity score\" OR \"synthetic control\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 18,
+      "type": "Baseline (No PICO)",
+      "papers": 312,
+      "query": "(\"heat warning system\" OR \"heat health action plan\" OR \"heat-health action plan\" OR \"extreme heat advisory\" OR \"heat action plan\" OR \"heat alert\" OR \"heat wave alert\" OR \"heatwave alert\" OR \"heat emergency response\" OR \"heat early warning\" OR \"weather forecast intervention\" OR \"temperature forecast\" OR \"thermal warning\" OR \"public health alert\") AND (\"cooling center\" OR \"cooling centre\" OR \"heat adaptation\" OR \"urban heat\" OR \"vulnerable population\" OR \"extreme heat\" OR \"high temperature\" OR \"heat exposure\" OR \"ambient temperature\" OR \"heatwave\" OR \"heat wave\") AND (\"excess mortality\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"emergency department\" OR \"hospitalization\" OR \"heat stroke\" OR \"heatstroke\" OR \"morbidity\" OR \"mortality\" OR \"premature death\" OR \"cause of death\") AND (\"difference-in-differences\" OR \"difference in differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"instrumental variable\" OR \"causal inference\" OR \"policy evaluation\" OR \"impact evaluation\" OR \"program evaluation\" OR \"counterfactual\" OR \"synthetic control\")",
+      "keywords_count": 30,
+      "has_pico": false
+    },
+    {
+      "variation": 11,
+      "type": "Baseline (No PICO)",
+      "papers": 385,
+      "query": "(\"heat early warning system\" OR \"heat warning system\" OR \"heat action plan\" OR \"heat advisory\" OR \"heat alert system\" OR \"extreme heat alert\" OR \"heat health warning\" OR \"heat health warning system\" OR \"meteorological forecast intervention\" OR \"forecast-activated cooling\" OR \"climate-informed health policy\") AND (\"excess mortality\" OR \"heat-attributable death\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"cardiovascular morbidity\" OR \"respiratory hospitalization\" OR \"emergency department visits\" OR \"all-cause mortality\" OR \"premature mortality\" OR \"hospital admissions\" OR \"heat-related illness\") AND (\"heatwave\" OR \"heat wave\" OR \"extreme heat\" OR \"temperature threshold\" OR \"urban heat island\" OR \"heat event\" OR \"high temperature\") AND (\"policy evaluation\" OR \"natural experiment\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"regression discontinuity\" OR \"causal inference\" OR \"quasi-experimental\" OR \"instrumental variable\" OR \"impact evaluation\" OR \"program evaluation\" OR \"intervention effectiveness\" OR \"syndromic surveillance\" OR \"multi-city\")",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": "PICO-3",
+      "type": "PICO Framework",
+      "papers": 446,
+      "query": "(\"heat early warning\" OR \"heat alert system\" OR \"heat action plan\" OR \"heat-health action plan\" OR \"heat wave warning\" OR \"extreme heat advisory\" OR \"heat emergency response\" OR \"heat warning system\" OR \"forecast-based intervention\" OR \"anticipatory action\" OR \"cooling center\" OR \"cooling shelter\" OR \"heat refuge\" OR \"threshold-based intervention\" OR \"index-based trigger\" OR \"climate services\") AND (\"heat-related mortality\" OR \"heat-related death\" OR \"excess mortality\" OR \"all-cause mortality\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"heat-related morbidity\" OR \"heat-related illness\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"hyperthermia\" OR \"hospital admissions\" OR \"emergency department visits\" OR \"ambulance calls\" OR \"temperature-mortality association\" OR \"heat vulnerability\") AND (\"causal inference\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"interrupted time series\" OR \"synthetic control\" OR \"propensity score matching\" OR \"counterfactual\" OR \"before-after study\" OR \"fixed effects\" OR \"impact evaluation\" OR \"treatment effect\" OR \"program evaluation\" OR \"econometric evaluation\")",
+      "keywords_count": 104,
+      "has_pico": true,
+      "pico_p": 15,
+      "pico_i": 30,
+      "pico_c": 11,
+      "pico_o": 23
+    },
+    {
+      "variation": 12,
+      "type": "Baseline (No PICO)",
+      "papers": 487,
+      "query": "( \"heat action plan\" OR \"heat early warning system\" OR \"heat warning system\" OR \"extreme heat alert\" OR \"forecast-triggered\" OR \"predictive warning system\" OR \"anticipatory public health\" OR \"proactive heat response\" OR \"weather-based alert\" OR \"heat health warning\" OR \"temperature alert\" ) AND ( \"numerical weather prediction\" OR \"atmospheric forecast\" OR \"meteorological prediction\" OR \"synoptic-scale forecast\" OR \"forecast skill\" OR \"weather forecast\" OR \"biometeorology\" OR \"climate advisory\" ) AND ( \"averted deaths\" OR \"counterfactual mortality\" OR \"mortality reduction\" OR \"heat burden reduction\" OR \"cardiorespiratory\" OR \"emergency department\" OR \"hospitalization\" OR \"heat-related mortality\" OR \"excess mortality\" OR \"premature death\" OR \"preventable death\" OR \"dose-response\" OR \"effect modification\" OR \"attribution analysis\" OR \"temperature threshold\" OR \"thermal stress\" OR \"early warning effectiveness\" OR \"population-level prevention\" OR \"health protection\" )",
+      "keywords_count": 30,
+      "has_pico": false
+    },
+    {
+      "variation": 4,
+      "type": "Baseline (No PICO)",
+      "papers": 511,
+      "query": "( \"heat warning system\" OR \"heat alert system\" OR \"heat early warning\" OR \"extreme heat intervention\" OR \"heat action plan\" OR \"heat-health action plan\" OR \"forecast-based financing\" OR \"anticipatory action\" OR \"early warning early action\" OR \"urban heat governance\" OR \"thermal stress prevention\" OR \"heat vulnerability index\" OR \"climate services\" OR \"weather forecast alert\" ) AND ( \"excess mortality\" OR \"heat-related mortality\" OR \"attributable fraction\" OR \"mortality displacement\" OR \"harvesting effect\" OR \"heat-related death\" OR \"summer mortality\" OR \"thermoregulation failure\" OR \"heat exposure\" OR \"all-cause mortality\" ) AND ( \"causal inference\" OR \"counterfactual\" OR \"quasi-experimental\" OR \"stepped wedge\" OR \"synthetic control\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"randomized controlled trial\" OR \"epidemiological surveillance\" OR \"environmental epidemiology\" OR \"population-level\" OR \"impact evaluation\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 14,
+      "type": "Baseline (No PICO)",
+      "papers": 578,
+      "query": "(\"forecast-based intervention\" OR \"weather-triggered action\" OR \"heat early warning system\" OR \"heat-health action plan\" OR \"anticipatory action\" OR \"heat wave preparedness\" OR \"extreme heat advisory\" OR \"predictive health alert\" OR \"threshold-triggered policy\" OR \"lead-time intervention\" OR \"heat surveillance\" OR \"heat alert system\") AND (\"heat mortality\" OR \"excess mortality\" OR \"temperature-attributable mortality\" OR \"heat-related hospitalization\" OR \"heat-related death\" OR \"thermal stress\" OR \"cardiovascular heat\" OR \"respiratory heat morbidity\" OR \"heat-related illness\") AND (\"forecast-based\" OR \"early warning\" OR \"warning system\" OR \"action plan\" OR forecasting OR prediction OR anticipatory) AND (evaluation OR assessment OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"interrupted time series\" OR cohort OR longitudinal OR causal OR intervention)",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 5,
+      "type": "Baseline (No PICO)",
+      "papers": 678,
+      "query": "(\"heat warning system\" OR \"heat alert system\" OR \"heat early warning\" OR \"heat action plan\" OR \"heat-health action plan\" OR \"heat advisory\" OR \"forecast-based action\" OR \"forecast-based financing\" OR \"forecast-based intervention\" OR \"anticipatory action\" OR \"early warning early action\" OR \"climate services\" OR \"biometeorological forecast\") AND (\"extreme heat\" OR \"heatwave\" OR \"heat wave\" OR \"heat event\" OR \"thermal stress\" OR \"ambient heat\") AND (\"heat mortality\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"excess mortality\" OR \"attributable fraction\" OR \"heat-related death\" OR \"exposure-response\" OR \"heat morbidity\") AND (\"causal inference\" OR \"counterfactual\" OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"distributed lag nonlinear model\" OR \"DLNM\" OR \"epidemiological evaluation\" OR \"syndromic surveillance\" OR \"intervention effectiveness\" OR \"climate adaptation\" OR \"heat vulnerability\")",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 15,
+      "type": "Baseline (No PICO)",
+      "papers": 1021,
+      "query": "(biometeorology OR \"environmental epidemiology\" OR \"climate-health\" OR \"thermal stress\" OR \"synoptic climatology\" OR \"biometeorological\" OR weather OR \"climate change\" OR temperature) AND (\"apparent temperature\" OR \"heat index\" OR \"wet bulb temperature\" OR \"physiological equivalent temperature\" OR \"universal thermal climate index\" OR UTCI OR \"heat threshold\" OR \"temperature threshold\" OR \"thermal comfort\") AND (acclimatization OR \"urban heat vulnerability\" OR \"adaptive capacity\" OR \"population resilience\" OR thermoregulation OR \"heat stroke\" OR \"heat exhaustion\" OR dehydration OR \"renal failure\" OR \"acute kidney injury\") AND (\"excess mortality\" OR \"premature death\" OR \"avoidable hospitalization\" OR cardiopulmonary OR \"emergency medical services\" OR ambulance OR \"syndromic surveillance\" OR \"attributable fraction\" OR \"dose-response\" OR morbidity OR mortality) AND (\"distributed lag nonlinear model\" OR DLNM OR \"distributed lag\" OR \"time series\" OR \"mortality displacement\" OR \"harvesting effect\" OR \"spatial heterogeneity\" OR \"counterfactual analysis\" OR \"health impact assessment\") AND (\"heat alert\" OR \"heat warning\" OR \"heat emergency\" OR \"heat action plan\" OR \"heat health warning\" OR \"National Weather Service\" OR \"meteorological service\" OR \"risk communication\" OR \"forecast skill\" OR \"interagency coordination\" OR \"municipal health\" OR \"behavioral response\" OR \"warning system\" OR \"alert system\" OR \"public compliance\")",
+      "keywords_count": 50,
+      "has_pico": false
+    },
+    {
+      "variation": 17,
+      "type": "Baseline (No PICO)",
+      "papers": 1177,
+      "query": "(\"heat alert system\" OR \"heat action plan\" OR \"forecast-based intervention\" OR \"extreme heat advisory\" OR \"heat emergency response\" OR \"early warning system\" OR \"weather warning\" OR \"heat warning\" OR \"heat-health warning\" OR \"temperature forecast trigger\" OR \"public health alert\") AND (\"heat-attributable death\" OR \"excess mortality\" OR \"heat-related mortality\" OR \"heat-related death\" OR \"temperature-mortality\" OR \"hospitalization averted\" OR \"emergency department\" OR \"cardiovascular mortality\" OR \"respiratory morbidity\" OR \"heat-related illness\" OR \"thermal stress\" OR \"heat morbidity\") AND (\"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"instrumental variable\" OR \"counterfactual\" OR \"causal inference\" OR \"causal identification\" OR \"program evaluation\" OR \"impact evaluation\" OR \"effectiveness\") AND (\"heat vulnerability\" OR \"climate-health\" OR \"heat prevention\" OR \"population adaptation\" OR \"thermal stress prevention\" OR \"public health intervention\" OR \"urban heat island\")",
+      "keywords_count": 30,
+      "has_pico": false
+    },
+    {
+      "variation": 19,
+      "type": "Baseline (No PICO)",
+      "papers": 1418,
+      "query": "( \"heat action plan\" OR \"heat early warning\" OR \"heat alert system\" OR \"heat warning system\" OR \"early warning system\" OR \"syndromic surveillance\" OR \"weather-based public health alert\" OR \"climate service\" OR \"meteorological threshold\" OR \"forecast-triggered response\" OR \"heat health warning\" ) AND ( \"heat-related mortality\" OR \"heat-related morbidity\" OR \"heat-related illness\" OR \"heat-related death\" OR \"heat-attributable\" OR \"heat stress\" OR \"ambient temperature\" OR \"thermoregulation\" OR \"hyperthermia\" OR \"heat stroke\" OR \"cardiovascular\" OR \"heat-related excess death\" ) AND ( \"quasi-experimental\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"counterfactual\" OR \"causal inference\" OR \"treatment effect\" OR \"natural experiment\" OR \"intervention effectiveness\" OR \"program evaluation\" OR \"forecast lead time\" OR \"warning lead time\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": 13,
+      "type": "Baseline (No PICO)",
+      "papers": 1659,
+      "query": "( \"heat action plan\" OR \"heat health action plan\" OR \"extreme heat intervention\" OR \"forecast-triggered intervention\" OR \"heat advisory\" OR \"heat warning system\" OR \"heat emergency response\" OR \"heat alert\" OR \"heat wave warning\" OR \"cooling center\" OR \"cooling centre\" OR \"heat refuge\" OR \"heat shelter\" ) AND ( \"temperature-mortality\" OR \"heat-attributable death\" OR \"heat-related mortality\" OR \"heat-related hospitalization\" OR \"heat-related morbidity\" OR \"cardiovascular mortality\" OR \"excess mortality\" OR \"heat wave mortality\" OR \"emergency department visit\" OR \"causal inference\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"regression discontinuity\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"instrumental variable\" OR \"policy evaluation\" OR \"counterfactual\" ) AND ( mortality OR morbidity OR hospitalization OR \"health outcome\" OR \"emergency department\" OR deaths ) AND ( heat OR heatwave OR \"heat wave\" OR \"extreme heat\" OR \"high temperature\" )",
+      "keywords_count": 30,
+      "has_pico": false
+    },
+    {
+      "variation": "PICO-5",
+      "type": "PICO Framework",
+      "papers": 1680,
+      "query": "((\"forecast-based intervention\" OR \"forecast-based action\" OR \"anticipatory action\" OR \"heat action plan\" OR \"early warning system\" OR \"heat warning\" OR \"cold warning\" OR \"weather forecast trigger\" OR \"predictive warning\" OR \"probabilistic forecast\" OR \"weather-triggered\" OR \"heat alert system\" OR \"forecast activation\" OR \"anticipatory humanitarian\" OR \"pre-emptive public health\") AND (\"excess mortality\" OR \"heat-related mortality\" OR \"cold-related mortality\" OR \"temperature-mortality\" OR \"temperature attributable\" OR \"hospitalisation\" OR \"hospitalization\" OR \"emergency department\" OR \"heat stroke\" OR \"heat illness\" OR \"heat-health\" OR \"exposure-response\" OR \"attributable fraction\" OR \"protective effect\") AND (\"interrupted time series\" OR \"difference-in-differences\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"counterfactual\" OR \"causal inference\" OR \"propensity score\" OR \"synthetic control\" OR \"regression discontinuity\" OR \"stepped wedge\" OR \"before-after\" OR \"impact evaluation\"))",
+      "keywords_count": 55,
+      "has_pico": true,
+      "pico_p": 10,
+      "pico_i": 10,
+      "pico_c": 8,
+      "pico_o": 12
+    },
+    {
+      "variation": "PICO-2",
+      "type": "PICO Framework",
+      "papers": 1718,
+      "query": "(\"heat warning system\" OR \"heat alert system\" OR \"heat-health action plan\" OR \"heat health warning\" OR \"extreme heat warning\" OR \"heat advisory\" OR \"heat emergency response\" OR \"cooling center\" OR \"cooling centre\" OR \"cooling shelter\" OR \"early warning system\" OR \"forecast-based intervention\" OR \"weather-based trigger\" OR \"threshold-based alert\" OR \"numerical weather prediction\" OR \"temperature forecast\" OR \"heat forecast\") AND (\"heat-related mortality\" OR \"heat-related death\" OR \"excess mortality\" OR \"all-cause mortality\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"heat-related morbidity\" OR \"heat stroke\" OR \"hyperthermia\" OR \"heat illness\" OR \"emergency department visits\" OR \"hospital admissions\" OR \"premature death\") AND (\"quasi-experimental\" OR \"natural experiment\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"synthetic control\" OR \"instrumental variable\" OR \"causal inference\" OR \"causal impact\" OR \"impact evaluation\" OR \"counterfactual\" OR \"propensity score matching\" OR \"randomized controlled trial\" OR \"controlled before-after\" OR \"panel data\" OR \"fixed effects\" OR \"did estimator\" OR \"event study\")",
+      "keywords_count": 72,
+      "has_pico": true,
+      "pico_p": 10,
+      "pico_i": 20,
+      "pico_c": 7,
+      "pico_o": 16
+    },
+    {
+      "variation": 10,
+      "type": "Baseline (No PICO)",
+      "papers": 2475,
+      "query": "( \"forecast-based intervention\" OR \"weather-triggered action\" OR \"anticipatory action\" OR \"early warning response\" OR \"heat early warning\" OR \"meteorological alert\" OR \"probabilistic forecast\" OR \"threshold-based intervention\" OR \"pre-emptive public health\" OR \"climate-informed health policy\" OR \"heat action plan\" OR \"heat health warning\" OR \"extreme heat alert\" OR \"heat warning system\" OR \"heat wave alert\" OR \"temperature warning\" OR \"weather warning\" ) AND ( \"temperature-mortality\" OR \"heat vulnerability\" OR \"population heat adaptation\" OR \"thermal exposure\" OR \"ambient temperature\" OR \"heat-related mortality\" OR \"excess mortality\" OR \"cardiovascular\" OR \"respiratory\" OR \"emergency department\" OR \"hospital admission\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat illness\" OR \"morbidity\" ) AND ( \"causal identification\" OR \"counterfactual\" OR \"treatment effect\" OR \"policy evaluation\" OR \"quasi-experimental\" OR \"stepped-wedge\" OR \"difference-in-differences\" OR \"interrupted time series\" OR \"impact evaluation\" OR \"regression discontinuity\" OR \"natural experiment\" OR \"instrumental variable\" OR \"propensity score\" OR \"synthetic control\" OR \"randomized\" )",
+      "keywords_count": 25,
+      "has_pico": false
+    },
+    {
+      "variation": "PICO-4",
+      "type": "PICO Framework",
+      "papers": 2978,
+      "query": "(\"early warning system\" OR \"heat-health warning system\" OR \"heat health warning system\" OR \"heatwave alert\" OR \"heat wave alert\" OR \"heat action plan\" OR \"heat emergency preparedness\" OR \"weather forecast-based intervention\" OR \"forecast-based action\" OR \"forecast based action\" OR \"anticipatory public health\" OR \"meteorological forecast\" OR \"predictive weather alert\" OR \"temperature forecast threshold\" OR \"numerical weather prediction\" OR \"probabilistic forecast\" OR \"climate service\" OR \"syndromic surveillance\" OR \"seasonal forecast\") AND (\"heat-related mortality\" OR \"cold-related mortality\" OR \"excess mortality\" OR \"all-cause mortality\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"heat-related morbidity\" OR \"emergency department\" OR \"emergency department visits\" OR \"hospital admission\" OR \"hospital admissions\" OR \"heat stroke\" OR \"hyperthermia\" OR \"ambulance calls\" OR \"temperature-mortality\" OR \"exposure-response\" OR \"attributable fraction\" OR \"temperature-health\") AND (\"causal inference\" OR \"causal impact\" OR \"natural experiment\" OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"difference in differences\" OR \"interrupted time series\" OR \"regression discontinuity\" OR \"instrumental variable\" OR \"instrumental variables\" OR \"synthetic control\" OR \"counterfactual\" OR \"randomized controlled trial\" OR \"stepped-wedge\" OR \"stepped wedge\" OR \"impact evaluation\" OR \"program evaluation\" OR \"policy evaluation\" OR \"econometric\" OR \"econometrics\" OR \"treatment effect\" OR \"average treatment effect\")",
+      "keywords_count": 68,
+      "has_pico": true,
+      "pico_p": 10,
+      "pico_i": 16,
+      "pico_c": 7,
+      "pico_o": 17
+    },
+    {
+      "variation": 3,
+      "type": "Baseline (No PICO)",
+      "papers": 3267,
+      "query": "( \"heat warning\" OR \"heat alert\" OR \"extreme heat\" OR \"heatwave\" OR \"heat wave\" OR \"thermal stress\" OR \"heat stress\" OR \"urban heat island\" OR \"high temperature\" ) AND ( \"syndromic surveillance\" OR \"excess mortality\" OR \"premature death\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"heat-related illness\" OR \"heat-related death\" OR \"cardiovascular hospitalization\" OR \"respiratory emergency\" OR \"public health surveillance\" OR \"hospital admission\" OR \"emergency department visit\" ) AND ( \"population vulnerability\" OR \"vulnerable population\" OR \"adaptive capacity\" OR \"climate adaptation\" OR \"dose-response\" OR \"attribution analysis\" OR \"intervention effectiveness\" OR \"multi-city study\" OR \"heat action plan\" OR \"socioeconomic determinant\" ) AND ( \"causal pathway\" OR \"effect modification\" OR \"counterfactual\" OR \"propensity score\" OR \"observational study\" OR \"epidemiological study\" OR \"quasi-experimental\" OR \"difference-in-differences\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"natural experiment\" )",
+      "keywords_count": 30,
+      "has_pico": false
+    },
+    {
+      "variation": "PICO-1",
+      "type": "PICO Framework",
+      "papers": 8074,
+      "query": "(\"heat warning system\" OR \"heat health warning system\" OR \"heat wave warning\" OR \"extreme heat alert\" OR \"heat advisory\" OR \"heat-health action plan\" OR \"heat emergency response plan\" OR \"cooling center\" OR \"cooling shelter\" OR \"early warning system\" OR \"heat early warning\" OR \"anticipatory action\" OR \"forecast-based action\" OR \"weather-based alert\" OR \"public health advisory\") AND (\"heat-related mortality\" OR \"heat-related death\" OR \"excess mortality\" OR \"all-cause mortality\" OR \"cardiovascular mortality\" OR \"respiratory mortality\" OR \"heat-related morbidity\" OR \"heat-related illness\" OR \"heat stroke\" OR \"heat exhaustion\" OR \"hospital admissions\" OR \"emergency department visits\" OR \"ambulance calls\" OR \"temperature-attributable death\" OR \"heat health impact\" OR \"excess death\" OR \"premature mortality\")",
+      "keywords_count": 73,
+      "has_pico": true,
+      "pico_p": 10,
+      "pico_i": 20,
+      "pico_c": 8,
+      "pico_o": 18
+    },
+    {
+      "variation": 2,
+      "type": "Baseline (No PICO)",
+      "papers": 87884,
+      "query": "(\"causal inference\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"exogenous variation\" OR \"identification strategy\" OR \"endogeneity\") AND (\"difference-in-differences\" OR \"diff-in-diff\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"instrumental variable\" OR \"propensity score\" OR \"matching estimator\" OR \"synthetic control\" OR \"event study design\" OR \"parallel trends\" OR \"discontinuity threshold\") AND (\"policy evaluation\" OR \"program evaluation\" OR \"impact evaluation\" OR \"intervention effectiveness\" OR \"treatment effect\" OR \"counterfactual\" OR \"fixed effects\")",
+      "keywords_count": 25,
+      "has_pico": false
+    }
+  ]
+}
