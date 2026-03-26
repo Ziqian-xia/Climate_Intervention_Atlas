@@ -15,6 +15,7 @@ from datetime import datetime
 from tqdm import tqdm
 from utils.llm_providers import LLMProvider
 from utils.logger import get_logger
+from utils.harmonizer import harmonize, detect_database, get_harmonization_report
 
 
 class ClaudeScreener:
@@ -430,33 +431,34 @@ class ScreeningOrchestrator:
         if not dfs:
             raise ValueError(f"No Phase 2 results found in {search_results_dir}. Expected 'works_summary.csv' in subdirectories or '<db>_results.csv' files.")
 
-        # Combine all dataframes
-        combined = pd.concat(dfs, ignore_index=True)
-        self.logger.info(f"Combined {len(combined)} total records")
+        # Harmonize each database to canonical schema, then merge + deduplicate
+        db_dfs = {}
+        for df in dfs:
+            db_name = detect_database(df)
+            db_dfs[db_name] = df
 
-        # Deduplicate by DOI (case-insensitive)
-        if 'doi' in combined.columns:
-            combined['doi_normalized'] = combined['doi'].str.lower()
-            before_dedup = len(combined)
-            combined = combined.drop_duplicates(subset='doi_normalized', keep='first')
-            after_dedup = len(combined)
-            self.logger.info(f"Deduplicated by DOI: {before_dedup} → {after_dedup} records (removed {before_dedup - after_dedup} duplicates)")
-            # Remove temporary column
-            combined = combined.drop(columns=['doi_normalized'])
-        else:
-            self.logger.warning("No 'doi' column found - skipping deduplication")
+        harmonized_parts = []
+        for db_name, df in db_dfs.items():
+            h = harmonize(df, source_db=db_name)
+            harmonized_parts.append(h)
+            self.logger.info(f"  Harmonized {len(h)} records from {db_name}")
 
-        # Ensure required columns exist
-        if 'title' not in combined.columns:
-            self.logger.warning("No 'title' column found - adding empty column")
-            combined['title'] = ""
-        if 'abstract' not in combined.columns:
-            self.logger.warning("No 'abstract' column found - adding empty column")
-            combined['abstract'] = ""
+        combined = pd.concat(harmonized_parts, ignore_index=True)
+        self.logger.info(f"Combined {len(combined)} total records (pre-dedup)")
 
-        # Fill missing values with empty strings
-        combined['title'] = combined['title'].fillna("")
-        combined['abstract'] = combined['abstract'].fillna("")
+        # Deduplicate by DOI using canonical 'doi' column
+        has_doi = combined["doi"].str.strip() != ""
+        before_dedup = len(combined)
+        with_doi    = combined[has_doi].drop_duplicates(subset="doi", keep="first")
+        without_doi = combined[~has_doi]
+        combined    = pd.concat([with_doi, without_doi], ignore_index=True)
+        after_dedup = len(combined)
+        self.logger.info(f"Deduplicated by DOI: {before_dedup} → {after_dedup} records (removed {before_dedup - after_dedup})")
+
+        # Report per-DB contribution
+        for db in combined["source_db"].unique():
+            n = len(combined[combined["source_db"] == db])
+            self.logger.info(f"  {db}: {n} records in merged set")
 
         self.logger.info(f"✅ Consolidated {len(combined)} unique records ready for screening")
         return combined
