@@ -1,0 +1,35 @@
+I have 5 different OpenAlex search queries that all address the same research question about weather forecast-based health interventions. Each query uses different synonyms and term combinations.
+
+Here are the 5 queries with their result counts:
+
+
+Variation 1: 8,074 papers
+Query: ("heat warning system" OR "heat health warning system" OR "heat wave warning" OR "extreme heat alert" OR "heat advisory" OR "heat-health action plan" OR "heat emergency response plan" OR "cooling center" OR "cooling shelter" OR "early warning system" OR "heat early warning" OR "anticipatory action" OR "forecast-based action" OR "weather-based alert" OR "public health advisory") AND ("heat-related mortality" OR "heat-related death" OR "excess mortality" OR "all-cause mortality" OR "cardiovascular...
+
+
+Variation 2: 1,718 papers
+Query: ("heat warning system" OR "heat alert system" OR "heat-health action plan" OR "heat health warning" OR "extreme heat warning" OR "heat advisory" OR "heat emergency response" OR "cooling center" OR "cooling centre" OR "cooling shelter" OR "early warning system" OR "forecast-based intervention" OR "weather-based trigger" OR "threshold-based alert" OR "numerical weather prediction" OR "temperature forecast" OR "heat forecast") AND ("heat-related mortality" OR "heat-related death" OR "excess mortali...
+
+
+Variation 3: 446 papers
+Query: ("heat early warning" OR "heat alert system" OR "heat action plan" OR "heat-health action plan" OR "heat wave warning" OR "extreme heat advisory" OR "heat emergency response" OR "heat warning system" OR "forecast-based intervention" OR "anticipatory action" OR "cooling center" OR "cooling shelter" OR "heat refuge" OR "threshold-based intervention" OR "index-based trigger" OR "climate services") AND ("heat-related mortality" OR "heat-related death" OR "excess mortality" OR "all-cause mortality" O...
+
+
+Variation 4: 2,978 papers
+Query: ("early warning system" OR "heat-health warning system" OR "heat health warning system" OR "heatwave alert" OR "heat wave alert" OR "heat action plan" OR "heat emergency preparedness" OR "weather forecast-based intervention" OR "forecast-based action" OR "forecast based action" OR "anticipatory public health" OR "meteorological forecast" OR "predictive weather alert" OR "temperature forecast threshold" OR "numerical weather prediction" OR "probabilistic forecast" OR "climate service" OR "syndrom...
+
+
+Variation 5: 1,680 papers
+Query: (("forecast-based intervention" OR "forecast-based action" OR "anticipatory action" OR "heat action plan" OR "early warning system" OR "heat warning" OR "cold warning" OR "weather forecast trigger" OR "predictive warning" OR "probabilistic forecast" OR "weather-triggered" OR "heat alert system" OR "forecast activation" OR "anticipatory humanitarian" OR "pre-emptive public health") AND ("excess mortality" OR "heat-related mortality" OR "cold-related mortality" OR "temperature-mortality" OR "tempe...
+
+
+TASK: Combine these 5 queries into ONE mega-query that captures all the search terms from all variations.
+
+Requirements:
+1. Use OpenAlex syntax (quotes for phrases, AND/OR operators, parentheses)
+2. Deduplicate identical terms across variations
+3. Maintain logical structure: (ALL_POPULATION_TERMS) AND (ALL_INTERVENTION_TERMS) AND (ALL_OUTCOME_TERMS)
+4. Group synonyms with OR within each category
+5. The goal is to retrieve the UNION of all 5 result sets
+
+Return ONLY the combined query string, no explanation.
