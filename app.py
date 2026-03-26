@@ -1570,36 +1570,42 @@ if st.session_state.phase >= 2:
                             df = pd.read_csv(csv_path)
                             st.dataframe(df.head(10), use_container_width=True)
 
-                            # Download buttons
+                            # Download buttons (read files into memory first)
                             col1, col2, col3 = st.columns(3)
                             with col1:
                                 with open(csv_path, "rb") as f:
-                                    st.download_button(
-                                        "📥 Download CSV",
-                                        data=f,
-                                        file_name=f"{db}_summary.csv",
-                                        mime="text/csv"
-                                    )
+                                    csv_data = f.read()
+                                st.download_button(
+                                    "📥 Download CSV",
+                                    data=csv_data,
+                                    file_name=f"{db}_summary.csv",
+                                    mime="text/csv",
+                                    key=f"download_csv_{db}"
+                                )
                             with col2:
                                 json_path = result["output_files"]["summary_json"]
                                 if Path(json_path).exists():
                                     with open(json_path, "rb") as f:
-                                        st.download_button(
-                                            "📥 Download JSON",
-                                            data=f,
-                                            file_name=f"{db}_summary.json",
-                                            mime="application/json"
-                                        )
+                                        json_data = f.read()
+                                    st.download_button(
+                                        "📥 Download JSON",
+                                        data=json_data,
+                                        file_name=f"{db}_summary.json",
+                                        mime="application/json",
+                                        key=f"download_json_{db}"
+                                    )
                             with col3:
                                 jsonl_path = result["output_files"]["full_jsonl"]
                                 if Path(jsonl_path).exists():
                                     with open(jsonl_path, "rb") as f:
-                                        st.download_button(
-                                            "📥 Download JSONL",
-                                            data=f,
-                                            file_name=f"{db}_full.jsonl",
-                                            mime="application/json"
-                                        )
+                                        jsonl_data = f.read()
+                                    st.download_button(
+                                        "📥 Download JSONL",
+                                        data=jsonl_data,
+                                        file_name=f"{db}_full.jsonl",
+                                        mime="application/json",
+                                        key=f"download_jsonl_{db}"
+                                    )
                         else:
                             st.warning(f"Output file not found: {csv_path}")
                 else:
@@ -2105,6 +2111,40 @@ if st.session_state.phase >= 4:
         df_screening = st.session_state.screening_results
         doi_count = len(df_screening[df_screening['judgement'] == True])
         st.metric("Papers to Retrieve", doi_count)
+
+        # Performance warning for large downloads
+        if doi_count > 100:
+            st.error(f"""
+            ⚠️ **Large Download Warning**: {doi_count} papers
+
+            **Streamlit Cloud Limitations:**
+            - RAM: 1 GB (may crash with >100 PDFs)
+            - Processing: Sequential (no parallel downloads)
+
+            **Recommendations:**
+            1. 🔄 Download in batches of 50 papers
+            2. 💻 Consider local installation for large-scale retrieval
+            3. ⏱️ Estimated time: ~{doi_count // 2}-{doi_count} minutes
+
+            **To proceed safely:**
+            - Go back to Phase 3 and reduce selection
+            - Or use local installation (see README.md)
+            """)
+        elif doi_count > 50:
+            st.warning(f"""
+            🟡 **Medium Download Warning**: {doi_count} papers
+
+            For optimal stability on Streamlit Cloud:
+            - ✅ Recommended batch size: ≤50 papers
+            - ⏱️ Estimated time: ~{doi_count // 3}-{doi_count // 2} minutes
+            - 💡 Consider splitting into smaller batches
+
+            You can proceed, but larger batches may experience:
+            - Slower processing
+            - Potential timeout or memory issues
+            """)
+        else:
+            st.info(f"✅ Good batch size ({doi_count} papers). Estimated time: ~{doi_count // 5}-{doi_count // 3} minutes")
     else:
         st.warning("⚠️ No screening results found. Please complete Phase 3 first.")
         doi_count = 0
