@@ -137,22 +137,37 @@ class QueryGenerationTeam:
         """Generate high-quality dummy responses for testing without API."""
         if agent_name == "Pulse":
             return json.dumps({
+                "pico": {
+                    "population": ["general population", "vulnerable groups", "urban residents"],
+                    "intervention": ["climate change", "global warming", "extreme weather", "heat waves"],
+                    "comparison": [],
+                    "outcome": ["mental health", "psychological distress", "anxiety", "depression", "PTSD", "well-being"]
+                },
+                "study_design": ["adaptation", "resilience", "coping mechanisms", "intervention"],
                 "expanded_keywords": [
                     "climate change", "global warming", "climate crisis",
                     "extreme weather", "heat waves", "temperature extremes",
                     "mental health", "psychological distress", "anxiety",
                     "depression", "PTSD", "trauma", "well-being",
-                    "adaptation", "resilience", "coping mechanisms"
+                    "adaptation", "resilience", "coping mechanisms",
+                    "general population", "vulnerable groups", "urban residents"
                 ],
-                "reasoning": "Expanded the research topic to include synonyms, related terms, and domain-specific vocabulary commonly used in climate-health literature."
+                "pico_statement": "In general populations (P), what is the impact of climate change and extreme weather events (I) on mental health outcomes (O)?",
+                "reasoning": "Applied PICO framework: Population identified as general/vulnerable populations, Intervention as climate exposures, Outcome as mental health indicators. No explicit comparison in this observational research question."
             }, indent=2)
 
         elif agent_name == "Formulator":
             return json.dumps({
-                "elsevier_query": 'TITLE-ABS-KEY("climate change" OR "global warming" OR "extreme weather") AND TITLE-ABS-KEY("mental health" OR "psychological distress" OR "anxiety" OR "depression") AND TITLE-ABS-KEY(adapt* OR resilien* OR coping)',
-                "pubmed_query": '("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract])',
-                "openalex_query": '"climate change" mental health adaptation resilience',
-                "reasoning": "Created database-specific queries with appropriate syntax, field restrictions, and Boolean operators to balance precision and recall."
+                "elsevier_query": 'TITLE-ABS-KEY(("general population" OR "vulnerable groups") AND ("climate change" OR "global warming" OR "extreme weather" OR "heat wave*") AND ("mental health" OR "psychological distress" OR "anxiety" OR "depression") AND (adapt* OR resilien* OR coping))',
+                "pubmed_query": '(("climate change"[Title/Abstract] OR "global warming"[Title/Abstract] OR "extreme weather"[Title/Abstract] OR "heat wave"[Title/Abstract]) AND ("mental health"[Title/Abstract] OR "psychological distress"[Title/Abstract] OR "anxiety"[Title/Abstract]) AND ("general population"[Title/Abstract] OR "vulnerable groups"[Title/Abstract]))',
+                "openalex_query": '"climate change" "mental health" adaptation population',
+                "pico_structure": {
+                    "population": "general population, vulnerable groups, urban residents",
+                    "intervention": "climate change, global warming, extreme weather, heat waves",
+                    "comparison": "Not applicable",
+                    "outcome": "mental health, psychological distress, anxiety, depression, PTSD"
+                },
+                "reasoning": "Created PICO-structured queries with (P) AND (I) AND (O) format. Used OR within each PICO block for synonyms and AND to connect blocks. Included adaptation/resilience terms as methodological context."
             }, indent=2)
 
         elif agent_name == "Sentinel":
@@ -168,43 +183,85 @@ class QueryGenerationTeam:
 
     def _agent_pulse(self, topic: str, variation_seed: Optional[int] = None) -> Dict:
         """
-        Agent 1: Pulse - Keyword Expansion
+        Agent 1: Pulse - Keyword Expansion using PICO Framework
         Expands research topic with synonyms, related terms, and domain vocabulary.
+        Uses PICO framework for structured keyword generation.
         """
         self.logger.info("=" * 60)
-        self.logger.info("PULSE AGENT - Keyword Expansion")
+        self.logger.info("PULSE AGENT - PICO-Based Keyword Expansion")
         self.logger.info("=" * 60)
-        self.logger.agent_thinking("Pulse", "🔍 Diving into the depths of academic jargon to find the perfect synonyms...")
+        self.logger.agent_thinking("Pulse", "🔍 Applying PICO framework to structure your research question...")
 
-        system_prompt = """You are Pulse, an expert research librarian specializing in systematic literature reviews for academic research.
+        system_prompt = """You are Pulse, an expert research librarian specializing in systematic literature reviews using evidence-based frameworks.
 
-Your role is to expand research topics into comprehensive keyword sets suitable for rigorous systematic reviews.
+Your role is to analyze research topics using the **PICO Framework** and expand them into comprehensive keyword sets.
 
-FOCUS AREAS:
-1. **Synonyms & Variants**: Alternative phrasings, British vs. American spellings
-2. **Domain-Specific Terms**: Technical vocabulary, medical terms, MeSH terms
-3. **Related Concepts**: Adjacent research areas, methodological terms
-4. **Truncation Opportunities**: Identify stem words for wildcards (e.g., "interven*" captures intervention, intervene, interventions)
-5. **Research Design Terms**: If the topic relates to impact/causality, consider: randomized, quasi-experimental, controlled, trial, evaluation, causal
+**PICO FRAMEWORK** (from UNC Health Sciences Library):
 
-SYSTEMATIC REVIEW QUALITY:
-- Balance between sensitivity (finding all relevant studies) and precision (avoiding irrelevant results)
-- Include methodological terms if causal inference is implied by the topic
-- Consider multiple disciplinary perspectives (e.g., public health, epidemiology, climate science)
+**P - Population/Patient/Problem**:
+- Who is the study about? (demographics, conditions, settings)
+- What problem is being addressed?
+- Examples: elderly, urban residents, vulnerable populations, heat-exposed workers
 
-EXAMPLE:
+**I - Intervention/Exposure**:
+- What is being done or what exposure is being studied?
+- Examples: cooling centers, early warning systems, climate adaptation programs, heat waves
+
+**C - Comparison/Control** (if applicable):
+- What is the alternative or comparison?
+- Examples: no intervention, standard care, pre-intervention period, control group
+- Note: Not all studies have explicit comparisons
+
+**O - Outcome**:
+- What are you trying to accomplish, measure, or change?
+- Examples: mortality, hospitalization, health outcomes, behavioral changes
+
+**YOUR TASK**:
+
+1. **Identify PICO elements** in the research topic
+2. **Expand each PICO element** with:
+   - Synonyms (British vs American spelling)
+   - Related terms (hyponyms, hypernyms)
+   - Domain-specific vocabulary (MeSH terms, technical jargon)
+   - Truncation opportunities (e.g., "mortalit*" → mortality, mortalities)
+
+3. **Add study design terms** (if relevant):
+   - randomized, quasi-experimental, controlled, trial, evaluation
+   - cohort, case-control, cross-sectional, longitudinal
+   - impact, causal, effect, association
+
+**EXAMPLE**:
 Topic: "cooling centers and heat-related mortality"
-Keywords should include: cooling center, cooling shelter, heat refuge, extreme heat, heatwave, heat wave, mortality, death, intervention, randomized, quasi-experimental, temperature-mortality, etc.
 
-CRITICAL: Return ONLY valid JSON, no markdown formatting, no code blocks, no explanations outside the JSON.
+PICO Analysis:
+- P (Population): general population, elderly, urban residents
+- I (Intervention): cooling center, cooling shelter, heat refuge, air-conditioned space
+- C (Comparison): no intervention, areas without centers (implicit)
+- O (Outcome): heat-related mortality, death, excess mortality, heat-related death
+
+**SYSTEMATIC REVIEW BEST PRACTICES**:
+- Balance sensitivity (recall) and precision
+- Include methodological terms for study design
+- Consider multiple disciplinary perspectives
+- Aim for 20-35 keywords across all PICO elements
+
+**CRITICAL**: Return ONLY valid JSON, no markdown formatting, no code blocks.
 
 Return JSON:
 {
-    "expanded_keywords": ["keyword1", "keyword2", ...],
-    "reasoning": "Brief explanation of expansion strategy and key additions"
+    "pico": {
+        "population": ["keyword1", "keyword2", ...],
+        "intervention": ["keyword1", "keyword2", ...],
+        "comparison": ["keyword1", "keyword2", ...],
+        "outcome": ["keyword1", "keyword2", ...]
+    },
+    "study_design": ["keyword1", "keyword2", ...],
+    "expanded_keywords": ["all_keywords_combined_in_flat_list"],
+    "pico_statement": "Structured research question using PICO format",
+    "reasoning": "Brief explanation of PICO identification and expansion strategy"
 }
 
-Aim for 15-25 high-quality keywords including methodological terms."""
+If comparison is not applicable, use empty array for "comparison"."""
 
         variation_instruction = ""
         if variation_seed:
@@ -239,63 +296,101 @@ Please expand this topic into a comprehensive keyword list for systematic litera
                 "reasoning": "Fallback: using original topic"
             }
 
-    def _agent_formulator(self, keywords: List[str]) -> Dict:
+    def _agent_formulator(self, pulse_result: Dict) -> Dict:
         """
-        Agent 2: Formulator - Boolean Query Construction
-        Creates database-specific Boolean search strings.
+        Agent 2: Formulator - PICO-Based Boolean Query Construction
+        Creates database-specific Boolean search strings using PICO structure.
         """
         self.logger.info("=" * 60)
-        self.logger.info("FORMULATOR AGENT - Query Construction")
+        self.logger.info("FORMULATOR AGENT - PICO-Structured Query Construction")
         self.logger.info("=" * 60)
-        self.logger.agent_thinking("Formulator", "🧙 Weaving Boolean magic with AND, OR, and mysterious wildcards...")
+        self.logger.agent_thinking("Formulator", "🧙 Building PICO-structured Boolean queries with precision...")
 
-        system_prompt = """You are Formulator, an expert in database search syntax for systematic literature reviews.
+        system_prompt = """You are Formulator, an expert in database search syntax for systematic literature reviews using the PICO framework.
 
-Your role is to create rigorous Boolean search strings optimized for systematic reviews and evidence synthesis.
+Your role is to construct rigorous Boolean search strings that leverage PICO structure for optimal sensitivity and specificity.
 
-DATABASE-SPECIFIC SYNTAX:
+**DATABASE-SPECIFIC SYNTAX**:
 
 1. **Elsevier/Scopus**:
    - Use TITLE-ABS-KEY() wrapper
-   - Example: TITLE-ABS-KEY(("climate change" OR "global warming") AND (mortality OR death*) AND (causal OR "quasi-experimental" OR RCT))
+   - Example: TITLE-ABS-KEY((P_terms) AND (I_terms) AND (O_terms))
    - Wildcards: * for truncation
+   - Full example: TITLE-ABS-KEY(("elderly" OR "older adults") AND ("cooling center*" OR "heat refuge") AND (mortalit* OR death*))
 
 2. **PubMed**:
    - Use [Title/Abstract] or [MeSH Terms] field tags
-   - Example: ("heat wave"[Title/Abstract] OR "extreme heat"[Title/Abstract]) AND (mortality[Title/Abstract] OR death*[Title/Abstract])
+   - Example: (P_terms[Title/Abstract]) AND (I_terms[Title/Abstract]) AND (O_terms[Title/Abstract])
    - Consider MeSH for biomedical concepts
+   - Full example: (("heat wave"[Title/Abstract] OR "extreme heat"[Title/Abstract]) AND ("cooling center"[Title/Abstract] OR "heat refuge"[Title/Abstract]))
 
 3. **OpenAlex**:
    - Simpler syntax, quoted phrases and keywords
-   - Example: "climate change" mortality intervention evaluation
+   - Example: "P_term" "I_term" "O_term"
    - OpenAlex handles field searching internally
 
-SYSTEMATIC REVIEW BEST PRACTICES:
-- **Concept Grouping**: Use (concept1 OR synonym1 OR synonym2) AND (concept2 OR synonym2) structure
-- **Wildcards**: Use * for word variations (adapt* → adaptation, adaptive, adapting)
-- **Phrase Searching**: Use quotes for exact phrases ("cooling center", "heat-related mortality")
-- **Boolean Hierarchy**: Parentheses for proper OR/AND precedence
-- **Methodological Filters**: If research design matters, include terms like: random*, trial*, "quasi-experimental", evaluation, causal, impact*
+**PICO-BASED QUERY CONSTRUCTION**:
 
-BALANCE:
-- Sensitivity (recall): Don't miss relevant studies → include synonyms
-- Specificity (precision): Avoid noise → use focused combinations
-- Typically aim for moderate sensitivity with post-hoc screening
+**Structure**: (P) AND (I) AND (O)
 
-CRITICAL: Return ONLY valid JSON, no markdown formatting, no code blocks, no explanations outside the JSON.
+- **P Block**: (population_term1 OR population_term2 OR ...)
+- **I Block**: (intervention_term1 OR intervention_term2 OR ...)
+- **C Block**: (comparison_term1 OR comparison_term2 OR ...) [Optional - include if applicable]
+- **O Block**: (outcome_term1 OR outcome_term2 OR ...)
+- **Study Design**: Optionally add AND (design_term1 OR design_term2) for methodological filtering
+
+**Best Practices**:
+- Group PICO elements with OR within each block
+- Connect PICO blocks with AND
+- Use quotes for phrases: "cooling center", "heat-related mortality"
+- Use wildcards: mortalit* → mortality, mortalities
+- Proper parentheses for Boolean precedence
+
+**Sensitivity vs Precision**:
+- High sensitivity: Include all PICO synonyms, broader terms
+- High precision: Use specific combinations, narrow terms
+- **Recommended**: Moderate sensitivity (include key synonyms) + post-hoc screening
+
+**CRITICAL**: Return ONLY valid JSON, no markdown formatting, no code blocks.
 
 Return JSON:
 {
-    "elsevier_query": "...",
-    "pubmed_query": "...",
-    "openalex_query": "...",
-    "reasoning": "Explain your query structure and key strategic choices"
+    "elsevier_query": "TITLE-ABS-KEY query string",
+    "pubmed_query": "PubMed query string with [Title/Abstract] tags",
+    "openalex_query": "OpenAlex simple query string",
+    "pico_structure": {
+        "population": "P terms used",
+        "intervention": "I terms used",
+        "comparison": "C terms used (or 'Not applicable')",
+        "outcome": "O terms used"
+    },
+    "reasoning": "Explain PICO-based query structure and strategic choices"
 }"""
 
-        keywords_str = ", ".join(keywords)
-        user_message = f"""Keywords to use: {keywords_str}
+        # Extract PICO structure from pulse result
+        pico = pulse_result.get('pico', {})
+        keywords = pulse_result.get('expanded_keywords', [])
+        pico_statement = pulse_result.get('pico_statement', '')
 
-Please create three optimized Boolean search strings for Elsevier/Scopus, PubMed, and OpenAlex."""
+        # Format PICO structure for LLM
+        pico_str = json.dumps({
+            "pico_statement": pico_statement,
+            "population": pico.get('population', []),
+            "intervention": pico.get('intervention', []),
+            "comparison": pico.get('comparison', []),
+            "outcome": pico.get('outcome', []),
+            "study_design": pulse_result.get('study_design', [])
+        }, indent=2)
+
+        keywords_str = ", ".join(keywords)
+
+        user_message = f"""PICO-Structured Keywords:
+
+{pico_str}
+
+All keywords (flat list): {keywords_str}
+
+Please create three optimized Boolean search strings using the PICO structure above for Elsevier/Scopus, PubMed, and OpenAlex."""
 
         response_text = self._call_agent("Formulator", system_prompt, user_message, max_tokens=3000)
 
@@ -514,11 +609,11 @@ Address any warnings and produce issue-free, execution-ready queries."""
         self.logger.info(f"Starting query generation for topic{variation_note}: '{topic}'")
         start_time = time.time()
 
-        # Agent 1: Pulse
+        # Agent 1: Pulse (PICO-based keyword expansion)
         pulse_result = self._agent_pulse(topic, variation_seed=variation_seed)
 
-        # Agent 2: Formulator
-        formulator_result = self._agent_formulator(pulse_result.get('expanded_keywords', [topic]))
+        # Agent 2: Formulator (PICO-structured query construction)
+        formulator_result = self._agent_formulator(pulse_result)
 
         # Agent 3: Sentinel
         sentinel_result = self._agent_sentinel({
@@ -536,12 +631,16 @@ Address any warnings and produce issue-free, execution-ready queries."""
 
         return {
             "pulse_keywords": pulse_result.get('expanded_keywords', []),
+            "pulse_pico": pulse_result.get('pico', {}),
+            "pulse_pico_statement": pulse_result.get('pico_statement', ''),
+            "pulse_study_design": pulse_result.get('study_design', []),
             "pulse_reasoning": pulse_result.get('reasoning', ''),
             "formulator_queries": {
                 "elsevier_query": formulator_result.get('elsevier_query', ''),
                 "pubmed_query": formulator_result.get('pubmed_query', ''),
                 "openalex_query": formulator_result.get('openalex_query', '')
             },
+            "formulator_pico_structure": formulator_result.get('pico_structure', {}),
             "formulator_reasoning": formulator_result.get('reasoning', ''),
             "sentinel_queries": {
                 "elsevier_query": sentinel_result.get('elsevier_query', ''),
