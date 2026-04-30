@@ -123,6 +123,18 @@ init_session_state()
 def inject_css():
     st.markdown("""
     <style>
+    /* ── Brand tokens ─────────────────────────────────────────────── */
+    :root {
+        --w-navy:  #054067;
+        --w-teal:  #036380;
+        --w-teal2: #068c94;
+        --w-light: #e8f4f7;
+        --w-text:  #1E293B;
+        --w-muted: #64748B;
+        --w-faint: #94A3B8;
+        --w-border:#E2E8F0;
+    }
+
     /* ── Progress stepper ─────────────────────────────────────────── */
     .sr-steps {
         display: flex; align-items: center; justify-content: center;
@@ -141,47 +153,75 @@ def inject_css():
     .sr-label { font-size: 0.72em; text-align: center; font-weight: 500; line-height: 1.3; }
     .sr-connector { height: 2px; flex: 1; min-width: 32px; margin-bottom: 26px; }
 
-    .sr-step.done  .sr-circle { background: #10B981; color: #fff; }
-    .sr-step.done  .sr-label  { color: #10B981; }
-    .sr-step.active .sr-circle { background: #2563EB; color: #fff; box-shadow: 0 0 0 4px rgba(37,99,235,0.18); }
-    .sr-step.active .sr-label  { color: #2563EB; font-weight: 700; }
-    .sr-step.pending .sr-circle { background: #E2E8F0; color: #94A3B8; }
-    .sr-step.pending .sr-label  { color: #94A3B8; }
-    .sr-connector.done    { background: #10B981; }
-    .sr-connector.pending { background: #E2E8F0; }
+    .sr-step.done  .sr-circle { background: var(--w-teal2); color: #fff; }
+    .sr-step.done  .sr-label  { color: var(--w-teal2); }
+    .sr-step.active .sr-circle { background: var(--w-navy); color: #fff;
+                                  box-shadow: 0 0 0 4px rgba(5,64,103,0.18); }
+    .sr-step.active .sr-label  { color: var(--w-navy); font-weight: 700; }
+    .sr-step.pending .sr-circle { background: var(--w-border); color: var(--w-faint); }
+    .sr-step.pending .sr-label  { color: var(--w-faint); }
+    .sr-connector.done    { background: var(--w-teal2); }
+    .sr-connector.pending { background: var(--w-border); }
 
     /* ── Phase header banners ─────────────────────────────────────── */
     .ph-banner {
-        padding: 0.7rem 1.1rem; border-radius: 6px; margin-bottom: 0.5rem;
+        padding: 0.75rem 1.2rem; border-radius: 8px; margin-bottom: 0.5rem;
         border-left: 5px solid; display: flex; align-items: baseline; gap: 10px;
     }
-    .ph-banner h2 { margin: 0; font-size: 1.35rem; font-weight: 700; }
-    .ph-banner p  { margin: 0; font-size: 0.88rem; opacity: 0.75; }
-    .ph1 { border-color: #3B82F6; background: #EFF6FF; }
-    .ph2 { border-color: #10B981; background: #ECFDF5; }
-    .ph3 { border-color: #F59E0B; background: #FFFBEB; }
-    .ph4 { border-color: #8B5CF6; background: #F5F3FF; }
+    .ph-banner h2 { margin: 0; font-size: 1.3rem; font-weight: 700; }
+    .ph-banner p  { margin: 0; font-size: 0.88rem; opacity: 0.72; }
+    .ph1 { border-color: var(--w-navy);  background: #eef4f8; }
+    .ph2 { border-color: var(--w-teal);  background: #e8f4f6; }
+    .ph3 { border-color: var(--w-teal2); background: #e8f5f5; }
+    .ph4 { border-color: #4a6fa5;        background: #eef1f8; }
+
+    /* ── Landing hero ─────────────────────────────────────────────── */
+    .hero-logo  { display: flex; justify-content: center; align-items: center;
+                  padding: 0.5rem 0 0.8rem; }
+    .hero-sub   { text-align: center; color: var(--w-muted); font-size: 1.05rem;
+                  margin-top: 0.2rem; }
+    .hero-byline { text-align: center; color: var(--w-faint); font-size: 0.82rem;
+                   margin-top: 0.15rem; }
+
+    /* ── Feature cards ────────────────────────────────────────────── */
+    .feature-card {
+        border: 1px solid var(--w-border); border-radius: 10px;
+        padding: 1.2rem 1rem; text-align: center; height: 100%;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+        border-color: var(--w-teal); box-shadow: 0 2px 12px rgba(3,99,128,0.1);
+    }
+    .feature-card .icon { font-size: 1.7rem; margin-bottom: 6px; }
+    .feature-card h4 { margin: 0 0 4px; font-size: 0.93rem; font-weight: 700;
+                       color: var(--w-text); }
+    .feature-card p { margin: 0; font-size: 0.81rem; color: var(--w-muted); }
+
+    /* ── Sidebar logo ─────────────────────────────────────────────── */
+    .sidebar-logo { display: flex; justify-content: center; padding: 0.4rem 0 0.6rem; }
+    .sidebar-logo img { max-width: 140px; }
 
     /* ── Back button pill ─────────────────────────────────────────── */
     div[data-testid="stButton"] button[kind="secondary"] {
         border-radius: 20px; font-size: 0.85em; padding: 0.25rem 0.85rem;
     }
-
-    /* ── Landing page ─────────────────────────────────────────────── */
-    .hero-title { font-size: 2.8rem; font-weight: 800; text-align: center;
-                  letter-spacing: -0.5px; color: #1E293B; margin-bottom: 0; }
-    .hero-sub   { text-align: center; color: #64748B; font-size: 1.1rem; margin-top: 0.3rem; }
-    .hero-byline { text-align: center; color: #94A3B8; font-size: 0.85rem; margin-top: 0.2rem; }
-
-    .feature-card {
-        border: 1px solid #E2E8F0; border-radius: 10px; padding: 1.2rem 1rem;
-        text-align: center; height: 100%;
-    }
-    .feature-card .icon { font-size: 1.8rem; margin-bottom: 6px; }
-    .feature-card h4 { margin: 0 0 4px; font-size: 0.95rem; font-weight: 700; color: #1E293B; }
-    .feature-card p { margin: 0; font-size: 0.82rem; color: #64748B; }
     </style>
     """, unsafe_allow_html=True)
+
+
+def _logo_img(height: str = "72px") -> str:
+    """Return an <img> tag with the Winnow logo embedded as base64."""
+    import base64
+    logo_path = Path(__file__).parent / "logo" / "SVG" / "Asset 1.svg"
+    try:
+        data = logo_path.read_bytes()
+        b64 = base64.b64encode(data).decode()
+        return (
+            f'<img src="data:image/svg+xml;base64,{b64}" '
+            f'height="{height}" style="display:block;">'
+        )
+    except Exception:
+        return "<span style='font-size:1.6rem;font-weight:800;color:#054067'>Winnow</span>"
 
 
 def render_progress_steps(current_phase: int):
@@ -544,8 +584,10 @@ with st.sidebar:
     st.markdown("---")
 
     # Phase Tracker
-    st.title("📚 Winnow")
-    st.caption("Find · Filter · Retrieve · by Ziqian Xia")
+    st.markdown(
+        f"<div class='sidebar-logo'>{_logo_img('52px')}</div>",
+        unsafe_allow_html=True
+    )
     st.markdown("---")
 
     phases = [
@@ -746,7 +788,7 @@ if not st.session_state.workflow_started:
     # ── Hero ──────────────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='hero-title'>📚 Winnow</div>"
+        f"<div class='hero-logo'>{_logo_img('96px')}</div>"
         "<div class='hero-sub'>Find the right papers. Faster.</div>"
         "<div class='hero-byline'>Systematic search methods · Multi-database · Human-in-the-loop</div>",
         unsafe_allow_html=True
@@ -2390,8 +2432,8 @@ with log_container:
 # Footer
 st.markdown("---")
 st.markdown(
-    '<div style="text-align: center; color: gray; font-size: 0.9em;">'
-    'Winnow · Systematic Literature Search, Powered by AI · Powered by Claude'
+    '<div style="text-align:center; color:#94A3B8; font-size:0.8em; padding:0.5rem 0;">'
+    'Winnow · Systematic Literature Search · Powered by Claude AI'
     '</div>',
     unsafe_allow_html=True
 )
