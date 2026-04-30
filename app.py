@@ -125,38 +125,62 @@ def inject_css():
     <style>
     /* ── Brand tokens ─────────────────────────────────────────────── */
     :root {
-        --w-navy:  #054067;
-        --w-teal:  #036380;
-        --w-teal2: #068c94;
-        --w-light: #e8f4f7;
-        --w-text:  #1E293B;
-        --w-muted: #64748B;
-        --w-faint: #94A3B8;
-        --w-border:#E2E8F0;
+        --w-navy:   #054067;
+        --w-teal:   #036380;
+        --w-teal2:  #068c94;
+        --w-light:  #e4f2f6;
+        --w-text:   #1E293B;
+        --w-muted:  #64748B;
+        --w-faint:  #94A3B8;
+        --w-border: #E2E8F0;
+    }
+
+    /* ── Hero section ─────────────────────────────────────────────── */
+    .hero-wrap {
+        background: linear-gradient(135deg, #054067 0%, #036380 55%, #068c94 100%);
+        border-radius: 16px;
+        padding: 3rem 2rem 2.4rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+    .hero-wrap img { margin: 0 auto 1.2rem; display: block; }
+    .hero-sub {
+        color: rgba(255,255,255,0.85); font-size: 1.15rem;
+        font-weight: 400; margin: 0; letter-spacing: 0.01em;
+    }
+    .hero-byline {
+        color: rgba(255,255,255,0.5); font-size: 0.82rem; margin-top: 0.5rem;
+        letter-spacing: 0.04em; text-transform: uppercase;
     }
 
     /* ── Progress stepper ─────────────────────────────────────────── */
     .sr-steps {
         display: flex; align-items: center; justify-content: center;
-        padding: 1.2rem 0.5rem 1.6rem; gap: 0; width: 100%;
+        padding: 1.6rem 0.5rem 1.8rem; gap: 0; width: 100%;
     }
     .sr-step {
-        display: flex; flex-direction: column; align-items: center; gap: 6px;
-        min-width: 90px; position: relative;
+        display: flex; flex-direction: column; align-items: center; gap: 8px;
+        min-width: 108px; position: relative;
     }
     .sr-circle {
-        width: 34px; height: 34px; border-radius: 50%;
+        width: 42px; height: 42px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
-        font-weight: 700; font-size: 0.85em; flex-shrink: 0;
-        transition: box-shadow 0.2s;
+        font-weight: 700; font-size: 1em; flex-shrink: 0;
+        transition: box-shadow 0.2s, transform 0.2s;
     }
-    .sr-label { font-size: 0.72em; text-align: center; font-weight: 500; line-height: 1.3; }
-    .sr-connector { height: 2px; flex: 1; min-width: 32px; margin-bottom: 26px; }
+    .sr-label {
+        font-size: 0.74em; text-align: center; font-weight: 500;
+        line-height: 1.35; max-width: 84px;
+    }
+    .sr-connector { height: 2px; flex: 1; min-width: 32px; margin-bottom: 30px; }
 
     .sr-step.done  .sr-circle { background: var(--w-teal2); color: #fff; }
     .sr-step.done  .sr-label  { color: var(--w-teal2); }
-    .sr-step.active .sr-circle { background: var(--w-navy); color: #fff;
-                                  box-shadow: 0 0 0 4px rgba(5,64,103,0.18); }
+    .sr-step.active .sr-circle {
+        background: var(--w-navy); color: #fff;
+        box-shadow: 0 0 0 5px rgba(5,64,103,0.18);
+        transform: scale(1.12);
+    }
     .sr-step.active .sr-label  { color: var(--w-navy); font-weight: 700; }
     .sr-step.pending .sr-circle { background: var(--w-border); color: var(--w-faint); }
     .sr-step.pending .sr-label  { color: var(--w-faint); }
@@ -165,45 +189,63 @@ def inject_css():
 
     /* ── Phase header banners ─────────────────────────────────────── */
     .ph-banner {
-        padding: 0.75rem 1.2rem; border-radius: 8px; margin-bottom: 0.5rem;
-        border-left: 5px solid; display: flex; align-items: baseline; gap: 10px;
+        padding: 0.85rem 1.3rem; border-radius: 10px; margin-bottom: 0.6rem;
+        border-left: 5px solid; display: flex; align-items: baseline; gap: 12px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
     .ph-banner h2 { margin: 0; font-size: 1.3rem; font-weight: 700; }
     .ph-banner p  { margin: 0; font-size: 0.88rem; opacity: 0.72; }
-    .ph1 { border-color: var(--w-navy);  background: #eef4f8; }
-    .ph2 { border-color: var(--w-teal);  background: #e8f4f6; }
-    .ph3 { border-color: var(--w-teal2); background: #e8f5f5; }
-    .ph4 { border-color: #4a6fa5;        background: #eef1f8; }
-
-    /* ── Landing hero ─────────────────────────────────────────────── */
-    .hero-logo  { display: flex; justify-content: center; align-items: center;
-                  padding: 0.5rem 0 0.8rem; }
-    .hero-sub   { text-align: center; color: var(--w-muted); font-size: 1.05rem;
-                  margin-top: 0.2rem; }
-    .hero-byline { text-align: center; color: var(--w-faint); font-size: 0.82rem;
-                   margin-top: 0.15rem; }
+    .ph1 { border-color: var(--w-navy);  background: #eef4f9; }
+    .ph2 { border-color: var(--w-teal);  background: #e7f3f6; }
+    .ph3 { border-color: var(--w-teal2); background: #e7f4f5; }
+    .ph4 { border-color: #4a6fa5;        background: #eef1f9; }
 
     /* ── Feature cards ────────────────────────────────────────────── */
     .feature-card {
-        border: 1px solid var(--w-border); border-radius: 10px;
-        padding: 1.2rem 1rem; text-align: center; height: 100%;
-        transition: border-color 0.2s, box-shadow 0.2s;
+        border: 1.5px solid var(--w-border); border-radius: 12px;
+        padding: 1.4rem 1rem 1.2rem; text-align: center; height: 100%;
+        transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        background: #fff;
     }
     .feature-card:hover {
-        border-color: var(--w-teal); box-shadow: 0 2px 12px rgba(3,99,128,0.1);
+        border-color: var(--w-teal);
+        box-shadow: 0 4px 18px rgba(3,99,128,0.12);
+        transform: translateY(-2px);
     }
-    .feature-card .icon { font-size: 1.7rem; margin-bottom: 6px; }
-    .feature-card h4 { margin: 0 0 4px; font-size: 0.93rem; font-weight: 700;
-                       color: var(--w-text); }
-    .feature-card p { margin: 0; font-size: 0.81rem; color: var(--w-muted); }
+    .feature-card .fc-icon {
+        width: 48px; height: 48px; border-radius: 12px;
+        background: linear-gradient(135deg, #054067, #068c94);
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 0.75rem; font-size: 1.4rem;
+    }
+    .feature-card h4 {
+        margin: 0 0 5px; font-size: 0.92rem; font-weight: 700; color: var(--w-text);
+    }
+    .feature-card p { margin: 0; font-size: 0.8rem; color: var(--w-muted); line-height: 1.5; }
+
+    /* ── "What you need" boxes ────────────────────────────────────── */
+    .need-box {
+        border: 1.5px solid var(--w-border); border-radius: 10px;
+        padding: 1.1rem 1.2rem; height: 100%; background: #fafcfd;
+    }
+    .need-box h5 {
+        margin: 0 0 0.6rem; font-size: 0.88rem; font-weight: 700;
+        color: var(--w-navy); text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .need-box ul { margin: 0; padding-left: 1.1rem; }
+    .need-box li { font-size: 0.82rem; color: var(--w-text); margin-bottom: 0.35rem; }
+    .need-box li a { color: var(--w-teal); }
 
     /* ── Sidebar logo ─────────────────────────────────────────────── */
-    .sidebar-logo { display: flex; justify-content: center; padding: 0.4rem 0 0.6rem; }
-    .sidebar-logo img { max-width: 140px; }
+    .sidebar-logo {
+        display: flex; justify-content: center;
+        padding: 0.6rem 0 0.8rem;
+    }
+    .sidebar-logo img { max-width: 148px; }
 
     /* ── Back button pill ─────────────────────────────────────────── */
     div[data-testid="stButton"] button[kind="secondary"] {
-        border-radius: 20px; font-size: 0.85em; padding: 0.25rem 0.85rem;
+        border-radius: 20px; font-size: 0.84em; padding: 0.2rem 0.8rem;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -585,7 +627,10 @@ with st.sidebar:
 
     # Phase Tracker
     st.markdown(
-        f"<div class='sidebar-logo'>{_logo_img('52px')}</div>",
+        "<div style='text-align:center; padding: 0.5rem 0 0.25rem;'>"
+        "<span style='font-size:1.35rem; font-weight:800; letter-spacing:-0.5px; color:#054067;'>winnow</span>"
+        "<br><span style='font-size:0.7rem; color:#64748B; letter-spacing:0.04em;'>LITERATURE SEARCH</span>"
+        "</div>",
         unsafe_allow_html=True
     )
     st.markdown("---")
@@ -788,9 +833,11 @@ if not st.session_state.workflow_started:
     # ── Hero ──────────────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
-        f"<div class='hero-logo'>{_logo_img('96px')}</div>"
-        "<div class='hero-sub'>Find the right papers. Faster.</div>"
-        "<div class='hero-byline'>Systematic search methods · Multi-database · Human-in-the-loop</div>",
+        f"<div class='hero-wrap'>"
+        f"  {_logo_img('180px')}"
+        f"  <div class='hero-sub'>Find the right papers. Faster.</div>"
+        f"  <div class='hero-byline'>Systematic search methods &nbsp;·&nbsp; Multi-database &nbsp;·&nbsp; Human-in-the-loop</div>"
+        f"</div>",
         unsafe_allow_html=True
     )
 
@@ -814,7 +861,7 @@ if not st.session_state.workflow_started:
         with col:
             st.markdown(
                 f"<div class='feature-card'>"
-                f"  <div class='icon'>{icon}</div>"
+                f"  <div class='fc-icon'>{icon}</div>"
                 f"  <h4>{title}</h4>"
                 f"  <p>{desc}</p>"
                 f"</div>",
