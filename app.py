@@ -137,21 +137,25 @@ def inject_css():
 
     /* ── Hero section ─────────────────────────────────────────────── */
     .hero-wrap {
-        background: linear-gradient(135deg, #054067 0%, #036380 55%, #068c94 100%);
+        background: #ffffff;
+        border: 1.5px solid #dde9ef;
+        border-top: 4px solid var(--w-teal);
         border-radius: 16px;
-        padding: 3rem 2rem 2.4rem;
+        padding: 3rem 2rem 2.6rem;
         text-align: center;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
+        box-shadow: 0 2px 16px rgba(3,99,128,0.07);
     }
-    .hero-wrap img { margin: 0 auto 1.2rem; display: block; }
+    .hero-wrap img { margin: 0 auto 1.4rem; display: block; }
     .hero-sub {
-        color: rgba(255,255,255,0.85); font-size: 1.15rem;
-        font-weight: 400; margin: 0; letter-spacing: 0.01em;
+        color: var(--w-navy); font-size: 1.45rem;
+        font-weight: 700; margin: 0 0 0.5rem; letter-spacing: -0.02em;
     }
     .hero-byline {
-        color: rgba(255,255,255,0.5); font-size: 0.82rem; margin-top: 0.5rem;
-        letter-spacing: 0.04em; text-transform: uppercase;
+        color: var(--w-teal); font-size: 0.8rem; margin-top: 0.4rem;
+        letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500;
     }
+    .hero-byline span { opacity: 0.45; margin: 0 0.4em; }
 
     /* ── Progress stepper ─────────────────────────────────────────── */
     .sr-steps {
@@ -213,10 +217,11 @@ def inject_css():
         transform: translateY(-2px);
     }
     .feature-card .fc-icon {
-        width: 48px; height: 48px; border-radius: 12px;
-        background: linear-gradient(135deg, #054067, #068c94);
+        width: 52px; height: 52px; border-radius: 14px;
+        background: linear-gradient(145deg, #e8f4f8 0%, #d0ebf2 100%);
+        border: 1.5px solid #c2dfe9;
         display: flex; align-items: center; justify-content: center;
-        margin: 0 auto 0.75rem; font-size: 1.4rem;
+        margin: 0 auto 0.85rem; font-size: 1.5rem;
     }
     .feature-card h4 {
         margin: 0 0 5px; font-size: 0.92rem; font-weight: 700; color: var(--w-text);
@@ -225,16 +230,19 @@ def inject_css():
 
     /* ── "What you need" boxes ────────────────────────────────────── */
     .need-box {
-        border: 1.5px solid var(--w-border); border-radius: 10px;
+        border: 1.5px solid var(--w-border);
+        border-left: 4px solid var(--w-teal2);
+        border-radius: 10px;
         padding: 1.1rem 1.2rem; height: 100%; background: #fafcfd;
     }
     .need-box h5 {
-        margin: 0 0 0.6rem; font-size: 0.88rem; font-weight: 700;
-        color: var(--w-navy); text-transform: uppercase; letter-spacing: 0.05em;
+        margin: 0 0 0.6rem; font-size: 0.8rem; font-weight: 700;
+        color: var(--w-teal2); text-transform: uppercase; letter-spacing: 0.07em;
     }
     .need-box ul { margin: 0; padding-left: 1.1rem; }
-    .need-box li { font-size: 0.82rem; color: var(--w-text); margin-bottom: 0.35rem; }
-    .need-box li a { color: var(--w-teal); }
+    .need-box li { font-size: 0.82rem; color: var(--w-text); margin-bottom: 0.35rem; line-height: 1.5; }
+    .need-box li a { color: var(--w-teal); text-decoration: none; }
+    .need-box li a:hover { text-decoration: underline; }
 
     /* ── Sidebar logo ─────────────────────────────────────────────── */
     .sidebar-logo {
@@ -836,7 +844,13 @@ if not st.session_state.workflow_started:
         f"<div class='hero-wrap'>"
         f"  {_logo_img('180px')}"
         f"  <div class='hero-sub'>Find the right papers. Faster.</div>"
-        f"  <div class='hero-byline'>Systematic search methods &nbsp;·&nbsp; Multi-database &nbsp;·&nbsp; Human-in-the-loop</div>"
+        f"  <div class='hero-byline'>"
+        f"    Systematic search methods"
+        f"    <span>·</span>"
+        f"    Multi-database"
+        f"    <span>·</span>"
+        f"    Human-in-the-loop"
+        f"  </div>"
         f"</div>",
         unsafe_allow_html=True
     )
@@ -872,23 +886,37 @@ if not st.session_state.workflow_started:
     st.markdown("---")
 
     # ── What you need ─────────────────────────────────────────────────
-    st.markdown("#### 🔑 What you need to get started")
+    st.markdown(
+        "<p style='font-size:0.95rem; font-weight:700; color:#054067; margin:0.2rem 0 0.8rem;'>"
+        "🔑 What you need to get started</p>",
+        unsafe_allow_html=True
+    )
     col_need1, col_need2 = st.columns(2)
     with col_need1:
-        st.markdown("""
-**Required**
-- **Anthropic API key** — for query generation & screening
-  → [console.anthropic.com](https://console.anthropic.com/)
-- **Email address** — for OpenAlex (free, no registration)
-""")
+        st.markdown(
+            "<div class='need-box'>"
+            "<h5>Required</h5>"
+            "<ul>"
+            "<li><strong>Anthropic API key</strong> — query generation &amp; screening"
+            " &nbsp;<a href='https://console.anthropic.com/' target='_blank'>↗ console.anthropic.com</a></li>"
+            "<li><strong>Email address</strong> — for OpenAlex (free, no sign-up)</li>"
+            "</ul>"
+            "</div>",
+            unsafe_allow_html=True
+        )
     with col_need2:
-        st.markdown("""
-**Optional**
-- **PubMed API key** — free at [ncbi.nlm.nih.gov/account](https://www.ncbi.nlm.nih.gov/account/)
-- **Scopus API key** — institutional, [dev.elsevier.com](https://dev.elsevier.com/)
-- **Wiley TDM token** — for full-text PDF download
-""")
-    st.caption("💡 Enter keys in the sidebar after clicking Start. Only Anthropic + email needed for a first run.")
+        st.markdown(
+            "<div class='need-box'>"
+            "<h5>Optional</h5>"
+            "<ul>"
+            "<li><strong>PubMed API key</strong> — free at <a href='https://www.ncbi.nlm.nih.gov/account/' target='_blank'>ncbi.nlm.nih.gov</a></li>"
+            "<li><strong>Scopus API key</strong> — institutional, <a href='https://dev.elsevier.com/' target='_blank'>dev.elsevier.com</a></li>"
+            "<li><strong>Wiley TDM token</strong> — for full-text PDF download</li>"
+            "</ul>"
+            "</div>",
+            unsafe_allow_html=True
+        )
+    st.caption("💡 Only Anthropic API key + email needed for a first run. Add other keys in the sidebar.")
 
     st.markdown("---")
 
