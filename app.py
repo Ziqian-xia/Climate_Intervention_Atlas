@@ -748,7 +748,7 @@ if not st.session_state.workflow_started:
     st.markdown(
         "<div class='hero-title'>📚 Winnow</div>"
         "<div class='hero-sub'>Find the right papers. Faster.</div>"
-        "<div class='hero-byline'>Systematic search methods · Multi-database · Human-in-the-loop · by Ziqian Xia</div>",
+        "<div class='hero-byline'>Systematic search methods · Multi-database · Human-in-the-loop</div>",
         unsafe_allow_html=True
     )
 
