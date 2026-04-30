@@ -255,6 +255,19 @@ def inject_css():
     div[data-testid="stButton"] button[kind="secondary"] {
         border-radius: 20px; font-size: 0.84em; padding: 0.2rem 0.8rem;
     }
+
+    /* ── Skip-step expanders — muted, low-contrast ────────────────── */
+    div[data-testid="stExpander"].skip-expander > details > summary {
+        color: var(--w-faint); font-size: 0.8rem;
+    }
+    div[data-testid="stExpander"].skip-expander > details > summary:hover {
+        color: var(--w-muted);
+    }
+    .skip-section {
+        border-top: 1px dashed var(--w-border);
+        padding-top: 0.5rem;
+        margin-top: 0.75rem;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -1008,14 +1021,15 @@ st.markdown("---")
 
 # ── Skip Phase 1: enter queries manually ─────────────────────────────────
 if not st.session_state.approved:
-    with st.expander("⏭️ Skip query generation — I already have search terms", expanded=False):
+    st.markdown("<div class='skip-section'>", unsafe_allow_html=True)
+    with st.expander("Already have search terms? Skip query generation →", expanded=False):
         st.caption("Paste your Boolean queries directly and proceed to Phase 2 without running the AI agents.")
         _skip_oa  = st.text_area("OpenAlex / Scopus query:", key="skip_openalex_query", height=80,
                                   placeholder='title-abs-key("cooling center" OR "heat shelter") AND ...')
         _skip_pm  = st.text_area("PubMed query:", key="skip_pubmed_query", height=80,
                                   placeholder='("cooling center"[tiab] OR "heat shelter"[tiab]) AND ...')
         _skip_els = st.text_area("Elsevier / Scopus query (can be same as OpenAlex):", key="skip_elsevier_query", height=80)
-        if st.button("✅ Use these queries → go to Phase 2", key="skip_p1_button",
+        if st.button("Use these queries → Phase 2", key="skip_p1_button",
                      disabled=not (_skip_oa or _skip_pm)):
             st.session_state.openalex_query  = _skip_oa
             st.session_state.pubmed_query    = _skip_pm
@@ -1038,6 +1052,7 @@ if not st.session_state.approved:
                 'issues_resolved': [],
             }]
             st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
 
 # Show edit-mode banner when user returns from Phase 2
 if st.session_state.returned_from_phase2 and not st.session_state.approved:
@@ -1497,7 +1512,8 @@ if st.session_state.phase >= 2:
 
     # ── Skip Phase 2: upload existing search results ──────────────────────
     if not st.session_state.get('search_approved', False):
-        with st.expander("⏭️ Skip search — I already have results (upload CSV)", expanded=False):
+        st.markdown("<div class='skip-section'>", unsafe_allow_html=True)
+        with st.expander("Already have results? Skip search and upload CSV →", expanded=False):
             st.caption("Upload a CSV of papers you've already retrieved. Needs at least a title column; abstract and DOI recommended.")
             _p2_file = st.file_uploader("Upload results CSV:", type=["csv"], key="skip_p2_uploader")
             if _p2_file:
@@ -1510,7 +1526,7 @@ if st.session_state.phase >= 2:
                     _p2_title = _c1.selectbox("Title column:", _p2_cols, key="skip_p2_title")
                     _p2_abs   = _c2.selectbox("Abstract column (optional):", _p2_cols, key="skip_p2_abstract")
                     _p2_doi   = _c3.selectbox("DOI column (optional):", _p2_cols, key="skip_p2_doi")
-                    if _p2_title and st.button("✅ Use these results → go to Phase 3", key="skip_p2_button"):
+                    if _p2_title and st.button("Use these results → Phase 3", key="skip_p2_button"):
                         import tempfile
                         _mapped = pd.DataFrame()
                         _mapped['title']     = _p2_df[_p2_title]
@@ -1526,6 +1542,7 @@ if st.session_state.phase >= 2:
                         st.rerun()
                 except Exception as e:
                     st.error(f"❌ {_safe_error(e)}")
+        st.markdown("</div>", unsafe_allow_html=True)
 
     # Show variation info if multiple variations exist
     if len(st.session_state.query_variations) > 1:
@@ -1895,7 +1912,8 @@ if st.session_state.phase >= 3:
 
     # ── Skip Phase 3: upload pre-screened papers or include all ──────────
     if not st.session_state.screening_approved:
-        with st.expander("⏭️ Skip screening — use pre-screened results or include all papers", expanded=False):
+        st.markdown("<div class='skip-section'>", unsafe_allow_html=True)
+        with st.expander("Skip screening — upload pre-screened papers or include all →", expanded=False):
             _skip3_tab1, _skip3_tab2 = st.tabs(["📂 Upload pre-screened CSV", "✅ Include all papers"])
 
             with _skip3_tab1:
@@ -1914,7 +1932,7 @@ if st.session_state.phase >= 3:
                                                        help="Column with True/False or 1/0 inclusion decisions")
                         _p3_abs       = _s4.selectbox("Abstract (optional):", _p3_cols, key="skip_p3_abstract")
                         if _p3_title and _p3_doi and _p3_judgement:
-                            if st.button("✅ Use these results → go to Phase 4", key="skip_p3_button"):
+                            if st.button("Use these results → Phase 4", key="skip_p3_button"):
                                 _p3_mapped = _p3_df.copy()
                                 _p3_mapped = _p3_mapped.rename(columns={
                                     _p3_title: 'title', _p3_doi: 'doi', _p3_judgement: 'judgement'
@@ -1949,7 +1967,7 @@ if st.session_state.phase >= 3:
                     st.info(f"This will mark all **{len(_all_df)} papers** as included.")
                     if 'doi' not in _all_df.columns or _all_df['doi'].isna().all():
                         st.warning("⚠️ No DOI column found — Phase 4 requires DOIs for download.")
-                    if st.button("✅ Include all → go to Phase 4", key="skip_p3_all_button"):
+                    if st.button("Include all → Phase 4", key="skip_p3_all_button"):
                         _all_df['judgement'] = True
                         st.session_state.screening_results  = _all_df
                         st.session_state.screening_approved = True
@@ -1958,6 +1976,7 @@ if st.session_state.phase >= 3:
                         st.rerun()
                 else:
                     st.warning("No Phase 2 results found. Complete Phase 2 first, or upload a CSV in the tab above.")
+        st.markdown("</div>", unsafe_allow_html=True)
 
     # Configuration Section
     st.subheader("⚙️ Screening Configuration")

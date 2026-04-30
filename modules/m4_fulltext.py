@@ -128,31 +128,34 @@ class FullTextRetriever:
             "--timeout", str(self.config['timeout'])
         ]
 
-        # OpenAlex-only mode: skip publisher and browser steps, no MD conversion
-        if self.config.get('openalex_only'):
-            cmd.append("--no-elsevier")
-            cmd.append("--no-wiley")
-            # do NOT add --convert-to-md
-        else:
-            if self.config.get('convert_to_md'):
-                cmd.append("--convert-to-md")
-            if self.config.get('use_playwright'):
-                cmd.append("--use-playwright-fallback")
+        # Optional flags — only add those the wrapper actually supports
+        if self.config.get('convert_to_md') and not self.config.get('openalex_only'):
+            cmd.append("--convert-to-md")
+        if self.config.get('use_playwright') and not self.config.get('openalex_only'):
+            cmd.append("--use-playwright-fallback")
 
         self.logger.info(f"  Running command: {' '.join(cmd)}")
 
-        # Prepare environment with API credentials
+        # Prepare environment with API credentials.
+        # In openalex_only mode, omit publisher keys so the wrapper naturally
+        # skips Elsevier/Wiley (it checks for missing keys internally).
         env = os.environ.copy()
+        # Always clear publisher keys from inherited env first
+        for _k in ('ELSEVIER_API_KEY', 'ELSEVIER_INST_TOKEN', 'WILEY_TDM_CLIENT_TOKEN'):
+            env.pop(_k, None)
+
         if self.api_credentials.get('openalex_api_key'):
             env['OPENALEX_API_KEY'] = self.api_credentials['openalex_api_key']
         if self.api_credentials.get('openalex_mailto'):
             env['OPENALEX_MAILTO'] = self.api_credentials['openalex_mailto']
-        if self.api_credentials.get('elsevier_api_key'):
-            env['ELSEVIER_API_KEY'] = self.api_credentials['elsevier_api_key']
-        if self.api_credentials.get('elsevier_inst_token'):
-            env['ELSEVIER_INST_TOKEN'] = self.api_credentials['elsevier_inst_token']
-        if self.api_credentials.get('wiley_tdm_token'):
-            env['WILEY_TDM_CLIENT_TOKEN'] = self.api_credentials['wiley_tdm_token']
+
+        if not self.config.get('openalex_only'):
+            if self.api_credentials.get('elsevier_api_key'):
+                env['ELSEVIER_API_KEY'] = self.api_credentials['elsevier_api_key']
+            if self.api_credentials.get('elsevier_inst_token'):
+                env['ELSEVIER_INST_TOKEN'] = self.api_credentials['elsevier_inst_token']
+            if self.api_credentials.get('wiley_tdm_token'):
+                env['WILEY_TDM_CLIENT_TOKEN'] = self.api_credentials['wiley_tdm_token']
 
         try:
             # Run subprocess with API credentials in environment
@@ -176,12 +179,17 @@ class FullTextRetriever:
                         self.logger.warning(f"  [fulltext-chain] {line}")
 
             if result.returncode != 0:
-                self.logger.error(f"Fulltext chain failed with return code {result.returncode}")
+                # Include first meaningful stderr line to surface argparse/import errors
+                _stderr_hint = next(
+                    (l.strip() for l in result.stderr.splitlines() if l.strip()),
+                    ""
+                )
+                self.logger.error(f"Fulltext chain failed with return code {result.returncode}: {_stderr_hint}")
                 return {
                     "success": 0,
                     "total": len(doi_list),
                     "status": "error",
-                    "message": f"Subprocess failed with code {result.returncode}"
+                    "message": f"Subprocess failed (code {result.returncode}): {_stderr_hint}"
                 }
 
             # Parse results
