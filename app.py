@@ -2279,16 +2279,42 @@ if st.session_state.phase >= 4:
     # Configuration Section
     st.subheader("⚙️ Retrieval Configuration")
 
+    retrieval_source = st.radio(
+        "Retrieval source:",
+        options=["openalex_only", "full_chain"],
+        format_func=lambda x: {
+            "openalex_only": "🟢 OpenAlex only — free, Open Access papers, raw files (PDF/XML)",
+            "full_chain":    "🔗 Full chain — OA → Elsevier → Wiley → Browser fallback"
+        }[x],
+        index=0,
+        key="fulltext_source_radio",
+        disabled=st.session_state.fulltext_approved,
+        help="OpenAlex only returns papers that are freely available (Open Access). Full chain adds institutional publisher access."
+    )
+
+    if retrieval_source == "openalex_only":
+        st.info(
+            "**OpenAlex only** downloads raw PDF or XML files directly — no Markdown conversion. "
+            "Only Open Access papers will be retrieved; paywalled papers are skipped. "
+            "Needs: **your email** (recommended for polite-pool rate limits) — no API key required."
+        )
+        use_playwright = False
+    else:
+        st.info("Full chain tries OpenAlex first, then Elsevier/Wiley APIs, then a browser fallback.")
+
     col_pw, col_retry = st.columns(2)
     with col_pw:
-        use_playwright = st.checkbox(
-            "Enable Playwright Fallback",
-            value=st.session_state.fulltext_use_playwright,
-            help="Use browser automation as last resort (slower but higher success rate)",
-            key="fulltext_playwright_checkbox",
-            disabled=st.session_state.fulltext_approved
-        )
-        st.session_state.fulltext_use_playwright = use_playwright
+        if retrieval_source == "full_chain":
+            use_playwright = st.checkbox(
+                "Enable Playwright Fallback",
+                value=st.session_state.fulltext_use_playwright,
+                help="Use browser automation as last resort (slower but higher success rate)",
+                key="fulltext_playwright_checkbox",
+                disabled=st.session_state.fulltext_approved
+            )
+            st.session_state.fulltext_use_playwright = use_playwright
+        else:
+            use_playwright = False
 
     with col_retry:
         max_retries = st.number_input(
@@ -2437,7 +2463,8 @@ if st.session_state.phase >= 4:
                     retriever = FullTextRetriever(
                         config={
                             'out_dir': f"fulltext_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-                            'convert_to_md': True,  # Always convert per user decision
+                            'convert_to_md': False,  # Raw files only for now
+                            'openalex_only': retrieval_source == "openalex_only",
                             'use_playwright': use_playwright,
                             'max_retries': max_retries,
                             'timeout': timeout

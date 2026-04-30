@@ -120,7 +120,7 @@ class FullTextRetriever:
             raise FileNotFoundError(f"Fulltext chain wrapper not found at: {wrapper_path}")
 
         cmd = [
-            sys.executable,  # Use current Python interpreter
+            sys.executable,
             str(wrapper_path),
             "--doi-file", doi_file,
             "--out-dir", self.config['out_dir'],
@@ -128,11 +128,16 @@ class FullTextRetriever:
             "--timeout", str(self.config['timeout'])
         ]
 
-        # Add optional flags
-        if self.config['convert_to_md']:
-            cmd.append("--convert-to-md")
-        if self.config['use_playwright']:
-            cmd.append("--use-playwright-fallback")
+        # OpenAlex-only mode: skip publisher and browser steps, no MD conversion
+        if self.config.get('openalex_only'):
+            cmd.append("--no-elsevier")
+            cmd.append("--no-wiley")
+            # do NOT add --convert-to-md
+        else:
+            if self.config.get('convert_to_md'):
+                cmd.append("--convert-to-md")
+            if self.config.get('use_playwright'):
+                cmd.append("--use-playwright-fallback")
 
         self.logger.info(f"  Running command: {' '.join(cmd)}")
 
