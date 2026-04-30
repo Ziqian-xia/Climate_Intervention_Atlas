@@ -1,7 +1,6 @@
 """
-Auto-SLR Multi-Agent Pipeline - Streamlit HITL Interface
-Phase 1: Multi-Agent Query Generator
-Phase 2: Metadata Search Execution
+Winnow — Systematic Literature Search, Powered by AI
+Multi-agent pipeline: Query Generation → Search → Screening → Full-Text Retrieval
 """
 
 import os
@@ -26,7 +25,7 @@ from utils.prompt_inspector import (
 
 # Page config
 st.set_page_config(
-    page_title="AutoSR - Automated Systematic Review",
+    page_title="Winnow — Systematic Literature Search, Powered by AI",
     page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -65,6 +64,7 @@ def init_session_state():
         # API Settings (Phase 1 LLM Provider)
         'provider_type': 'anthropic',
         'anthropic_api_key': '',
+        'anthropic_model_id': 'claude-sonnet-4-6',
         'aws_region': 'us-east-1',
         'aws_model_id': 'us.anthropic.claude-sonnet-4-6',
         'aws_access_key_id': '',
@@ -106,7 +106,8 @@ def init_session_state():
         'wiley_tdm_token': '',  # Wiley TDM API token
 
         # Workflow control
-        'workflow_started': False
+        'workflow_started': False,
+        'returned_from_phase2': False,  # Flag: user went back from Phase 2 to edit queries
     }
 
     for key, value in defaults.items():
@@ -114,6 +115,137 @@ def init_session_state():
             st.session_state[key] = value
 
 init_session_state()
+
+# ==============================================================================
+# GLOBAL CSS + UI HELPERS
+# ==============================================================================
+
+def inject_css():
+    st.markdown("""
+    <style>
+    /* ── Progress stepper ─────────────────────────────────────────── */
+    .sr-steps {
+        display: flex; align-items: center; justify-content: center;
+        padding: 1.2rem 0.5rem 1.6rem; gap: 0; width: 100%;
+    }
+    .sr-step {
+        display: flex; flex-direction: column; align-items: center; gap: 6px;
+        min-width: 90px; position: relative;
+    }
+    .sr-circle {
+        width: 34px; height: 34px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; font-size: 0.85em; flex-shrink: 0;
+        transition: box-shadow 0.2s;
+    }
+    .sr-label { font-size: 0.72em; text-align: center; font-weight: 500; line-height: 1.3; }
+    .sr-connector { height: 2px; flex: 1; min-width: 32px; margin-bottom: 26px; }
+
+    .sr-step.done  .sr-circle { background: #10B981; color: #fff; }
+    .sr-step.done  .sr-label  { color: #10B981; }
+    .sr-step.active .sr-circle { background: #2563EB; color: #fff; box-shadow: 0 0 0 4px rgba(37,99,235,0.18); }
+    .sr-step.active .sr-label  { color: #2563EB; font-weight: 700; }
+    .sr-step.pending .sr-circle { background: #E2E8F0; color: #94A3B8; }
+    .sr-step.pending .sr-label  { color: #94A3B8; }
+    .sr-connector.done    { background: #10B981; }
+    .sr-connector.pending { background: #E2E8F0; }
+
+    /* ── Phase header banners ─────────────────────────────────────── */
+    .ph-banner {
+        padding: 0.7rem 1.1rem; border-radius: 6px; margin-bottom: 0.5rem;
+        border-left: 5px solid; display: flex; align-items: baseline; gap: 10px;
+    }
+    .ph-banner h2 { margin: 0; font-size: 1.35rem; font-weight: 700; }
+    .ph-banner p  { margin: 0; font-size: 0.88rem; opacity: 0.75; }
+    .ph1 { border-color: #3B82F6; background: #EFF6FF; }
+    .ph2 { border-color: #10B981; background: #ECFDF5; }
+    .ph3 { border-color: #F59E0B; background: #FFFBEB; }
+    .ph4 { border-color: #8B5CF6; background: #F5F3FF; }
+
+    /* ── Back button pill ─────────────────────────────────────────── */
+    div[data-testid="stButton"] button[kind="secondary"] {
+        border-radius: 20px; font-size: 0.85em; padding: 0.25rem 0.85rem;
+    }
+
+    /* ── Landing page ─────────────────────────────────────────────── */
+    .hero-title { font-size: 2.8rem; font-weight: 800; text-align: center;
+                  letter-spacing: -0.5px; color: #1E293B; margin-bottom: 0; }
+    .hero-sub   { text-align: center; color: #64748B; font-size: 1.1rem; margin-top: 0.3rem; }
+    .hero-byline { text-align: center; color: #94A3B8; font-size: 0.85rem; margin-top: 0.2rem; }
+
+    .feature-card {
+        border: 1px solid #E2E8F0; border-radius: 10px; padding: 1.2rem 1rem;
+        text-align: center; height: 100%;
+    }
+    .feature-card .icon { font-size: 1.8rem; margin-bottom: 6px; }
+    .feature-card h4 { margin: 0 0 4px; font-size: 0.95rem; font-weight: 700; color: #1E293B; }
+    .feature-card p { margin: 0; font-size: 0.82rem; color: #64748B; }
+    </style>
+    """, unsafe_allow_html=True)
+
+
+def render_progress_steps(current_phase: int):
+    steps = [
+        (1, "📝", "Query<br>Generation"),
+        (2, "🔍", "Metadata<br>Search"),
+        (3, "✅", "Abstract<br>Screening"),
+        (4, "📄", "Full-Text<br>Retrieval"),
+    ]
+    html = '<div class="sr-steps">'
+    for i, (num, icon, label) in enumerate(steps):
+        if num < current_phase:
+            cls, sym = "done", "✓"
+        elif num == current_phase:
+            cls, sym = "active", icon
+        else:
+            cls, sym = "pending", str(num)
+        html += (
+            f'<div class="sr-step {cls}">'
+            f'  <div class="sr-circle">{sym}</div>'
+            f'  <div class="sr-label">{label}</div>'
+            f'</div>'
+        )
+        if i < len(steps) - 1:
+            conn = "done" if num < current_phase else "pending"
+            html += f'<div class="sr-connector {conn}"></div>'
+    html += '</div>'
+    st.markdown(html, unsafe_allow_html=True)
+
+
+def phase_header(num: int, icon: str, title: str, subtitle: str):
+    cls = f"ph{num}"
+    st.markdown(
+        f'<div class="ph-banner {cls}">'
+        f'  <h2>{icon} {title}</h2>'
+        f'  <p>{subtitle}</p>'
+        f'</div>',
+        unsafe_allow_html=True
+    )
+
+
+inject_css()
+
+# Model catalogue — display label → API model ID
+ANTHROPIC_MODELS = {
+    "Claude Sonnet 4.6  ⭐ Recommended":            "claude-sonnet-4-6",
+    "Claude Haiku 4.5   ⭐ Best value (large screening)": "claude-haiku-4-5-20251001",
+    "Claude Opus 4.7    — Most capable":            "claude-opus-4-7",
+    "Claude 3.5 Sonnet  — Previous gen":            "claude-3-5-sonnet-20241022",
+    "Claude 3.5 Haiku   — Previous gen":            "claude-3-5-haiku-20241022",
+}
+_ANTHROPIC_MODEL_IDS = list(ANTHROPIC_MODELS.values())
+_ANTHROPIC_MODEL_LABELS = list(ANTHROPIC_MODELS.keys())
+
+BEDROCK_MODELS = {
+    "Claude Sonnet 4.6  ⭐ Recommended":            "us.anthropic.claude-sonnet-4-6",
+    "Claude Haiku 4.5   ⭐ Best value (large screening)": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "Claude Opus 4.7    — Most capable":            "us.anthropic.claude-opus-4-7",
+    "Claude Opus 4.6    — Previous Opus":           "us.anthropic.claude-opus-4-6-v1",
+    "Claude Sonnet 4.5  — Previous Sonnet":         "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+    "Claude 3.5 Sonnet  — Previous gen":            "us.anthropic.claude-3-5-sonnet-20241022-v2:0",
+}
+_BEDROCK_MODEL_IDS = list(BEDROCK_MODELS.values())
+_BEDROCK_MODEL_LABELS = list(BEDROCK_MODELS.keys())
 
 # Helper function for merging query variation results
 def _merge_database_variations(db_name: str, variations: list, base_out_dir: str) -> dict:
@@ -300,6 +432,24 @@ with st.sidebar:
             value=st.session_state.anthropic_api_key or "",
             help="Get key at console.anthropic.com"
         )
+        # Resolve current model ID → label for selectbox default
+        _cur_label = next(
+            (lbl for lbl, mid in ANTHROPIC_MODELS.items()
+             if mid == st.session_state.anthropic_model_id),
+            _ANTHROPIC_MODEL_LABELS[0]
+        )
+        _sel_label = st.selectbox(
+            "Model:",
+            options=_ANTHROPIC_MODEL_LABELS,
+            index=_ANTHROPIC_MODEL_LABELS.index(_cur_label),
+            help=(
+                "⭐ Sonnet 4.6 — best quality for query generation & screening\n"
+                "⭐ Haiku 4.5 — ~10× cheaper, ideal when screening 1000+ abstracts\n"
+                "Opus 4.7 — highest capability, slower & most expensive"
+            )
+        )
+        st.session_state.anthropic_model_id = ANTHROPIC_MODELS[_sel_label]
+        st.caption(f"Model ID: `{st.session_state.anthropic_model_id}`")
 
     elif st.session_state.provider_type == "bedrock":
         col1, col2 = st.columns(2)
@@ -310,20 +460,23 @@ with st.sidebar:
                 index=["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1"].index(st.session_state.aws_region)
             )
         with col2:
-            st.session_state.aws_model_id = st.selectbox(
-                "Model:",
-                options=[
-                    "us.anthropic.claude-sonnet-4-6",
-                    "us.anthropic.claude-opus-4-6-v1",
-                    "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
-                    "us.anthropic.claude-opus-4-5-20251101-v1:0",
-                    "us.anthropic.claude-haiku-4-5-20251001-v1:0",
-                    "us.anthropic.claude-3-5-sonnet-20241022-v2:0",
-                    "us.anthropic.claude-3-5-sonnet-20240620-v1:0"
-                ],
-                index=0,
-                help="Cross-region inference profiles - Latest: Claude 4.6 (Sonnet/Opus)"
+            _cur_br_label = next(
+                (lbl for lbl, mid in BEDROCK_MODELS.items()
+                 if mid == st.session_state.aws_model_id),
+                _BEDROCK_MODEL_LABELS[0]
             )
+            _sel_br_label = st.selectbox(
+                "Model:",
+                options=_BEDROCK_MODEL_LABELS,
+                index=_BEDROCK_MODEL_LABELS.index(_cur_br_label),
+                help=(
+                    "⭐ Sonnet 4.6 — best quality for query generation & screening\n"
+                    "⭐ Haiku 4.5 — ~10× cheaper, ideal when screening 1000+ abstracts\n"
+                    "Opus 4.7 — highest capability, slower & most expensive"
+                )
+            )
+            st.session_state.aws_model_id = BEDROCK_MODELS[_sel_br_label]
+        st.caption(f"Model ID: `{st.session_state.aws_model_id}`")
 
         with st.expander("AWS Credentials (optional)"):
             st.info("Leave blank to use IAM role or default credentials")
@@ -351,7 +504,7 @@ with st.sidebar:
                         if not st.session_state.anthropic_api_key:
                             st.error("❌ Please enter your Anthropic API key first")
                         else:
-                            provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key)
+                            provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key, model=st.session_state.anthropic_model_id)
                             if provider.is_available():
                                 if provider.test_connection():
                                     st.success(f"✅ Connected successfully to {provider.get_model_name()}")
@@ -391,8 +544,8 @@ with st.sidebar:
     st.markdown("---")
 
     # Phase Tracker
-    st.title("📚 AutoSR")
-    st.caption("Automated Systematic Review · by Ziqian Xia")
+    st.title("📚 Winnow")
+    st.caption("Find · Filter · Retrieve · by Ziqian Xia")
     st.markdown("---")
 
     phases = [
@@ -400,7 +553,6 @@ with st.sidebar:
         ("Phase 2: Metadata Search", 2, "✅" if st.session_state.phase >= 2 else "⏸️"),
         ("Phase 3: Screening", 3, "✅" if st.session_state.phase >= 3 else "⏸️"),
         ("Phase 4: Full-Text Retrieval", 4, "✅" if st.session_state.phase >= 4 else "⏸️"),
-        ("Phase 5: Analysis", 5, "✅" if st.session_state.phase >= 5 else "⏸️")
     ]
 
     for name, phase_num, icon in phases:
@@ -591,192 +743,87 @@ with st.sidebar:
 # ==============================================================================
 
 if not st.session_state.workflow_started:
-    # Hero Section
+    # ── Hero ──────────────────────────────────────────────────────────
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
-        "<h1 style='text-align: center;'>📚 AutoSR</h1>",
+        "<div class='hero-title'>📚 Winnow</div>"
+        "<div class='hero-sub'>Find the right papers. Faster.</div>"
+        "<div class='hero-byline'>Systematic search methods · Multi-database · Human-in-the-loop · by Ziqian Xia</div>",
         unsafe_allow_html=True
     )
-    st.markdown(
-        "<p style='text-align: center; font-size: 1.2em; color: #666;'>Automated Systematic Review · Powered by Claude AI</p>",
-        unsafe_allow_html=True
-    )
-    st.markdown(
-        "<p style='text-align: center; font-size: 0.95em; color: #999;'>by Ziqian Xia</p>",
-        unsafe_allow_html=True
-    )
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # Workflow Diagram
-    st.markdown("### 🔄 Five-Phase Workflow")
-
-    # Simple visual workflow using columns instead of Mermaid
-    cols = st.columns(5)
-    with cols[0]:
-        st.markdown(
-            "<div style='text-align: center; padding: 20px; background: #e3f2fd; border-radius: 10px;'>"
-            "<div style='font-size: 2em;'>📝</div>"
-            "<div style='font-size: 0.9em; font-weight: bold;'>Query<br/>Generation</div>"
-            "</div>",
-            unsafe_allow_html=True
-        )
-    with cols[1]:
-        st.markdown(
-            "<div style='text-align: center; padding: 20px; background: #e8f5e9; border-radius: 10px;'>"
-            "<div style='font-size: 2em;'>🔍</div>"
-            "<div style='font-size: 0.9em; font-weight: bold;'>Metadata<br/>Search</div>"
-            "</div>",
-            unsafe_allow_html=True
-        )
-    with cols[2]:
-        st.markdown(
-            "<div style='text-align: center; padding: 20px; background: #fff3e0; border-radius: 10px;'>"
-            "<div style='font-size: 2em;'>✅</div>"
-            "<div style='font-size: 0.9em; font-weight: bold;'>Abstract<br/>Screening</div>"
-            "</div>",
-            unsafe_allow_html=True
-        )
-    with cols[3]:
-        st.markdown(
-            "<div style='text-align: center; padding: 20px; background: #fce4ec; border-radius: 10px;'>"
-            "<div style='font-size: 2em;'>📄</div>"
-            "<div style='font-size: 0.9em; font-weight: bold;'>Full-Text<br/>Retrieval</div>"
-            "</div>",
-            unsafe_allow_html=True
-        )
-    with cols[4]:
-        st.markdown(
-            "<div style='text-align: center; padding: 20px; background: #f3e5f5; border-radius: 10px;'>"
-            "<div style='font-size: 2em;'>📊</div>"
-            "<div style='font-size: 0.9em; font-weight: bold;'>Data<br/>Analysis</div>"
-            "</div>",
-            unsafe_allow_html=True
-        )
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Key Features
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.markdown("#### 🤖 AI-Powered")
-        st.write("4-agent team creates optimized Boolean queries")
-    with col2:
-        st.markdown("#### 🔍 Multi-Database")
-        st.write("Search OpenAlex, PubMed, and Scopus")
-    with col3:
-        st.markdown("#### ✅ Human-in-the-Loop")
-        st.write("Review and validate at every phase")
+    # ── Workflow stepper ───────────────────────────────────────────────
+    render_progress_steps(1)
 
     st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
 
-    # Quick Start Guide
-    st.markdown("### 🚀 How to Use AutoSR")
+    # ── Feature cards ──────────────────────────────────────────────────
+    c1, c2, c3, c4 = st.columns(4)
+    cards = [
+        ("🤖", "AI Query Generation", "4-agent team builds Boolean queries for every database"),
+        ("🔍", "Multi-Database Search", "OpenAlex, PubMed, Scopus — merged & deduplicated"),
+        ("✅", "AI Abstract Screening", "LLM screens titles/abstracts against your criteria"),
+        ("📄", "Full-Text Retrieval", "OA → Publishers → browser fallback, output as Markdown"),
+    ]
+    for col, (icon, title, desc) in zip([c1, c2, c3, c4], cards):
+        with col:
+            st.markdown(
+                f"<div class='feature-card'>"
+                f"  <div class='icon'>{icon}</div>"
+                f"  <h4>{title}</h4>"
+                f"  <p>{desc}</p>"
+                f"</div>",
+                unsafe_allow_html=True
+            )
 
-    with st.expander("📖 Quick Start Guide (Click to expand)", expanded=False):
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
+
+    # ── What you need ─────────────────────────────────────────────────
+    st.markdown("#### 🔑 What you need to get started")
+    col_need1, col_need2 = st.columns(2)
+    with col_need1:
         st.markdown("""
-        **Step-by-Step Workflow:**
-
-        **1️⃣ Phase 1: Generate Search Queries**
-        - Enter your research topic in natural language
-        - AI agents will create optimized Boolean queries for different databases
-        - Review and edit queries as needed
-        - Approve to proceed
-
-        **2️⃣ Phase 2: Execute Literature Search**
-        - Select databases (OpenAlex, PubMed, Scopus)
-        - Set maximum results per database
-        - Execute search across all selected databases
-        - Download results as CSV/JSON
-
-        **3️⃣ Phase 3: Screen Abstracts**
-        - Define your inclusion/exclusion criteria
-        - AI screens all abstracts automatically
-        - Review results in paginated table
-        - Edit decisions manually if needed
-        - Approve final selection
-
-        **4️⃣ Phase 4: Retrieve Full-Text (Optional)**
-        - Automatically download PDFs/XMLs
-        - Convert to Markdown for analysis
-        - Multiple fallback sources (OpenAlex → Publishers → Browser)
-
-        **5️⃣ Phase 5: Analyze (Coming Soon)**
-        - Data extraction and synthesis
-        - Evidence tables generation
-
-        💡 **Tip**: The workflow is sequential - each phase must be approved before proceeding to the next.
-        You can always go back to edit earlier phases.
-        """)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # API Keys Setup Guide
-    st.markdown("### 🔑 Before You Start: Prepare Your API Keys")
-
-    with st.expander("📋 Required API Keys (Click to expand)", expanded=False):
+**Required**
+- **Anthropic API key** — for query generation & screening
+  → [console.anthropic.com](https://console.anthropic.com/)
+- **Email address** — for OpenAlex (free, no registration)
+""")
+    with col_need2:
         st.markdown("""
-        **Essential for Core Functions:**
-
-        1. **🤖 Phase 1 & 3 - Query Generation & Screening (Required)**
-           - **Anthropic API Key** (Recommended)
-             - 🔗 Sign up: [console.anthropic.com](https://console.anthropic.com/)
-             - 💰 Cost: ~$0.10-0.50 per query + ~$2-5 per 100 abstracts
-             - ✅ Same key used for both Phase 1 and Phase 3
-           - *OR* **AWS Bedrock** (Alternative)
-             - 🔗 Setup: [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock/)
-             - Requires AWS account with Bedrock model access
-
-        2. **🔍 Phase 2 - Literature Search (At least one required)**
-           - **OpenAlex** (Recommended - FREE)
-             - 🔗 API Key (optional): [openalex.org](https://openalex.org/)
-             - 📧 Email: Just provide any valid email (required for polite pool)
-             - ✅ No registration needed for email-only usage
-           - **PubMed** (Optional)
-             - 🔗 Get API Key: [ncbi.nlm.nih.gov/account](https://www.ncbi.nlm.nih.gov/account/)
-             - 💰 FREE
-           - **Scopus** (Optional, requires institution)
-             - 🔗 Developer Portal: [dev.elsevier.com](https://dev.elsevier.com/)
-             - 🏛️ Requires institutional access
-
-        **Optional for Phase 4 - Full-Text Retrieval:**
-        - **Wiley TDM Token**
-          - 🔗 Apply: [onlinelibrary.wiley.com/library-info/resources/text-and-datamining](https://onlinelibrary.wiley.com/library-info/resources/text-and-datamining)
-          - 📄 For Wiley journal PDFs
-        - **Elsevier API Key**
-          - 🔗 Same as Scopus: [dev.elsevier.com](https://dev.elsevier.com/)
-          - 📄 For ScienceDirect PDFs
-
-        💡 **Tip**: Enter these API keys in the sidebar (left) once you start.
-
-        ⚡ **Quick Start**: Only need Anthropic + OpenAlex email to begin!
-        """)
+**Optional**
+- **PubMed API key** — free at [ncbi.nlm.nih.gov/account](https://www.ncbi.nlm.nih.gov/account/)
+- **Scopus API key** — institutional, [dev.elsevier.com](https://dev.elsevier.com/)
+- **Wiley TDM token** — for full-text PDF download
+""")
+    st.caption("💡 Enter keys in the sidebar after clicking Start. Only Anthropic + email needed for a first run.")
 
     st.markdown("---")
 
-    # CTA Buttons
-    col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1])
-
+    # ── CTA ────────────────────────────────────────────────────────────
+    col_btn1, col_btn2, _ = st.columns([1, 1, 1])
     with col_btn1:
-        if st.button("🚀 Start New Review", type="primary", use_container_width=True):
+        if st.button("🚀 Start", type="primary", use_container_width=True):
             st.session_state.workflow_started = True
             st.rerun()
-
     with col_btn2:
-        if st.button("💡 Load Example", use_container_width=True):
+        if st.button("💡 Try an Example", use_container_width=True):
             st.session_state.workflow_started = True
-            st.session_state.topic = "I am interested in research on cooling centers (sometimes called heat relief centers or cooling shelters) and their effectiveness in reducing heat-related mortality and morbidity. Focus on studies with causal research designs (experimental or quasi-experimental) that quantify health impacts."
+            st.session_state.topic = (
+                "I am interested in research on cooling centers (sometimes called heat relief centers "
+                "or cooling shelters) and their effectiveness in reducing heat-related mortality and "
+                "morbidity. Focus on studies with causal research designs (experimental or "
+                "quasi-experimental) that quantify health impacts."
+            )
             st.rerun()
 
-    with col_btn3:
-        st.markdown("[📖 Documentation](https://github.com)")
-
-    # Footer
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(
-        "<p style='text-align: center; color: #888; font-size: 0.9em;'>"
-        "Query Generation → Metadata Search → Abstract Screening → Full-Text Retrieval → Analysis<br>"
-        "Powered by Claude 4.6 via AWS Bedrock"
+        "<p style='text-align:center; color:#94A3B8; font-size:0.82em;'>"
+        "Winnow · Powered by Claude AI"
         "</p>",
         unsafe_allow_html=True
     )
@@ -788,11 +835,11 @@ if not st.session_state.workflow_started:
 # ==============================================================================
 
 # Main content
-st.title("🤖 Phase 1: Multi-Agent Query Generator")
-st.markdown("*Four AI agents work together to create optimized Boolean search queries*")
+render_progress_steps(st.session_state.phase)
+phase_header(1, "📝", "Phase 1 · Query Generation", "A 4-agent AI team builds optimized Boolean queries for each database")
 
 # Back to landing button
-if st.button("← Back to Home", key="back_to_home_phase1"):
+if st.button("← Home", key="back_to_home_phase1"):
     st.session_state.workflow_started = False
     st.rerun()
 
@@ -826,6 +873,14 @@ with st.expander("ℹ️ How it works", expanded=False):
     """)
 
 st.markdown("---")
+
+# Show edit-mode banner when user returns from Phase 2
+if st.session_state.returned_from_phase2 and not st.session_state.approved:
+    st.info(
+        "✏️ **Edit Mode** — You've returned from Phase 2. "
+        "Edit the queries in the **'Final Queries'** section below, then click **Approve & Proceed to Phase 2** again. "
+        "You don't need to regenerate queries unless you want to start fresh."
+    )
 
 # Input Section
 st.subheader("📝 Research Topic")
@@ -901,7 +956,7 @@ if generate_button:
     try:
         # Create LLM provider based on sidebar settings
         if st.session_state.provider_type == "anthropic":
-            provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key)
+            provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key, model=st.session_state.anthropic_model_id)
         elif st.session_state.provider_type == "bedrock":
             provider = BedrockProvider(
                 region=st.session_state.aws_region,
@@ -1248,6 +1303,7 @@ if st.session_state.queries_generated:
         if approve_button:
             st.session_state.approved = True
             st.session_state.phase = 2
+            st.session_state.returned_from_phase2 = False
             logger.info("Phase 1 approved and locked by user")
             logger.info(f"Elsevier Query: {st.session_state.elsevier_query}")
             logger.info(f"PubMed Query: {st.session_state.pubmed_query}")
@@ -1264,13 +1320,14 @@ if st.session_state.queries_generated:
 
 if st.session_state.phase >= 2:
     st.markdown("---")
-    st.title("🔍 Phase 2: Metadata Search Execution")
-    st.markdown("*Execute approved queries against academic databases*")
+    render_progress_steps(st.session_state.phase)
+    phase_header(2, "🔍", "Phase 2 · Metadata Search", "Execute approved queries across academic databases")
 
     # Back button
-    if st.button("← Back to Phase 1", key="back_to_phase1"):
+    if st.button("← Back to Phase 1 (Edit Queries)", key="back_to_phase1"):
         st.session_state.phase = 1
         st.session_state.approved = False
+        st.session_state.returned_from_phase2 = True
         st.rerun()
 
     # Show variation info if multiple variations exist
@@ -1629,8 +1686,8 @@ if st.session_state.phase >= 2:
 
 if st.session_state.phase >= 3:
     st.markdown("---")
-    st.title("✅ Phase 3: Abstract Screening")
-    st.markdown("*AI-assisted screening with human-in-the-loop review*")
+    render_progress_steps(st.session_state.phase)
+    phase_header(3, "✅", "Phase 3 · Abstract Screening", "AI screens titles and abstracts against your inclusion criteria")
 
     # Back button
     if st.button("← Back to Phase 2", key="back_to_phase2"):
@@ -1706,7 +1763,7 @@ if st.session_state.phase >= 3:
                 try:
                     # Use the same LLM provider from Phase 1
                     if st.session_state.provider_type == "anthropic":
-                        provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key)
+                        provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key, model=st.session_state.anthropic_model_id)
                     elif st.session_state.provider_type == "bedrock":
                         provider = BedrockProvider(
                             region=st.session_state.aws_region,
@@ -1817,7 +1874,7 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
                 try:
                     # Create LLM provider instance
                     if st.session_state.provider_type == "anthropic":
-                        provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key)
+                        provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key, model=st.session_state.anthropic_model_id)
                     elif st.session_state.provider_type == "bedrock":
                         provider = BedrockProvider(
                             region=st.session_state.aws_region,
@@ -2028,7 +2085,7 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
 
                 # Create a minimal provider just for saving (not used during save)
                 if st.session_state.provider_type == "anthropic":
-                    provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key)
+                    provider = AnthropicProvider(api_key=st.session_state.anthropic_api_key, model=st.session_state.anthropic_model_id)
                 elif st.session_state.provider_type == "bedrock":
                     provider = BedrockProvider(
                         region=st.session_state.aws_region,
@@ -2061,8 +2118,8 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
 
 if st.session_state.phase >= 4:
     st.markdown("---")
-    st.title("📄 Phase 4: Full-Text Retrieval")
-    st.markdown("*Download PDFs/XMLs and convert to Markdown*")
+    render_progress_steps(st.session_state.phase)
+    phase_header(4, "📄", "Phase 4 · Full-Text Retrieval", "Download PDFs/XMLs via OA → publishers → browser fallback")
 
     # Back button
     if st.button("← Back to Phase 3", key="back_to_phase3"):
@@ -2103,8 +2160,20 @@ if st.session_state.phase >= 4:
     st.session_state.fulltext_timeout = timeout
 
     # API credentials section
-    with st.expander("🔑 Full-Text API Credentials"):
-        st.markdown("**OpenAlex** (Free, Open Access)")
+    with st.expander("🔑 Full-Text API Credentials & Setup Guide"):
+        st.markdown("""
+        Full-text retrieval uses three sources in priority order:
+        **OpenAlex (free OA)** → **Elsevier/Wiley (institutional)** → **Playwright browser fallback**
+        """)
+
+        # OpenAlex
+        st.markdown("---")
+        st.markdown("#### 🟢 OpenAlex — Free & No Registration Required")
+        st.info(
+            "OpenAlex is **free** and works without an API key. "
+            "Providing your **email address** gives you the 'polite pool' (faster rate limit). "
+            "No registration needed — just enter any valid email."
+        )
         col_oa1, col_oa2 = st.columns(2)
         with col_oa1:
             fulltext_openalex_key = st.text_input(
@@ -2116,13 +2185,20 @@ if st.session_state.phase >= 4:
             )
         with col_oa2:
             fulltext_openalex_mailto = st.text_input(
-                "Email (optional):",
+                "Email (recommended):",
                 value=st.session_state.openalex_mailto or "",
                 key="fulltext_openalex_mailto",
-                help="Uses Phase 2 credentials if already entered"
+                help="Any valid email — enables faster 'polite pool' rate limits"
             )
 
-        st.markdown("**Elsevier** (Institutional Access)")
+        # Elsevier
+        st.markdown("---")
+        st.markdown("#### 🔵 Elsevier — Institutional Access")
+        st.info(
+            "Requires an **Elsevier API key** from your institution. "
+            "Register at [dev.elsevier.com](https://dev.elsevier.com/) with your institutional email. "
+            "An institutional token may also be required — contact your library if unsure."
+        )
         col_els1, col_els2 = st.columns(2)
         with col_els1:
             fulltext_elsevier_key = st.text_input(
@@ -2138,16 +2214,25 @@ if st.session_state.phase >= 4:
                 type="password",
                 value=st.session_state.scopus_insttoken or "",
                 key="fulltext_elsevier_token",
-                help="Institutional token for entitled access"
+                help="Institutional token for entitled access — ask your library"
             )
 
-        st.markdown("**Wiley TDM** (Text and Data Mining)")
+        # Wiley
+        st.markdown("---")
+        st.markdown("#### 🟠 Wiley TDM — Text and Data Mining")
+        st.info(
+            "Wiley requires a **TDM (Text and Data Mining) token** for full-text access. "
+            "Apply at the [Wiley TDM portal](https://onlinelibrary.wiley.com/library-info/resources/text-and-datamining) — "
+            "you need to log in with an institutional account and request access. "
+            "Approval is usually granted within a few days. "
+            "Without this token, Wiley papers will fall back to browser download (Playwright)."
+        )
         fulltext_wiley_token = st.text_input(
             "TDM Client Token:",
             type="password",
             value=st.session_state.wiley_tdm_token or "",
             key="fulltext_wiley_token",
-            help="Get token at onlinelibrary.wiley.com/library-info/resources/text-and-datamining"
+            help="Apply at onlinelibrary.wiley.com/library-info/resources/text-and-datamining"
         )
 
         st.session_state.wiley_tdm_token = fulltext_wiley_token
@@ -2278,18 +2363,16 @@ if st.session_state.phase >= 4:
         else:
             st.info("No results data available")
 
-        # Approve Phase 4 Button
+        # Complete Phase 4 Button
         st.markdown("---")
         if not st.session_state.fulltext_approved:
-            if st.button("🟢 Approve & Proceed to Phase 5", type="primary", key="approve_phase4_button"):
-                st.session_state.phase = 5
+            if st.button("🟢 Mark as Complete & Lock", type="primary", key="approve_phase4_button"):
                 st.session_state.fulltext_approved = True
                 logger.info("Phase 4 approved and locked by user")
-                st.success("✅ Phase 4 locked! Ready for analysis.")
-                st.info("**Note:** Phase 5 (Analysis) is not yet implemented.")
+                st.success("✅ Phase 4 complete! Full-text retrieval is locked.")
                 st.rerun()
         else:
-            st.success("✅ Phase 4 is locked.")
+            st.success("✅ Phase 4 is complete. Download your results above.")
 
 # Bottom: Live Agent Log
 st.markdown("---")
@@ -2308,8 +2391,7 @@ with log_container:
 st.markdown("---")
 st.markdown(
     '<div style="text-align: center; color: gray; font-size: 0.9em;">'
-    'Auto-SLR Multi-Agent Pipeline | Phase 1: Query Generation | '
-    'Powered by Claude via AWS Bedrock'
+    'Winnow · Systematic Literature Search, Powered by AI · Powered by Claude'
     '</div>',
     unsafe_allow_html=True
 )

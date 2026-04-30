@@ -1,8 +1,0 @@
-{
-  "query": "( \"heat-health early warning\" OR \"heat health early warning\" OR \"cold spell advisory\" OR \"biometeorological advisory\" OR \"forecast-based action\" OR \"anticipatory action\" OR \"weather-triggered public health\" OR \"weather alert\" OR \"meteorological alert\" ) AND ( \"temperature threshold\" OR \"apparent temperature\" OR \"humidex\" OR \"bioclimatic index\" OR \"heat index\" OR \"synoptic forecast\" OR \"UTCI\" OR \"Universal Thermal Climate Index\" ) AND ( \"excess mortality\" OR \"heat-related mortality\" OR \"cold-related mortality\" OR \"cardiorespiratory\" OR \"harvesting effect\" OR \"mortality displacement\" OR \"population attributable fraction\" ) AND ( \"causal inference\" OR \"causal effect\" OR \"causal model\" OR \"counterfactual\" OR \"regression discontinuity\" OR \"synthetic control\" OR \"quasi-experimental\" OR \"instrumental variable\" OR \"two-stage least squares\" OR \"natural experiment\" OR \"treatment effect\" OR \"difference-in-differences\" OR \"administrative threshold\" OR \"policy discontinuity\" )",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 9,
-  "meta_count": 9,
-  "calls": 2
-}
