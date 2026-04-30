@@ -1831,13 +1831,19 @@ if st.session_state.phase >= 3:
     # Configuration Section
     st.subheader("⚙️ Screening Configuration")
 
-    # Display model information
-    if 'llm_provider' in st.session_state and st.session_state.get('llm_provider'):
-        provider = st.session_state.llm_provider
-        model_name = provider.get_model_name() if hasattr(provider, 'get_model_name') else "Unknown"
-        st.info(f"🤖 **Active Model**: {model_name} | 💡 View system prompts in sidebar: '🔍 Model & Prompt Information'")
+    # Display active model info
+    _provider_type = st.session_state.get('provider_type', 'anthropic')
+    if _provider_type == 'anthropic':
+        _model_label = next(
+            (lbl for lbl, mid in ANTHROPIC_MODELS.items()
+             if mid == st.session_state.get('anthropic_model_id', '')),
+            st.session_state.get('anthropic_model_id', 'Claude')
+        )
+        st.info(f"🤖 **Active Model**: {_model_label}")
+    elif _provider_type == 'bedrock':
+        st.info(f"🤖 **Active Model**: AWS Bedrock — {st.session_state.get('bedrock_model_id', '')}")
     else:
-        st.warning("⚠️ No LLM provider configured. Please configure in Phase 1 first.")
+        st.info("🤖 **Active Model**: Dummy (testing mode)")
 
     col_mode, col_threads = st.columns(2)
     with col_mode:
@@ -1911,28 +1917,38 @@ if st.session_state.phase >= 3:
                     else:
                         system_prompt = """You are an expert in systematic literature reviews and abstract screening criteria formulation.
 
-Your task: Convert the user's plain language description into structured, precise inclusion/exclusion criteria.
+Your task: Convert the user's plain language description into structured, precise inclusion/exclusion criteria ready to paste into a screening tool.
 
-Structure your output as follows:
-1. INCLUSION CRITERIA (numbered list with specific, measurable criteria)
-2. EXCLUSION CRITERIA (numbered list with specific types to exclude)
+Output ONLY the criteria — two sections, nothing else:
 
-Be specific about:
-- Population/intervention
-- Outcomes
-- Study designs (e.g., RCT, quasi-experimental, observational)
-- Geographic scope (if mentioned)
-- Time period (if mentioned)
+INCLUSION CRITERIA
+1. ...
+2. ...
 
-Use clear, concise language. Each criterion should be unambiguous."""
+EXCLUSION CRITERIA
+1. ...
+2. ...
+
+Rules:
+- No preamble, no introduction, no closing remarks
+- No "Important Note", "Recommended Next Steps", "Tips", or any advisory text
+- No meta-commentary about the criteria themselves
+- Be specific about population/intervention, outcomes, study designs, geography, and time period where mentioned
+- Each criterion must be unambiguous and self-contained"""
 
                         user_message = f"""Convert this description into structured screening criteria:
 
-{user_description}
+{user_description}"""
 
-Provide clear inclusion and exclusion criteria that can be used for abstract screening."""
+                        response = provider.call_model(system_prompt, user_message, max_tokens=1000)
 
-                        response = provider.call_model(system_prompt, user_message, max_tokens=1500)
+                        # Strip any advisory sections the model may have appended
+                        import re as _re
+                        response = _re.split(
+                            r'\n(?:Important Note|Note:|Recommended Next Steps|Next Steps|Tips?:|'
+                            r'Additional (?:Notes?|Recommendations?)|Please note)',
+                            response, flags=_re.IGNORECASE
+                        )[0].strip()
 
                         st.session_state.generated_criteria = response
                         st.success("✅ Criteria generated!")
