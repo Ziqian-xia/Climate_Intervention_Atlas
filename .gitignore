@@ -292,6 +292,9 @@ test_*.py
 *_test.py
 comprehensive_test.py
 quick_test.py
+# Keep the tests/ package (permanent test suite)
+!tests/
+!tests/**
 
 # Test data outputs
 test_data/**/output*/

@@ -4676,3 +4676,591 @@ RuntimeError: ESearch failed: http_414
 2026-03-24 13:07:27 | INFO     | Starting Claude screening: 10 records, mode=simple
 2026-03-24 13:07:43 | INFO     | Screening complete: 9 included, 1 excluded, 0 errors
 2026-03-24 13:07:43 | INFO     | ✅ Screening complete
+2026-03-25 21:42:27 | INFO     | ================================================================================
+2026-03-25 21:42:27 | INFO     | PICO FRAMEWORK ROBUSTNESS TEST
+2026-03-25 21:42:27 | INFO     | ================================================================================
+2026-03-25 21:42:27 | INFO     | Running 5 variations with PICO-enhanced agents
+2026-03-25 21:42:27 | INFO     | Baseline CV from previous test: 378.6%
+2026-03-25 21:42:27 | INFO     | ================================================================================
+2026-03-25 21:42:27 | ERROR    | AWS Bedrock not available. Please check credentials.
+2026-03-25 21:43:24 | INFO     | ================================================================================
+2026-03-25 21:43:24 | INFO     | PICO FRAMEWORK ROBUSTNESS TEST
+2026-03-25 21:43:24 | INFO     | ================================================================================
+2026-03-25 21:43:24 | INFO     | Running 5 variations with PICO-enhanced agents
+2026-03-25 21:43:24 | INFO     | Baseline CV from previous test: 378.6%
+2026-03-25 21:43:24 | INFO     | ================================================================================
+2026-03-25 21:43:24 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-6)
+2026-03-25 21:43:24 | INFO     | 
+================================================================================
+2026-03-25 21:43:24 | INFO     | PHASE 1: Query Generation
+2026-03-25 21:43:24 | INFO     | ================================================================================
+2026-03-25 21:43:24 | INFO     | 
+============================================================
+2026-03-25 21:43:24 | INFO     | Generating Variation 1/5
+2026-03-25 21:43:24 | INFO     | ============================================================
+2026-03-25 21:43:24 | INFO     | Starting query generation for topic (Variation #1): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:43:24 | INFO     | ============================================================
+2026-03-25 21:43:24 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:43:24 | INFO     | ============================================================
+2026-03-25 21:43:24 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:43:24 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:43:41 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:43:41 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 74 carefully curated keywords!
+2026-03-25 21:43:41 | INFO     | ============================================================
+2026-03-25 21:43:41 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:43:41 | INFO     | ============================================================
+2026-03-25 21:43:41 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:43:41 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:44:14 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:44:14 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:44:14 | INFO     | ============================================================
+2026-03-25 21:44:14 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:44:14 | INFO     | ============================================================
+2026-03-25 21:44:14 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:44:14 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:44:38 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:44:38 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-25 21:44:38 | INFO     | ============================================================
+2026-03-25 21:44:38 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:44:38 | INFO     | ============================================================
+2026-03-25 21:44:38 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:44:38 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:44:58 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:44:58 | INFO     | Refiner: ✅ Resolved 7 issues - queries are now perfect!
+2026-03-25 21:44:58 | INFO     | 🎊 Query generation completed in 94.19 seconds - Ready to unleash upon the databases!
+2026-03-25 21:44:58 | INFO     | ============================================================
+2026-03-25 21:44:58 | INFO     | ✅ Variation 1 saved to pico_test_results/queries/variation_01_queries.json
+2026-03-25 21:44:58 | INFO     | 
+============================================================
+2026-03-25 21:44:58 | INFO     | Generating Variation 2/5
+2026-03-25 21:44:58 | INFO     | ============================================================
+2026-03-25 21:44:58 | INFO     | Starting query generation for topic (Variation #2): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:44:58 | INFO     | ============================================================
+2026-03-25 21:44:58 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:44:58 | INFO     | ============================================================
+2026-03-25 21:44:58 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:44:58 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:45:16 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:45:16 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 71 carefully curated keywords!
+2026-03-25 21:45:16 | INFO     | ============================================================
+2026-03-25 21:45:16 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:45:16 | INFO     | ============================================================
+2026-03-25 21:45:16 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:45:16 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:45:42 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:45:42 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:45:42 | INFO     | ============================================================
+2026-03-25 21:45:42 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:45:42 | INFO     | ============================================================
+2026-03-25 21:45:42 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:45:42 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:46:06 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:46:06 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-25 21:46:06 | INFO     | ============================================================
+2026-03-25 21:46:06 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:46:06 | INFO     | ============================================================
+2026-03-25 21:46:06 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:46:06 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:46:31 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:46:31 | INFO     | Refiner: ✅ Resolved 10 issues - queries are now perfect!
+2026-03-25 21:46:31 | INFO     | 🎊 Query generation completed in 92.14 seconds - Ready to unleash upon the databases!
+2026-03-25 21:46:31 | INFO     | ============================================================
+2026-03-25 21:46:31 | INFO     | ✅ Variation 2 saved to pico_test_results/queries/variation_02_queries.json
+2026-03-25 21:46:31 | INFO     | 
+============================================================
+2026-03-25 21:46:31 | INFO     | Generating Variation 3/5
+2026-03-25 21:46:31 | INFO     | ============================================================
+2026-03-25 21:46:31 | INFO     | Starting query generation for topic (Variation #3): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:46:31 | INFO     | ============================================================
+2026-03-25 21:46:31 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:46:31 | INFO     | ============================================================
+2026-03-25 21:46:31 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:46:31 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:46:49 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:46:49 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 88 carefully curated keywords!
+2026-03-25 21:46:49 | INFO     | ============================================================
+2026-03-25 21:46:49 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:46:49 | INFO     | ============================================================
+2026-03-25 21:46:49 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:46:49 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:47:24 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:47:24 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:47:24 | INFO     | ============================================================
+2026-03-25 21:47:24 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:47:24 | INFO     | ============================================================
+2026-03-25 21:47:24 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:47:24 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:47:55 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:47:55 | WARNING  | ⚠️ Sentinel spotted 6 potential issues to review
+2026-03-25 21:47:55 | INFO     | ============================================================
+2026-03-25 21:47:55 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:47:55 | INFO     | ============================================================
+2026-03-25 21:47:55 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:47:55 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:48:31 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:48:31 | INFO     | Refiner: ✅ Resolved 14 issues - queries are now perfect!
+2026-03-25 21:48:31 | INFO     | 🎊 Query generation completed in 120.73 seconds - Ready to unleash upon the databases!
+2026-03-25 21:48:31 | INFO     | ============================================================
+2026-03-25 21:48:31 | INFO     | ✅ Variation 3 saved to pico_test_results/queries/variation_03_queries.json
+2026-03-25 21:48:31 | INFO     | 
+============================================================
+2026-03-25 21:48:31 | INFO     | Generating Variation 4/5
+2026-03-25 21:48:31 | INFO     | ============================================================
+2026-03-25 21:48:31 | INFO     | Starting query generation for topic (Variation #4): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:48:31 | INFO     | ============================================================
+2026-03-25 21:48:31 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:48:31 | INFO     | ============================================================
+2026-03-25 21:48:31 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:48:31 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:48:53 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:48:53 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 84 carefully curated keywords!
+2026-03-25 21:48:53 | INFO     | ============================================================
+2026-03-25 21:48:53 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:48:53 | INFO     | ============================================================
+2026-03-25 21:48:53 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:48:53 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:49:28 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:49:28 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:49:28 | INFO     | ============================================================
+2026-03-25 21:49:28 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:49:28 | INFO     | ============================================================
+2026-03-25 21:49:28 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:49:28 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:49:53 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:49:53 | WARNING  | ⚠️ Sentinel spotted 4 potential issues to review
+2026-03-25 21:49:53 | INFO     | ============================================================
+2026-03-25 21:49:53 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:49:53 | INFO     | ============================================================
+2026-03-25 21:49:53 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:49:53 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:50:23 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:50:23 | INFO     | Refiner: ✅ Resolved 12 issues - queries are now perfect!
+2026-03-25 21:50:23 | INFO     | 🎊 Query generation completed in 111.92 seconds - Ready to unleash upon the databases!
+2026-03-25 21:50:23 | INFO     | ============================================================
+2026-03-25 21:50:23 | INFO     | ✅ Variation 4 saved to pico_test_results/queries/variation_04_queries.json
+2026-03-25 21:50:23 | INFO     | 
+============================================================
+2026-03-25 21:50:23 | INFO     | Generating Variation 5/5
+2026-03-25 21:50:23 | INFO     | ============================================================
+2026-03-25 21:50:23 | INFO     | Starting query generation for topic (Variation #5): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:50:23 | INFO     | ============================================================
+2026-03-25 21:50:23 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:50:23 | INFO     | ============================================================
+2026-03-25 21:50:23 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:50:23 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:50:41 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:50:41 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 75 carefully curated keywords!
+2026-03-25 21:50:41 | INFO     | ============================================================
+2026-03-25 21:50:41 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:50:41 | INFO     | ============================================================
+2026-03-25 21:50:41 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:50:41 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:51:11 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:51:11 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:51:11 | INFO     | ============================================================
+2026-03-25 21:51:11 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:51:11 | INFO     | ============================================================
+2026-03-25 21:51:11 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:51:11 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:51:33 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:51:33 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-25 21:51:33 | INFO     | ============================================================
+2026-03-25 21:51:33 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:51:33 | INFO     | ============================================================
+2026-03-25 21:51:33 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:51:33 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:52:00 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:52:00 | INFO     | Refiner: ✅ Resolved 10 issues - queries are now perfect!
+2026-03-25 21:52:00 | INFO     | 🎊 Query generation completed in 97.24 seconds - Ready to unleash upon the databases!
+2026-03-25 21:52:00 | INFO     | ============================================================
+2026-03-25 21:52:00 | INFO     | ✅ Variation 5 saved to pico_test_results/queries/variation_05_queries.json
+2026-03-25 21:52:00 | INFO     | 
+================================================================================
+2026-03-25 21:52:00 | INFO     | PHASE 2: Search Execution (OpenAlex only)
+2026-03-25 21:52:00 | INFO     | ================================================================================
+2026-03-25 21:52:00 | INFO     | 
+============================================================
+2026-03-25 21:52:00 | INFO     | Searching Variation 1/5
+2026-03-25 21:52:00 | INFO     | ============================================================
+2026-03-25 21:52:00 | INFO     | Query: ("heat warning system" OR "heat alert system" OR "heat health action plan" OR "heat action plan" OR ...
+2026-03-25 21:53:41 | INFO     | ================================================================================
+2026-03-25 21:53:41 | INFO     | PICO FRAMEWORK ROBUSTNESS TEST
+2026-03-25 21:53:41 | INFO     | ================================================================================
+2026-03-25 21:53:41 | INFO     | Running 5 variations with PICO-enhanced agents
+2026-03-25 21:53:41 | INFO     | Baseline CV from previous test: 378.6%
+2026-03-25 21:53:41 | INFO     | ================================================================================
+2026-03-25 21:53:41 | INFO     | LLM provider initialized: AWS Bedrock (us.anthropic.claude-sonnet-4-6)
+2026-03-25 21:53:41 | INFO     | 
+================================================================================
+2026-03-25 21:53:41 | INFO     | PHASE 1: Query Generation
+2026-03-25 21:53:41 | INFO     | ================================================================================
+2026-03-25 21:53:41 | INFO     | 
+============================================================
+2026-03-25 21:53:41 | INFO     | Generating Variation 1/5
+2026-03-25 21:53:41 | INFO     | ============================================================
+2026-03-25 21:53:41 | INFO     | Starting query generation for topic (Variation #1): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:53:41 | INFO     | ============================================================
+2026-03-25 21:53:41 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:53:41 | INFO     | ============================================================
+2026-03-25 21:53:41 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:53:41 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:53:58 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:53:58 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 73 carefully curated keywords!
+2026-03-25 21:53:58 | INFO     | ============================================================
+2026-03-25 21:53:58 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:53:58 | INFO     | ============================================================
+2026-03-25 21:53:58 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:53:58 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:54:26 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:54:26 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:54:26 | INFO     | ============================================================
+2026-03-25 21:54:26 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:54:26 | INFO     | ============================================================
+2026-03-25 21:54:26 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:54:26 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:54:48 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:54:48 | WARNING  | ⚠️ Sentinel spotted 4 potential issues to review
+2026-03-25 21:54:48 | INFO     | ============================================================
+2026-03-25 21:54:48 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:54:48 | INFO     | ============================================================
+2026-03-25 21:54:48 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:54:48 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:55:06 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:55:06 | INFO     | Refiner: ✅ Resolved 4 issues - queries are now perfect!
+2026-03-25 21:55:06 | INFO     | 🎊 Query generation completed in 85.26 seconds - Ready to unleash upon the databases!
+2026-03-25 21:55:06 | INFO     | ============================================================
+2026-03-25 21:55:06 | INFO     | ✅ Variation 1 saved to pico_test_results/queries/variation_01_queries.json
+2026-03-25 21:55:06 | INFO     | 
+============================================================
+2026-03-25 21:55:06 | INFO     | Generating Variation 2/5
+2026-03-25 21:55:06 | INFO     | ============================================================
+2026-03-25 21:55:06 | INFO     | Starting query generation for topic (Variation #2): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:55:06 | INFO     | ============================================================
+2026-03-25 21:55:06 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:55:06 | INFO     | ============================================================
+2026-03-25 21:55:06 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:55:06 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:55:22 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:55:22 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 72 carefully curated keywords!
+2026-03-25 21:55:22 | INFO     | ============================================================
+2026-03-25 21:55:22 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:55:22 | INFO     | ============================================================
+2026-03-25 21:55:22 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:55:22 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:55:54 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:55:54 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:55:54 | INFO     | ============================================================
+2026-03-25 21:55:54 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:55:54 | INFO     | ============================================================
+2026-03-25 21:55:54 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:55:54 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:56:17 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:56:17 | WARNING  | ⚠️ Sentinel spotted 4 potential issues to review
+2026-03-25 21:56:17 | INFO     | ============================================================
+2026-03-25 21:56:17 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:56:17 | INFO     | ============================================================
+2026-03-25 21:56:17 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:56:17 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:56:40 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:56:40 | INFO     | Refiner: ✅ Resolved 9 issues - queries are now perfect!
+2026-03-25 21:56:40 | INFO     | 🎊 Query generation completed in 94.31 seconds - Ready to unleash upon the databases!
+2026-03-25 21:56:40 | INFO     | ============================================================
+2026-03-25 21:56:40 | INFO     | ✅ Variation 2 saved to pico_test_results/queries/variation_02_queries.json
+2026-03-25 21:56:40 | INFO     | 
+============================================================
+2026-03-25 21:56:40 | INFO     | Generating Variation 3/5
+2026-03-25 21:56:40 | INFO     | ============================================================
+2026-03-25 21:56:40 | INFO     | Starting query generation for topic (Variation #3): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:56:40 | INFO     | ============================================================
+2026-03-25 21:56:40 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:56:40 | INFO     | ============================================================
+2026-03-25 21:56:40 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:56:40 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:57:03 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:57:03 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 104 carefully curated keywords!
+2026-03-25 21:57:03 | INFO     | ============================================================
+2026-03-25 21:57:03 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:57:03 | INFO     | ============================================================
+2026-03-25 21:57:03 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:57:03 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:57:29 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:57:29 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:57:29 | INFO     | ============================================================
+2026-03-25 21:57:29 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:57:29 | INFO     | ============================================================
+2026-03-25 21:57:29 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:57:29 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:57:51 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:57:51 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-25 21:57:51 | INFO     | ============================================================
+2026-03-25 21:57:51 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:57:51 | INFO     | ============================================================
+2026-03-25 21:57:51 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:57:51 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:58:12 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:58:12 | INFO     | Refiner: ✅ Resolved 10 issues - queries are now perfect!
+2026-03-25 21:58:12 | INFO     | 🎊 Query generation completed in 91.38 seconds - Ready to unleash upon the databases!
+2026-03-25 21:58:12 | INFO     | ============================================================
+2026-03-25 21:58:12 | INFO     | ✅ Variation 3 saved to pico_test_results/queries/variation_03_queries.json
+2026-03-25 21:58:12 | INFO     | 
+============================================================
+2026-03-25 21:58:12 | INFO     | Generating Variation 4/5
+2026-03-25 21:58:12 | INFO     | ============================================================
+2026-03-25 21:58:12 | INFO     | Starting query generation for topic (Variation #4): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:58:12 | INFO     | ============================================================
+2026-03-25 21:58:12 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:58:12 | INFO     | ============================================================
+2026-03-25 21:58:12 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:58:12 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:58:32 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 21:58:32 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 68 carefully curated keywords!
+2026-03-25 21:58:32 | INFO     | ============================================================
+2026-03-25 21:58:32 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 21:58:32 | INFO     | ============================================================
+2026-03-25 21:58:32 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 21:58:32 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:59:05 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 21:59:05 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 21:59:05 | INFO     | ============================================================
+2026-03-25 21:59:05 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 21:59:05 | INFO     | ============================================================
+2026-03-25 21:59:05 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 21:59:05 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:59:31 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 21:59:31 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-25 21:59:31 | INFO     | ============================================================
+2026-03-25 21:59:31 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 21:59:31 | INFO     | ============================================================
+2026-03-25 21:59:31 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 21:59:31 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 21:59:58 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 21:59:58 | INFO     | Refiner: ✅ Resolved 10 issues - queries are now perfect!
+2026-03-25 21:59:58 | INFO     | 🎊 Query generation completed in 106.25 seconds - Ready to unleash upon the databases!
+2026-03-25 21:59:58 | INFO     | ============================================================
+2026-03-25 21:59:58 | INFO     | ✅ Variation 4 saved to pico_test_results/queries/variation_04_queries.json
+2026-03-25 21:59:58 | INFO     | 
+============================================================
+2026-03-25 21:59:58 | INFO     | Generating Variation 5/5
+2026-03-25 21:59:58 | INFO     | ============================================================
+2026-03-25 21:59:58 | INFO     | Starting query generation for topic (Variation #5): 'I am interested in research papers that evaluate the causal impact of weather forecast-based interventions on the temperature-health relationship.
+
+INTERVENTION SCOPE:
+- Heat warning systems, heat-health action plans, cooling center programs
+- Public health advisories based on weather predictions
+- Interventions activated by temperature forecasts
+
+STUDY DESIGN: Rigorous causal designs (RCTs, quasi-experimental, natural experiments)
+OUTCOMES: Temperature-related mortality/morbidity, heat health impacts
+SCOPE: Any country, any population, any time period'
+2026-03-25 21:59:58 | INFO     | ============================================================
+2026-03-25 21:59:58 | INFO     | PULSE AGENT - PICO-Based Keyword Expansion
+2026-03-25 21:59:58 | INFO     | ============================================================
+2026-03-25 21:59:58 | INFO     | 🤖 Pulse: 🔍 Applying PICO framework to structure your research question...
+2026-03-25 21:59:58 | INFO     | 🤖 Pulse: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 22:00:15 | INFO     | Pulse: ✨ Eureka! Response received!
+2026-03-25 22:00:15 | INFO     | 🤖 Pulse: 🎨 Successfully expanded to 55 carefully curated keywords!
+2026-03-25 22:00:15 | INFO     | ============================================================
+2026-03-25 22:00:15 | INFO     | FORMULATOR AGENT - PICO-Structured Query Construction
+2026-03-25 22:00:15 | INFO     | ============================================================
+2026-03-25 22:00:15 | INFO     | 🤖 Formulator: 🧙 Building PICO-structured Boolean queries with precision...
+2026-03-25 22:00:15 | INFO     | 🤖 Formulator: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 22:00:54 | INFO     | Formulator: ✨ Eureka! Response received!
+2026-03-25 22:00:54 | INFO     | 🤖 Formulator: 🎯 Crafted 3 database-optimized Boolean masterpieces!
+2026-03-25 22:00:54 | INFO     | ============================================================
+2026-03-25 22:00:54 | INFO     | SENTINEL AGENT - Quality Control
+2026-03-25 22:00:54 | INFO     | ============================================================
+2026-03-25 22:00:54 | INFO     | 🤖 Sentinel: 🛡️ Inspecting queries with a magnifying glass and a touch of perfectionism...
+2026-03-25 22:00:54 | INFO     | 🤖 Sentinel: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 22:01:23 | INFO     | Sentinel: ✨ Eureka! Response received!
+2026-03-25 22:01:23 | WARNING  | ⚠️ Sentinel spotted 5 potential issues to review
+2026-03-25 22:01:23 | INFO     | ============================================================
+2026-03-25 22:01:23 | INFO     | REFINER AGENT - Final Polish
+2026-03-25 22:01:23 | INFO     | ============================================================
+2026-03-25 22:01:23 | INFO     | 🤖 Refiner: 💎 Polishing queries to perfection and resolving all issues...
+2026-03-25 22:01:23 | INFO     | 🤖 Refiner: 🤔 Pondering the mysteries of the universe (and your query)...
+2026-03-25 22:01:54 | INFO     | Refiner: ✨ Eureka! Response received!
+2026-03-25 22:01:54 | INFO     | Refiner: ✅ Resolved 6 issues - queries are now perfect!
+2026-03-25 22:01:54 | INFO     | 🎊 Query generation completed in 116.28 seconds - Ready to unleash upon the databases!
+2026-03-25 22:01:54 | INFO     | ============================================================
+2026-03-25 22:01:54 | INFO     | ✅ Variation 5 saved to pico_test_results/queries/variation_05_queries.json
+2026-03-25 22:01:54 | INFO     | 
+================================================================================
+2026-03-25 22:01:54 | INFO     | PHASE 2: Search Execution (OpenAlex only)
+2026-03-25 22:01:54 | INFO     | ================================================================================
+2026-03-25 22:01:54 | INFO     | 
+============================================================
+2026-03-25 22:01:54 | INFO     | Searching Variation 1/5
+2026-03-25 22:01:54 | INFO     | ============================================================
+2026-03-25 22:01:54 | INFO     | Query: ("heat warning system" OR "heat health warning system" OR "heat wave warning" OR "extreme heat alert...
+2026-03-25 22:01:54 | INFO     | ============================================================
+2026-03-25 22:01:54 | INFO     | Starting OPENALEX search
+2026-03-25 22:01:54 | INFO     | Query: ("heat warning system" OR "heat health warning system" OR "heat wave warning" OR "extreme heat alert...
+2026-03-25 22:01:54 | INFO     | Max results: 100
+2026-03-25 22:01:54 | INFO     | ============================================================
+2026-03-25 22:01:54 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-25 22:01:54 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-25 22:01:55 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-25 22:02:04 | INFO     | OPENALEX search completed successfully
+2026-03-25 22:02:04 | WARNING  | ⚠️ No summary file found for variation 1
+2026-03-25 22:02:04 | INFO     | 
+============================================================
+2026-03-25 22:02:04 | INFO     | Searching Variation 2/5
+2026-03-25 22:02:04 | INFO     | ============================================================
+2026-03-25 22:02:04 | INFO     | Query: ("heat warning system" OR "heat alert system" OR "heat-health action plan" OR "heat health warning" ...
+2026-03-25 22:02:04 | INFO     | ============================================================
+2026-03-25 22:02:04 | INFO     | Starting OPENALEX search
+2026-03-25 22:02:04 | INFO     | Query: ("heat warning system" OR "heat alert system" OR "heat-health action plan" OR "heat health warning" ...
+2026-03-25 22:02:04 | INFO     | Max results: 100
+2026-03-25 22:02:04 | INFO     | ============================================================
+2026-03-25 22:02:04 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-25 22:02:04 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-25 22:02:04 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-25 22:02:12 | INFO     | OPENALEX search completed successfully
+2026-03-25 22:02:12 | WARNING  | ⚠️ No summary file found for variation 2
+2026-03-25 22:02:12 | INFO     | 
+============================================================
+2026-03-25 22:02:12 | INFO     | Searching Variation 3/5
+2026-03-25 22:02:12 | INFO     | ============================================================
+2026-03-25 22:02:12 | INFO     | Query: ("heat early warning" OR "heat alert system" OR "heat action plan" OR "heat-health action plan" OR "...
+2026-03-25 22:02:12 | INFO     | ============================================================
+2026-03-25 22:02:12 | INFO     | Starting OPENALEX search
+2026-03-25 22:02:12 | INFO     | Query: ("heat early warning" OR "heat alert system" OR "heat action plan" OR "heat-health action plan" OR "...
+2026-03-25 22:02:12 | INFO     | Max results: 100
+2026-03-25 22:02:12 | INFO     | ============================================================
+2026-03-25 22:02:12 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-25 22:02:12 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-25 22:02:12 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-25 22:02:21 | INFO     | OPENALEX search completed successfully
+2026-03-25 22:02:21 | WARNING  | ⚠️ No summary file found for variation 3
+2026-03-25 22:02:21 | INFO     | 
+============================================================
+2026-03-25 22:02:21 | INFO     | Searching Variation 4/5
+2026-03-25 22:02:21 | INFO     | ============================================================
+2026-03-25 22:02:21 | INFO     | Query: ("early warning system" OR "heat-health warning system" OR "heat health warning system" OR "heatwave...
+2026-03-25 22:02:21 | INFO     | ============================================================
+2026-03-25 22:02:21 | INFO     | Starting OPENALEX search
+2026-03-25 22:02:21 | INFO     | Query: ("early warning system" OR "heat-health warning system" OR "heat health warning system" OR "heatwave...
+2026-03-25 22:02:21 | INFO     | Max results: 100
+2026-03-25 22:02:21 | INFO     | ============================================================
+2026-03-25 22:02:21 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-25 22:02:21 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-25 22:02:21 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-25 22:02:29 | INFO     | OPENALEX search completed successfully
+2026-03-25 22:02:29 | WARNING  | ⚠️ No summary file found for variation 4
+2026-03-25 22:02:29 | INFO     | 
+============================================================
+2026-03-25 22:02:29 | INFO     | Searching Variation 5/5
+2026-03-25 22:02:29 | INFO     | ============================================================
+2026-03-25 22:02:29 | INFO     | Query: (("forecast-based intervention" OR "forecast-based action" OR "anticipatory action" OR "heat action ...
+2026-03-25 22:02:29 | INFO     | ============================================================
+2026-03-25 22:02:29 | INFO     | Starting OPENALEX search
+2026-03-25 22:02:29 | INFO     | Query: (("forecast-based intervention" OR "forecast-based action" OR "anticipatory action" OR "heat action ...
+2026-03-25 22:02:29 | INFO     | Max results: 100
+2026-03-25 22:02:29 | INFO     | ============================================================
+2026-03-25 22:02:29 | INFO     | 🤖 OPENALEX: Initializing wrapper...
+2026-03-25 22:02:29 | DEBUG    | Added to path: /Users/ziqianxia/Documents/GitHub/Climate_Intervention_Atlas/Search and full-text packages/search-packages/openalex-searcher
+2026-03-25 22:02:29 | INFO     | 🤖 OpenAlex: Executing Boolean search...
+2026-03-25 22:02:36 | INFO     | OPENALEX search completed successfully
+2026-03-25 22:02:36 | WARNING  | ⚠️ No summary file found for variation 5
+2026-03-25 22:02:36 | INFO     | 
+================================================================================
+2026-03-25 22:02:36 | INFO     | PHASE 3: Statistical Analysis
+2026-03-25 22:02:36 | INFO     | ================================================================================
+2026-03-25 22:02:36 | INFO     | 
+📊 RESULTS:
+2026-03-25 22:02:36 | INFO     |    Result counts: [0, 0, 0, 0, 0]
+2026-03-25 22:02:36 | INFO     |    Min: 0
+2026-03-25 22:02:36 | INFO     |    Max: 0
+2026-03-25 22:02:36 | INFO     |    Mean: 0.0
+2026-03-25 22:02:36 | INFO     |    Median: 0.0
+2026-03-25 22:02:36 | INFO     |    Std Dev: 0.0
+2026-03-25 22:02:36 | INFO     |    CV: inf%
+2026-03-25 22:02:36 | INFO     |    Range ratio: inf:1
+2026-03-25 22:02:36 | INFO     | 
+2026-03-25 22:02:36 | INFO     | 📈 COMPARISON TO BASELINE:
+2026-03-25 22:02:36 | INFO     |    Baseline CV (no PICO): 378.6%
+2026-03-25 22:02:36 | INFO     |    New CV (with PICO): inf%
+2026-03-25 22:02:36 | INFO     |    ❌ DEGRADATION: inf% increase in variability
+2026-03-25 22:02:36 | INFO     | 
+📁 Results saved to: pico_test_results

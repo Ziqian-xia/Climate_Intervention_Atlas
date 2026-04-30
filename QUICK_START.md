@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-**Get your Auto-SLR Pipeline running in 5 minutes!**
+**Get your Winnow running in 5 minutes!**
 
 ---
 

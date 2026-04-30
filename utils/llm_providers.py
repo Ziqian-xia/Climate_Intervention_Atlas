@@ -53,16 +53,10 @@ class LLMProvider(ABC):
 class AnthropicProvider(LLMProvider):
     """Provider for direct Anthropic Claude API."""
 
-    def __init__(self, api_key: Optional[str] = None):
-        """
-        Initialize Anthropic provider.
-
-        Args:
-            api_key: Anthropic API key (required)
-        """
+    def __init__(self, api_key: Optional[str] = None, model: str = "claude-sonnet-4-6"):
         self.api_key = api_key
         self.client = None
-        self.model = "claude-3-5-sonnet-20241022"
+        self.model = model
 
         if ANTHROPIC_AVAILABLE and self.api_key:
             try:
@@ -235,7 +229,10 @@ def create_llm_provider(provider_type: str, config: dict) -> LLMProvider:
         ValueError: If provider_type is unknown
     """
     if provider_type == "anthropic":
-        return AnthropicProvider(api_key=config.get("api_key"))
+        return AnthropicProvider(
+            api_key=config.get("api_key"),
+            model=config.get("model", "claude-sonnet-4-6")
+        )
 
     elif provider_type == "bedrock":
         return BedrockProvider(

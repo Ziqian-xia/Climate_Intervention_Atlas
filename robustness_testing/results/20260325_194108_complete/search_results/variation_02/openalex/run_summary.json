@@ -1,8 +1,0 @@
-{
-  "query": "(\"causal inference\" OR \"quasi-experimental\" OR \"natural experiment\" OR \"exogenous variation\" OR \"identification strategy\" OR \"endogeneity\") AND (\"difference-in-differences\" OR \"diff-in-diff\" OR \"regression discontinuity\" OR \"interrupted time series\" OR \"instrumental variable\" OR \"propensity score\" OR \"matching estimator\" OR \"synthetic control\" OR \"event study design\" OR \"parallel trends\" OR \"discontinuity threshold\") AND (\"policy evaluation\" OR \"program evaluation\" OR \"impact evaluation\" OR \"intervention effectiveness\" OR \"treatment effect\" OR \"counterfactual\" OR \"fixed effects\")",
-  "database": "openalex",
-  "status": "success",
-  "results_count": 87884,
-  "meta_count": 87884,
-  "calls": 880
-}

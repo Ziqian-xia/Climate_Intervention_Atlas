@@ -1,6 +1,6 @@
-# Auto-SLR Multi-Agent Pipeline
+# Winnow — Systematic Literature Search
 
-**Automated Systematic Literature Review powered by Multi-Agent LLM System**
+**Find the right papers. Faster. AI-powered search using systematic review methods.**
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app.streamlit.app)
 
@@ -244,7 +244,7 @@ If you use this tool in your research, please cite:
 
 ```bibtex
 @software{auto_slr_pipeline,
-  title = {Auto-SLR Multi-Agent Pipeline},
+  title = {Winnow — Systematic Literature Search},
   author = {Your Name},
   year = {2024},
   url = {https://github.com/your-username/Climate_Intervention_Atlas}
