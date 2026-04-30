@@ -1940,7 +1940,7 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
             with col_accept:
                 if st.button("✅ Use This Criteria", key="accept_criteria_button", disabled=st.session_state.screening_approved):
                     st.session_state.screening_criteria = st.session_state.generated_criteria
-                    st.success("✅ Criteria copied to main input!")
+                    st.session_state.screening_criteria_input = st.session_state.generated_criteria
                     st.rerun()
             with col_edit:
                 st.info("💡 You can edit the criteria in the main text area below")
