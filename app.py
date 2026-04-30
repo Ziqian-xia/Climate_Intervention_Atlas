@@ -2426,140 +2426,112 @@ if st.session_state.phase >= 4:
         st.session_state.fulltext_complete = False
         st.rerun()
 
-    # Configuration Section
-    st.subheader("⚙️ Retrieval Configuration")
+    # ── OpenAlex (default) ────────────────────────────────────────────────
+    st.markdown("#### 🟢 OpenAlex Retrieval")
+    st.caption("Free and open — downloads raw PDF/XML for Open Access papers. No API key required.")
 
-    retrieval_source = st.radio(
-        "Retrieval source:",
-        options=["openalex_only", "full_chain"],
-        format_func=lambda x: {
-            "openalex_only": "🟢 OpenAlex only — free, Open Access papers, raw files (PDF/XML)",
-            "full_chain":    "🔗 Full chain — OA → Elsevier → Wiley → Browser fallback"
-        }[x],
-        index=0,
-        key="fulltext_source_radio",
-        disabled=st.session_state.fulltext_approved,
-        help="OpenAlex only returns papers that are freely available (Open Access). Full chain adds institutional publisher access."
-    )
-
-    if retrieval_source == "openalex_only":
-        st.info(
-            "**OpenAlex only** downloads raw PDF or XML files directly — no Markdown conversion. "
-            "Only Open Access papers will be retrieved; paywalled papers are skipped. "
-            "Needs: **your email** (recommended for polite-pool rate limits) — no API key required."
+    _oa_c1, _oa_c2 = st.columns(2)
+    with _oa_c1:
+        fulltext_openalex_mailto = st.text_input(
+            "Your email (recommended):",
+            value=st.session_state.openalex_mailto or "",
+            key="fulltext_openalex_mailto",
+            placeholder="you@example.com",
+            help="Any valid email — enables the 'polite pool' for better rate limits. No sign-up needed.",
+            disabled=st.session_state.fulltext_approved
         )
-        use_playwright = False
-    else:
-        st.info("Full chain tries OpenAlex first, then Elsevier/Wiley APIs, then a browser fallback.")
+    with _oa_c2:
+        fulltext_openalex_key = st.text_input(
+            "API key (optional):",
+            type="password",
+            value=st.session_state.openalex_api_key or "",
+            key="fulltext_openalex_key",
+            help="Only needed for very high-volume use. Leave blank for most cases.",
+            disabled=st.session_state.fulltext_approved
+        )
 
-    col_pw, col_retry = st.columns(2)
-    with col_pw:
-        if retrieval_source == "full_chain":
+    # ── Full chain (advanced) ─────────────────────────────────────────────
+    st.markdown("<div class='skip-section'>", unsafe_allow_html=True)
+    with st.expander("Advanced: also try publisher APIs (Elsevier, Wiley) and browser fallback →", expanded=False):
+        st.caption(
+            "Extends retrieval beyond Open Access. Tries OpenAlex first, then institutional publisher APIs, "
+            "then a Playwright browser fallback. Requires institutional API keys."
+        )
+        _use_full_chain = st.checkbox(
+            "Enable full chain",
+            value=False,
+            key="fulltext_use_full_chain",
+            disabled=st.session_state.fulltext_approved
+        )
+
+        if _use_full_chain:
+            # Elsevier
+            st.markdown("**🔵 Elsevier**")
+            st.caption("Register at [dev.elsevier.com](https://dev.elsevier.com/) with your institutional email.")
+            _ec1, _ec2 = st.columns(2)
+            with _ec1:
+                fulltext_elsevier_key = _ec1.text_input(
+                    "API Key:",
+                    type="password",
+                    value=st.session_state.scopus_api_key or "",
+                    key="fulltext_elsevier_key",
+                    disabled=st.session_state.fulltext_approved
+                )
+            with _ec2:
+                fulltext_elsevier_token = _ec2.text_input(
+                    "Inst Token (optional):",
+                    type="password",
+                    value=st.session_state.scopus_insttoken or "",
+                    key="fulltext_elsevier_token",
+                    disabled=st.session_state.fulltext_approved
+                )
+
+            # Wiley
+            st.markdown("**🟠 Wiley TDM**")
+            st.caption("Apply at the [Wiley TDM portal](https://onlinelibrary.wiley.com/library-info/resources/text-and-datamining). Approval usually takes a few days.")
+            fulltext_wiley_token = st.text_input(
+                "TDM Client Token:",
+                type="password",
+                value=st.session_state.wiley_tdm_token or "",
+                key="fulltext_wiley_token",
+                disabled=st.session_state.fulltext_approved
+            )
+            st.session_state.wiley_tdm_token = fulltext_wiley_token
+
+            # Playwright
             use_playwright = st.checkbox(
-                "Enable Playwright Fallback",
+                "Enable Playwright browser fallback (last resort, slower)",
                 value=st.session_state.fulltext_use_playwright,
-                help="Use browser automation as last resort (slower but higher success rate)",
                 key="fulltext_playwright_checkbox",
                 disabled=st.session_state.fulltext_approved
             )
             st.session_state.fulltext_use_playwright = use_playwright
         else:
-            use_playwright = False
+            fulltext_elsevier_key   = ""
+            fulltext_elsevier_token = ""
+            fulltext_wiley_token    = st.session_state.wiley_tdm_token or ""
+            use_playwright          = False
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    with col_retry:
+    # Derive retrieval_source for the retriever config
+    retrieval_source = "full_chain" if _use_full_chain else "openalex_only"
+
+    # Retries / timeout (compact, below the source config)
+    _rc1, _rc2 = st.columns(2)
+    with _rc1:
         max_retries = st.number_input(
-            "Max Retries:",
-            1, 10, st.session_state.fulltext_max_retries,
+            "Max Retries:", 1, 10, st.session_state.fulltext_max_retries,
             key="fulltext_retries_input",
             disabled=st.session_state.fulltext_approved
         )
         st.session_state.fulltext_max_retries = max_retries
-
-    timeout = st.slider(
-        "Timeout (seconds):",
-        30, 300, st.session_state.fulltext_timeout, 30,
-        key="fulltext_timeout_slider",
-        disabled=st.session_state.fulltext_approved
-    )
-    st.session_state.fulltext_timeout = timeout
-
-    # API credentials section
-    with st.expander("🔑 Full-Text API Credentials & Setup Guide"):
-        st.markdown("""
-        Full-text retrieval uses three sources in priority order:
-        **OpenAlex (free OA)** → **Elsevier/Wiley (institutional)** → **Playwright browser fallback**
-        """)
-
-        # OpenAlex
-        st.markdown("---")
-        st.markdown("#### 🟢 OpenAlex — Free & No Registration Required")
-        st.info(
-            "OpenAlex is **free** and works without an API key. "
-            "Providing your **email address** gives you the 'polite pool' (faster rate limit). "
-            "No registration needed — just enter any valid email."
+    with _rc2:
+        timeout = st.slider(
+            "Timeout (s):", 30, 300, st.session_state.fulltext_timeout, 30,
+            key="fulltext_timeout_slider",
+            disabled=st.session_state.fulltext_approved
         )
-        col_oa1, col_oa2 = st.columns(2)
-        with col_oa1:
-            fulltext_openalex_key = st.text_input(
-                "API Key (optional):",
-                type="password",
-                value=st.session_state.openalex_api_key or "",
-                key="fulltext_openalex_key",
-                help="Uses Phase 2 credentials if already entered"
-            )
-        with col_oa2:
-            fulltext_openalex_mailto = st.text_input(
-                "Email (recommended):",
-                value=st.session_state.openalex_mailto or "",
-                key="fulltext_openalex_mailto",
-                help="Any valid email — enables faster 'polite pool' rate limits"
-            )
-
-        # Elsevier
-        st.markdown("---")
-        st.markdown("#### 🔵 Elsevier — Institutional Access")
-        st.info(
-            "Requires an **Elsevier API key** from your institution. "
-            "Register at [dev.elsevier.com](https://dev.elsevier.com/) with your institutional email. "
-            "An institutional token may also be required — contact your library if unsure."
-        )
-        col_els1, col_els2 = st.columns(2)
-        with col_els1:
-            fulltext_elsevier_key = st.text_input(
-                "API Key:",
-                type="password",
-                value=st.session_state.scopus_api_key or "",
-                key="fulltext_elsevier_key",
-                help="Uses Scopus API key from Phase 2 if already entered"
-            )
-        with col_els2:
-            fulltext_elsevier_token = st.text_input(
-                "Inst Token (optional):",
-                type="password",
-                value=st.session_state.scopus_insttoken or "",
-                key="fulltext_elsevier_token",
-                help="Institutional token for entitled access — ask your library"
-            )
-
-        # Wiley
-        st.markdown("---")
-        st.markdown("#### 🟠 Wiley TDM — Text and Data Mining")
-        st.info(
-            "Wiley requires a **TDM (Text and Data Mining) token** for full-text access. "
-            "Apply at the [Wiley TDM portal](https://onlinelibrary.wiley.com/library-info/resources/text-and-datamining) — "
-            "you need to log in with an institutional account and request access. "
-            "Approval is usually granted within a few days. "
-            "Without this token, Wiley papers will fall back to browser download (Playwright)."
-        )
-        fulltext_wiley_token = st.text_input(
-            "TDM Client Token:",
-            type="password",
-            value=st.session_state.wiley_tdm_token or "",
-            key="fulltext_wiley_token",
-            help="Apply at onlinelibrary.wiley.com/library-info/resources/text-and-datamining"
-        )
-
-        st.session_state.wiley_tdm_token = fulltext_wiley_token
+        st.session_state.fulltext_timeout = timeout
 
     # DOI Preview & Execute Button
     if st.session_state.screening_results is not None:
