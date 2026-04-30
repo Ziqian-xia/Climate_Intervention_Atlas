@@ -1006,6 +1006,39 @@ with st.expander("ℹ️ How it works", expanded=False):
 
 st.markdown("---")
 
+# ── Skip Phase 1: enter queries manually ─────────────────────────────────
+if not st.session_state.approved:
+    with st.expander("⏭️ Skip query generation — I already have search terms", expanded=False):
+        st.caption("Paste your Boolean queries directly and proceed to Phase 2 without running the AI agents.")
+        _skip_oa  = st.text_area("OpenAlex / Scopus query:", key="skip_openalex_query", height=80,
+                                  placeholder='title-abs-key("cooling center" OR "heat shelter") AND ...')
+        _skip_pm  = st.text_area("PubMed query:", key="skip_pubmed_query", height=80,
+                                  placeholder='("cooling center"[tiab] OR "heat shelter"[tiab]) AND ...')
+        _skip_els = st.text_area("Elsevier / Scopus query (can be same as OpenAlex):", key="skip_elsevier_query", height=80)
+        if st.button("✅ Use these queries → go to Phase 2", key="skip_p1_button",
+                     disabled=not (_skip_oa or _skip_pm)):
+            st.session_state.openalex_query  = _skip_oa
+            st.session_state.pubmed_query    = _skip_pm
+            st.session_state.elsevier_query  = _skip_els or _skip_oa
+            st.session_state.approved        = True
+            st.session_state.phase           = 2
+            st.session_state.query_variations = [{
+                'variation_seed': 1,
+                'pulse_keywords': [],
+                'pulse_reasoning': 'Manually provided',
+                'queries': {
+                    'openalex_query':  _skip_oa,
+                    'pubmed_query':    _skip_pm,
+                    'elsevier_query':  _skip_els or _skip_oa,
+                },
+                'formulator_reasoning': '',
+                'sentinel_validation': 'Skipped',
+                'sentinel_warnings': [],
+                'refiner_notes': '',
+                'issues_resolved': [],
+            }]
+            st.rerun()
+
 # Show edit-mode banner when user returns from Phase 2
 if st.session_state.returned_from_phase2 and not st.session_state.approved:
     st.info(
@@ -1462,6 +1495,38 @@ if st.session_state.phase >= 2:
         st.session_state.returned_from_phase2 = True
         st.rerun()
 
+    # ── Skip Phase 2: upload existing search results ──────────────────────
+    if not st.session_state.get('search_approved', False):
+        with st.expander("⏭️ Skip search — I already have results (upload CSV)", expanded=False):
+            st.caption("Upload a CSV of papers you've already retrieved. Needs at least a title column; abstract and DOI recommended.")
+            _p2_file = st.file_uploader("Upload results CSV:", type=["csv"], key="skip_p2_uploader")
+            if _p2_file:
+                try:
+                    _p2_df = pd.read_csv(_p2_file)
+                    st.success(f"✅ {len(_p2_df)} rows, {len(_p2_df.columns)} columns")
+                    st.dataframe(_p2_df.head(3), use_container_width=True)
+                    _p2_cols = [""] + list(_p2_df.columns)
+                    _c1, _c2, _c3 = st.columns(3)
+                    _p2_title = _c1.selectbox("Title column:", _p2_cols, key="skip_p2_title")
+                    _p2_abs   = _c2.selectbox("Abstract column (optional):", _p2_cols, key="skip_p2_abstract")
+                    _p2_doi   = _c3.selectbox("DOI column (optional):", _p2_cols, key="skip_p2_doi")
+                    if _p2_title and st.button("✅ Use these results → go to Phase 3", key="skip_p2_button"):
+                        import tempfile
+                        _mapped = pd.DataFrame()
+                        _mapped['title']     = _p2_df[_p2_title]
+                        _mapped['abstract']  = _p2_df[_p2_abs]   if _p2_abs  else ""
+                        _mapped['doi']       = _p2_df[_p2_doi]   if _p2_doi  else ""
+                        _mapped['record_id'] = range(1, len(_mapped) + 1)
+                        _tmp = tempfile.mkdtemp(prefix="imported_p2_")
+                        _mapped.to_csv(f"{_tmp}/imported_papers.csv", index=False)
+                        st.session_state.phase              = 3
+                        st.session_state.search_results_dir = _tmp
+                        st.session_state.imported_data      = _mapped
+                        st.session_state.data_imported      = True
+                        st.rerun()
+                except Exception as e:
+                    st.error(f"❌ {_safe_error(e)}")
+
     # Show variation info if multiple variations exist
     if len(st.session_state.query_variations) > 1:
         st.info(
@@ -1827,6 +1892,72 @@ if st.session_state.phase >= 3:
         st.session_state.screening_approved = False
         st.session_state.screening_complete = False
         st.rerun()
+
+    # ── Skip Phase 3: upload pre-screened papers or include all ──────────
+    if not st.session_state.screening_approved:
+        with st.expander("⏭️ Skip screening — use pre-screened results or include all papers", expanded=False):
+            _skip3_tab1, _skip3_tab2 = st.tabs(["📂 Upload pre-screened CSV", "✅ Include all papers"])
+
+            with _skip3_tab1:
+                st.caption("Upload a CSV that already has an inclusion decision. Map the judgement column (True/False or 1/0) and go straight to Phase 4.")
+                _p3_file = st.file_uploader("Upload screened CSV:", type=["csv"], key="skip_p3_uploader")
+                if _p3_file:
+                    try:
+                        _p3_df = pd.read_csv(_p3_file)
+                        st.success(f"✅ {len(_p3_df)} rows")
+                        st.dataframe(_p3_df.head(3), use_container_width=True)
+                        _p3_cols = [""] + list(_p3_df.columns)
+                        _s1, _s2, _s3, _s4 = st.columns(4)
+                        _p3_title     = _s1.selectbox("Title:",     _p3_cols, key="skip_p3_title")
+                        _p3_doi       = _s2.selectbox("DOI:",       _p3_cols, key="skip_p3_doi")
+                        _p3_judgement = _s3.selectbox("Judgement:", _p3_cols, key="skip_p3_judgement",
+                                                       help="Column with True/False or 1/0 inclusion decisions")
+                        _p3_abs       = _s4.selectbox("Abstract (optional):", _p3_cols, key="skip_p3_abstract")
+                        if _p3_title and _p3_doi and _p3_judgement:
+                            if st.button("✅ Use these results → go to Phase 4", key="skip_p3_button"):
+                                _p3_mapped = _p3_df.copy()
+                                _p3_mapped = _p3_mapped.rename(columns={
+                                    _p3_title: 'title', _p3_doi: 'doi', _p3_judgement: 'judgement'
+                                })
+                                if _p3_abs:
+                                    _p3_mapped = _p3_mapped.rename(columns={_p3_abs: 'abstract'})
+                                # Normalise judgement to bool
+                                _p3_mapped['judgement'] = _p3_mapped['judgement'].map(
+                                    lambda v: bool(v) if isinstance(v, bool)
+                                    else str(v).strip().lower() in ('true', '1', 'yes', 'include')
+                                )
+                                st.session_state.screening_results  = _p3_mapped
+                                st.session_state.screening_approved = True
+                                st.session_state.screening_complete = True
+                                st.session_state.phase              = 4
+                                st.rerun()
+                        else:
+                            st.caption("Map title, DOI, and judgement columns to continue.")
+                    except Exception as e:
+                        st.error(f"❌ {_safe_error(e)}")
+
+            with _skip3_tab2:
+                st.caption("Mark all papers from Phase 2 as included and go directly to full-text retrieval. Requires DOI column.")
+                if st.session_state.get('imported_data') is not None:
+                    _all_df = st.session_state.imported_data.copy()
+                elif st.session_state.get('search_results_dir'):
+                    _all_csv = Path(st.session_state.search_results_dir) / "imported_papers.csv"
+                    _all_df  = pd.read_csv(_all_csv) if _all_csv.exists() else None
+                else:
+                    _all_df = None
+                if _all_df is not None:
+                    st.info(f"This will mark all **{len(_all_df)} papers** as included.")
+                    if 'doi' not in _all_df.columns or _all_df['doi'].isna().all():
+                        st.warning("⚠️ No DOI column found — Phase 4 requires DOIs for download.")
+                    if st.button("✅ Include all → go to Phase 4", key="skip_p3_all_button"):
+                        _all_df['judgement'] = True
+                        st.session_state.screening_results  = _all_df
+                        st.session_state.screening_approved = True
+                        st.session_state.screening_complete = True
+                        st.session_state.phase              = 4
+                        st.rerun()
+                else:
+                    st.warning("No Phase 2 results found. Complete Phase 2 first, or upload a CSV in the tab above.")
 
     # Configuration Section
     st.subheader("⚙️ Screening Configuration")
