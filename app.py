@@ -663,9 +663,12 @@ with st.sidebar:
 
     # Phase Tracker
     st.markdown(
-        "<div style='text-align:center; padding: 0.5rem 0 0.25rem;'>"
+        "<div style='text-align:center; padding: 0.5rem 0 0.1rem;'>"
         "<span style='font-size:1.35rem; font-weight:800; letter-spacing:-0.5px; color:#054067;'>winnow</span>"
         "<br><span style='font-size:0.7rem; color:#64748B; letter-spacing:0.04em;'>LITERATURE SEARCH</span>"
+        "<br><span style='font-size:0.7rem; color:#94A3B8; margin-top:0.4rem; display:inline-block;'>"
+        "Questions? Contact <a href='mailto:ziqianx@stanford.edu' style='color:#036380; text-decoration:none;'>Ziqian Xia</a>"
+        "</span>"
         "</div>",
         unsafe_allow_html=True
     )
