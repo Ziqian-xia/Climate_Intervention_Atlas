@@ -4,9 +4,12 @@ Supports both Anthropic direct API and AWS Bedrock
 """
 
 import json
+import logging
 import os
 from abc import ABC, abstractmethod
 from typing import Optional
+
+_log = logging.getLogger(__name__)
 
 try:
     import anthropic
@@ -62,7 +65,7 @@ class AnthropicProvider(LLMProvider):
             try:
                 self.client = anthropic.Anthropic(api_key=self.api_key)
             except Exception as e:
-                print(f"Failed to initialize Anthropic client: {e}")
+                _log.warning("Failed to initialize Anthropic client: %s", type(e).__name__)
                 self.client = None
 
     def call_model(self, system_prompt: str, user_message: str, max_tokens: int = 2000) -> str:
@@ -126,7 +129,7 @@ class BedrockProvider(LLMProvider):
         self.client = None
 
         if not BOTO3_AVAILABLE:
-            print("boto3 not available. Install with: pip install boto3")
+            _log.warning("boto3 not available — install with: pip install boto3")
             return
 
         try:
@@ -138,7 +141,7 @@ class BedrockProvider(LLMProvider):
 
             self.client = boto3.client("bedrock-runtime", **kwargs)
         except Exception as e:
-            print(f"Failed to initialize Bedrock client: {e}")
+            _log.warning("Failed to initialize Bedrock client: %s", type(e).__name__)
             self.client = None
 
     def call_model(self, system_prompt: str, user_message: str, max_tokens: int = 2000) -> str:

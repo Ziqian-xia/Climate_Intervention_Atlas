@@ -259,6 +259,21 @@ def inject_css():
     """, unsafe_allow_html=True)
 
 
+def _safe_error(e: Exception) -> str:
+    """Return a user-facing error string with API keys scrubbed out."""
+    import re
+    msg = str(e)
+    # Redact Bearer tokens (Anthropic, OpenAI, etc.)
+    msg = re.sub(r'Bearer\s+\S+', 'Bearer [REDACTED]', msg)
+    # Redact sk-ant-*, sk-*, and other common key patterns
+    msg = re.sub(r'\bsk-[A-Za-z0-9\-_]{8,}\b', '[REDACTED]', msg)
+    # Redact x-api-key header values
+    msg = re.sub(r'(x-api-key[\'"\s:]+)[^\s\'"]+', r'\1[REDACTED]', msg, flags=re.IGNORECASE)
+    # Redact anything that looks like a long random token (32+ hex/base64 chars)
+    msg = re.sub(r'\b[A-Za-z0-9+/]{40,}={0,2}\b', '[REDACTED]', msg)
+    return msg
+
+
 def _logo_img(height: str = "72px") -> str:
     """Return an <img> tag with the Winnow logo embedded as base64."""
     import base64
@@ -628,7 +643,7 @@ with st.sidebar:
                             else:
                                 st.error("❌ Connection test failed - check credentials and Bedrock model access")
                 except Exception as e:
-                    st.error(f"❌ Error: {str(e)}")
+                    st.error(f"❌ Error: {_safe_error(e)}")
                     logger.error(f"Connection test failed: {e}", exc_info=True)
 
     st.markdown("---")
@@ -784,7 +799,7 @@ with st.sidebar:
                     st.warning("⚠️ Please map at least Title and Abstract columns")
 
             except Exception as e:
-                st.error(f"❌ Error loading file: {str(e)}")
+                st.error(f"❌ Error loading file: {_safe_error(e)}")
                 logger.error(f"Import error: {e}", exc_info=True)
 
     # Model & Prompt Information Section
@@ -1205,7 +1220,7 @@ if generate_button:
         st.rerun()
 
     except Exception as e:
-        st.error(f"❌ Error during query generation: {str(e)}")
+        st.error(f"❌ Error during query generation: {_safe_error(e)}")
         logger.error(f"Query generation failed: {e}", exc_info=True)
 
 # Agent Output Section (only show if queries generated)
@@ -1307,7 +1322,7 @@ if st.session_state.queries_generated:
                 else:
                     st.error("❌ Invalid queries file format")
             except Exception as e:
-                st.error(f"❌ Error loading queries: {str(e)}")
+                st.error(f"❌ Error loading queries: {_safe_error(e)}")
 
     st.markdown("---")
 
@@ -1924,7 +1939,7 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
                         st.rerun()
 
                 except Exception as e:
-                    st.error(f"❌ Error generating criteria: {str(e)}")
+                    st.error(f"❌ Error generating criteria: {_safe_error(e)}")
                     logger.error(f"Criteria generation failed: {e}", exc_info=True)
 
         # Display generated criteria
@@ -2066,7 +2081,7 @@ Provide clear inclusion and exclusion criteria that can be used for abstract scr
                     st.rerun()
 
                 except Exception as e:
-                    st.error(f"❌ Screening failed: {str(e)}")
+                    st.error(f"❌ Screening failed: {_safe_error(e)}")
                     logger.error(f"Screening error: {e}", exc_info=True)
                     status.update(label="❌ Screening Failed", state="error", expanded=True)
 
@@ -2444,7 +2459,7 @@ if st.session_state.phase >= 4:
                         st.rerun()
 
                 except Exception as e:
-                    st.error(f"❌ Retrieval failed: {str(e)}")
+                    st.error(f"❌ Retrieval failed: {_safe_error(e)}")
                     logger.error(f"Full-text retrieval error: {e}", exc_info=True)
                     status.update(label="❌ Retrieval Failed", state="error", expanded=True)
 
